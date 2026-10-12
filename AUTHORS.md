@@ -1,6 +1,6 @@
 # Authors
 
-- Benjamin Frohman (author of the theorem and of this repository)
+- Benjamin Stanley Frohman (author of the theorem and of this repository)
   Zenodo: https://zenodo.org/records/22727814
   Concept DOI: 10.5281/zenodo.22713135
   GitHub: @BenFrohman

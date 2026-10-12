@@ -7,7 +7,7 @@ Lean 4 working files for **Frohman, Theorem 28** (former Hypothesis R1):
 Paper: [10.5281/zenodo.22727814](https://zenodo.org/records/22727814)  
 Concept DOI: [10.5281/zenodo.22713135](https://doi.org/10.5281/zenodo.22713135)
 
-Copyright (c) 2026 **Benjamin Frohman**. License: [CC BY 4.0](LICENSE).
+Copyright (c) 2026 **Benjamin Stanley Frohman**. License: [Apache-2.0](LICENSE).
 
 ## What this repository is
 

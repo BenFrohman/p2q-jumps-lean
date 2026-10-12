@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2026 Benjamin Frohman. CC BY 4.0.
+Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
 -/
 import Mathlib.Tactic
 import Mathlib.Data.Real.Basic

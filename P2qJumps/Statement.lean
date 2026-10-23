@@ -1,6 +1,9 @@
 /-
-Copyright (c) 2026 Benjamin Stanley Frohman. Apache-2.0.
-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+/-
 This file records the *statement* of Theorem 28 from
 Frohman, Zenodo 10.5281/zenodo.22727814.
 The paper proof is not transcribed here. Goals marked `sorry` are not certificates.

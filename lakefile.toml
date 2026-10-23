@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0.
 name = "P2qJumps"
 version = "0.1.0"
 defaultTargets = ["P2qJumps"]

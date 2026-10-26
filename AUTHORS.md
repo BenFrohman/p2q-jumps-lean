@@ -1,11 +1,8 @@
-<!-- Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under Apache-2.0. -->
 # Authors
 
-- Benjamin Stanley Frohman (author of the theorem and of this repository)
-  Zenodo: https://zenodo.org/records/22727814
-  Concept DOI: 10.5281/zenodo.22713135
-  GitHub: @BenFrohman
-  X: @Investor0x
+- **Benjamin Stanley Frohman**
+  - ORCID: [0009-0006-7068-3718](https://orcid.org/0009-0006-7068-3718)
+  - GitHub: [@BenFrohman](https://github.com/BenFrohman)
+  - Role: Sole Author, Architect, and Copyright Holder
 
-Lean transcription assistance was used in drafting these files.
-The mathematical theorem is Frohman's. Unproved Lean goals are marked `sorry`.
+Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.

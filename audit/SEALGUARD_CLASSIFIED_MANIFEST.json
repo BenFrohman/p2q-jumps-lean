@@ -1,0 +1,13 @@
+{
+  "schema": "sealguard-manifest-v1.0",
+  "repository": "BenFrohman/p2q-jumps-lean",
+  "doi": "10.5281/zenodo.22727814",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "public_surface_policy": "VERIFIED_PUBLIC_SURFACE_ONLY",
+  "classified_ip_redaction": "ACTIVE_ZERO_LEAKAGE",
+  "merkle_root_sha256": "cafa6a2101b1393a290fd004373460ecdff2c71561ca18d7424aa9d3d0bcb385",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "2f1eecf7f853993a3ed2a504affa7690bf90a98aa0d2ed3a8a763d9a16c2f87c4b05971555878bcd5b508e9be1af5d5f75a8f4e0fabfacecab609dfbe385c008"
+}

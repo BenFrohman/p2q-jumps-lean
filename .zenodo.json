@@ -1,0 +1,26 @@
+{
+  "title": "Formal Verification of 2-Adic Valuation Shifts and p^2 q Jump Dynamics in Generalized Collatz Extensions (Lean 4)",
+  "upload_type": "software",
+  "description": "Lean 4 formalization of 2-adic valuation shifts and p^2 q jump dynamics in generalized Collatz extensions. Formalizes verified algebraic jump identities in Lean 4 without claiming an unconditional resolution of the global Collatz conjecture. Copyright (c) 2026 Benjamin Stanley Frohman. Licensed under the Apache License, Version 2.0.",
+  "creators": [
+    {
+      "name": "Frohman, Benjamin Stanley",
+      "orcid": "0009-0006-7068-3718"
+    }
+  ],
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "keywords": [
+    "Lean 4",
+    "Collatz dynamics",
+    "2-adic valuation",
+    "p2q jumps"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/BenFrohman/p2q-jumps-lean",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "sealguard-merkle-provenance-v1.0",
+  "repository": "BenFrohman/p2q-jumps-lean",
+  "doi": "10.5281/zenodo.22727814",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "timestamp_cdt": "2026-10-25T19:10:00-05:00",
+  "merkle_root_sha256": "cafa6a2101b1393a290fd004373460ecdff2c71561ca18d7424aa9d3d0bcb385",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "2f1eecf7f853993a3ed2a504affa7690bf90a98aa0d2ed3a8a763d9a16c2f87c4b05971555878bcd5b508e9be1af5d5f75a8f4e0fabfacecab609dfbe385c008",
+  "leaf_count": 14,
+  "leaves": [
+    {
+      "path": ".zenodo.json",
+      "sha256": "8f9480152fd877683be394d1a7a29cb8cfdc923610b063b3113119d5c5600d1c",
+      "bytes": 950
+    },
+    {
+      "path": "AUTHORS.md",
+      "sha256": "1732529c9d516b14378c2ea60b7a29a9dd01385bb5f302efa163c42b3dceb130",
+      "bytes": 320
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "49fb9fde0009d957ad7b7931ecbd261dc5fcc03637e15040ebc9031151f8e864",
+      "bytes": 609
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "ec43eec7417d548fb78a8dc50830f1d854b91a89c2daf0d4e957601515c15e87",
+      "bytes": 10773
+    },
+    {
+      "path": "NOTES/R2.md",
+      "sha256": "f2792e73ae85361f6149c1563f472009f00ffc4e6506531339c0dd2bc4722b36",
+      "bytes": 633
+    },
+    {
+      "path": "NOTES/R3.md",
+      "sha256": "6c906cc646e1e3843ff9b8e6132c2caeb888e62fa11afe1106eba1cd22839e09",
+      "bytes": 1584
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "ab67d90aa579022375fddbf74f6224d9cfc08f24505d3469c127a2f95ea26caa",
+      "bytes": 590
+    },
+    {
+      "path": "P2qJumps/LeadingForm.lean",
+      "sha256": "fcc97b208f444e5ca4d6017f037e3d54e4a051ec62f6b35c09ff5a6e270622a2",
+      "bytes": 1102
+    },
+    {
+      "path": "P2qJumps/Statement.lean",
+      "sha256": "6266b9705a2d3cc561adc0d176ac98e8891ca9938e810271e300af96727ed0a2",
+      "bytes": 1334
+    },
+    {
+      "path": "P2qJumps.lean",
+      "sha256": "0ffad60e3f54c4ef62f0cfdc6c0039872bec7e3f5cc9a08400867bbe22a444ca",
+      "bytes": 228
+    },
+    {
+      "path": "README.md",
+      "sha256": "33ed9ddf267a10e2796463672e97e723266748ffce6d1e85ae99a8246e89914f",
+      "bytes": 2425
+    },
+    {
+      "path": "audit/TITAN_AUDIT_CERTIFICATE.json",
+      "sha256": "99cb27de37727806160f9f5727b4ff5a0efe78313fee8ae0359c97de01f9b95c",
+      "bytes": 1223
+    },
+    {
+      "path": "lakefile.toml",
+      "sha256": "ed830ef17bb3d699e8ab4ac71d7f5e8ad539e57c856c4d2c80714d345cdb57f5",
+      "bytes": 249
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "e8173aad377a6d70041e5f7a5d8895ed587628f5cab243c53a18c40a1b7b6bf8",
+      "bytes": 25
+    }
+  ]
+}

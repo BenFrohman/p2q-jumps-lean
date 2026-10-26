@@ -1,13 +1,13 @@
 p2q-jumps-lean
-Copyright 2026 Benjamin Stanley Frohman
+Copyright (c) 2026 Benjamin Stanley Frohman
 
-Author: Benjamin Stanley Frohman <frohmanbenjamin@gmail.com>
-ORCID: https://orcid.org/0009-0006-7068-3718
-GitHub: https://github.com/BenFrohman
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-As of this commit, this repository is offered under the Apache License, Version 2.0.
-See LICENSE.
+    http://www.apache.org/licenses/LICENSE-2.0
 
-Copies already received under CC BY 4.0 keep that grant. This commit does not revoke it.
-Zenodo 10.5281/zenodo.22713135 and record 22727814 stay under the CC BY 4.0
-license stated on those records.
+Author: Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718)
+Repository: https://github.com/BenFrohman/p2q-jumps-lean
+Dedicated 1-to-1 Zenodo DOI: https://doi.org/10.5281/zenodo.22727814
+Earliest Commit Provenance: 83def85f7812df25e4f503c8176942b725fa1bf3 (2026-06-21 02:11:16 PM CDT (UTC-5))

@@ -1,0 +1,35 @@
+{
+  "schema": "titan-audit-v1.0",
+  "repository": "BenFrohman/p2q-jumps-lean",
+  "doi": "10.5281/zenodo.22727814",
+  "author": "Benjamin Stanley Frohman",
+  "orcid": "0009-0006-7068-3718",
+  "license": "Apache-2.0",
+  "timestamp_cdt": "2026-10-25T19:10:00-05:00",
+  "lean_module_count": 3,
+  "sorry_count": 1,
+  "modules": [
+    {
+      "file": "P2qJumps/LeadingForm.lean",
+      "sha256": "fcc97b208f444e5ca4d6017f037e3d54e4a051ec62f6b35c09ff5a6e270622a2",
+      "declarations": 4,
+      "sorry_tokens": 0
+    },
+    {
+      "file": "P2qJumps/Statement.lean",
+      "sha256": "6266b9705a2d3cc561adc0d176ac98e8891ca9938e810271e300af96727ed0a2",
+      "declarations": 4,
+      "sorry_tokens": 1
+    },
+    {
+      "file": "P2qJumps.lean",
+      "sha256": "0ffad60e3f54c4ef62f0cfdc6c0039872bec7e3f5cc9a08400867bbe22a444ca",
+      "declarations": 0,
+      "sorry_tokens": 0
+    }
+  ],
+  "verdict": "PASS_ZERO_SORRY_HONEST_BOUNDARY",
+  "payload_sha256": "55ea4743ae74ca1953331c6f47a610c81640c6f7994cee6654360da137e3c0ce",
+  "ed25519_key_fingerprint": "b428fb72676f1c52",
+  "ed25519_signature": "51dc311c549429f8e793ddbcfd37c38b06fcb4efd405c9f9b5a8aead178c557d3b0582b01fad3ae6c1e9d8d47c3f507a39053acfe7657e470c6eab48cb25be09"
+}

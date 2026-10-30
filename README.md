@@ -23,7 +23,7 @@ Copyright (c) 2026 **Benjamin Stanley Frohman**. License: [Apache-2.0](LICENSE).
 - Not a mathlib PR
 - Not a proof of Conjecture 3 (no `n = p^2 q` at all)
 
-The file `P2qJumps/Statement.lean` ends in `sorry`. Until that `sorry` is gone and `lake build` is green on CI, do not cite this repo as a machine-checked proof.
+Theorem 28 is stated as the named Prop `Theorem28` and is not proved here; `theorem28_from_paper` takes it as an explicit hypothesis. The only unconditional result is `g_ge_six`. 0 `sorry`, no custom axioms.
 
 ## Build (when Lean is installed)
 

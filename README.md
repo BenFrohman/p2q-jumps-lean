@@ -1,5 +1,7 @@
 # p2q-jumps-lean
 
+[![Lean certificate](https://github.com/BenFrohman/p2q-jumps-lean/actions/workflows/certify.yml/badge.svg)](https://github.com/BenFrohman/p2q-jumps-lean/actions/workflows/certify.yml)
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22727814.svg)](https://doi.org/10.5281/zenodo.22727814) [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 Lean 4 working files for **Frohman, Theorem 28** (former Hypothesis R1):

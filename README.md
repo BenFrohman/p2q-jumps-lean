@@ -50,3 +50,7 @@ Cite the paper as Frohman, *Further constraints on simultaneous totient and divi
 - **SealGuard SHA-256 Merkle Root:** `cafa6a2101b1393a290fd004373460ecdff2c71561ca18d7424aa9d3d0bcb385` (`PROVENANCE_MERKLE_ROOT.json`)
 - **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
 - **Scope & Scientific Boundary:** Formalizes verified algebraic jump identities in Lean 4 without claiming an unconditional resolution of the global Collatz conjecture.
+
+## Zenodo archive
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867497.svg)](https://doi.org/10.5281/zenodo.23867497) Formal Verification of 2-Adic Valuation Shifts and p^2 q Jump Dynamics in Generalized Collatz Extensions (Lean 4) — all versions: [10.5281/zenodo.23867497](https://doi.org/10.5281/zenodo.23867497); latest version: [10.5281/zenodo.23905258](https://doi.org/10.5281/zenodo.23905258)

@@ -4,6 +4,7 @@ title: "Formal Verification of 2-Adic Valuation Shifts and p^2 q Jump Dynamics i
 authors:
   - family-names: "Frohman"
     given-names: "Benjamin Stanley"
+    alias: "B.S. Frohman"
     orcid: "https://orcid.org/0009-0006-7068-3718"
 doi: 10.5281/zenodo.22727814
 url: "https://github.com/BenFrohman/p2q-jumps-lean"

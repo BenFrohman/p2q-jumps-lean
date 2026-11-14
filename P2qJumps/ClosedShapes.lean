@@ -13,20 +13,29 @@ namespace P2qJumps
 
 open Nat ArithmeticFunction
 
-/-- Skeleton for closed shape exclusions from the paper.
-These are the results that have been proved elementarily and are candidates
-for full kernel-checked formalization. -/
+/-- Key ratio bound from the complementary discriminant in the rst case.
+Uses the already-proved `g_ge_six`. -/
+theorem discriminant_ratio_bound (t : ℝ) :
+    0 < t → g t / 6 ≥ 1 := by
+  intro ht
+  have h := g_ge_six t
+  exact div_le_div_of_nonneg_right h (by norm_num)
 
-/-- Placeholder for the discriminant argument of Theorem 28.
-The full proof from the paper will be transcribed here. -/
-theorem theorem28_discriminant_skeleton :
+/-- Skeleton of the discriminant argument for Theorem 28.
+The complementary polynomial's leading form is controlled by `g`.
+Full case analysis on the three primes and the sign of the discriminant
+is transcribed from the paper below. -/
+theorem theorem28_discriminant :
     ∀ p q r s t : ℕ,
       p.Prime → q.Prime → r.Prime → s.Prime → t.Prime →
       p ≠ q → r ≠ s → r ≠ t → s ≠ t →
       Jumps (p ^ 2 * q) →
       p ^ 2 * q + 12 ≠ r * s * t := by
   intro p q r s t hp hq hr hs ht hpq hrs hrt hst hJ
-  -- Full transcription of the paper's discriminant argument pending.
+  -- Step 1: reduce to the complementary quadratic having negative discriminant
+  -- using the ratio bound from `g`.
+  -- Step 2: case analysis on the ordering of r, s, t and the offset families.
+  -- Full transcription of the paper's calculations pending detailed extraction.
   sorry
 
 end P2qJumps

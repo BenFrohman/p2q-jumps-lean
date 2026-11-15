@@ -1,0 +1,20 @@
+% Updated residual section for the paper (November 2026)
+% Incorporating all verified findings from the computational and algebraic session.
+
+\section{Updated residual status for \( n = p^2 q \)}
+
+The residual cases for Conjecture 3 have been reduced as follows.
+
+\begin{theorem}[Emptiness of the \( Q < 0 \) half-plane in the \( r^2 st \) case]
+Let \( Q(p, r) = p(r + 2) - r(r - 1) \). In the region \( 5 \le p \le r - 6 \) with \( p, r \) distinct primes, the discriminant \( \Delta_{st} = \Sigma^2 - 4\Pi \) of the complementary pair is strictly negative. Consequently no real primes \( s, t \) exist, and the half-plane \( Q(p, r) < 0 \) is empty.
+\end{theorem}
+
+\begin{proof}
+The numerator \( H(p, r) \) of \( \Delta_{st} \) (after clearing a negative denominator for \( p < r \)) satisfies, under the substitution \( p = 5 + u \), \( r = 11 + u + v \) with \( u, v \ge 0 \), an expansion with 50 monomials, every coefficient strictly positive (constant term \( 91\,908\,696 \)). Thus \( H > 0 \) and \( \Delta_{st} < 0 \) throughout the region. The offset lines \( r = p + 2 \) and \( r = p + 4 \) are already excluded.
+\end{proof}
+
+For the remaining \( p > r \) region, the condition reduces to \( Q(p, r) \mid F(r) \) with \( F(r) = r^7 + 4r^6 + r^5 - r^4 - 10r^3 - 37r^2 - 72r - 48 \), together with \( r \mid L(p) \) where \( L(x) = x^3 - x^2 - 12 \). Computational searches under these filters find no solutions for primes \( r \le 20\,000 \).
+
+R2 remains computationally empty for all primes \( p \le 10^5 \) in the strip \( p < r < p^{3/2} \).
+
+The case \( \omega(N) \ge 4 \) remains residual.

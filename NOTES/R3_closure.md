@@ -1,0 +1,28 @@
+# Closure of the N = r^{2}st family (Hypothesis R3)
+
+## Theorem (N = r^{2}st is empty)
+
+If both length-12 jumps hold and n = p^{2}q with distinct primes p, q ≥ 5, then N = n + 12 cannot be of the form r^{2}st with distinct primes r, s, t ≥ 5.
+
+### Proof
+
+**Case p < r (Q(p, r) < 0).**
+The complementary discriminant Δ_st = Σ^{2} - 4Π has numerator H(p, r) after clearing denominators. Under the change of variables p = 5 + u, r = 11 + u + v (u, v ≥ 0), the expansion of H has exactly 50 monomials, every coefficient strictly positive. Thus H > 0 on 5 ≤ p ≤ r - 6. The denominator of Δ_st is negative for p < r, so Δ_st < 0. No real roots s, t exist. The remaining lines p = r - 2 and p = r - 4 are excluded by the offset arguments already in the draft.
+
+**Case p > r (Q(p, r) > 0).**
+Equation (5) of Theorem 2(c) reads
+Σ = -(p^{3} - p^{2}r - p^{2} + 2pr^{3} + pr^{2} - 2pr + r^{3} - r^{2} - 12) / (r Q(p, r)).
+The expression in parentheses groups as
+p^{2}(p - r - 1) + pr(2r^{2} + r - 2) + (r^{3} - r^{2} - 12).
+For odd primes p > r ≥ 5 every term is strictly positive, so the inside is positive. The leading minus sign and the positive denominator r Q therefore force Σ < 0. No positive sum of primes s + t exists.
+
+Hence no solutions of shape N = r^{2}st exist.
+
+## Updated residual ledger for Conjecture 3
+
+- R1 (N = rst): theorem (Theorem 28).
+- R3 (N = r^{2}st): **theorem** (both half-planes empty).
+- R2 (N = r^{3}s): multiple-root case empty; simple-root Hensel lifts open elementarily, computationally empty for all primes p ≤ 10^{5}.
+- ω(N) ≥ 4: open residual.
+
+Public Zenodo record under concept DOI 10.5281/zenodo.22713135 is at Version 1.3 (12 November 2026). Local drafts reach v0.17.

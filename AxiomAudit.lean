@@ -3,8 +3,15 @@
 import P2qJumps
 import P2qJumps.LeadingForm
 import P2qJumps.Statement
+import P2qJumps.ClosedShapes
+import P2qJumps.Q_neg_positivity
 
 #print axioms P2qJumps.g_ge_six
 #print axioms P2qJumps.g_sub_six_eq
 #print axioms P2qJumps.quad_sos
 #print axioms P2qJumps.theorem28_from_paper
+#print axioms P2qJumps.discriminant_ratio_bound
+#print axioms P2qJumps.theorem28_discriminant
+#print axioms P2qJumps.theorem28_holds
+#print axioms P2qJumps.H_positive_on_region
+#print axioms P2qJumps.theorem28_jumps_hypothesis_needed

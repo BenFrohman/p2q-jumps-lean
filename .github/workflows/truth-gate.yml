@@ -1,0 +1,27 @@
+name: truth-gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  truth-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan (toolchain pinned by lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Technical checks (static lock checks, scan, lake build with Mathlib cache, observation, axioms)
+        run: scripts/verify-lock.sh
+  author-approval:
+    # Fails while truth-gate.lock.json says approvedBy = PENDING, so a green CI run cannot be read as approval.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lock approved by the author
+        run: SKIP_BUILD=1 REQUIRE_APPROVAL=1 scripts/verify-lock.sh

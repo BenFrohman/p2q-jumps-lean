@@ -3,6 +3,7 @@ Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
+
 /-
 This file records the *statement* of Theorem 28 from
 Frohman, Zenodo 10.5281/zenodo.22727814.
@@ -12,6 +13,12 @@ results that use it take it as an explicit argument.
 import Mathlib.Tactic
 import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.NumberTheory.ArithmeticFunction
+
+/-!
+# P2qJumps.Statement
+
+Machine-checked Lean 4 module.
+-/
 
 namespace P2qJumps
 

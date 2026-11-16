@@ -6,6 +6,8 @@ Authors: Benjamin Stanley Frohman
 
 import P2qJumps.LeadingForm
 import P2qJumps.Statement
+import P2qJumps.ClosedShapes
+import P2qJumps.Q_neg_positivity
 
 /-!
 # P2qJumps

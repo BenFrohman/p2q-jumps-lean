@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Benjamin Stanley Frohman
 -/
 
-import Mathlib.Data.Polynomial.Basic
+import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Positivity
 
 /-!
@@ -32,8 +32,10 @@ all coefficients positive. This is verified by direct expansion (50 terms). -/
 theorem H_positive_on_region (u v : ℕ) :
     H (5 + u) (11 + u + v) > 0 := by
   -- The expansion has 50 monomials, every coefficient ≥ 4, constant term 91908696.
-  -- A full formal proof requires either a verified computer algebra expansion
-  -- or a finite check of the coefficients; both are elementary.
-  sorry
+  -- `ring_nf` expands it; every monomial is then a positive constant times
+  -- powers of the casts `(u : ℤ)`, `(v : ℤ)`, so `positivity` closes the goal.
+  unfold H
+  ring_nf
+  positivity
 
 end P2qJumps

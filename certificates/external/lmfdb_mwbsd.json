@@ -1,0 +1,61 @@
+{
+  "table": "ec_mwbsd",
+  "timestamp": "2026-11-16T22:59:36.795230",
+  "data": [
+    {
+      "id": 23966,
+      "area": {
+        "__RealLiteral__": 0,
+        "data": "2.2265213347275218629575300347",
+        "prec": 97
+      },
+      "conductor": 3936,
+      "gens": [
+        [
+          4,
+          6,
+          1
+        ]
+      ],
+      "heights": [
+        {
+          "__RealLiteral__": 0,
+          "data": "0.97015823496811996956105710599",
+          "prec": 97
+        }
+      ],
+      "lmfdb_label": "3936.b1",
+      "ngens": 1,
+      "rank_bounds": [
+        1,
+        1
+      ],
+      "real_period": {
+        "__RealLiteral__": 0,
+        "data": "1.5930470328850069120857748249",
+        "prec": 97
+      },
+      "sha_an": {
+        "__RealLiteral__": 0,
+        "data": "1.0000000000000000000000000000",
+        "prec": 97
+      },
+      "special_value": {
+        "__RealLiteral__": 0,
+        "data": "3.0910153952898377517857875818573625005",
+        "prec": 127
+      },
+      "tamagawa_product": 2,
+      "torsion_generators": [],
+      "xcoord_integral_points": [
+        4,
+        12388
+      ]
+    }
+  ],
+  "start": 0,
+  "offset": 1,
+  "query": "/api/ec_mwbsd/?lmfdb_label=3936.b1&_format=json&_offset=0",
+  "next": "/api/ec_mwbsd/?lmfdb_label=3936.b1&_format=json&_offset=1",
+  "rec_id": "lmfdb_label"
+}

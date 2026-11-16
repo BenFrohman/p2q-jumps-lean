@@ -1,0 +1,115 @@
+{
+  "table": "ec_curvedata",
+  "timestamp": "2026-11-16T22:59:37.103340",
+  "data": [
+    {
+      "id": 23966,
+      "Ciso": "3936c",
+      "Clabel": "3936c1",
+      "Cnumber": 1,
+      "abc_quality": 0.9611682082138348,
+      "absD": 62976,
+      "adelic_genus": 0,
+      "adelic_index": 2,
+      "adelic_level": 984,
+      "ainvs": [
+        0,
+        -1,
+        0,
+        0,
+        -12
+      ],
+      "analytic_rank": 1,
+      "bad_primes": [
+        2,
+        3,
+        41
+      ],
+      "class_deg": 1,
+      "class_size": 1,
+      "cm": 0,
+      "conductor": 3936,
+      "degree": 288,
+      "elladic_images": [],
+      "faltings_height": {
+        "__RealLiteral__": 0,
+        "data": "-0.40022021395769815062197173513",
+        "prec": 97
+      },
+      "faltings_index": 0,
+      "faltings_ratio": 1,
+      "intrinsic_torsion": 1,
+      "iso_nlabel": 1,
+      "isogeny_degrees": [
+        1
+      ],
+      "jinv": [
+        -8,
+        123
+      ],
+      "lmfdb_iso": "3936.b",
+      "lmfdb_label": "3936.b1",
+      "lmfdb_number": 1,
+      "manin_constant": 1,
+      "min_quad_twist_ainvs": [
+        0,
+        -1,
+        0,
+        0,
+        -12
+      ],
+      "min_quad_twist_disc": 1,
+      "modell_images": [],
+      "modm_images": [
+        "984.2.0.?"
+      ],
+      "nonmax_primes": [],
+      "nonmax_rad": 1,
+      "num_bad_primes": 3,
+      "num_int_pts": 4,
+      "optimality": 1,
+      "potential_good_reduction": false,
+      "rank": 1,
+      "regulator": {
+        "__RealLiteral__": 0,
+        "data": "0.97015823496811996956105710599",
+        "prec": 97
+      },
+      "semistable": false,
+      "serre_invariants": [
+        [
+          2,
+          4,
+          123
+        ],
+        [
+          3,
+          4,
+          1312
+        ],
+        [
+          41,
+          42,
+          96
+        ]
+      ],
+      "sha": 1,
+      "sha_primes": [],
+      "signD": -1,
+      "stable_faltings_height": {
+        "__RealLiteral__": 0,
+        "data": "-0.92008059937765713268489582622",
+        "prec": 97
+      },
+      "szpiro_ratio": 2.235497080328125,
+      "torsion": 1,
+      "torsion_primes": [],
+      "torsion_structure": []
+    }
+  ],
+  "start": 0,
+  "offset": 1,
+  "query": "/api/ec_curvedata/?lmfdb_label=3936.b1&_format=json&_offset=0",
+  "next": "/api/ec_curvedata/?lmfdb_label=3936.b1&_format=json&_offset=1",
+  "rec_id": "lmfdb_label"
+}

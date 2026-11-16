@@ -1,0 +1,9 @@
+ellglobalred: [3936, [1, 0, 0, 0], 2, [2, 5; 3, 1; 41, 1], [[5, -1, 0, 2], [1, 5, 0, 1], [1, 5, 0, 1]]]
+minimal model a-invariants: [0, -1, 0, 0, -12]
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "cypari2/pari_instance.pyx", line 800, in cypari2.pari_instance.Pari.__call__
+  File "cypari2/gen.pyx", line 4784, in cypari2.gen.objtogen
+  File "cypari2/convert.pyx", line 545, in cypari2.convert.PyObject_AsGEN
+  File "cypari2/handle_error.pyx", line 211, in cypari2.handle_error._pari_err_handle
+cypari2.handle_error.PariError: ellidentify: error opening elldata file: `/usr/share/pari/elldata/ell3'

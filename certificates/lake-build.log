@@ -1,0 +1,65 @@
+start 2026-11-16 17:08:08 CST  commit c3fa4dd7901fc255c3130f6f75e2691cb7f1a833
+⚠ [3061/3075] Replayed P2qJumps.Statement
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3062/3075] Replayed P2qJumps.ClosedShapes
+warning: P2qJumps/ClosedShapes.lean:9:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3068/3075] Replayed P2qJumps.Cert.Core
+warning: P2qJumps/Cert/Core.lean:306:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+warning: P2qJumps/Cert/Core.lean:548:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+✔ [3074/3075] Built P2qJumps (2.9s)
+Build completed successfully (3075 jobs).
+EXIT 0 5s end 2026-11-16 17:08:13 CST

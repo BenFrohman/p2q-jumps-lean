@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{hyperref}
-\newcommand{\OMEGAFOURSTATUS}{running at the time of writing; see \texttt{scripts/omega4/run.log}.}
+\newcommand{\OMEGAFOURSTATUS}{not completed for v1.4 (pure-Python trial division; no completed run, no hit count recorded). The assumption-free PARI run over the same range is the third item above.}
 
 \newcommand{\ph}{\varphi}
 \newcommand{\sig}{\sigma}
@@ -1283,7 +1283,7 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 \item The block treats \(r^2st\) as open beyond \(r\le 10^4\) through a quantity \(D_{\mathrm{true}}(p,r)\) dividing \(R_{10}(r)\). The polynomial \(R_{10}\) is not defined in the paper and this route was not checked; Theorem~\ref{thm:L}(iii) closes \(r^2st\) unconditionally instead.
 \item The block's ``Hensel lifting excludes all primes \(5\le r\le 10^6\)'' is an external Python/SymPy computation, not a kernel certificate. The kernel bound is \(p\le 10^4\).
 \item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'', ``\(r_i>p\) for all \(r_i\mid N\)'' and ``Lemma \path{omega-ge-4-constraints}'' are not proved in this paper or in Lean; there is no such lemma in the text. Only \(\gcd(N,6p)=1\) is proved (Corollary~\ref{cor:gcd}), and Appendix~\ref{app:p7} explicitly allows the prime factor~\(5\) when \(p=7\). They are not used here.
-\item ``Covering all \(5\le p\le 97\) unconditionally via \(N>p^4\)'' is not justified: \(N>p^4\) is a lower bound and excludes only \(q<p^2\); unconditional coverage of a fixed \(p\) would need an upper bound on \(q\), which neither the paper nor Lean provides. The verified statement is the finite range quoted in (2).
+\item The block's ``covering all \(5\le p\le 97\) unconditionally via \(N>p^4\)'' is replaced, at the author's direction, by the exact ranges: for \(5\le p\le 97\), the values \(q<p^2\) are excluded by \(N>p^4\), and \(p^2<q\le 10^4\) is searched; the author's script covers \(5\le p\le 997\) with \(p^2<q\le 10^6\). No claim of full coverage in \(q\) is made. The step \(N>p^4\) itself rests on the unproved claim that every prime factor of \(N\) exceeds \(p\) (item 4); the external search in (2) covers all distinct primes \(p,q\le 10^4\) without that claim.
 \item The block's ``exhaustive search over all distinct primes \(5\le p,q\le 10^4\)'' matches the external computation in (2), not a kernel certificate; the kernel-checked range is \(n\le 10^4\).
 \end{enumerate}
 

@@ -1,6 +1,13 @@
 # Optional external computation: ω(N) ≥ 4 residual, p, q ≤ 10^6 (slot)
 
-**Status: EMPTY SLOT. Not run. Not kernel-checked.**
+**Status: script added (sha256 `ab59fc89f59e79970b1e4185db678a19edcba66cd87de456e8dc4b4e55e15046`); no completed run for v1.4. Not kernel-checked.**
+
+Exact range of the script: primes `5 ≤ p ≤ 997`, primes `p^2 < q ≤ 10^6` (not all `p, q ≤ 10^6`).
+Run command: `python3 search_omega4_1e6.py` (Python 3.13.5). No claim of full coverage in `q`.
+
+Assumption-free run over the same range: `python3 jumps_pq_check.py B 997 1000000` (PARI factorization, no filter):
+8,912,452 pairs, 0 hits, 71 s (`certificates/external/jumps_pq_B_997_1e6.log`). Distinct primes `p, q ≤ 10^4`:
+`python3 jumps_pq_check.py A 10000`: 1,509,212 pairs, 0 hits, 13 s.
 
 This directory is reserved for `search_omega4_1e6.py` (author's pure-Python script) and its run log.
 It is an external Python computation. It is NOT checked by the Lean kernel and is NOT used by any

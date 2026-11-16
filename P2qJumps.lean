@@ -8,9 +8,19 @@ import P2qJumps.LeadingForm
 import P2qJumps.Statement
 import P2qJumps.ClosedShapes
 import P2qJumps.Q_neg_positivity
+import P2qJumps.Arith
+import P2qJumps.R2ST
+import P2qJumps.R3S
+import P2qJumps.Cert.Core
+import P2qJumps.Cert.Line
+import P2qJumps.Cert.Strip
+import P2qJumps.Cert.Pairs
+import P2qJumps.Main
+import P2qJumps.Semantics
 
 /-!
 # P2qJumps
 
-Machine-checked Lean 4 module.
+Closed shapes, residual reductions and kernel certificates for simultaneous `+12` jumps of
+`φ` and `σ` at `n = p^2 q`. The locked public statement is `P2qJumps.Semantics.theorem_L`.
 -/

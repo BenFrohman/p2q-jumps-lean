@@ -42,8 +42,10 @@ Logs: [`certificates/`](certificates/).
 - `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy).
 - `scripts/omega4/jumps_pq_check.py`: no solution for distinct primes `p, q ≤ 10^4`, and none for
   `5 ≤ p ≤ 997`, `p^2 < q ≤ 10^6` (PARI factorization, no filter on ω(N) or on prime factors).
-- `scripts/omega4/search_omega4_1e6.py` (author's script; optional; see `scripts/omega4/README.md` for its exact
-  range `5 ≤ p ≤ 997`, `p^2 < q ≤ 10^6`, the unproved `r_i > p` filter, and run status).
+- ω(N) ≥ 4 residual (conditional on the unproved hypothesis that every prime factor of N exceeds p, which forces
+  q > p^2): searched over primes `5 ≤ p ≤ ⌊√Q⌋`, `p^2 < q ≤ Q`. Kernel: `n ≤ 10^4`. PARI: `Q = 10^4` and the
+  `Q = 10^6` range, no filters, 0 hits. Optional `scripts/omega4/search_omega4_1e6.py` (sha256 `ab59fc89…5046`),
+  `Q = 10^6`: **[result pending]**. Details and exact wording: `scripts/omega4/README.md`.
 
 ## What remains open
 

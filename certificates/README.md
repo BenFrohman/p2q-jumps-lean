@@ -12,3 +12,6 @@ Kernel-checked (inside `lake build`; lake-build.log is a clean rebuild of all P2
 - rad_identity_audit.md: audit of the false identity rad(N) = N/gcd(N, φ(N)) (not used anywhere).
 
 External (NOT kernel-checked): external/ (PARI/LMFDB data for 3936.b1, root numbers, R2 r ≤ 10^6, jumps search).
+ω(N) ≥ 4: kernel bound n ≤ 10^4; PARI Q = 10^4 and Q = 10^6 range (no filters, 0 hits); optional
+search_omega4_1e6.py at Q = 10^6 [result pending], conditional on the unproved r_i > p hypothesis
+(see scripts/omega4/README.md for the committed wording).

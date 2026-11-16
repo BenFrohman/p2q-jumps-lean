@@ -40,7 +40,7 @@
   ],
   "toolchain": "leanprover/lean4:v4.26.0",
   "mathlib": "v4.26.0",
-  "leanSourcesCommit": "e2015979bd000d641f4e5a0f7b70c39a77a90a77",
+  "leanSourcesCommit": "4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc",
   "approval": {
     "approvedBy": "PENDING",
     "approvedAt": null,

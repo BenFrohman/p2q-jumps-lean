@@ -1,6 +1,6 @@
 # Certificates and logs (v1.4)
 
-Lean sources commit: e2015979bd000d641f4e5a0f7b70c39a77a90a77 (toolchain leanprover/lean4:v4.26.0, Mathlib v4.26.0).
+Lean sources commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc (toolchain leanprover/lean4:v4.26.0, Mathlib v4.26.0).
 Recorded 2026-11-16 17:19 CST.
 
 Kernel-checked (inside `lake build`; lake-build.log is a clean rebuild of all P2qJumps modules with Mathlib from cache):

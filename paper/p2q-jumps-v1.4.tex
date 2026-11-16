@@ -1311,7 +1311,7 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \section{Reproducibility (v1.4)}
 \label{sec:v14-repro}
 \begin{itemize}
-\item Repository \texttt{BenFrohman/p2q-jumps-lean}, branch \texttt{feat/v1.4-full-formalization}; Lean sources at commit \texttt{e2015979bd\allowbreak{}000d641f4e\allowbreak{}5a0f7b70c3\allowbreak{}9a77a90a77} (later commits change only documentation, paper and CI files; the commit is also recorded in \texttt{truth-gate.lock.json}).
+\item Repository \texttt{BenFrohman/p2q-jumps-lean}, branch \texttt{feat/v1.4-full-formalization}; Lean sources at commit \texttt{4ae3e47f8e\allowbreak{}13edf22625\allowbreak{}28f0a8cc73\allowbreak{}657ccfc3cc} (later commits change only documentation, paper and CI files; the commit is also recorded in \texttt{truth-gate.lock.json}).
 \item Lean \texttt{v4.26.0}; Mathlib \texttt{v4.26.0} (manifest rev \texttt{2df2f0150c\allowbreak{}275ad53cb3\allowbreak{}c90f7c98ec\allowbreak{}15a56a1a67}).
 \item Axioms: \texttt{\#print axioms P2qJumps.Semantics.theorem\_L} prints \texttt{[propext, Classical.choice, Quot.sound]}; every theorem in \texttt{AxiomAudit.lean} depends only on a subset of these.
 \item Rebuild: \texttt{lake exe cache get \&\& lake build}. Full check: \texttt{scripts/verify-lock.sh}.

@@ -5,6 +5,7 @@ Authors: Benjamin Stanley Frohman
 -/
 import Mathlib.Tactic
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.Data.Nat.Prime.Factorial
 import P2qJumps.Arith
 import P2qJumps.R2ST
 import P2qJumps.R3S
@@ -345,5 +346,181 @@ theorem pairCheck_sound {P Qb : ℕ} (h : pairCheck P Qb = true) {p q : ℕ} (hp
     have := (totient_sigma_p2q hp hq hpq).2
     have : σ 1 (p ^ 2 * q) = (p ^ 2 + p + 1) * (q + 1) := by exact_mod_cast this
     rw [this]
+
+end P2qJumps.Cert
+
+namespace P2qJumps.Cert
+
+open Nat ArithmeticFunction
+open scoped ArithmeticFunction.sigma
+
+/-! ## Certificate 3, chunked form (bounded kernel memory per declaration) -/
+
+/-- Every prime `q` with `a ≤ q < b`, `q ≠ p`, refutes the jumps at `p^2 q` (for prime `p`). -/
+def Covered (p a b : ℕ) : Prop :=
+  p.Prime → ∀ q, q.Prime → q ≠ p → a ≤ q → q < b → ¬ Jumps (p ^ 2 * q)
+
+/-- Checker for the chunk `a ≤ q < a + len` at a fixed `p`. -/
+def pairChunk (p a len : ℕ) : Bool :=
+  allBelow (fun k => !primeFilter (a + k) || decide (p = a + k) || pairB p (a + k)) len
+
+theorem pairChunk_sound {p a len : ℕ} (h : pairChunk p a len = true) : Covered p a (a + len) := by
+  intro hp q hq hqp haq hqb hJ
+  have h2 := allBelow_spec h (q - a) (by omega)
+  have e : a + (q - a) = q := by omega
+  rw [e] at h2
+  simp only [Bool.or_eq_true, Bool.not_eq_true', primeFilter_of_prime hq, decide_eq_true_eq] at h2
+  rcases h2 with (h2 | h2) | h2
+  · exact absurd h2 (by decide)
+  · exact hqp h2.symm
+  · simp only [pairB, decide_eq_true_eq] at h2
+    apply h2
+    rw [sigLoop_eq, hJ.2]
+    have := (totient_sigma_p2q hp hq (Ne.symm hqp)).2
+    have : σ 1 (p ^ 2 * q) = (p ^ 2 + p + 1) * (q + 1) := by exact_mod_cast this
+    rw [this]
+
+theorem Covered.trans {p a b c : ℕ} (h1 : Covered p a b) (h2 : Covered p b c) :
+    Covered p a c := by
+  intro hp q hq hqp haq hqc
+  by_cases hb : q < b
+  · exact h1 hp q hq hqp haq hb
+  · exact h2 hp q hq hqp (by omega) hqc
+
+theorem Covered.of_not_prime {p a b : ℕ} (hp : ¬ p.Prime) : Covered p a b :=
+  fun h => absurd h hp
+
+theorem Covered.mono {p a b c : ℕ} (h : Covered p a c) (hbc : b ≤ c) : Covered p a b :=
+  fun hp q hq hqp haq hqb => h hp q hq hqp haq (by omega)
+
+end P2qJumps.Cert
+
+namespace P2qJumps.Cert
+
+open Nat
+
+/-! ## Certificate 2, fast form: strip all prime factors `≤ p` at once with `gcd (·, p!)` -/
+
+/-- Repeatedly divide `m` by `gcd m F`. Fuel-bounded; the checker verifies the final
+`gcd M F = 1`, so an exhausted fuel can only make the checker fail. -/
+def gstrip (F : ℕ) (fuel : ℕ) : ℕ → ℕ :=
+  Nat.rec (fun m => m) (fun _ rec m => if Nat.gcd m F = 1 then m else rec (m / Nat.gcd m F)) fuel
+
+lemma gstrip_succ (F fuel m : ℕ) :
+    gstrip F (fuel + 1) m = if Nat.gcd m F = 1 then m else gstrip F fuel (m / Nat.gcd m F) := rfl
+
+theorem gstrip_spec (F : ℕ) : ∀ fuel m : ℕ,
+    gstrip F fuel m ∣ m ∧
+      ∀ r : ℕ, Nat.Coprime (r ^ 2) F → r ^ 2 ∣ m → r ^ 2 ∣ gstrip F fuel m := by
+  intro fuel
+  induction fuel with
+  | zero => intro m; exact ⟨dvd_rfl, fun _ _ h => h⟩
+  | succ fuel ih =>
+    intro m
+    rw [gstrip_succ]
+    split_ifs with hg
+    · exact ⟨dvd_rfl, fun _ _ h => h⟩
+    · obtain ⟨a, b⟩ := ih (m / Nat.gcd m F)
+      have hgd : Nat.gcd m F ∣ m := Nat.gcd_dvd_left m F
+      refine ⟨a.trans (Nat.div_dvd_of_dvd hgd), fun r hr hrm => b r hr ?_⟩
+      have hcop : Nat.Coprime (r ^ 2) (Nat.gcd m F) :=
+        Nat.Coprime.coprime_dvd_right (Nat.gcd_dvd_right m F) hr
+      have e : m = Nat.gcd m F * (m / Nat.gcd m F) := (Nat.mul_div_cancel' hgd).symm
+      rw [e] at hrm
+      exact hcop.dvd_of_dvd_mul_left hrm
+
+/-- Checker for one `p`, given `F = p!`. -/
+def gstripB (p F : ℕ) : Bool :=
+  let M := gstrip F 64 (Lnat p)
+  decide (Nat.gcd M F = 1) && (decide (M = 1) || notSquareB M)
+
+theorem gstripB_sound {p : ℕ} (hp5 : 5 ≤ p) (h : gstripB p p.factorial = true) :
+    ∀ r : ℕ, r.Prime → p < r → ¬ ((r : ℤ) ^ 2 ∣ Lpoly p) := by
+  intro r hr hpr hdvd
+  simp only [gstripB, Bool.and_eq_true, Bool.or_eq_true, decide_eq_true_eq] at h
+  obtain ⟨hg, hsq1⟩ := h
+  obtain ⟨hMdvd, hMr⟩ := gstrip_spec p.factorial 64 (Lnat p)
+  set M := gstrip p.factorial 64 (Lnat p) with hM
+  have hcopr : Nat.Coprime (r ^ 2) p.factorial := by
+    apply Nat.Coprime.pow_left
+    rw [Nat.Prime.coprime_iff_not_dvd hr, Nat.Prime.dvd_factorial hr]
+    omega
+  have hLpos : 0 < Lnat p := by
+    have := Lnat_cast (p := p) (by omega)
+    have hL : (0 : ℤ) < Lpoly p := by
+      unfold Lpoly
+      have : (5 : ℤ) ≤ p := by exact_mod_cast hp5
+      nlinarith
+    omega
+  have hr2 : r ^ 2 ∣ Lnat p := by
+    rw [← Int.natCast_dvd_natCast]; push_cast; rw [Lnat_cast (by omega)]; exact hdvd
+  obtain ⟨c, hc⟩ := hMr r hcopr hr2
+  have hc0 : 0 < c := by
+    rcases Nat.eq_zero_or_pos c with h | h
+    · have := Nat.pos_of_dvd_of_pos hMdvd hLpos
+      rw [hc, h, mul_zero] at this; omega
+    · exact h
+  have hMle : M ≤ Lnat p := Nat.le_of_dvd hLpos hMdvd
+  have hLlt : Lnat p < p ^ 3 := by
+    have h1 := Nat.one_le_pow 2 p (by omega)
+    have h2 := Nat.one_le_pow 3 p (by omega)
+    simp only [Lnat]
+    omega
+  have hr2le : 4 ≤ r ^ 2 := by nlinarith [hr.two_le]
+  rcases hsq1 with hM1 | hsq
+  · have : r ^ 2 * c = 1 := by rw [← hc]; exact hM1
+    have : r ^ 2 ≤ 1 := by nlinarith
+    omega
+  by_cases hc1 : c = 1
+  · subst hc1
+    exact notSquareB_spec hsq r (by rw [hc]; ring)
+  · have hmf := Nat.minFac_prime hc1
+    have hmfdvd : c.minFac ∣ M := (Nat.minFac_dvd c).trans ⟨r ^ 2, by rw [hc]; ring⟩
+    have hmfgt : p < c.minFac := by
+      by_contra hle
+      push_neg at hle
+      have h1 : c.minFac ∣ p.factorial := Nat.dvd_factorial hmf.pos hle
+      have h2 : c.minFac ∣ Nat.gcd M p.factorial := Nat.dvd_gcd hmfdvd h1
+      rw [hg] at h2
+      exact hmf.one_lt.ne' (Nat.dvd_one.1 h2)
+    have hmfle : c.minFac ≤ c := Nat.minFac_le hc0
+    have hcge : p + 1 ≤ c := by omega
+    have : (p + 1) ^ 2 * (p + 1) ≤ r ^ 2 * c :=
+      Nat.mul_le_mul (Nat.pow_le_pow_left (by omega) 2) hcge
+    have : p ^ 3 < (p + 1) ^ 2 * (p + 1) := by nlinarith
+    omega
+
+/-- Joint loop over `p = a, a+1, …, a+len-1` carrying `F = p!`. -/
+def gstripLoop (len : ℕ) : ℕ → ℕ → Bool :=
+  Nat.rec (fun _ _ => true)
+    (fun _ rec p F => (decide (p < 5) || !primeFilter p || gstripB p F) && rec (p + 1) (F * (p + 1)))
+    len
+
+lemma gstripLoop_succ (len p F : ℕ) :
+    gstripLoop (len + 1) p F =
+      ((decide (p < 5) || !primeFilter p || gstripB p F) && gstripLoop len (p + 1) (F * (p + 1))) :=
+  rfl
+
+theorem gstripLoop_sound : ∀ (len a : ℕ), gstripLoop len a a.factorial = true →
+    ∀ p, p.Prime → 5 ≤ p → a ≤ p → p < a + len →
+      ∀ r : ℕ, r.Prime → p < r → ¬ ((r : ℤ) ^ 2 ∣ Lpoly p) := by
+  intro len
+  induction len with
+  | zero => intro a _ p _ _ h1 h2; omega
+  | succ len ih =>
+    intro a h p hp hp5 hap hpl
+    rw [gstripLoop_succ, Bool.and_eq_true] at h
+    obtain ⟨h1, h2⟩ := h
+    rcases Nat.eq_or_lt_of_le hap with rfl | hlt
+    · simp only [Bool.or_eq_true, decide_eq_true_eq, Bool.not_eq_true',
+        primeFilter_of_prime hp] at h1
+      rcases h1 with (h1 | h1) | h1
+      · omega
+      · exact absurd h1 (by decide)
+      · exact gstripB_sound hp5 h1
+    · have hF : a.factorial * (a + 1) = (a + 1).factorial := by
+        rw [Nat.factorial_succ]; ring
+      rw [hF] at h2
+      exact ih (a + 1) h2 p hp hp5 (by omega) (by omega)
 
 end P2qJumps.Cert

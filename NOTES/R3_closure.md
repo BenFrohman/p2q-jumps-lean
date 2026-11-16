@@ -1,3 +1,9 @@
+> **Status (v1.4, 16 Nov 2026):** the conclusion of this note is now a Lean theorem, `P2qJumps.r2st_empty`.
+> The argument below is incomplete as written: it says the line `p = r - 4` is excluded by "the offset arguments
+> already in the draft", but the draft's offset theorems cover only `r = p ± 2`, `p - 4`, `p - 6`. The Lean proof
+> closes `r = p + 4` by the kernel certificate `cert_line` (`p ≤ 10^4`) together with Lemma K (`r ∣ L(p)`, hence
+> `p + 4 ∣ 92`). Cite the Lean theorem, not this note.
+
 # Closure of the N = r^{2}st family (Hypothesis R3)
 
 ## Theorem (N = r^{2}st is empty)

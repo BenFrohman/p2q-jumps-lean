@@ -524,3 +524,124 @@ theorem gstripLoop_sound : ∀ (len a : ℕ), gstripLoop len a a.factorial = tru
       exact ih (a + 1) h2 p hp hp5 (by omega) (by omega)
 
 end P2qJumps.Cert
+
+namespace P2qJumps.Cert
+
+open Nat ArithmeticFunction
+open scoped ArithmeticFunction.sigma
+
+/-! ## Fast `σ₁`: divisors up to `K` paired with their cofactors, valid when `N < (K+1)^2` -/
+
+/-- `∑_{1 ≤ d ≤ k, d ∣ N} (d + [K < N/d] · N/d)`. -/
+def sigSAux (N K : ℕ) (k : ℕ) : ℕ :=
+  Nat.rec 0 (fun d acc => acc + if N % (d + 1) = 0 then
+    (d + 1) + (if K < N / (d + 1) then N / (d + 1) else 0) else 0) k
+
+lemma sigSAux_eq (N K k : ℕ) :
+    sigSAux N K k = ∑ d ∈ Finset.filter (· ∣ N) (Finset.Ico 1 (k + 1)),
+      (d + if K < N / d then N / d else 0) := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+    show sigSAux N K k + (if N % (k + 1) = 0 then
+      (k + 1) + (if K < N / (k + 1) then N / (k + 1) else 0) else 0) = _
+    rw [ih, Nat.Ico_succ_right_eq_insert_Ico (a := 1) (b := k + 1) (by omega),
+      Finset.filter_insert]
+    by_cases h : (k + 1) ∣ N
+    · rw [if_pos (Nat.mod_eq_zero_of_dvd h), if_pos h, Finset.sum_insert (by simp)]
+      ring
+    · have hm : ¬ N % (k + 1) = 0 := fun h' => h (Nat.dvd_of_mod_eq_zero h')
+      rw [if_neg hm, if_neg h, add_zero]
+
+theorem sigSAux_eq_sigma {N K : ℕ} (hN : 0 < N) (hK : N < (K + 1) * (K + 1)) :
+    sigSAux N K K = σ 1 N := by
+  rw [sigSAux_eq, sigma_one_apply, Finset.sum_add_distrib]
+  set A := Finset.filter (· ∣ N) (Finset.Ico 1 (K + 1)) with hA
+  have hsplit := Finset.sum_filter_add_sum_filter_not N.divisors (fun d => d ≤ K) (fun d => d)
+  have hA' : N.divisors.filter (fun d => d ≤ K) = A := by
+    ext d
+    simp only [hA, Finset.mem_filter, Nat.mem_divisors, Finset.mem_Ico]
+    constructor
+    · rintro ⟨⟨hd, _⟩, hdK⟩
+      exact ⟨⟨Nat.pos_of_dvd_of_pos hd hN, by omega⟩, hd⟩
+    · rintro ⟨⟨h1, h2⟩, hd⟩
+      exact ⟨⟨hd, by omega⟩, by omega⟩
+  rw [hA'] at hsplit
+  rw [← hsplit]
+  congr 1
+  rw [← Finset.sum_filter]
+  symm
+  apply Finset.sum_nbij' (fun d => N / d) (fun e => N / e)
+  · intro d hd
+    simp only [Finset.mem_filter, Nat.mem_divisors] at hd ⊢
+    obtain ⟨⟨hdN, _⟩, hdK⟩ := hd
+    have hd0 : 0 < d := Nat.pos_of_dvd_of_pos hdN hN
+    refine ⟨?_, ?_⟩
+    · simp only [hA, Finset.mem_filter, Finset.mem_Ico]
+      refine ⟨⟨Nat.div_pos (Nat.le_of_dvd hN hdN) hd0, ?_⟩, Nat.div_dvd_of_dvd hdN⟩
+      by_contra hc
+      push_neg at hc
+      have : (K + 1) * (K + 1) ≤ N / d * d :=
+        Nat.mul_le_mul (by omega) (by omega)
+      rw [Nat.div_mul_cancel hdN] at this
+      omega
+    · rw [Nat.div_div_self hdN hN.ne']; omega
+  · intro e he
+    simp only [Finset.mem_filter, Nat.mem_divisors, hA,
+      Finset.mem_Ico] at he ⊢
+    obtain ⟨⟨_, heN⟩, hKe⟩ := he
+    exact ⟨⟨Nat.div_dvd_of_dvd heN, hN.ne'⟩, by omega⟩
+  · intro d hd
+    simp only [Finset.mem_filter, Nat.mem_divisors] at hd
+    exact Nat.div_div_self hd.1.1 hN.ne'
+  · intro e he
+    simp only [Finset.mem_filter, hA, Finset.mem_Ico] at he
+    exact Nat.div_div_self he.1.2 hN.ne'
+  · intro d hd
+    simp only [Finset.mem_filter, Nat.mem_divisors] at hd
+    exact (Nat.div_div_self hd.1.1 hN.ne').symm
+
+/-- Fast checked `σ₁`: propose `K = isqrt N`, verify `N < (K+1)^2`, then sum. Returns `none`
+if the bound check fails. -/
+def sigFast (N : ℕ) : Option ℕ :=
+  let K := isqrt N
+  if N < (K + 1) * (K + 1) then some (sigSAux N K K) else none
+
+lemma sigFast_eq {N s : ℕ} (hN : 0 < N) (h : sigFast N = some s) : s = σ 1 N := by
+  unfold sigFast at h
+  dsimp only at h
+  split_ifs at h with hK
+  · rw [← sigSAux_eq_sigma hN hK]; exact (Option.some.inj h).symm
+
+/-- Fast pair checker: the `σ`-jump fails at `n = p^2 q`. -/
+def pairFastB (p q : ℕ) : Bool :=
+  match sigFast (p ^ 2 * q + 12) with
+  | some s => decide (s ≠ (p ^ 2 + p + 1) * (q + 1) + 12)
+  | none => false
+
+/-- Fast chunk checker at a fixed `p` for `a ≤ q < a + len`. -/
+def pairFastChunk (p a len : ℕ) : Bool :=
+  allBelow (fun k => !primeFilter (a + k) || decide (p = a + k) || pairFastB p (a + k)) len
+
+theorem pairFastChunk_sound {p a len : ℕ} (h : pairFastChunk p a len = true) :
+    Covered p a (a + len) := by
+  intro hp q hq hqp haq hqb hJ
+  have h2 := allBelow_spec h (q - a) (by omega)
+  have e : a + (q - a) = q := by omega
+  rw [e] at h2
+  simp only [Bool.or_eq_true, Bool.not_eq_true', primeFilter_of_prime hq, decide_eq_true_eq] at h2
+  rcases h2 with (h2 | h2) | h2
+  · exact absurd h2 (by decide)
+  · exact hqp h2.symm
+  · unfold pairFastB at h2
+    split at h2
+    · rename_i s hs
+      simp only [decide_eq_true_eq] at h2
+      apply h2
+      rw [sigFast_eq (by omega) hs, hJ.2]
+      have := (totient_sigma_p2q hp hq (Ne.symm hqp)).2
+      have : σ 1 (p ^ 2 * q) = (p ^ 2 + p + 1) * (q + 1) := by exact_mod_cast this
+      rw [this]
+    · exact absurd h2 (by decide)
+
+end P2qJumps.Cert

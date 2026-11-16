@@ -1,0 +1,49 @@
+{
+  "schema": "p2q-jumps-lean/truth-gate-lock/v1",
+  "semantics": "P2qJumps/Semantics.lean",
+  "paperClaim": {
+    "name": "P2qJumps.Semantics.paper_claim",
+    "sourceSha256": "6580207cc9b7ed0062df58c45feabc0ee86dc6dc481ad9d3d9aa8a140fae1a7a",
+    "provenance": {
+      "paper": "paper/theorem-L.tex",
+      "sha256": "8172e9beaa7d88aae2f595396bb4cdfa226f22926f67c9e7944de3a53ed634d1",
+      "includedIn": "paper/p2q-jumps-v1.4.tex",
+      "section": "Lean-certified reductions (v1.4), Theorem L (thm:L)",
+      "quote": [
+        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose φ(N)=φ(n)+12 and",
+        "σ(N)=σ(n)+12. Then:",
+        "(i) N is not prime, and N is not a product of two distinct primes;",
+        "(ii) N is not a product of three distinct primes;",
+        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t ≥ 5;",
+        "(iv) if N=r^3s with distinct primes r,s ≥ 5, then p<r, r^2 divides p^3-p^2-12, and p>10^4;",
+        "(v) n>10^4."
+      ]
+    }
+  },
+  "formalClaim": {
+    "name": "P2qJumps.Semantics.formal_claim",
+    "sourceSha256": "80175086bfecc9ae794fc0c65d3eef64349ff718e5bf8a83b47e346ef17e43aa"
+  },
+  "correspondence": {
+    "name": "P2qJumps.Semantics.intended_correspondence",
+    "direction": "iff",
+    "sourceSha256": "7545a76dd9acfdba1fb0ad1c1091ce8b1d18a55f763635ab6354909553e4aff1"
+  },
+  "publicTheorem": {
+    "name": "P2qJumps.Semantics.theorem_L",
+    "sourceSha256": "8e640403cf7ca9aa8456702e3a20a7204d5a8fa13d7f0faecd9630738b9515f5"
+  },
+  "axiomsAllowed": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "toolchain": "leanprover/lean4:v4.26.0",
+  "mathlib": "v4.26.0",
+  "leanSourcesCommit": "4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc",
+  "approval": {
+    "approvedBy": "PENDING",
+    "approvedAt": null,
+    "note": "PENDING AUTHOR APPROVAL: Benjamin Stanley Frohman must confirm paper_claim transcribes Theorem L as meant."
+  }
+}

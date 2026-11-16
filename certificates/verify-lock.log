@@ -1,0 +1,144 @@
+== static checks (independence, no rfl correspondence, provenance, hashes)
+static checks: PASS
+paper_claim (locked):
+def paper_claim : Prop :=
+  ∀ p q : ℕ, p.Prime → q.Prime → p ≠ q →
+    φ (p ^ 2 * q + 12) = φ (p ^ 2 * q) + 12 →
+    σ 1 (p ^ 2 * q + 12) = σ 1 (p ^ 2 * q) + 12 →
+    -- (i)
+    (¬ (p ^ 2 * q + 12).Prime ∧
+      ∀ r s : ℕ, r.Prime → s.Prime → r ≠ s → p ^ 2 * q + 12 ≠ r * s) ∧
+    -- (ii)
+    (∀ r s t : ℕ, r.Prime → s.Prime → t.Prime → r ≠ s → r ≠ t → s ≠ t →
+      p ^ 2 * q + 12 ≠ r * s * t) ∧
+    -- (iii)
+    (∀ r s t : ℕ, r.Prime → s.Prime → t.Prime → r ≠ s → r ≠ t → s ≠ t →
+      5 ≤ r → 5 ≤ s → 5 ≤ t → p ^ 2 * q + 12 ≠ r ^ 2 * s * t) ∧
+    -- (iv)
+    (∀ r s : ℕ, r.Prime → s.Prime → r ≠ s → 5 ≤ r → 5 ≤ s →
+      p ^ 2 * q + 12 = r ^ 3 * s →
+      p < r ∧ ((r : ℤ) ^ 2 ∣ (p : ℤ) ^ 3 - (p : ℤ) ^ 2 - 12) ∧ 10 ^ 4 < p) ∧
+    -- (v)
+    10 ^ 4 < p ^ 2 * q
+
+== scan: sorry / admit / native_decide / axiom declarations
+OK: no sorry/admit/native_decide, no axiom declarations
+== lake build (Mathlib from cache; never rebuilt)
+⚠ [3061/3075] Replayed P2qJumps.Statement
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3067/3075] Replayed P2qJumps.ClosedShapes
+warning: P2qJumps/ClosedShapes.lean:9:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3068/3075] Replayed P2qJumps.Cert.Core
+warning: P2qJumps/Cert/Core.lean:306:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+warning: P2qJumps/Cert/Core.lean:548:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+Build completed successfully (3075 jobs).
+== observation pass
+intended_correspondence : formal_claim ↔ paper_claim
+def P2qJumps.Semantics.paper_claim : Prop :=
+∀ (p q : ℕ),
+  Nat.Prime p →
+    Nat.Prime q →
+      p ≠ q →
+        (p ^ 2 * q + 12).totient = (p ^ 2 * q).totient + 12 →
+          (ArithmeticFunction.sigma 1) (p ^ 2 * q + 12) = (ArithmeticFunction.sigma 1) (p ^ 2 * q) + 12 →
+            (¬Nat.Prime (p ^ 2 * q + 12) ∧ ∀ (r s : ℕ), Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r * s) ∧
+              (∀ (r s t : ℕ),
+                  Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → p ^ 2 * q + 12 ≠ r * s * t) ∧
+                (∀ (r s t : ℕ),
+                    Nat.Prime r →
+                      Nat.Prime s →
+                        Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → 5 ≤ r → 5 ≤ s → 5 ≤ t → p ^ 2 * q + 12 ≠ r ^ 2 * s * t) ∧
+                  (∀ (r s : ℕ),
+                      Nat.Prime r →
+                        Nat.Prime s →
+                          r ≠ s →
+                            5 ≤ r →
+                              5 ≤ s → p ^ 2 * q + 12 = r ^ 3 * s → p < r ∧ ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ 10 ^ 4 < p) ∧
+                    10 ^ 4 < p ^ 2 * q
+def P2qJumps.Semantics.formal_claim : Prop :=
+(∀ (p q : ℕ), Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬Nat.Prime (p ^ 2 * q + 12)) ∧
+  (∀ (p q r s : ℕ),
+      Nat.Prime p →
+        Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r * s) ∧
+    P2qJumps.Theorem28 ∧
+      (∀ (p q r s t : ℕ),
+          Nat.Prime p →
+            Nat.Prime q →
+              Nat.Prime r →
+                Nat.Prime s →
+                  Nat.Prime t →
+                    p ≠ q →
+                      r ≠ s →
+                        r ≠ t →
+                          s ≠ t → 5 ≤ r → 5 ≤ s → 5 ≤ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ 2 * s * t) ∧
+        (∀ (p q r s : ℕ),
+            Nat.Prime p →
+              Nat.Prime q →
+                Nat.Prime r →
+                  Nat.Prime s →
+                    p ≠ q →
+                      r ≠ s →
+                        5 ≤ r →
+                          5 ≤ s →
+                            P2qJumps.Jumps (p ^ 2 * q) →
+                              p ^ 2 * q + 12 = r ^ 3 * s → p < r ∧ ↑r ^ 2 ∣ P2qJumps.Lpoly ↑p ∧ 10000 < p) ∧
+          ∀ (p q : ℕ), Nat.Prime p → Nat.Prime q → p ≠ q → p ^ 2 * q ≤ 10000 → ¬P2qJumps.Jumps (p ^ 2 * q)
+theorem_L : paper_claim
+'P2qJumps.Semantics.theorem_L' depends on axioms: [propext, Classical.choice, Quot.sound]
+'P2qJumps.Semantics.intended_correspondence' depends on axioms: [propext, Classical.choice, Quot.sound]
+== axiom audit
+TRUTH GATE: technical checks PASS; paper_claim is PENDING AUTHOR APPROVAL

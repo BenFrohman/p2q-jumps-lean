@@ -1,0 +1,55 @@
+clean rebuild of P2qJumps (Mathlib oleans from cache; .lake/build removed) start 2026-11-16 17:22:02 CST commit 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+✔ [3061/3075] Built P2qJumps.Q_neg_positivity (18s)
+⚠ [3062/3075] Built P2qJumps.Statement (33s)
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+✔ [3063/3075] Built P2qJumps.LeadingForm (34s)
+✔ [3064/3075] Built P2qJumps.Arith (4.9s)
+✔ [3065/3075] Built P2qJumps.R3S (9.7s)
+✔ [3066/3075] Built P2qJumps.R2ST (10s)
+⚠ [3067/3075] Built P2qJumps.ClosedShapes (19s)
+warning: P2qJumps/ClosedShapes.lean:9:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3068/3075] Built P2qJumps.Cert.Core (8.6s)
+warning: P2qJumps/Cert/Core.lean:307:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+warning: P2qJumps/Cert/Core.lean:549:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+✔ [3069/3075] Built P2qJumps.Cert.Pairs (26s)
+✔ [3070/3075] Built P2qJumps.Cert.Line (51s)
+✔ [3071/3075] Built P2qJumps.Cert.Strip (77s)
+✔ [3072/3075] Built P2qJumps.Main (22s)
+✔ [3073/3075] Built P2qJumps.Semantics (3.9s)
+✔ [3074/3075] Built P2qJumps (3.3s)
+Build completed successfully (3075 jobs).
+EXIT 0 185s end 2026-11-16 17:25:07 CST

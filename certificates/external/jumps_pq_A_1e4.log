@@ -1,0 +1,5 @@
+start 2026-11-16 17:05:26 CST
+PARI stack size set to 1000000000 bytes, maximum size set to 1000001536
+mode A: distinct primes 2 <= p, q <= 10000: pairs=1509212 hits=[]
+elapsed_s 13.1
+end 2026-11-16 17:05:39 CST

@@ -1,0 +1,4 @@
+PARI stack size set to 2000000000 bytes, maximum size set to 2000003072
+w(E) = -1
+fundamental D, 1<|D|<=5000, gcd(D,3936)=1: tested=1481 failures=0 []
+fundamental D NOT coprime to 3936: {'agree': 0, 'disagree': 1559} sample disagreements (D, w(E^D), -(-3936/|D|)): [(-4996, -1, 0), (-4984, -1, 0), (-4983, -1, 0), (-4980, -1, 0), (-4971, -1, 0), (-4964, 1, 0), (-4952, 1, 0), (-4948, 1, 0), (-4947, 1, 0), (-4936, 1, 0), (-4935, -1, 0), (-4920, -1, 0)]

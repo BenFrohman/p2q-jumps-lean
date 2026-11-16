@@ -1,0 +1,13 @@
+P2qJumps.Statement exit=0 5s 
+P2qJumps.LeadingForm exit=0 5s 
+P2qJumps.ClosedShapes exit=0 5s 
+P2qJumps.Q_neg_positivity exit=0 4s 
+P2qJumps.Arith exit=0 4s 
+P2qJumps.R2ST exit=0 5s 
+P2qJumps.R3S exit=0 5s 
+P2qJumps.Cert.Core exit=0 5s 
+P2qJumps.Cert.Line exit=0 64s 
+P2qJumps.Cert.Strip exit=0 83s 
+P2qJumps.Cert.Pairs exit=0 29s 
+P2qJumps.Main exit=0 5s 
+P2qJumps.Semantics exit=0 4s 

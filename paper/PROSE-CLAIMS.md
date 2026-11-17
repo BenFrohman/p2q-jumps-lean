@@ -92,7 +92,7 @@ Paths are relative to `P2qJumps/`.
 | 44 | `lem:K` (incl. r^{e−1} ∣ L(p)) | Lean `lemmaK` (TheoremsBE.lean:123), `pow_dvd_K` (TheoremsBE.lean:97) |
 | 45 | `thm:B` | Lean `theoremB` (TheoremsBE.lean:46), `N_not_powerful` (:54) |
 | 46 | `thm:A` | Lean `theoremA` (ClosedLedger.lean:244), `N_ne_ras` (TheoremA.lean:62) |
-| 47 | `prop:C` (finite per p for 1 ≤ j ≤ 2; nonsingular systems; enumeration p < 10^6) | enumeration: cited external (computation); structural clauses: in progress — blocker: the j ∈ {1,2} linear systems (and their nonsingularity proof via p ∤ M) are not yet stated in Lean |
+| 47 | `prop:C` (finite per p for 1 ≤ j ≤ 2; nonsingular systems; enumeration p < 10^6) | structural clauses: Lean `propC_K` (K > 1, K ∣ L(p), gcd(K, 6p) = 1; PropC.lean:40), `propC_j1` (j = 1 system, determinant ≠ 0, unique solution; PropC.lean:64), `propC_j2` (j = 2 system, determinant ≠ 0, unique solution; PropC.lean:109); enumeration: cited external (computation) |
 | 48 | `lem:Q` (Q(N) formula, Q > 0; Q(m)/m² = 1 − ∏(1 − r^{−e−1})) | Lean `lemmaQ_formula` (TheoremsBE.lean:214); product formula `P2qExtensions.sigma_mul_totient_prod` (Ext/Extensions/DeltaQ.lean:72) |
 | 49 | `thm:D` | Lean `theoremD` (TheoremsBE.lean:173), `theoremD_four` (:185) |
 | 50 | `thm:E` (i)–(v) | Lean `theoremE_i` … `theoremE_iv_sqrt` (TheoremsBE.lean:60–235); see the remark in Part A for the widened hypotheses |
@@ -141,5 +141,5 @@ Paths are relative to `P2qJumps/`.
 - **in progress: 5** (rows 4 Conjecture — the open problem itself;
   55 Proposition `prop:implies-corrected`; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
   67 the shape r²s²t).
-- **mixed: 1** (row 47, Proposition C: enumeration cited external, structural clauses in progress).
+- **mixed: 1** (row 47, Proposition C: structural clauses Lean, enumeration cited external).
 - **excluded as commentary: 1** (row 57).

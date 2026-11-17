@@ -156,3 +156,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A subsection "Theorem E: the remaining repeated-prime shapes" (Theorem `thm:A-E-shapes`, step-by-step proof following Lean, and a remark on the extra conclusions in case (b)); the remark after Part B `thm:E` now cites it. `paper/PROSE-CLAIMS.md` row 51: Lean.
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** stronger than the paper sentence in case (b): `V` squarefree, prime to `r₁ r₂`, and `ω(V) ≥ 1` are proved, not assumed.
+
+## C16. Proposition C: the divisor K and the j ∈ {1, 2} linear systems in Lean (prose ledger row 47)
+
+- **Claim:** `prop:C`, structural clauses. With a repeated prime, `K = N / rad N` has `K > 1`, `K ∣ L(p)`, `gcd(K, 6p) = 1`. For `N = M s` (`j = 1`) the jumps are the system `M s − p²q = 12`, `φ(M) s − p(p−1) q = φ(M) − p(p−1) + 12`, `σ(M) s − (p²+p+1) q = (p²+p+1) + 12 − σ(M)`, with determinant `p² φ(M) − p(p−1) M ≠ 0` because `p ∤ M`, and `(s, q)` is its unique rational solution. For `N = M s t` (`j = 2`) the jumps are a linear system in `(q, S, Π) = (q, s+t, st)` with determinant `M(p(p−1)σ(M) + (p²+p+1)φ(M)) − 2p²φ(M)σ(M) ≠ 0` (otherwise `p ∣ M φ(M)`, while `p ∤ M` and `p ∤ φ(M)` since `p ∤ φ(N) ≡ 12`), and `(q, S, Π)` is its unique rational solution.
+- **Method:** Lean, new file `P2qJumps/PropC.lean`: `propC_K` (:40), `propC_j1` (:64), `propC_j2` (:109); added to `AxiomAudit.lean`.
+- **Outcome:** proved (kernel-checked), standard axioms only. The enumeration for `5 ≤ p < 10^6` remains an external computation (cited external).
+- **Paper changes:** new Part A section `sec:A-propC` (Propositions `prop:A-C-K`, `prop:A-C-j1`, `prop:A-C-j2`, step-by-step proofs following Lean, and a remark); the proof sketch of `prop:C` and the Part B trust label point to it. `paper/PROSE-CLAIMS.md` row 47: structural clauses Lean, enumeration cited external.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** wider than the paper: the systems and their nonsingularity hold for every divisor `M` of `N` with the stated prime cofactor, not only `M = K·rad(K)`. "Finitely many rational candidates" is proved in the stronger form "exactly one".

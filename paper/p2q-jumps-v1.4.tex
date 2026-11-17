@@ -938,6 +938,68 @@ Assume~\eqref{eq:jumps} and that \(r^2\mid N\) for some prime \(r\). Then one of
 Theorem~\ref{thm:A-E-shapes} is the final sentence of Theorem~\ref{thm:E}. In (a), \(\omega(V)\) is the number \(j\) of primes of exponent~\(1\). In (b) it also proves that \(V\) is squarefree, prime to \(r_1r_2\), and has \(\omega(V)\ge 1\); the paper sentence leaves these implicit.
 \end{remark}
 
+\section{Proposition C: the divisor \(K\) and the linear systems for \(j\in\{1,2\}\)}
+\label{sec:A-propC}
+
+Write \(a=p(p-1)\), \(b=p^2+p+1\), \(f=\ph(M)\) and \(g=\sig(M)\). All equations are in \(\mathbb Z\) or \(\mathbb Q\).
+
+\begin{proposition}[the divisor \(K\)]
+\label{prop:A-C-K}
+Assume~\eqref{eq:jumps} and \(r^2\mid N\) for some prime \(r\). Then \(K=N/\mathrm{rad}(N)\) satisfies \(K>1\), \(K\mid L(p)\) and \(\gcd(K,6p)=1\).\lean{P2qJumps.propC_K}{PropC.lean:40}
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By Lemma~\ref{lem:A-K} with \(e=1\), \(r\mid K\) (\texttt{pow\_dvd\_K}). \(K\) divides \(N\ne 0\), so \(K\ne 0\) and \(K\ge r>1\).
+
+\textit{Step 2.} \(K\mid L(p)\) is Lemma~\ref{lem:A-K} (\texttt{lemmaK}).
+
+\textit{Step 3.} \(\gcd(N,6pq)=1\) (Proposition~\ref{prop:A-preamble}); \(6p\mid 6pq\) and \(K\mid N\), so \(\gcd(K,6p)=1\).
+\end{proof}
+
+\begin{proposition}[the system for \(j=1\)]
+\label{prop:A-C-j1}
+Assume~\eqref{eq:jumps} and \(N=Ms\) with \(s\) prime and \(\gcd(M,s)=1\). Then\lean{P2qJumps.propC_j1}{PropC.lean:64}
+\[
+Ms-p^2q=12,\qquad fs-aq=f-a+12,\qquad gs-bq=b+12-g,
+\]
+the determinant \(p^2f-aM\) of the first two equations in the unknowns \((s,q)\) is nonzero, and \((s,q)\) is the only rational solution \((x,y)\) of \(Mx-p^2y=12\), \(fx-ay=f-a+12\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} \(\ph(N)=\ph(M)\ph(s)=f(s-1)\) and \(\sig(N)=g(s+1)\) by multiplicativity. With \(\ph(N)=a(q-1)+12\) and \(\sig(N)=b(q+1)+12\) (\texttt{jumps\_p2q\_int}) this gives the last two equations; the first is \(N=p^2q+12=Ms\).
+
+\textit{Step 2.} \(M\mid N\) and \(p\nmid N\) (Proposition~\ref{prop:A-preamble}), so \(p\nmid M\).
+
+\textit{Step 3.} If \(p^2f-aM=0\), then \(p\,(pf-(p-1)M)=0\), so \(pf=(p-1)M\) and \(M=p(M-f)\), i.e.\ \(p\mid M\), contradicting Step~2.
+
+\textit{Step 4.} If \((x,y)\) is a second solution, subtracting gives \((p^2f-aM)(x-s)=0\), so \(x=s\); then \(p^2(y-q)=0\), so \(y=q\).
+\end{proof}
+
+\begin{proposition}[the system for \(j=2\)]
+\label{prop:A-C-j2}
+Assume~\eqref{eq:jumps} and \(N=Mst\) with \(s\ne t\) prime and \(\gcd(M,st)=1\). Put \(S=s+t\), \(\Pi=st\). Then\lean{P2qJumps.propC_j2}{PropC.lean:109}
+\[
+M\Pi-p^2q=12,\qquad f\Pi-fS-aq=12-a-f,\qquad g\Pi+gS-bq=b+12-g,
+\]
+the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S,\Pi)\) is nonzero, and \((q,S,\Pi)\) is its only rational solution.
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By multiplicativity \(\ph(N)=f(s-1)(t-1)=f(\Pi-S+1)\) and \(\sig(N)=g(s+1)(t+1)=g(\Pi+S+1)\); with \texttt{jumps\_p2q\_int} this gives the second and third equations, and \(N=M\Pi\) gives the first.
+
+\textit{Step 2.} \(p\nmid M\), as in Proposition~\ref{prop:A-C-j1}.
+
+\textit{Step 3.} \(p\nmid f\): otherwise \(f=pc\) and \(\ph(N)=pc(s-1)(t-1)=a(q-1)+12\) give \(12=p\bigl(c(s-1)(t-1)-(p-1)(q-1)\bigr)\), so \(p\mid 12\), impossible for a prime \(p\ge 5\).
+
+\textit{Step 4.} \(\Delta-Mf=p\bigl(M(p-1)g+M(p+1)f-2pfg\bigr)\). If \(\Delta=0\), then \(p\mid Mf\), so \(p\mid M\) or \(p\mid f\), contradicting Steps~2--3.
+
+\textit{Step 5.} For a second solution \((x,S',P)\), subtract and combine: \((ag+bf)\) times the first difference minus \(p^2\) times (\(g\) times the second plus \(f\) times the third) gives \(\Delta(P-\Pi)=0\), so \(P=\Pi\); then the first equation gives \(p^2(x-q)=0\), so \(x=q\); then the second gives \(f(S'-S)=0\) with \(f=\ph(M)>0\), so \(S'=S\).
+\end{proof}
+
+\begin{remark}
+These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked.
+\end{remark}
+
 \section{The \(p=7\) residual: equations, the prime \(5\), and the prefix bound}
 \label{sec:A-p7}
 
@@ -1031,7 +1093,7 @@ Assume~\eqref{eq:jumps} with \(n=p^2q\), \(p\ne q\) primes.
 \part{Written arguments, cited and computational results}
 \label{part:B}
 
-\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Not kernel-checked are in particular: the \(p=7\) descent (Appendix~\ref{app:p7}) and hence Theorem~\ref{thm:H1-comp}; Proposition~\ref{prop:C} and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
+\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Not kernel-checked are in particular: the \(p=7\) descent (Appendix~\ref{app:p7}) and hence Theorem~\ref{thm:H1-comp}; the enumeration of Proposition~\ref{prop:C} (its structural clauses are Section~\ref{sec:A-propC}) and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
 
 Where Part~\ref{part:B} overlaps Part~\ref{part:A}, Part~\ref{part:A} is the kernel-checked version: Theorem~\ref{thm:closed}(1),(3) are Theorem~\ref{thm:L}(i); Theorem~\ref{thm:R1} is Theorem~\ref{thm:L}(ii), whose Lean proof (Section~\ref{sec:A-ii}) is a different argument from the written one below; and Theorem~\ref{thm:r3s-plarge} together with the divisibility of Theorem~\ref{thm:r3s-strip} is Theorem~\ref{thm:L}(iv), again with a different Lean argument (Section~\ref{sec:A-iv}). Since Theorem~\ref{thm:L}(iii) shows that the shape \(r^2st\) does not occur, the \(r^2st\) material below (Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}, the square-discriminant sections and the \(r^2st\) rows of Table~\ref{tab:bounds}) is kept as the v1.3 record and is no longer needed.
 
@@ -1982,7 +2044,7 @@ Fix a prime \(p\ge 5\). Under~\eqref{eq:jumps} with \(R\neq\emptyset\) and \(j\i
 \end{proposition}
 
 \begin{proof}[Sketch with trust boundary]
-Lemma~\ref{lem:K} supplies the finite list of eligible \(K\). Writing \(M=K\cdot\mathrm{rad}(K)\) and \(N=M\cdot V\) with \(V\) a product of \(j\) new primes, the jump identities become linear in \((q,s)\) for \(j=1\) and in \((q,S=s+t,\Pi=st)\) for \(j=2\). If the \(j=1\) denominator \(f-aM/p^2\) vanishes then \(p\mid M\), contradicting \(p\nmid N\). If the \(j=2\) determinant vanishes then \(p\mid f=\ph(M)\), contradicting the totient identity modulo \(p\). The enumeration of all \(644{,}350\) eligible \(K\) across \(78{,}496\) primes \(5\le p<10^6\) was reproduced by an independent integer Cramer implementation with planted positive controls and singular/nonintegral negative controls; both original and independent runs report zero validated hits. The shared trust base is SymPy factoring/primality and exact integer arithmetic; this is ordinary computer-assisted verification, not a Lean certificate. The result does not exclude H2 for \(p\ge 10^6\).
+The structural clauses (the divisor \(K\), the linear systems and their nonsingularity) are kernel-checked in Section~\ref{sec:A-propC}. Lemma~\ref{lem:K} supplies the finite list of eligible \(K\). Writing \(M=K\cdot\mathrm{rad}(K)\) and \(N=M\cdot V\) with \(V\) a product of \(j\) new primes, the jump identities become linear in \((q,s)\) for \(j=1\) and in \((q,S=s+t,\Pi=st)\) for \(j=2\). If the \(j=1\) denominator \(f-aM/p^2\) vanishes then \(p\mid M\), contradicting \(p\nmid N\). If the \(j=2\) determinant vanishes then \(p\mid f=\ph(M)\), contradicting the totient identity modulo \(p\). The enumeration of all \(644{,}350\) eligible \(K\) across \(78{,}496\) primes \(5\le p<10^6\) was reproduced by an independent integer Cramer implementation with planted positive controls and singular/nonintegral negative controls; both original and independent runs report zero validated hits. The shared trust base is SymPy factoring/primality and exact integer arithmetic; this is ordinary computer-assisted verification, not a Lean certificate. The result does not exclude H2 for \(p\ge 10^6\).
 \end{proof}
 
 \section{Squarefree many-factor obstruction (Theorem~D)}

@@ -192,3 +192,8 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-H1` (Theorems `thm:A-p7-descent`, `thm:A-H1`); `thm:H1-comp`, Appendix `app:p7`, the trust labels, Table `tab:classify`, the residual-analysis and "does not claim" texts now say kernel-checked; stale "Open items" entries corrected (r³s is empty by Theorem L2(iv)). `paper/PROSE-CLAIMS.md` rows 56, 62.
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** the Lean checker is a separate implementation from `scripts/p7/descent.py`; its node counts differ and are not quoted as Lean facts.
+
+## C20. Copyright and license lines
+
+- **Change:** the paper now carries "Copyright (c) 2026 Benjamin Stanley Frohman" and is licensed under the Apache License, Version 2.0 (title-page footnote, version note, provenance paragraph); the previous "Paper license CC BY 4.0" lines are replaced. The bibliography entry for the published v0.10 record keeps that record's own license (CC BY 4.0), which is a fact about that record. `NOTICE` gains a request to cite the work.
+- **Mathematics:** none changed. **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.

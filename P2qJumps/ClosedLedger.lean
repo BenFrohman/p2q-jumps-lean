@@ -39,7 +39,8 @@ theorem lemmaL1 {x : ℕ} (hx : 1 < x) :
     ∀ e ∈ x.divisors.erase 1, 0 ≤ (1 + (μ e : ℤ)) * (x / e : ℕ) := by
   have hx0 : 0 < x := by omega
   constructor
-  · rw [P2qExtensions.lemmaL1 x hx0]
+  · apply Eq.symm
+    rw [P2qExtensions.lemmaL1 x hx0]
     refine Finset.sum_bij (fun e _ => (e, x / e)) ?_ ?_ ?_ ?_
     · intro e he
       obtain ⟨hne, hd⟩ := Finset.mem_erase.1 he
@@ -48,28 +49,31 @@ theorem lemmaL1 {x : ℕ} (hx : 1 < x) :
         exact hne (congrArg Prod.fst h)
       · rw [Nat.mem_divisorsAntidiagonal]
         exact ⟨Nat.mul_div_cancel' (Nat.dvd_of_mem_divisors hd), by omega⟩
-    · intro e₁ he₁ e₂ he₂ h
+    · intro e₁ _ e₂ _ h
       exact congrArg Prod.fst h
     · intro pair hp
       obtain ⟨hne, hmem⟩ := Finset.mem_erase.1 hp
-      obtain ⟨hmul, hx0'⟩ := Nat.mem_divisorsAntidiagonal.1 hmem
-      have hd : pair.1 ∣ x := ⟨pair.2, hmul⟩
+      have hmul : pair.1 * pair.2 = x := (Nat.mem_divisorsAntidiagonal.1 hmem).1
+      have hx0' : x ≠ 0 := (Nat.mem_divisorsAntidiagonal.1 hmem).2
+      have hd : pair.1 ∣ x := ⟨pair.2, hmul.symm⟩
       have hne1 : pair.1 ≠ 1 := by
         intro h1
         apply hne
-        apply Prod.ext
-        · exact h1
-        · simp [h1] at hmul; exact hmul.symm
+        refine Prod.ext h1 ?_
+        have : pair.2 = x := by
+          simpa [h1] using hmul
+        exact this
       refine ⟨pair.1, Finset.mem_erase.2 ⟨hne1, Nat.mem_divisors.2 ⟨hd, hx0'⟩⟩, ?_⟩
       apply Prod.ext
       · rfl
-      · have : pair.1 * pair.2 = pair.1 * (x / pair.1) := by
-          rw [hmul, Nat.mul_div_cancel' hd]
-        exact Nat.eq_of_mul_eq_mul_left (Nat.pos_of_ne_zero fun h0 => by
-          rw [h0, zero_mul] at hmul; exact hx0'.elim hmul) this
-    · intro e he
+      · have hpos : 0 < pair.1 := Nat.pos_of_ne_zero fun h0 => by
+          rw [h0, zero_mul] at hmul
+          exact hx0' hmul.symm
+        apply Nat.eq_of_mul_eq_mul_left hpos
+        rw [Nat.mul_div_cancel' hd, hmul]
+    · intro e _
       rfl
-  · intro e he
+  · intro e _
     have := abs_moebius_le_one (n := e)
     have h1 : 0 ≤ 1 + (μ e : ℤ) := by have := neg_abs_le (μ e : ℤ); linarith
     positivity
@@ -100,7 +104,10 @@ theorem lemmaG (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2 
 private lemma oddExpCount_le_omegaOdd (N : ℕ) :
     P2qStructural.oddExpCount N ≤ P2qStructural.omegaOdd N := by
   unfold P2qStructural.oddExpCount P2qStructural.omegaOdd
-  exact Finset.card_le_card (Finset.filter_subset_filter _ (fun _ h => h.1))
+  refine Finset.card_le_card ?_
+  intro ℓ hℓ
+  have h := Finset.mem_filter.1 hℓ
+  exact Finset.mem_filter.2 ⟨h.1, h.2.1⟩
 
 /-- **Theorem F** (paper `thm:F`): writing `o` for the number of odd primes of odd
 exponent in `N` (equal to the number of odd exponents, since `N` is odd), one has
@@ -121,8 +128,24 @@ theorem theoremF (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 
   rw [hmin] at hF hF'
   refine ⟨hF, fun _ => hF', ?_⟩
   intro hsq
-  have hoddN : ¬ 2 ∣ N := Nat.not_even_iff_odd.2 hodd
+  have hoddN : ¬ 2 ∣ N := by
+    intro hdv
+    have : Even N := (even_iff_two_dvd).2 hdv
+    exact Nat.not_even_iff_odd.2 hodd this
   rw [← P2qExtensions.oddExpCount_eq hoddN hsq]
+
+/-- `v₂(2^k m) = k` when `m` is odd. -/
+private lemma padicValNat_two_pow_mul_odd {k m : ℕ} (hm : Odd m) :
+    padicValNat 2 (2 ^ k * m) = k := by
+  have hm0 : m ≠ 0 := by
+    intro h; subst h; exact Nat.not_odd_zero hm
+  have h2 : (2 : ℕ) ≠ 0 := by norm_num
+  have hk : 2 ^ k ≠ 0 := pow_ne_zero k h2
+  have hnd : ¬ 2 ∣ m := by
+    rw [Nat.dvd_iff_mod_eq_zero, Nat.odd_iff.1 hm]
+    norm_num
+  rw [padicValNat.mul hk hm0, padicValNat.prime_pow k,
+    padicValNat.eq_zero_of_not_dvd hnd, add_zero]
 
 /-- Explicit `T` values and 2-adic valuations listed in Corollary~\ref{cor:F1}, together
 with the inductive comparison `2^{m-1} > m^4` for `m ≥ 23`. -/
@@ -134,8 +157,25 @@ theorem T_explicit :
     P2qStructural.T 17 = 83294 ∧ padicValNat 2 83294 = 1 ∧
     P2qStructural.T 19 = 130068 ∧ padicValNat 2 130068 = 2 ∧
     (23 : ℕ) ^ 4 < 2 ^ 22 := by
-  unfold P2qStructural.T
-  norm_num
+  have hT : P2qStructural.T 5 = 554 ∧ P2qStructural.T 7 = 2304 ∧
+      P2qStructural.T 11 = 14492 ∧ P2qStructural.T 13 = 28386 ∧
+      P2qStructural.T 17 = 83294 ∧ P2qStructural.T 19 = 130068 ∧
+      (23 : ℕ) ^ 4 < 2 ^ 22 := by
+    unfold P2qStructural.T; norm_num
+  refine ⟨hT.1, ?_, hT.2.1, ?_, hT.2.2.1, ?_, hT.2.2.2.1, ?_, hT.2.2.2.2.1, ?_,
+    hT.2.2.2.2.2.1, ?_, hT.2.2.2.2.2.2⟩
+  · have : (554 : ℕ) = 2 ^ 1 * 277 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
+  · have : (2304 : ℕ) = 2 ^ 8 * 9 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
+  · have : (14492 : ℕ) = 2 ^ 2 * 3623 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
+  · have : (28386 : ℕ) = 2 ^ 1 * 14193 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
+  · have : (83294 : ℕ) = 2 ^ 1 * 41647 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
+  · have : (130068 : ℕ) = 2 ^ 2 * 32517 := by norm_num
+    rw [this]; exact padicValNat_two_pow_mul_odd (by decide)
 
 theorem two_pow_gt_fourth {m : ℕ} (hm : 23 ≤ m) : (m : ℕ) ^ 4 < 2 ^ (m - 1) :=
   P2qExtensions.pow_four_lt_two_pow m (le_trans (by norm_num) hm)
@@ -154,21 +194,23 @@ theorem cor_gcd (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2
 theorem prop_23 (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2 * q)) :
     ¬ 2 ∣ p ^ 2 * q ∧ ¬ 3 ∣ p ^ 2 * q := by
   obtain ⟨hp5, hq5, -, -, -⟩ := preamble hp hq hpq hJ
-  have hp2 : p ≠ 2 := by intro h; subst h; exact (Nat.not_le.2 (by norm_num : (5 : ℕ) > 2)) hp5
-  have hq2 : q ≠ 2 := by intro h; subst h; exact (Nat.not_le.2 (by norm_num : (5 : ℕ) > 2)) hq5
-  have hp3 : p ≠ 3 := by intro h; subst h; exact (Nat.not_le.2 (by norm_num : (5 : ℕ) > 3)) hp5
-  have hq3 : q ≠ 3 := by intro h; subst h; exact (Nat.not_le.2 (by norm_num : (5 : ℕ) > 3)) hq5
+  have not_div_p : ∀ {d : ℕ}, d.Prime → d < 5 → ¬ d ∣ p := by
+    intro d hd hdlt hdp
+    have : d = p := (hp.eq_one_or_self_of_dvd d hdp).resolve_left hd.ne_one
+    omega
+  have not_div_q : ∀ {d : ℕ}, d.Prime → d < 5 → ¬ d ∣ q := by
+    intro d hd hdlt hdq
+    have : d = q := (hq.eq_one_or_self_of_dvd d hdq).resolve_left hd.ne_one
+    omega
   constructor
   · intro h
-    rcases (hp.dvd_mul.1 (h.trans ⟨q, by ring⟩)).elim (fun h' => (hp.eq_one_or_self_of_dvd _ h').resolve_left (by omega))
-      (fun h' => (hq.eq_one_or_self_of_dvd _ (hp.dvd_of_dvd_pow h')).resolve_left (by omega)) with h' | h'
-    · exact hp2 (by simpa using h'.symm)
-    · exact hq2 (by simpa using h'.symm)
+    cases Nat.prime_two.dvd_mul.1 h with
+    | inl h2 => exact not_div_p Nat.prime_two (by norm_num) (Nat.Prime.dvd_of_dvd_pow Nat.prime_two h2)
+    | inr h2 => exact not_div_q Nat.prime_two (by norm_num) h2
   · intro h
-    rcases (hp.dvd_mul.1 (h.trans ⟨q, by ring⟩)).elim (fun h' => (hp.eq_one_or_self_of_dvd _ h').resolve_left (by omega))
-      (fun h' => (hq.eq_one_or_self_of_dvd _ (hp.dvd_of_dvd_pow h')).resolve_left (by omega)) with h' | h'
-    · exact hp3 (by simpa using h'.symm)
-    · exact hq3 (by simpa using h'.symm)
+    cases Nat.prime_three.dvd_mul.1 h with
+    | inl h3 => exact not_div_p Nat.prime_three (by norm_num) (Nat.Prime.dvd_of_dvd_pow Nat.prime_three h3)
+    | inr h3 => exact not_div_q Nat.prime_three (by norm_num) h3
 
 /-- **Proposition** `prop:square`: `N` is not a square. -/
 theorem prop_square (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2 * q)) :
@@ -192,8 +234,10 @@ theorem prop_rs (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2
 theorem prop_r2s (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2 * q))
     {r s : ℕ} (hr : r.Prime) (hs : s.Prime) (hrs : r ≠ s) :
     p ^ 2 * q + 12 ≠ r ^ 2 * s ∧ p ^ 2 * q + 12 ≠ r * s ^ 2 :=
-  ⟨N_ne_ras hp hq hr hs hpq hrs (by norm_num) hJ,
-    by rw [mul_comm]; exact N_ne_ras hp hq hs hr hpq hrs.symm (by norm_num) hJ⟩
+  ⟨N_ne_ras hp hq hr hs hpq hrs (Nat.le_refl 2) hJ,
+    by
+      rw [mul_comm r]
+      exact N_ne_ras hp hq hs hr hpq hrs.symm (Nat.le_refl 2) hJ⟩
 
 /-- **Theorem A** (paper `thm:A`): `N` is not of the form `r^a s` (nor `r s^a`) for
 distinct primes `r,s` and an integer `a ≥ 2`. -/
@@ -201,7 +245,9 @@ theorem theoremA (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 
     {r s a : ℕ} (hr : r.Prime) (hs : s.Prime) (hrs : r ≠ s) (ha : 2 ≤ a) :
     p ^ 2 * q + 12 ≠ r ^ a * s ∧ p ^ 2 * q + 12 ≠ r * s ^ a :=
   ⟨N_ne_ras hp hq hr hs hpq hrs ha hJ,
-    by rw [mul_comm]; exact N_ne_ras hp hq hs hr hpq hrs.symm ha hJ⟩
+    by
+      rw [mul_comm r]
+      exact N_ne_ras hp hq hs hr hpq hrs.symm ha hJ⟩
 
 /-- **Theorem** `thm:closed` (Closed shapes). -/
 theorem theorem_closed (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p ^ 2 * q)) :
@@ -305,14 +351,17 @@ theorem omega4_size (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hJ : Jumps (p
   obtain ⟨hq3, hpr⟩ := omega4_constraints hp hq hpq hJ ha.1 hb.1 hc.1 hd.1
     hab hac had hbc hbd hcd ha.2 hb.2 hc.2 hd.2
   refine ⟨hq3, hpr, ?_⟩
-  have hp5 : 5 ≤ p := (preamble hp hq hpq hJ).1
-  have : p ^ 4 < p ^ 2 * (3 * p ^ 2) + 12 := by
-    have hpow : p ^ 2 * p ^ 2 = p ^ 4 := by rw [← pow_add]; rfl
-    have : 0 < p ^ 2 * (2 * p ^ 2) + 12 := by
+  have hle : p ^ 2 * (3 * p ^ 2) + 12 ≤ N :=
+    Nat.add_le_add_right (Nat.mul_le_mul_left (p ^ 2) hq3) 12
+  have hlt : p ^ 4 < p ^ 2 * (3 * p ^ 2) + 12 := by
+    have hpos : 0 < p ^ 2 * (2 * p ^ 2) + 12 := by
       have : 0 < p := hp.pos
       positivity
-    nlinarith [Nat.mul_le_mul_left (p ^ 2) hq3]
-  exact this
+    calc
+      p ^ 4 = p ^ 2 * p ^ 2 := by ring
+      _ < p ^ 2 * p ^ 2 + (p ^ 2 * (2 * p ^ 2) + 12) := Nat.lt_add_of_pos_right hpos
+      _ = p ^ 2 * (3 * p ^ 2) + 12 := by ring
+  exact lt_of_lt_of_le hlt hle
 
 /-- **Theorem** `thm:main-p2q`, kernel-checked clauses only. The PARI survey, the
 unfinished Python certificate, and the computer-assisted H1 descent are not included. -/

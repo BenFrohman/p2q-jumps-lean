@@ -12,6 +12,7 @@ import P2qJumps.Statement
 import P2qJumps.ClosedShapes
 import P2qJumps.Q_neg_positivity
 import P2qJumps.Semantics
+import P2qJumps.Semantics2
 
 /-!
 # AxiomAudit
@@ -143,3 +144,8 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.N_ne_prime_pow
 #print axioms P2qJumps.sigma_prime_pow_mul_sub_one
 #print axioms P2qJumps.N_ne_ras
+#print axioms P2qJumps.Semantics2.exists_four_primes_of_omega
+#print axioms P2qJumps.Semantics2.omega_ge_four_of_primes
+#print axioms P2qJumps.Semantics2.formal_claim2_holds
+#print axioms P2qJumps.Semantics2.intended_correspondence2
+#print axioms P2qJumps.Semantics2.theorem_L2

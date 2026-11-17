@@ -75,6 +75,13 @@ for \(n=p^2q\) with distinct primes \(p,q\). The leading result of this version 
 \noindent\textbf{Status.} Every clause of Theorem~\ref{thm:L} is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim} is \textbf{pending author approval} (Truth Gate, Section~\ref{sec:A-lock}). Theorem~\ref{thm:L} does not prove Conjecture~\ref{conj:vanish}, which remains open.
 
 \medskip
+\noindent\textbf{Strengthened statement.} Theorem~\ref{thm:L} is kept unchanged (its lock is unchanged). The following strengthening is input verbatim from the separately locked file \path{paper/theorem-L2.tex} (sha256 \texttt{0014494d52\allowbreak{}f73f89e1a3\allowbreak{}6b1287f92f\allowbreak{}5bcac3b84f\allowbreak{}f7dc2bdd2c\allowbreak{}ec79c22cd8\allowbreak{}6dba}); its Lean transcription is \texttt{paper\_claim2}, and the Lean theorem \texttt{theorem\_L2} proves it (both in the namespace \texttt{P2qJumps.Semantics2}) (Section~\ref{sec:A-L2}). Clause (iv) is the unbounded exclusion of \(r^3s\), which makes clause (iv) of Theorem~\ref{thm:L} vacuous; clauses (vi) and (vii) are new.
+
+\input{theorem-L2}
+
+\noindent\textbf{Status of Theorem~\ref{thm:L2}.} Every clause is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim2} is \textbf{pending author approval} (\path{truth-gate-L2.lock.json}). Theorem~\ref{thm:L2} does not prove Conjecture~\ref{conj:vanish}.
+
+\medskip
 \noindent\textbf{How this paper is organized.}
 \begin{itemize}
 \item \textbf{Part~\ref{part:A}: Lean-proved statements.} A step-by-step proof of each clause of Theorem~\ref{thm:L}, written in ordinary mathematics and following the Lean proof: the same lemmas, case splits, identities, inequalities and bounds. Each step names the Lean declaration and its location \texttt{file:line} in a footnote (paths are relative to \path{P2qJumps/} in the repository, at the Lean sources commit \texttt{4ae3e47}).
@@ -458,7 +465,7 @@ Clause (v) of Theorem~\ref{thm:L} is the contrapositive: under~\eqref{eq:jumps},
 \section{Beyond Theorem~\ref{thm:L}: four prime factors and the shape \(r^3s\)}
 \label{sec:A-beyond}
 
-The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}; their locked statement file is written separately (see \path{paper/CHANGES-v1.4.md}).
+The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}. They are clauses (iv), (vi) and (vii) of the separately locked Theorem~\ref{thm:L2} (Section~\ref{sec:A-L2}).
 
 \subsection{Four or more distinct prime factors}
 \label{sec:A-omega4}
@@ -605,6 +612,28 @@ The Lean development states the results above in native form in \texttt{formal\_
 \begin{remark}[New content requiring author approval]
 Items (iii) and the \(p>r\) half of (iv) are new relative to v1.3. In particular (iii) closes the shape \(r^2st\) completely, whereas the v1.3 text and the author's v1.4 theorem block list \(r^2st\) as open beyond computational bounds. Every step is kernel-checked. The author decided on 16~November~2026 to include the \(r^2st\) closure in the paper; the formal approval of the wording of Theorem~\ref{thm:L} in \path{truth-gate.lock.json} is still pending.
 \end{remark}
+
+
+\section{Proof of Theorem~\ref{thm:L2} and its semantics lock}
+\label{sec:A-L2}
+
+Theorem~\ref{thm:L2} assembles results proved above; this section gives the proof clause by clause, following \texttt{formal\_claim2\_holds} and \texttt{intended\_correspondence2}.\lean{P2qJumps.Semantics2.formal_claim2_holds}{Semantics2.lean:139}
+
+\begin{proof}[Proof of Theorem~\ref{thm:L2}]
+Assume~\eqref{eq:jumps} with \(n=p^2q\), \(p\ne q\) primes.
+
+\textit{Step 1: clauses (i)--(iii) and (v).} These are clauses (i)--(iii) and (v) of Theorem~\ref{thm:L}, with the same proofs: Propositions~\ref{prop:A-notprime} and~\ref{prop:A-rs}, Proposition~\ref{prop:A-rst}, Theorem~\ref{thm:A-r2st-empty} and Proposition~\ref{prop:A-pairs}. For (v), Proposition~\ref{prop:A-pairs} says that \(p^2q\le 10^4\) is incompatible with~\eqref{eq:jumps}; hence \(n>10^4\).
+
+\textit{Step 2: clause (iv).} This is Theorem~\ref{thm:A-r3s-empty}, which needs no bound on \(p\) and no hypothesis \(r,s\ge 5\) (the proof derives \(r,s\ge 5\) from \(\gcd(N,6)=1\)).
+
+\textit{Step 3: clause (vi).} The first half is Proposition~\ref{prop:A-primepower} (\(N\ne r^k\), \(k\ge 1\)); the second half is Theorem~\ref{thm:A-ras} (\(N\ne r^as\), \(a\ge 2\)).
+
+\textit{Step 4: \(\omega(N)\ge 4\) gives four distinct prime divisors.}\lean{P2qJumps.Semantics2.exists_four_primes_of_omega}{Semantics2.lean:39} By definition \(\omega(N)\) is the number of distinct primes dividing \(N\), i.e.\ the cardinality of the set \(\mathcal P(N)\) of prime factors of \(N\). If this cardinality is at least \(4\), choose a \(4\)-element subset \(\{a,b,c,d\}\subseteq\mathcal P(N)\); its elements are pairwise distinct primes dividing \(N\).
+
+\textit{Step 5: clause (vii).} Given \(\omega(N)\ge 4\), Step~4 provides pairwise distinct primes \(a,b,c,d\) dividing \(N\), and Theorem~\ref{thm:A-omega4} gives \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\).
+\end{proof}
+
+\noindent\textbf{Semantics lock for Theorem~\ref{thm:L2}.} The native statement \texttt{formal\_claim2}\lean{P2qJumps.Semantics2.formal_claim2}{Semantics2.lean:117} uses \(\mathtt{Jumps}\), \(\mathtt{Theorem28}\), the numeral \(10000\) with (v) as ``\(p^2q\le 10000\Rightarrow\neg\mathtt{Jumps}\)'', and (vii) in the form ``four pairwise distinct primes divide \(N\)''. Independently, \texttt{paper\_claim2}\lean{P2qJumps.Semantics2.paper_claim2}{Semantics2.lean:92} transcribes \path{paper/theorem-L2.tex} literally, with \(\ph\), \(\sig\), \(10^4\), Mathlib's \(\omega\) (\texttt{ArithmeticFunction.cardDistinctFactors}) and one hypothesis block per pair \((p,q)\); it mentions none of the definitions of the formal proof. The theorem \texttt{intended\_correspondence2 : formal\_claim2 \(\leftrightarrow\) paper\_claim2}\lean{P2qJumps.Semantics2.intended_correspondence2}{Semantics2.lean:155} is proved by unfolding, \(10^4=10000\), the contrapositive for (v), Step~4 for the direction formal\(\Rightarrow\)paper, and for the converse the fact that four pairwise distinct primes dividing \(N\ne 0\) form a \(4\)-element subset of \(\mathcal P(N)\), so \(\omega(N)\ge 4\);\lean{P2qJumps.Semantics2.omega_ge_four_of_primes}{Semantics2.lean:58} it is not proved by \texttt{rfl}. Finally \texttt{theorem\_L2 : paper\_claim2 := intended\_correspondence2.mp formal\_claim2\_holds}.\lean{P2qJumps.Semantics2.theorem_L2}{Semantics2.lean:196} The lock \path{truth-gate-L2.lock.json} records the hashes of these four blocks, the sha256 of \path{paper/theorem-L2.tex} and its verbatim quote; \path{scripts/verify-lock-L2.py} checks them in \path{scripts/verify-lock.sh}. The author's approval of the wording of Theorem~\ref{thm:L2} and of \texttt{paper\_claim2} is \textbf{pending}; it is not given in this version.
 
 
 \part{Paper-only arguments (not kernel-checked)}

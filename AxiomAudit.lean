@@ -140,3 +140,6 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Gr3s_pos
 #print axioms P2qJumps.Gr3s_ne_zero
 #print axioms P2qJumps.r3s_empty
+#print axioms P2qJumps.N_ne_prime_pow
+#print axioms P2qJumps.sigma_prime_pow_mul_sub_one
+#print axioms P2qJumps.N_ne_ras

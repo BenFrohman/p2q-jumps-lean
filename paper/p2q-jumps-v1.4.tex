@@ -552,6 +552,48 @@ Steps 3--5 show \(G(p,k)\ne 0\) for all integers \(k\ge 1\), \(p\ge 2\), contrad
 Theorem~\ref{thm:A-r3s-empty} makes Theorem~\ref{thm:L}(iv) vacuous: its hypothesis \(N=r^3s\) never holds. It also replaces the \(a=3\) case of the written proof of Theorem~\ref{thm:A}, whose polynomial in \(p\) has degree~\(5\), not~\(6\) as stated in v1.3. The twist link between \(r^3s\) and the curves \(E^{(k)}\) (Part~\ref{part:B}) is no longer needed for any exclusion.
 \end{remark}
 
+\subsection{Theorem~A: prime powers and \(r^as\)}
+\label{sec:A-thmA}
+
+\begin{proposition}
+\label{prop:A-primepower}
+Assume~\eqref{eq:jumps}. Then \(N\ne r^k\) for every prime \(r\) and \(k\ge 1\).\lean{P2qJumps.N_ne_prime_pow}{TheoremA.lean:30}
+\end{proposition}
+
+\begin{proof}
+Write \(k=j+1\). Then \(\ph(N)=r^j(r-1)\), and the totient identity with \(r^{j+1}=p^2q+12\) gives \(r^j=p(p+q-1)\). Multiplying by \(r\): \(p\bigl(r(p+q-1)-pq\bigr)=r^{j+1}-p^2q=12\). So \(p\mid 12\), and no prime \(5\le p\le 12\) divides \(12\) (Proposition~\ref{prop:A-preamble} gives \(p\ge 5\)).
+\end{proof}
+
+\begin{theorem}[Theorem~A]
+\label{thm:A-ras}
+Assume~\eqref{eq:jumps}. Then \(N\ne r^as\) for all distinct primes \(r,s\) and all \(a\ge 2\). (Since \(r^as=s\,r^a\), this also excludes \(rs^a\).)\lean{P2qJumps.N_ne_ras}{TheoremA.lean:62}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6pq)=1\); so \(r,s\ge 5\) and \(r\ne p\). Write \(a=b+1\) and \(R=r^b\). Then \(\ph(N)=R(r-1)(s-1)\), \(\sig(N)=G(s+1)\) with \(G=\sig(r^{b+1})\), and \(G(r-1)=r^2R-1\) (geometric sum).\lean{P2qJumps.sigma_prime_pow_mul_sub_one}{TheoremA.lean:52} The identities are \(E_0: Rrs=p^2q+12\), \(E_1: R(r-1)(s-1)=p(p-1)(q-1)+12\), \(E_2: G(s+1)=(p^2+p+1)(q+1)+12\).
+
+\textit{Step 2: the parametrization.} \(E_0-E_1\) gives \(R(r+s-1)=p(p+q-1)\). Since \(\gcd(p,R)=1\), \(p\mid r+s-1\); write \(r+s-1=pm\). Then \(s=pm-r+1\), \(q=Rm-p+1\) (cancel \(p\)), and \(m\ge 1\) because \(r+s-1>0\). Substituting into \(E_0\):
+\[
+L(p)=p^3-p^2-12=R\bigl(r(r-1)-pm(r-p)\bigr).
+\]
+Substituting into \((r-1)(E_2-E_0)\) and using \(G(r-1)=r^2R-1\):
+\[
+m\,Q_1=P_1,\qquad Q_1=(p-r+1)R-p,\quad P_1=(p+1)(r-1)-rR+1.
+\]
+
+\textit{Step 3: \(a=2\).} Then \(R=r\) and \(Q_1=P_1\), so \((m-1)Q_1=0\). If \(Q_1=0\) then \(r(p-r+1)=p\), so \(r\mid p\), impossible. Hence \(m=1\), \(s=p-r+1\) and \(q=r-p+1\); with \(s,q\ge 5\) this needs both \(p-r\ge 4\) and \(r-p\ge 4\), a contradiction.
+
+\textit{Step 4: \(a\ge 3\), \(r<p\).} Now \(R\ge r^2>r\), so \(Q_1-P_1=(p+1)(R-r)>0\). If \(P_1>0\), then \(Q_1>P_1>0\) and \(mQ_1\ge Q_1>P_1\), contradicting \(mQ_1=P_1\). If \(P_1\le 0\), then \(mQ_1\le 0\) forces \(Q_1\le 0\), i.e.\ \((p-r+1)R\le p\); as \(p-r+1\ge 2\), \(2R\le p\). Then \(2P_1\ge 2(p+1)(r-1)-rp+2=p(r-2)+2r>0\), a contradiction.
+
+\textit{Step 5: \(a=3\), \(r>p\).} This is Theorem~\ref{thm:A-r3s-empty}.
+
+\textit{Step 6: \(a\ge 4\), \(r>p\).} Then \(R\ge r^3>p^3\). Since \(L(p)>0\) (as \(p^2(p-1)\ge 100\)), the factor \(r(r-1)-pm(r-p)\) is a positive integer, so \(L(p)\ge R\ge r^3>p^3>L(p)\), a contradiction.
+\end{proof}
+
+\begin{remark}
+The written v1.3 proof of Theorem~\ref{thm:A} (Part~\ref{part:B}) is correct in its parametrization and its \(r<p\), \(a\ge 3\) case (the identity \(mQ_1=P_1\) and \(Q_1-P_1=(p+1)(R-r)\) were checked symbolically). Two changes follow the Lean proof: the case \(r>p\), \(a\ge 4\) uses the size bound \(R\mid L(p)<p^3<r^3\le R\) instead of the sign argument on \(E=k^2-k-r+1\); and the case \(a=3\), \(r>p\) uses Theorem~\ref{thm:A-r3s-empty} (degree~\(5\), not~\(6\)). The case \(a=2\) follows the parametrization rather than the \(U,V\) elimination of Proposition~\ref{prop:r2s}; both are correct.
+\end{remark}
+
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
 

@@ -41,3 +41,15 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
   - Correction to the written proof: with r = p + k the master polynomial G(p, k) has degree **5** in p, not 6. Its root location k² − 2k + 3 < p* < k² − 2k + 4 (k ≥ 6) is confirmed. The Lean proof replaces Descartes/Sturm by: (i) −G has 33 positive coefficients after p = k²−2k+4+u, k = 1+w; (ii) G(p)/p⁵ is decreasing for k ≥ 6 and G(k²−2k+3, k) > 0; (iii) direct evaluation for k ≤ 5, p ≤ 18.
 - **Paper changes:** new Part A subsection "The shape r³s is empty" (`sec:A-r3s-empty`). Ledger item (1) old: "Then p < r < p^{3/2}, r² | L(p) and p | r⁴ − r³ + 12, and (kp, k²r) ∈ E^{(k)}(Z) … The Lean development proves only the bounded statement." New: "Excluded with no bound (Theorem thm:A-r3s-empty, kernel-checked, v1.4). The earlier bounded statements … remain true and are now superseded." Remark added: Theorem L(iv) is vacuous; the twist link is no longer needed for any exclusion.
 - **Scope change:** none (strengthening). `theorem-L.tex` is untouched; clause (iv) stays true (vacuously). The new result will get its own locked statement file once the remaining Theorem A cases are green.
+
+## C4. Theorem A in full: prime powers, r²s, rs², r^a s (a ≥ 2) (target d, item 2 of the Part B plan)
+
+- **Claim (Thm "Closed shapes" (2), (4); Theorem A, v1.3):** N is not a prime power r^k (k ≥ 2), not r²s or rs², and not r^a s (a ≥ 3).
+- **Method:** sympy check of the written identities (m·Q₁ = P₁ holds exactly; Q₁ − P₁ = (p+1)(R − r); L(p) = R(r(r−1) − pm(r−p))), then Lean, `P2qJumps/TheoremA.lean` (`N_ne_prime_pow`, `N_ne_ras`, `sigma_prime_pow_mul_sub_one`).
+- **Outcome:** **proved (kernel-checked)**, standard axioms only, no bound. `N_ne_prime_pow` covers k ≥ 1 (so also N prime); `N_ne_ras` covers every a ≥ 2 and, since r^a s = s r^a, the form rs^a.
+- **Written proof audit:** the parametrization, the r < p (a ≥ 3) sign argument and the r²s argument are correct. Corrections:
+  - a = 3, r > p: the polynomial in p has degree 5, not 6 (see C3); Lean uses `r3s_empty`.
+  - a ≥ 4, r > p: old text "the equation H = 0 forces E ≤ −1 and simultaneously E > −1"; new Lean route: L(p) = R·X with X a positive integer, so L(p) ≥ R ≥ r³ > p³ > L(p). The written E-argument was not needed and is not used.
+  - The written r < p case states "If P₁ < 0 then m > 0 forces Q₁ < 0, whence p > 3R"; Lean needs only Q₁ ≤ 0 ⇒ 2R ≤ p (from p − r + 1 ≥ 2), then 2P₁ ≥ p(r−2) + 2r > 0. New text uses the Lean inequality.
+- **Paper change:** new Part A subsection "Theorem A: prime powers and r^a s" (`sec:A-thmA`), with a remark recording the corrections above.
+- **Scope change:** none.

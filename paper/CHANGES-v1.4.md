@@ -183,3 +183,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-three` (Theorem `thm:A-three`, step-by-step proof following Lean, remark on why size alone does not suffice); `thm:main-p2q` item (4) now states the kernel-checked reduction; deviation 1 records that r³st is excluded and that the claim is equivalent to r²s²t empty (open). `paper/PROSE-CLAIMS.md`: row 67 updated (still in progress, exact blocker), new row 69 (Lean).
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** none.
+
+## C19. The p = 7 descent and Theorem thm:H1-comp in Lean (prose ledger rows 56, 62)
+
+- **Claim:** `thm:H1-comp`: under both jumps at `n = p²q`, `N` is not squarefree (H1); the p = 7 descent: for a prime `q ≠ 7` with `N = 49q + 12` squarefree, `ω(N) ∉ {7, 8, 9}`.
+- **Method:** Lean, new files `P2qJumps/P7Defs.lean` (branch-and-bound checker `desc`), `P2qJumps/P7Cert.lean` (`desc_sound`: a `true` answer excludes every increasing list of integers ≥ 11 prime to 210 satisfying `7φ = 6N − 282`, `49σ = 57N + 2697`), `P2qJumps/P7Kernel.lean` and `P2qJumps/P7Kernel/` (kernel certificates `cert7`, `cert8`, `cert9` by `decide +kernel`, no `native_decide`, split over the next prime into 41 modules with proved assembly lemmas `desc_split`, `loopR_step`, `loopR_stop`, `loopR_start`; generator `scripts/p7/gen_kernel.py`, not trusted), `P2qJumps/H1.lean` (`p7_squarefree_empty`, the ported statement `p7_squarefree_7_8_9` of the earlier v4.22 package `P7Descent`, `H1_holds`, `no_squarefree`, `conjecture_iff_H2_H3`). Added to `AxiomAudit.lean`.
+- **Outcome:** proved (kernel-checked), standard axioms only (`cert7`–`cert9` use `propext` only). Conjecture `conj:vanish` is **not** proved: it is now equivalent to H2 ∧ H3 (kernel-checked), and H2, H3 are open.
+- **Paper changes:** new Part A section `sec:A-H1` (Theorems `thm:A-p7-descent`, `thm:A-H1`); `thm:H1-comp`, Appendix `app:p7`, the trust labels, Table `tab:classify`, the residual-analysis and "does not claim" texts now say kernel-checked; stale "Open items" entries corrected (r³s is empty by Theorem L2(iv)). `paper/PROSE-CLAIMS.md` rows 56, 62.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** the Lean checker is a separate implementation from `scripts/p7/descent.py`; its node counts differ and are not quoted as Lean facts.

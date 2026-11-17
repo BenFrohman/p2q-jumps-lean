@@ -85,7 +85,7 @@ for \(n=p^2q\) with distinct primes \(p,q\). The leading result of this version 
 \noindent\textbf{How this paper is organized.}
 \begin{itemize}
 \item \textbf{Part~\ref{part:A}: Lean-proved statements.} A step-by-step proof of each clause of Theorem~\ref{thm:L}, written in ordinary mathematics and following the Lean proof: the same lemmas, case splits, identities, inequalities and bounds. Each step names the Lean declaration and its location \texttt{file:line} in a footnote (paths are relative to \path{P2qJumps/} in the repository, at the Lean sources commit \texttt{4ae3e47}).
-\item \textbf{Part~\ref{part:B}: paper-only arguments.} The written v1.3 development (Theorems~A, B, E, the classification, the \(p=7\) descent, the twist link and the root-number formula). These are \textbf{not kernel-checked} in the v1.4 Lean development.
+\item \textbf{Part~\ref{part:B}: paper-only arguments.} The written v1.3 development (Theorems~A, B, E, the classification, the \(p=7\) descent, the twist link and the root-number formula). The written arguments are \textbf{not kernel-checked}; their statements are kernel-checked separately in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
 \item \textbf{Part~\ref{part:C}: computational certificates.} The kernel certificates used in Part~\ref{part:A}, with their exact ranges, and the external (not kernel-checked) SymPy, PARI and Python runs.
 \end{itemize}
 
@@ -1030,7 +1030,7 @@ Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:A-implies} proves the equivalence only. None of H1, H2, H3 is proved in Lean, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}, which is computer-assisted and not kernel-checked; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation.
+Theorem~\ref{thm:A-implies} proves the equivalence only. H1 is proved in Lean in Section~\ref{sec:A-H1} (Theorem~\ref{thm:A-H1}, kernel-checked); H2 and H3 are not proved, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation.
 \end{remark}
 
 \section{The shape \(r^2s^2t\) and the ``three regimes'' claim}
@@ -1114,7 +1114,32 @@ Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} 
 \textit{Step 4 (application).} At a prefix \(b\) of a squarefree \(N=bM\) with \(h=\ph(b)\), \(s=\sig(b)\), \(F_-=\prod(r-1)\), \(F_+=\prod(r+1)\) over the remaining primes, one has \(\ph(N)=hF_-\), \(\sig(N)=sF_+\) and \(F_-F_+=\prod(r^2-1)\le M^2\); Proposition~\ref{prop:A-p7} supplies the identity. Three remaining distinct primes \(\ge 11\) (Proposition~\ref{prop:A-p7-ge11}) give \(M\ge 2431>872\).
 \end{proof}
 
-\noindent\textit{Status of the descent.} Propositions~\ref{prop:A-p7}--\ref{prop:A-p7-prefix} are the kernel-checked inputs of the descent of Appendix~\ref{app:p7}; the enumeration itself is not kernel-checked. With primes \(\ge 11\) and the prefix bound, \path{scripts/p7/descent.py} visits \(134\), \(748\) and \(5{,}773\) nodes for \(k=7,8,9\) (largest branch bounds \(65\), \(86\), \(130\)), with zero solutions. The open step is a Lean proof of the soundness of the branch bounds, the product enumeration and the terminal two-prime elimination.
+\noindent\textit{Status of the descent.} Propositions~\ref{prop:A-p7}--\ref{prop:A-p7-prefix} are the kernel-checked inputs of the descent of Appendix~\ref{app:p7}. The enumeration itself is kernel-checked in Section~\ref{sec:A-H1} by a separate Lean checker with a Lean soundness proof. With primes \(\ge 11\) and the prefix bound, \path{scripts/p7/descent.py} visits \(134\), \(748\) and \(5{,}773\) nodes for \(k=7,8,9\) (largest branch bounds \(65\), \(86\), \(130\)), with zero solutions. The Python run is an external reproduction; the Lean certificate of Section~\ref{sec:A-H1} does not depend on it.
+
+\section{H1 and Theorem~\ref{thm:H1-comp}: the \(p=7\) descent in Lean}
+\label{sec:A-H1}
+
+This section is kernel-checked (standard axioms only) in \path{P2qJumps/P7Defs.lean}, \path{P2qJumps/P7Kernel.lean} with \path{P2qJumps/P7Kernel/}, \path{P2qJumps/P7Cert.lean} and \path{P2qJumps/H1.lean}. It is not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}.
+
+\begin{theorem}[\(p=7\) descent; \path{p7_squarefree_empty}, \path{p7_squarefree_7_8_9}]
+\label{thm:A-p7-descent}
+Let \(q\neq 7\) be prime, \(n=49q\), \(N=n+12\), and suppose~\eqref{eq:jumps}. If \(N\) is squarefree, then \(\omega(N)\notin\{7,8,9\}\).
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:A-p7}, every prime factor of \(N\) is at least \(11\) (so prime to \(210\)) and \(7\ph(N)=6N-282\), \(49\sig(N)=57N+2697\). Write the prime factors of \(N\) in increasing order. A branch-and-bound checker \path{desc} walks increasing prefixes \(b\) of this list, carrying \(\prod(x-1)\) and \(\prod(x+1)\); it stops a branch when the remaining primes cannot restore either identity (monotone bounds), and at two remaining primes it solves the linear system for their product and sum exactly. The theorem \path{desc_sound} proves that a \texttt{true} answer excludes every increasing list of integers \(\ge 11\) prime to \(210\) satisfying both identities. The Lean kernel evaluates the checker to \texttt{true} for \(7\), \(8\) and \(9\) factors (\path{cert7}, \path{cert8}, \path{cert9}; \texttt{decide +kernel}, no \texttt{native\_decide}). The evaluation is split over the next prime into small kernel evaluations in 41 modules, reassembled with proved lemmas (\path{desc_split}, \path{loopR_step}); the generator \path{scripts/p7/gen_kernel.py} is not trusted.
+\end{proof}
+
+\begin{theorem}[H1; \path{H1_holds}, \path{no_squarefree}]
+\label{thm:A-H1}
+Under~\eqref{eq:jumps} with \(n=p^2q\), \(N=n+12\) is not squarefree. In particular H1 holds, and Conjecture~\ref{conj:vanish} holds if and only if H2 and H3 hold (\path{conjecture_iff_H2_H3}).
+\end{theorem}
+
+\begin{proof}
+If \(N\) is squarefree with \(\omega(N)\ge 4\), Corollary~\ref{cor:A-F1} gives \(p=7\) and \(7\le\omega(N)\le 9\), excluded by Theorem~\ref{thm:A-p7-descent}. If \(\omega(N)\le 3\): \(N\) is not \(1\), not prime, not a product of two distinct primes (Theorem~\ref{thm:L}(i)) and not a product of three distinct primes (Theorem~\ref{thm:L}(ii)). The equivalence is Theorem~\ref{thm:A-implies} with H1.
+\end{proof}
+
+H2 and H3 are not proved; Conjecture~\ref{conj:vanish} remains open.
 
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
@@ -1154,7 +1179,7 @@ Assume~\eqref{eq:jumps} with \(n=p^2q\), \(p\ne q\) primes.
 \part{Written arguments, cited and computational results}
 \label{part:B}
 
-\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Not kernel-checked are in particular: the \(p=7\) descent (Appendix~\ref{app:p7}) and hence Theorem~\ref{thm:H1-comp}; the enumeration of Proposition~\ref{prop:C} (its structural clauses are Section~\ref{sec:A-propC}) and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
+\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Since v1.4 the \(p=7\) descent and Theorem~\ref{thm:H1-comp} are kernel-checked (Section~\ref{sec:A-H1}); the written descent of Appendix~\ref{app:p7} and its Python runs remain an external reproduction. Not kernel-checked are in particular: the enumeration of Proposition~\ref{prop:C} (its structural clauses are Section~\ref{sec:A-propC}) and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
 
 Where Part~\ref{part:B} overlaps Part~\ref{part:A}, Part~\ref{part:A} is the kernel-checked version: Theorem~\ref{thm:closed}(1),(3) are Theorem~\ref{thm:L}(i); Theorem~\ref{thm:R1} is Theorem~\ref{thm:L}(ii), whose Lean proof (Section~\ref{sec:A-ii}) is a different argument from the written one below; and Theorem~\ref{thm:r3s-plarge} together with the divisibility of Theorem~\ref{thm:r3s-strip} is Theorem~\ref{thm:L}(iv), again with a different Lean argument (Section~\ref{sec:A-iv}). Since Theorem~\ref{thm:L}(iii) shows that the shape \(r^2st\) does not occur, the \(r^2st\) material below (Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}, the square-discriminant sections and the \(r^2st\) rows of Table~\ref{tab:bounds}) is kept as the v1.3 record and is no longer needed.
 
@@ -1185,7 +1210,7 @@ Suppose~\eqref{eq:jumps} holds. Then \(p,q\ge 5\), the integer \(N\) is odd, cop
 In particular there is no solution with \(\{p,q\}\cap\{2,3\}\ne\emptyset\).
 \end{theorem}
 
-After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the computer-assisted closure of H1 (Theorem~\ref{thm:H1-comp}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 (with \(p\ge 10^6\)) and H3.
+After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the closure of H1 (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 (with \(p\ge 10^6\)) and H3.
 
 \begin{theorem}[Rigidity equations]
 \label{thm:rigid}
@@ -1230,7 +1255,7 @@ In particular a solution is determined by the pair \((p,r)\) alone. The offset f
 There do not exist distinct primes \(p\) and \(q\) such that \(n=p^2q\) satisfies both jump identities~\eqref{eq:jumps} simultaneously, where \(\ph\) denotes Euler's totient and \(\sig\) denotes the ordinary sum of positive divisors. Equivalently: both a \(\ph\)-jump of length~12 and a \(\sig\)-jump of length~12 are impossible for \(n=p^2q\) with distinct primes \(p,q\).
 \end{conjecture}
 
-Conjecture~\ref{conj:vanish} is not a theorem. Theorem~\ref{thm:R1} empties every triple \(N=rst\). The original v0.10 claim that Hypotheses~\ref{hyp:R2}--\ref{hyp:R3} would finish the family is \textbf{not justified} (incomplete reduction); see Appendix~\ref{app:hist-prop32}. The current equivalence is Proposition~\ref{prop:implies-corrected}. With H1 closed only under ordinary computer-assisted trust (Theorem~\ref{thm:H1-comp}), the conjecture remains open precisely on H2 and H3. No true solutions of both jumps with \(n=p^2q\) are known. The parametrizations of Theorem~\ref{thm:rigid} are necessary conditions, not existence statements.
+Conjecture~\ref{conj:vanish} is not a theorem. Theorem~\ref{thm:R1} empties every triple \(N=rst\). The original v0.10 claim that Hypotheses~\ref{hyp:R2}--\ref{hyp:R3} would finish the family is \textbf{not justified} (incomplete reduction); see Appendix~\ref{app:hist-prop32}. The current equivalence is Proposition~\ref{prop:implies-corrected}. With H1 proved (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the conjecture remains open precisely on H2 and H3. No true solutions of both jumps with \(n=p^2q\) are known. The parametrizations of Theorem~\ref{thm:rigid} are necessary conditions, not existence statements.
 
 
 \section{Identities}
@@ -1996,7 +2021,7 @@ This section records the audited correction of the superseded original Propositi
 \(\emptyset\) & \(1\) & prime & excluded, Thm~\ref{thm:closed}(1) \\
 \(\emptyset\) & \(2\) & \(rs\) & excluded, Thm~\ref{thm:closed}(3) \\
 \(\emptyset\) & \(3\) & \(rst\) & excluded, Thm~\ref{thm:R1} (Lean) \\
-\(\emptyset\) & \(\ge 4\) & squarefree & H1 closed computer-assisted (Thm~\ref{thm:H1-comp}; not Lean) \\
+\(\emptyset\) & \(\ge 4\) & squarefree & H1 closed (Thm~\ref{thm:H1-comp}; Lean, Thm~\ref{thm:A-H1}) \\
 \(|R|=1\) & \(0\) & \(r^a\) & excluded, Thm~\ref{thm:closed}(2) \\
 \(|R|\ge 2\) & \(0\) & powerful & excluded, Thm~\ref{thm:B} \\
 \(|R|=1\) & \(1\) & \(r^2s\) & excluded, Thm~\ref{thm:closed}(4) \\
@@ -2234,16 +2259,16 @@ Conjecture~\ref{conj:vanish} holds if and only if H1, H2 and H3 all hold, where 
 \item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, the case \(p<10^6\) is empty under the stated computational trust; only \(p\ge 10^6\) remains open.
 \item[\textbf{H3.}] There is no solution with \(R\neq\emptyset\) and \(j\ge 3\).
 \end{itemize}
-In the present draft, H1 is established under ordinary computer-assisted trust by Theorem~\ref{thm:H1-comp} (not Lean). Consequently Conjecture~\ref{conj:vanish} is equivalent, under that same trust boundary for H1, to the conjunction of H2 and H3.
+H1 is established by Theorem~\ref{thm:H1-comp}, kernel-checked in Lean as Theorem~\ref{thm:A-H1}. Consequently Conjecture~\ref{conj:vanish} is equivalent to the conjunction of H2 and H3 (kernel-checked, \path{conjecture_iff_H2_H3}).
 \end{proposition}
 
 \begin{proof}
 The equivalence is kernel-checked as Theorem~\ref{thm:A-implies} (\texttt{P2qJumps.prop\_implies\_corrected}); the trust statements about H1 and H2 are not. (\(\Rightarrow\)) is immediate. (\(\Leftarrow\)): every factor pattern of \(N>1\) appears in exactly one row of Table~\ref{tab:classify}. The rows other than H1--H3 are excluded by Theorem~\ref{thm:closed}(1)--(4), Theorem~\ref{thm:R1}, Theorem~\ref{thm:A}, and Theorem~\ref{thm:B}.
 \end{proof}
 
-\begin{theorem}[H1 under ordinary computer-assisted trust]
+\begin{theorem}[H1]
 \label{thm:H1-comp}
-Assume the trust boundary of Appendix~\ref{app:p7}. Combining Theorems~\ref{thm:D} and~\ref{thm:F} (Corollary~\ref{cor:F1}) with the independently audited exact finite descent for \(p=7\) and \(k\in\{7,8,9\}\) yields: there is no solution of~\eqref{eq:jumps} with \(n=p^2q\) and \(N\) squarefree. Thus H1 holds under ordinary computer-assisted trust. This statement is \textbf{not} Lean-certified.
+Combining Theorems~\ref{thm:D} and~\ref{thm:F} (Corollary~\ref{cor:F1}) with the exact finite descent for \(p=7\) and \(k\in\{7,8,9\}\) yields: there is no solution of~\eqref{eq:jumps} with \(n=p^2q\) and \(N\) squarefree. Thus H1 holds. Since v1.4 this statement is kernel-checked in Lean (Theorem~\ref{thm:A-H1}, Section~\ref{sec:A-H1}); the written descent of Appendix~\ref{app:p7} is an external reproduction.
 \end{theorem}
 
 \begin{proof}
@@ -2251,7 +2276,7 @@ Squarefree \(k\le 2\) contradict \(\delta(n)\ge 16\); \(k=3\) is Theorem~\ref{th
 \end{proof}
 
 \begin{remark}[Status of Conjecture~\ref{conj:vanish}]
-H1 is closed only in the computer-assisted sense of Theorem~\ref{thm:H1-comp}. H2 for \(p\ge 10^6\) and H3 remain open. Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
+H1 is closed by Theorem~\ref{thm:H1-comp} (kernel-checked, Theorem~\ref{thm:A-H1}). H2 for \(p\ge 10^6\) and H3 remain open. Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
 \end{remark}
 
 \section{Formalization status}
@@ -2428,10 +2453,10 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \label{sec:v14-open}
 \begin{itemize}
 \item Conjecture~\ref{conj:vanish} (no \(n=p^2q\) satisfies both jumps) is open.
-\item \(r^3s\): open in Lean for \(p>10^4\) (Theorem~\ref{thm:A} is a written proof, not Lean-formalized).
+\item \(r^3s\): empty (Theorem~\ref{thm:A-r3s-empty}, kernel-checked; Theorem~\ref{thm:L2}(iv)). The shape \(r^2s^2t\) is open (Section~\ref{sec:A-three}).
 \item \(\omega(N)\ge 4\) beyond the ranges above; H2 for \(p\ge 10^6\); H3.
 \item Uniform analytic bounds: David's theorem across all twist fibres; effective genus-one bounds.
-\item Not newly formalized in v1.4: Theorems~\ref{thm:closed}(2),(4)--(6), \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification, and the \(p=7\) descent.
+\item Not kernel-checked: the enumeration of Proposition~\ref{prop:C} and the other external computations of Section~\ref{sec:v14-external}, and the LMFDB/PARI data of Section~\ref{sec:v14-curve}. The statements of Theorems~\ref{thm:closed}, \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification and the \(p=7\) descent are kernel-checked in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
 \end{itemize}
 
 \section{Reproducibility (v1.4)}
@@ -2468,17 +2493,17 @@ Package directories dated 2026-11-06 under \path{/workspace/} accompany this REV
 \section*{What this note does not claim (updated)}
 \label{sec:noclaim-v011}
 
-This REVIEW draft does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed only under the ordinary computer-assisted trust boundary of Appendix~\ref{app:p7}, not by a Lean certificate. H2 for \(p\ge 10^6\) and H3 remain open. Theorems~A,~B,~E in full, the exhaustive classification, and the \(p=7\) descent are not Lean-formalized (F1/L1/Q/repeated-size extensions are Lean+independently audited). No claim is made that the \(p=7\) descent is kernel-checked, nor that the Lean portfolio is complete. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
+This REVIEW draft does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed, and since v1.4 kernel-checked in Lean (Theorem~\ref{thm:A-H1}); this does not prove the conjecture. H2 for \(p\ge 10^6\) and H3 remain open. Theorems~A,~B,~E in full, the exhaustive classification, and the \(p=7\) descent are not Lean-formalized (F1/L1/Q/repeated-size extensions are Lean+independently audited). (This sentence is the v0.11 status; since v1.4 the \(p=7\) descent is kernel-checked, Section~\ref{sec:A-H1}.) No claim is made that the Lean portfolio settles the conjecture. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
 
 
 \appendix
 
-\section{Exact finite descent for the squarefree \(p=7\) residual (Part~\ref{part:B}; not kernel-checked)}
+\section{Exact finite descent for the squarefree \(p=7\) residual (Part~\ref{part:B}; written argument, kernel-checked separately in Section~\ref{sec:A-H1})}
 \label{app:p7}
 
 \subsection{Trust boundary (read first)}
 \label{app:p7-trust}
-The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. It is \textbf{not} Lean/kernel-certified. Ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Until a Lean formalization of the descent is independently audited, Theorem~\ref{thm:H1-comp} must not be cited as a Lean theorem. Since v1.4 the equations below, the congruences \(N\equiv\ph(N)\equiv 5\pmod 7\) used in the singular-branch argument, the exclusion of every prime factor \(\le 7\) (in particular~\(5\)) when \(\omega(N)\ge 4\), and an additional prefix bound are kernel-checked (Section~\ref{sec:A-p7}); the enumeration is not.
+The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. The written argument and its Python runs are not themselves Lean/kernel-certified; since v1.4 the same exclusion is kernel-checked by a separate Lean checker (Section~\ref{sec:A-H1}). For the written argument, ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Theorem~\ref{thm:H1-comp} is cited as a Lean theorem only through Theorem~\ref{thm:A-H1}. Since v1.4 the equations below, the congruences \(N\equiv\ph(N)\equiv 5\pmod 7\) used in the singular-branch argument, the exclusion of every prime factor \(\le 7\) (in particular~\(5\)) when \(\omega(N)\ge 4\), and an additional prefix bound are kernel-checked (Section~\ref{sec:A-p7}), and the enumeration is kernel-checked in Section~\ref{sec:A-H1}.
 
 \subsection{Equations and enlarged negative domain}
 For \(p=7\),

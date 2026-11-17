@@ -262,3 +262,8 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.omega4_or_r2s2t
 #print axioms P2qJumps.card_pf_r2s2t
 #print axioms P2qJumps.threeRegimes_iff_r2s2t
+#print axioms P2qJumps.totient_sigma_r2s2t
+#print axioms P2qJumps.r2s2t_combo
+#print axioms P2qJumps.Lpoly_pos
+#print axioms P2qJumps.r2s2t_rs_dvd_L
+#print axioms P2qJumps.r2s2t_jumps_hypothesis_needed

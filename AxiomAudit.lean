@@ -188,3 +188,17 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Semantics2.formal_claim2_holds
 #print axioms P2qJumps.Semantics2.intended_correspondence2
 #print axioms P2qJumps.Semantics2.theorem_L2
+#print axioms P2qJumps.jumps_iff_AB
+#print axioms P2qJumps.jumps_delta
+#print axioms P2qJumps.AB_p2q
+#print axioms P2qJumps.A_prime_pow
+#print axioms P2qJumps.cot_le
+#print axioms P2qJumps.cot_eq_iff
+#print axioms P2qJumps.radical_scaling
+#print axioms P2qJumps.lemmaG_gcd
+#print axioms P2qJumps.T_pos
+#print axioms P2qJumps.twist_link_congr
+#print axioms P2qJumps.div_gcd_totient_dvd_rad
+#print axioms P2qJumps.rad_ne_div_gcd_totient
+#print axioms P2qJumps.twist_point
+#print axioms P2qJumps.twist_r_bound

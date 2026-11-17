@@ -30,6 +30,9 @@ import P2qJumps.ThmEShapes
 import P2qJumps.PropC
 import P2qJumps.ImpliesCorrected
 import P2qJumps.ThreeRegimes
+import P2qJumps.P7Defs
+import P2qJumps.P7Kernel
+import P2qJumps.P7Cert
 import P2qJumps.Semantics
 import P2qJumps.Semantics2
 

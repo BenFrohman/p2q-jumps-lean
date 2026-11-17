@@ -262,3 +262,7 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.omega4_or_r2s2t
 #print axioms P2qJumps.card_pf_r2s2t
 #print axioms P2qJumps.threeRegimes_iff_r2s2t
+#print axioms P2qJumps.P7Cert.cert7
+#print axioms P2qJumps.P7Cert.cert8
+#print axioms P2qJumps.P7Cert.cert9
+#print axioms P2qJumps.P7Cert.desc_sound

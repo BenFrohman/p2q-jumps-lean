@@ -208,3 +208,10 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 
 - **Change:** the three ranges stay in the paper with their exact statements: H2 empty for `5 ≤ p < 10^6` (Proposition `prop:C`), no solution with `ω(N) ≥ 4` and `q ≤ 10^6`, and the Hensel exclusion of `5 ≤ r ≤ 10^6`. Each occurrence now carries an explicit label (macros `\DATAHTWO`, `\DATAOMEGAFOUR`, `\DATAHENSEL`): external computational data (SymPy, PARI/GP, Python/SymPy respectively), not kernel-checked, Lean kernel proof in progress. Each label will be replaced by the Lean theorem name and certificate once its kernel proof passes.
 - **Mathematics:** no statement or range changed. **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. PDF rebuilt (tectonic).
+
+## C23. Certificate of record = CI artifact; author-approval job removed
+
+- **CI:** `certify.yml` runs `CERT_OUT=cert-out scripts/cert-bundle.sh` on every push/PR and uploads the full record (committed `lake-manifest.json` + sha256, `lean-toolchain`, lakefile, commit, Mathlib rev, elan/lake/lean versions, full cache/build/scan/`#print axioms` logs) as `lean-certificate-<sha>` on success, `lean-attempt-FAILED-NOT-A-CERTIFICATE-<sha>` otherwise. Only that CI artifact is a certificate.
+- **Local runs** go to `local-dev-logs/` with `NOT-THE-OFFICIAL-CERTIFICATE.txt`; the two locally produced bundles formerly under `certificates/passed/` were moved there.
+- **truth-gate.yml:** the `author-approval` job is removed (author decision); the `truth-gate` job is unchanged.
+- **Mathematics:** none changed.

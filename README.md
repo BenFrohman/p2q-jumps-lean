@@ -32,7 +32,7 @@ Kernel certificates (`decide +kernel` on checkers with proved soundness; **no `n
 |---|---|
 | `Cert.cert_line`: `2F(p)` not a square | every integer `5 ≤ p ≤ 10^4` |
 | `Cert.cert_strip_0..7`: no prime `r > p` with `r^2 ∣ L(p)` | every prime `5 ≤ p ≤ 10^4` |
-| `Cert.cert_pair_*`: both jumps fail | every `n = p^2 q ≤ 10^4` |
+| `Cert.cert_pair_*`: the σ-jump fails (so the pair of jumps fails) | every `n = p^2 q ≤ 10^4` |
 
 Axioms: `#print axioms P2qJumps.Semantics.theorem_L` → `[propext, Classical.choice, Quot.sound]`.
 Logs: [`certificates/`](certificates/).

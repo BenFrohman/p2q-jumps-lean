@@ -174,3 +174,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-implies` (definitions, Theorem `thm:A-implies`, step-by-step proof following Lean, remark on what is not proved); the proof of Part B `prop:implies-corrected` cites it. `paper/PROSE-CLAIMS.md` row 55: Lean.
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. Row 4 (the conjecture) stays open and is not asserted.
 - **Scope change:** none. The Lean proof of (⇐) does not use Table `tab:classify`: H2 already excludes every pattern with `j ∈ {1, 2}` other than `r^a s`.
+
+## C18. Reduction to ω(N) ≥ 4 or r²s²t; the "three regimes" claim is equivalent to r²s²t empty (ledger rows 67, 69)
+
+- **Claim:** (a) under both jumps, ω(N) ≥ 4 or N = r²s²t with pairwise distinct primes; (b) the claim "every solution has N = r³s, N = r²st or ω(N) ≥ 4" holds if and only if the shape r²s²t has no solution.
+- **Method:** Lean, new file `P2qJumps/ThreeRegimes.lean`: `omega4_or_r2s2t` (:41), definitions `ThreeRegimes` (:125), `R2S2TEmpty` (:133), `card_pf_r2s2t` (:138), `threeRegimes_iff_r2s2t` (:150); from `theoremE_shapes`, `N_ne_r2st`, `r3st_empty`, `r3s_empty`, `theorem28_holds`, `N_ne_rs`, `N_not_prime`. Added to `AxiomAudit.lean`. New `scripts/r2s2t/real_scan.py` and `NOTES/r2s2t_status.md`: real solutions of the N, φ, σ equations for N = r²s²t exist (p = 101, 1009, 10007), so size inequalities alone cannot close the shape.
+- **Outcome:** (a) and (b) proved (kernel-checked), standard axioms only. The shape r²s²t is **not** closed; therefore the "three regimes" claim is **not** proved and is not asserted.
+- **Paper changes:** new Part A section `sec:A-three` (Theorem `thm:A-three`, step-by-step proof following Lean, remark on why size alone does not suffice); `thm:main-p2q` item (4) now states the kernel-checked reduction; deviation 1 records that r³st is excluded and that the claim is equivalent to r²s²t empty (open). `paper/PROSE-CLAIMS.md`: row 67 updated (still in progress, exact blocker), new row 69 (Lean).
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** none.

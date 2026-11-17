@@ -128,13 +128,14 @@ Paths are relative to `P2qJumps/`.
 |---|---|---|
 | 65 | Kernel-checked clauses (not prime, prime power, rs, r²s, rs², rst, r²st, r³s, r³st; ω ≥ 4 constraints; n ≤ 10^4) | Lean `classification_ledger` (ClosedLedger.lean:368) |
 | 66 | Item (2): no solution with ω(N) ≥ 4 and q ≤ 10^6 | cited external (PARI computation) on top of Lean `omega4_constraints` (Omega4.lean:164) |
-| 67 | Item (4): other repeated-prime shapes (r²s²t) open | in progress — task (2): r²s²t is the only shape with ω(N) ≤ 3 not yet excluded |
+| 67 | Item (4): other repeated-prime shapes (r²s²t) open | in progress — blocker: no proof that r²s²t is empty. Kernel-checked: it is the only shape with ω(N) ≤ 3 left, `omega4_or_r2s2t` (ThreeRegimes.lean:41). Size inequalities alone do not exclude it (real solutions exist, `NOTES/r2s2t_status.md`); an arithmetic (integrality / square-discriminant) argument is needed |
+| 69 | Deviation 1: "every counterexample falls into the three regimes r³s, r²st, ω(N) ≥ 4" | not asserted; Lean: the claim is equivalent to the emptiness of r²s²t, `threeRegimes_iff_r2s2t` (ThreeRegimes.lean:150) |
 
 ## Counts
 
-68 ledger rows (some rows group several clauses of one statement):
+69 ledger rows (some rows group several clauses of one statement):
 
-- **Lean: 53** (of which 20 rows are proved vacuously, from the impossibility of the shape they
+- **Lean: 54** (of which 20 rows are proved vacuously, from the impossibility of the shape they
   concern: rst, r³s, r²st, squarefree rstu).
 - **cited external: 8** (rows 2, 3, 39, 40, 41, 59, 61, 66).
 - **removed: 1** (row 64, rad(N) = N/gcd(N, φ(N)); counterexample N = 12, kernel-checked).

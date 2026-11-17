@@ -259,3 +259,6 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.propC_j2
 #print axioms P2qJumps.prop_implies_corrected
 #print axioms P2qJumps.implies_corrected_of_H1
+#print axioms P2qJumps.omega4_or_r2s2t
+#print axioms P2qJumps.card_pf_r2s2t
+#print axioms P2qJumps.threeRegimes_iff_r2s2t

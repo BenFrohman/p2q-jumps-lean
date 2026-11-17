@@ -101,7 +101,7 @@ Paths are relative to `P2qJumps/`.
 | 53 | `thm:F` | Lean `theoremF` (ClosedLedger.lean:115) |
 | 54 | `cor:F1` (p = 7, 7 ≤ k ≤ 9; T-values, v₂; 2^{m−1} > m⁴ > T(m) for m ≥ 23) | Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260) |
 | 55 | `prop:implies-corrected` (Conjecture ⇔ H1 ∧ H2 ∧ H3) | in progress — blocker: R, j and H1–H3 are not yet defined in Lean; the case split uses only proved shapes (prime, prime power, rs, rst, r^a s, powerful) |
-| 56 | `thm:H1-comp` (H1 under computer-assisted trust) | in progress — blocker: the p = 7 descent (item 61) is not kernel-checked |
+| 56 | `thm:H1-comp` (H1 under computer-assisted trust) | in progress — blocker: the p = 7 enumeration (item 62) is not kernel-checked |
 | 57 | Remark "Status of Conjecture" | commentary (excluded) |
 
 ## The curve E and its twists (§`sec:v14-curve`)
@@ -117,7 +117,8 @@ Paths are relative to `P2qJumps/`.
 
 | # | Statement | Status |
 |---|---|---|
-| 62 | p = 7 identities, singular-branch argument, prefix bounds, node counts, zero solutions for k = 7, 8, 9 | in progress — see task (3) in the v1.4 report: blocker is the Lean soundness proof of the branch-and-bound enumeration |
+| 62 | p = 7 branch-and-bound enumeration: branch bounds, product enumeration, terminal two-prime elimination, node counts, zero solutions for k = 7, 8, 9 | in progress — blocker: Lean soundness proof of the enumeration (monotone branch bounds, finite product enumeration, terminal elimination) and a kernel certificate of the run; reproduced by `scripts/p7/descent.py` (paper domain 93,159 nodes for k = 7; primes ≥ 11 with the prefix bound: 134 / 748 / 5,773 nodes, 0 solutions) |
+| 68 | p = 7 equations φ(N) = 42q − 30, σ(N) = 57q + 69, 7φ = 6N − 282, 49σ = 57N + 2697, 42σ − 57φ = 4608; N ≡ φ(N) ≡ 5 (mod 7) and the singular-branch argument (7 ∤ φ(N)); "every prime factor ≥ 5" (strengthened: ≥ 11 when ω(N) ≥ 4, so 5 ∤ N) | Lean `p7_identities`, `p7_mod`, `p7_omega4_ge11` (P7.lean:24, :38, :47); new prefix bound `p7_prefix_bound`, `p7_prune_threshold` (P7.lean:65, :79) |
 | 63 | Soundness note: N/gcd(N, φ(N)) ∣ rad N; rad(12) = 6 ≠ 3 | Lean `div_gcd_totient_dvd_rad`, `rad_ne_div_gcd_totient` (ProseClaims.lean:202, :228) |
 | 64 | "rad(N) = N/gcd(N, φ(N))" | **removed** (false; counterexample N = 12: rad 12 = 6, 12/gcd(12, 4) = 3; kernel-checked as `rad_ne_div_gcd_totient`) |
 
@@ -131,14 +132,14 @@ Paths are relative to `P2qJumps/`.
 
 ## Counts
 
-67 ledger rows (some rows group several clauses of one statement):
+68 ledger rows (some rows group several clauses of one statement):
 
-- **Lean: 50** (of which 20 rows are proved vacuously, from the impossibility of the shape they
+- **Lean: 51** (of which 20 rows are proved vacuously, from the impossibility of the shape they
   concern: rst, r³s, r²st, squarefree rstu).
 - **cited external: 8** (rows 2, 3, 39, 40, 41, 59, 61, 66).
 - **removed: 1** (row 64, rad(N) = N/gcd(N, φ(N)); counterexample N = 12, kernel-checked).
 - **in progress: 6** (rows 4 Conjecture — the open problem itself; 51 Theorem E final sentence;
-  55 Proposition `prop:implies-corrected`; 56 Theorem `thm:H1-comp`; 62 the p = 7 descent;
+  55 Proposition `prop:implies-corrected`; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
   67 the shape r²s²t).
 - **mixed: 1** (row 47, Proposition C: enumeration cited external, structural clauses in progress).
 - **excluded as commentary: 1** (row 57).

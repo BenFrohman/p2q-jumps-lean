@@ -248,3 +248,8 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.sq_mod16
 #print axioms P2qJumps.F_even
 #print axioms P2qJumps.quartic_gt_six
+#print axioms P2qJumps.p7_identities
+#print axioms P2qJumps.p7_mod
+#print axioms P2qJumps.p7_omega4_ge11
+#print axioms P2qJumps.p7_prefix_bound
+#print axioms P2qJumps.p7_prune_threshold

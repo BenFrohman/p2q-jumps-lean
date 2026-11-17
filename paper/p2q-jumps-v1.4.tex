@@ -911,6 +911,61 @@ Assume~\eqref{eq:jumps}. The statements of Part~\ref{part:B} listed below concer
 Each Lean statement is proved by \texttt{False.elim} applied to the impossibility of the shape. For (c), Step 1: Proposition~\ref{prop:A-preamble} gives \(p,q\ge 5\); Step 2: every prime factor of \(N\) is \(\ge5\) (\texttt{prime\_factor\_ge\_five}), so \(r,s,t\ge5\); Step 3: Theorem~\ref{thm:A-r2st-empty}. For (d), Step 1: a product of four distinct primes is squarefree (\texttt{Nat.squarefree\_mul\_iff}, pairwise coprimality); Step 2: its set of prime factors is \(\{r,s,t,u\}\), of cardinality \(4\); Step 3: Theorem~\ref{thm:A-D} excludes \(k=4\).
 \end{proof}
 
+\section{The \(p=7\) residual: equations, the prime \(5\), and the prefix bound}
+\label{sec:A-p7}
+
+\begin{proposition}[the \(p=7\) equations]
+\label{prop:A-p7}
+Let \(p=7\) and let \(q\ne 7\) be prime with~\eqref{eq:jumps}. Then, in \(\mathbb Z\),\lean{P2qJumps.p7_identities}{P7.lean:24}
+\[
+\ph(N)=42q-30,\quad \sig(N)=57q+69,\quad 7\ph(N)=6N-282,\quad 49\sig(N)=57N+2697,
+\]
+\[
+42\sig(N)-57\ph(N)=4608,\qquad 343\,\ph(N)\sig(N)=342N^2+108N-760554 .
+\]
+Moreover\lean{P2qJumps.p7_mod}{P7.lean:38} \(N\equiv 5\) and \(\ph(N)\equiv 5\pmod 7\); in particular \(7\nmid\ph(N)\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By Lemma~\ref{lem:A-values} and~\eqref{eq:jumps} (\texttt{jumps\_p2q\_int}), \(\ph(N)=p(p-1)(q-1)+12\) and \(\sig(N)=(p^2+p+1)(q+1)+12\). With \(p=7\): \(\ph(N)=42(q-1)+12=42q-30\) and \(\sig(N)=57(q+1)+12=57q+69\).
+
+\textit{Step 2.} \(N=49q+12\). Then \(6N-282=294q-210=7(42q-30)\) and \(57N+2697=2793q+3381=49(57q+69)\).
+
+\textit{Step 3.} \(42(57q+69)-57(42q-30)=2898+1710=4608\).
+
+\textit{Step 4.} Multiply the two identities of Step~2: \(343\ph\sig=(6N-282)(57N+2697)=342N^2+(16182-16074)N-760554\).
+
+\textit{Step 5.} Since \(q\ge 5\) (Proposition~\ref{prop:A-preamble}), \(\ph(N)=42q-30=7(6q-5)+5\) and \(N=7\cdot 7q+7+5\), so both are \(\equiv 5\pmod 7\).
+\end{proof}
+
+\begin{proposition}[no prime \(\le 7\) when \(\omega(N)\ge 4\)]
+\label{prop:A-p7-ge11}
+With \(p=7\) and four pairwise distinct primes dividing \(N\), every prime factor of \(N\) is at least \(11\); in particular \(5\nmid N\).\lean{P2qJumps.p7_omega4_ge11}{P7.lean:47}
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{thm:A-omega4} gives \(r>7\) for every prime \(r\mid N\). The integers \(8,9,10\) are not prime, so \(r\ge 11\). Apply this to \(r=5\): \(5\ge 11\) is false, so \(5\nmid N\).
+\end{proof}
+
+\begin{proposition}[prefix bound]
+\label{prop:A-p7-prefix}
+Let \(b,h,s,M,F_-,F_+\) be integers with \(b,h,s,M\ge 0\) and \(F_-F_+\le M^2\). If
+\(343(hF_-)(sF_+)=342(bM)^2+108bM-760554\) and \(342b^2-343hs\ge 1\), then \(M\le 872\).\lean{P2qJumps.p7_prefix_bound}{P7.lean:65}
+Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} \(hs\ge 0\) and \(F_-F_+\le M^2\) give \(343hs\,F_-F_+\le 343hs\,M^2\).
+
+\textit{Step 2.} By the hypothesis, \(342b^2M^2+108bM-760554\le 343hsM^2\), i.e.\ \((342b^2-343hs)M^2+108bM\le 760554\).
+
+\textit{Step 3.} The coefficient is \(\ge 1\) and \(bM\ge 0\), so \(M^2\le 760554<873^2=762129\), hence \(M\le 872\).
+
+\textit{Step 4 (application).} At a prefix \(b\) of a squarefree \(N=bM\) with \(h=\ph(b)\), \(s=\sig(b)\), \(F_-=\prod(r-1)\), \(F_+=\prod(r+1)\) over the remaining primes, one has \(\ph(N)=hF_-\), \(\sig(N)=sF_+\) and \(F_-F_+=\prod(r^2-1)\le M^2\); Proposition~\ref{prop:A-p7} supplies the identity. Three remaining distinct primes \(\ge 11\) (Proposition~\ref{prop:A-p7-ge11}) give \(M\ge 2431>872\).
+\end{proof}
+
+\noindent\textit{Status of the descent.} Propositions~\ref{prop:A-p7}--\ref{prop:A-p7-prefix} are the kernel-checked inputs of the descent of Appendix~\ref{app:p7}; the enumeration itself is not kernel-checked. With primes \(\ge 11\) and the prefix bound, \path{scripts/p7/descent.py} visits \(134\), \(748\) and \(5{,}773\) nodes for \(k=7,8,9\) (largest branch bounds \(65\), \(86\), \(130\)), with zero solutions. The open step is a Lean proof of the soundness of the branch bounds, the product enumeration and the terminal two-prime elimination.
+
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
 
@@ -2273,7 +2328,7 @@ This REVIEW draft does not prove Conjecture~\ref{conj:vanish}. The original Prop
 
 \subsection{Trust boundary (read first)}
 \label{app:p7-trust}
-The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. It is \textbf{not} Lean/kernel-certified. Ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Until a Lean formalization of the descent is independently audited, Theorem~\ref{thm:H1-comp} must not be cited as a Lean theorem.
+The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. It is \textbf{not} Lean/kernel-certified. Ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Until a Lean formalization of the descent is independently audited, Theorem~\ref{thm:H1-comp} must not be cited as a Lean theorem. Since v1.4 the equations below, the congruences \(N\equiv\ph(N)\equiv 5\pmod 7\) used in the singular-branch argument, the exclusion of every prime factor \(\le 7\) (in particular~\(5\)) when \(\omega(N)\ge 4\), and an additional prefix bound are kernel-checked (Section~\ref{sec:A-p7}); the enumeration is not.
 
 \subsection{Equations and enlarged negative domain}
 For \(p=7\),
@@ -2285,7 +2340,7 @@ equivalently
 \label{eq:p7out}
 7\ph(N)=6N-282,\qquad 49\sig(N)=57N+2697.
 \end{equation}
-Every prime factor of \(N\) is \(\ge 5\) and different from~7. The first identity forces \(N\equiv 5\pmod 7\). The search excludes the larger class of squarefree products of exactly \(k\in\{7,8,9\}\) such primes satisfying~\eqref{eq:p7out}, without imposing \(q\)-integrality, \(q\)-primality, local congruences, or the lower bound of Theorem~\ref{thm:D}. A negative result on this enlarged domain therefore excludes every genuine residual solution.
+Every prime factor of \(N\) is \(\ge 5\) and different from~7. (Proposition~\ref{prop:A-p7-ge11} strengthens this to \(\ge 11\); the search below keeps the larger domain.) The first identity forces \(N\equiv 5\pmod 7\). The search excludes the larger class of squarefree products of exactly \(k\in\{7,8,9\}\) such primes satisfying~\eqref{eq:p7out}, without imposing \(q\)-integrality, \(q\)-primality, local congruences, or the lower bound of Theorem~\ref{thm:D}. A negative result on this enlarged domain therefore excludes every genuine residual solution.
 
 \subsection{Prefix descent and exact bounds}
 Order factors \(r_1<\cdots<r_k\). At a prefix of product \(b\), with \(h=\ph(b)\), \(s=\sig(b)\), and \(m\ge 3\) remaining primes, write \(M=N/b\) and let \(F_-\) (resp.\ \(F_+\)) be the product of remaining factors of the form \(r-1\) (resp.\ \(r+1\)). Then
@@ -2314,7 +2369,7 @@ Eliminating \(S\) yields a unique rational \(P\) whenever the determinant \(D=2f
 If \(D_0=0\), then \(D_0\equiv -bh\pmod 7\). Since \(7\nmid b\), one has \(7\mid h\), whence \(7\mid\ph(N)\). But eliminating \(N\) from~\eqref{eq:p7out} gives \(42\sig(N)-57\ph(N)=4608\), so \(\ph(N)\equiv 5\pmod 7\), a contradiction. Thus every singular terminal system is integer-infeasible; empirical absence of singular nodes is not required.
 
 \subsection{Results}
-Independent complete runs report: \(k=7\), \(93{,}159\) nodes, largest branch bound \(790\), zero solutions; \(k=8\), \(1{,}804{,}946\) nodes, bound \(1{,}416\), zero solutions; \(k=9\), \(37{,}791{,}874\) nodes, bound \(2{,}542\), zero solutions. Branch bounds apply only to primes explicitly branched upon; the final two factors are eliminated algebraically. Combining with Corollary~\ref{cor:F1} closes H1 under the trust boundary of~\S\ref{app:p7-trust}. H2 and H3, and therefore Conjecture~\ref{conj:vanish}, remain open.
+Independent complete runs report: \(k=7\), \(93{,}159\) nodes, largest branch bound \(790\), zero solutions; \(k=8\), \(1{,}804{,}946\) nodes, bound \(1{,}416\), zero solutions; \(k=9\), \(37{,}791{,}874\) nodes, bound \(2{,}542\), zero solutions. Branch bounds apply only to primes explicitly branched upon; the final two factors are eliminated algebraically. Restricting to primes \(\ge 11\) (Proposition~\ref{prop:A-p7-ge11}) removes one node for each \(k\); adding the prefix bound of Proposition~\ref{prop:A-p7-prefix} reduces the runs to \(134\), \(748\) and \(5{,}773\) nodes (largest branch bounds \(65\), \(86\), \(130\)), again with zero solutions (\path{scripts/p7/descent.py}). Combining with Corollary~\ref{cor:F1} closes H1 under the trust boundary of~\S\ref{app:p7-trust}. H2 and H3, and therefore Conjecture~\ref{conj:vanish}, remain open.
 
 \section{Historical quotation: original Proposition~32 (superseded)}
 \label{app:hist-prop32}

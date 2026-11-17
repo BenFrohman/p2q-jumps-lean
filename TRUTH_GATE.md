@@ -21,8 +21,9 @@ Theorem L. It says nothing beyond that statement.
 `native_decide` or `axiom` declarations; a failed `lake build`; any axiom other than `propext`,
 `Classical.choice`, `Quot.sound`.
 
-The `author-approval` CI job fails until `approval.approvedBy` in the lock names the author. Approval is set by
-the author only; `scripts/make-lock.py` refuses to regenerate an approved lock. If the transcription is wrong,
+There is no separate `author-approval` CI job (removed 17 Nov 2026 at the author's decision); the `truth-gate`
+job's checks are unchanged and do not fail on a PENDING lock. `approval.approvedBy` in the lock records the
+author's approval, set by the author only; `scripts/make-lock.py` refuses to regenerate an approved lock. If the transcription is wrong,
 fix the transcription (or the paper) and re-approve; never weaken the check.
 
 Scope of Theorem L: conditional on both jumps at `n = p^2 q` with distinct primes `p, q`. It does not prove

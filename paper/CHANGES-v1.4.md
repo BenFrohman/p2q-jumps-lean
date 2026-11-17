@@ -53,3 +53,24 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
   - The written r < p case states "If P₁ < 0 then m > 0 forces Q₁ < 0, whence p > 3R"; Lean needs only Q₁ ≤ 0 ⇒ 2R ≤ p (from p − r + 1 ≥ 2), then 2P₁ ≥ p(r−2) + 2r > 0. New text uses the Lean inequality.
 - **Paper change:** new Part A subsection "Theorem A: prime powers and r^a s" (`sec:A-thmA`), with a remark recording the corrections above.
 - **Scope change:** none.
+
+## C5. "The three regimes r³s, r²st, ω(N) ≥ 4 cover every counterexample" (target c)
+
+- **Claim (author's block):** every counterexample has N = r³s, N = r²st, or ω(N) ≥ 4.
+- **Method:** case analysis of exponent patterns with ω(N) ≤ 3 against what is now kernel-checked; sympy solution of the r³st system; numeric scan of its feasibility region.
+- **Outcome:** **open (precise blocker)**, not disproved (a disproof needs an actual solution, and none is known).
+  - With v1.4 Lean results, every shape with ω(N) ≤ 3 is excluded **except**: ω(N) = 2 with both exponents ≥ 2 (r^a s^b, a, b ≥ 2: paper Theorem B, written proof, not yet in Lean); ω(N) = 3 with a repeated prime other than r²st: r^a st (a ≥ 3), r^a s^b t (a, b ≥ 2), r^a s^b t^c (all ≥ 2). Paper Theorem E (written, not in Lean) cuts these to r³st, r²s²t and powerful shapes.
+  - Since r³s and r²st are now empty (Lean), the block's claim is equivalent to: **every counterexample has ω(N) ≥ 4**, which holds iff r³st, r²s²t (and the other ω = 3 repeated-prime shapes) are impossible. Neither is proved.
+  - r³st exploration: E0, A(N) = A(n), B(N) = B(n) are linear in (s + t, st, q), so a solution is determined by (p, r) (as for r²st). Scan of all odd 5 ≤ p < 3000, 5 ≤ r ≤ p^{3/2}: the positivity region s + t > 0, st > 0, q > 0, (s+t)² > 4st is nonempty only for r = p + k with 4 ≤ k ≲ √(2p) (no r < p). Combined with r² | L(p) (per-prime Lemma K), writing L(p) = (p+k)²(p − 1 − 2k + i) forces i(p+k)² = (3k²+2k)p + 2k³ + k² − 12, so i is a small positive integer (i ≤ 6 inside the band) and p is a root of a quadratic in p with discriminant k²(3k+2)² − 4i(k³ + k² + 12). Finishing needs: a proof of the band, and for each i ≤ 6 a "square between consecutive squares" bound on k. Not done yet.
+- **Paper change:** none yet (ledger deviation (1) already says the claim is not justified; README "What remains open" updated).
+- **Scope change:** none.
+
+## C6. D_true / R₁₀ (target e)
+
+- **Claim (author's block):** r²st is "governed by the exact rational system over D_true(p, r) = p² − 2pr² + pr + r³ − r², requiring D_true | R₁₀(r) and r | L(p) with 5 ≤ p < 2r²; an exhaustive modular sieve excludes 5 ≤ r ≤ 10^4."
+- **Method:** searched every v0.x–v1.4 source on the box (paper, drafts, notes, audits, `user-inputs/theorem_block.tex`): R₁₀ is never defined anywhere; D_true appears only in the block and in `NOTES/version_update_ready.md` (no formula). Recomputed the exact r²st system with sympy.
+- **Outcome:** **disproved as stated (witness: the exact system).** Solving E0, A(N) = A(n), B(N) = B(n) for (σ = s + t, π = st, q) gives denominators r(pr + 2p − r² + r) (σ) and r(p − r)(pr + 2p − r² + r) (π, q). D_true is not a factor of these: (p − r)(pr + 2p − r² + r) = (r+2)p² − 2pr² − pr + r³ − r², which differs from D_true in the p² and pr coefficients. So the "exact rational system over D_true" is not the r²st system.
+  - Reconstruction attempt for R₁₀: the resultant Res_p(D_true, numerator of σ) has degree exactly 10 in r: R₁₀?(r) = 8r¹⁰ − 9r⁹ − 25r⁸ + 60r⁷ − 144r⁶ + 229r⁵ − 203r⁴ + 48r³ + 36r² + 144. This is the most likely meaning of "R₁₀" (degree matches, and D_true | numerator would force D_true | this resultant), but it is a reconstruction, not confirmed by any source; with the true denominator the corresponding resultant for q is 4(r⁵ − r² − 6r − 12)(r⁷ + 4r⁶ + r⁵ − r⁴ − 10r³ − 37r² − 72r − 48) (degree 12).
+  - Moot for the main result: r²st is empty with no bound (Theorem L(iii), `r2st_empty`).
+- **Paper change:** none (ledger deviation (2) already records that R₁₀ is undefined and the route unchecked); this entry adds the computed reason.
+- **Scope change:** none.

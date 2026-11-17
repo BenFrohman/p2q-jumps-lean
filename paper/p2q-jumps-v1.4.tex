@@ -7,6 +7,9 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{hyperref}
+\newcommand{\DATAHTWO}{\textbf{[External computational data (SymPy); not kernel-checked; Lean kernel proof in progress.]}}
+\newcommand{\DATAOMEGAFOUR}{\textbf{[External computational data (PARI/GP); not kernel-checked; Lean kernel proof in progress.]}}
+\newcommand{\DATAHENSEL}{\textbf{[External computational data (Python/SymPy); not kernel-checked; Lean kernel proof in progress.]}}
 \newcommand{\OMEGAFOURSTATUS}{no result. The v1.4 run (\texttt{python3 search\_omega4\_1e6.py} under a 3-hour \texttt{timeout}, started 16 Nov 2026 17:42:14 CST) was stopped by the timeout at 20:42:14 CST (exit code 124, wall time 10800 s) before printing any output, so it reports no hit count and certifies nothing. Its range is the \(Q=10^6\) range of the second PARI run above, which found 0 hits with no filter; that run is the computational evidence for this range (computationally verified, not kernel-checked).}
 
 \newcommand{\ph}{\varphi}
@@ -996,7 +999,7 @@ the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S
 \end{proof}
 
 \begin{remark}
-These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked.
+These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked \DATAHTWO.
 \end{remark}
 
 \section{The corrected residual equivalence}
@@ -1029,7 +1032,7 @@ Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:A-implies} proves the equivalence only. H1 is proved in Lean in Section~\ref{sec:A-H1} (Theorem~\ref{thm:A-H1}, kernel-checked); H2 and H3 are not proved, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation.
+Theorem~\ref{thm:A-implies} proves the equivalence only. H1 is proved in Lean in Section~\ref{sec:A-H1} (Theorem~\ref{thm:A-H1}, kernel-checked); H2 and H3 are not proved, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation \DATAHTWO.
 \end{remark}
 
 \section{The shape \(r^2s^2t\) and the ``three regimes'' claim}
@@ -2025,9 +2028,9 @@ This section records the audited correction of the superseded original Propositi
 \(|R|\ge 2\) & \(0\) & powerful & excluded, Thm~\ref{thm:B} \\
 \(|R|=1\) & \(1\) & \(r^2s\) & excluded, Thm~\ref{thm:closed}(4) \\
 \(|R|=1\) & \(1\) & \(r^as\), \(a\ge 3\) & excluded, Thm~\ref{thm:A} \\
-\(|R|\ge 2\) & \(1\) & e.g.\ \(r^as^bt\) & H2: empty for \(p<10^6\); open for \(p\ge 10^6\) \\
+\(|R|\ge 2\) & \(1\) & e.g.\ \(r^as^bt\) & H2: empty for \(p<10^6\) (external data, SymPy; kernel proof in progress); open for \(p\ge 10^6\) \\
 \(|R|=1\) & \(2\) & \(r^2st\) & excluded, Thm~\ref{thm:L}(iii) (Lean, v1.4) \\
-any \(|R|\ge 1\) & \(2\) & \(r^ast\) (\(a\ge 3\)), \(r^2s^2t\), \ldots & H2: empty for \(p<10^6\); open for \(p\ge 10^6\) \\
+any \(|R|\ge 1\) & \(2\) & \(r^ast\) (\(a\ge 3\)), \(r^2s^2t\), \ldots & H2: empty for \(p<10^6\) (external data, SymPy; kernel proof in progress); open for \(p\ge 10^6\) \\
 any \(|R|\ge 1\) & \(\ge 3\) & e.g.\ \(r^2stu\) & H3 open \\
 \bottomrule
 \end{tabular}
@@ -2125,7 +2128,7 @@ Theorem~\ref{thm:A} uses both jumps. It does not prove the \(\ph\)-only Hypothes
 
 \begin{proposition}[Finite per \(p\) for \(1\le j\le 2\); Proposition~C]
 \label{prop:C}
-Fix a prime \(p\ge 5\). Under~\eqref{eq:jumps} with \(R\neq\emptyset\) and \(j\in\{1,2\}\), every candidate arises from a divisor \(K\mid L(p)\) with \(K>1\) and \(\gcd(K,6p)=1\). The resulting linear systems in the remaining unknowns are nonsingular whenever they admit an integer solution, and for each such \(K\) there are only finitely many rational candidates. An independently reproduced exact enumeration finds no solution for any prime \(5\le p<10^6\).
+Fix a prime \(p\ge 5\). Under~\eqref{eq:jumps} with \(R\neq\emptyset\) and \(j\in\{1,2\}\), every candidate arises from a divisor \(K\mid L(p)\) with \(K>1\) and \(\gcd(K,6p)=1\). The resulting linear systems in the remaining unknowns are nonsingular whenever they admit an integer solution, and for each such \(K\) there are only finitely many rational candidates. An independently reproduced exact enumeration finds no solution for any prime \(5\le p<10^6\). \DATAHTWO
 \end{proposition}
 
 \begin{proof}[Sketch with trust boundary]
@@ -2255,7 +2258,7 @@ The original Proposition~32 is superseded (Remark~\ref{rem:prop32-gap}; Appendix
 Conjecture~\ref{conj:vanish} holds if and only if H1, H2 and H3 all hold, where these quantify over distinct primes \(p,q\) with both jumps~\eqref{eq:jumps}:
 \begin{itemize}
 \item[\textbf{H1.}] There is no solution with \(N\) squarefree and \(\omega(N)\ge 4\).
-\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, the case \(p<10^6\) is empty under the stated computational trust; only \(p\ge 10^6\) remains open.
+\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, the case \(p<10^6\) is empty under the stated computational trust \DATAHTWO; only \(p\ge 10^6\) remains open.
 \item[\textbf{H3.}] There is no solution with \(R\neq\emptyset\) and \(j\ge 3\).
 \end{itemize}
 H1 is established by Theorem~\ref{thm:H1-comp}, kernel-checked in Lean as Theorem~\ref{thm:A-H1}. Consequently Conjecture~\ref{conj:vanish} is equivalent to the conjunction of H2 and H3 (kernel-checked, \path{conjecture_iff_H2_H3}).
@@ -2417,8 +2420,8 @@ The author supplied a classification theorem for v1.4. The version below keeps i
 \label{thm:main-p2q}
 Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover:
 \begin{enumerate}
-\item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the external check \(5\le r\le 10^6\)) remain true and are now superseded.
-\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
+\item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the external check \(5\le r\le 10^6\), \DATAHENSEL) remain true and are now superseded.
+\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked) \DATAOMEGAFOUR; the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
 \item \textbf{\(N=r^3st\).} Excluded with no bound (Theorem~\ref{thm:A-r3st-empty}, kernel-checked, v1.4).
 \item \textbf{Other shapes.} Every solution has \(\omega(N)\ge 4\) or \(N=r^2s^2t\) with pairwise distinct primes (Theorem~\ref{thm:A-three}(a), kernel-checked). The shape \(r^2s^2t\) lies in H2 of Proposition~\ref{prop:implies-corrected} and remains open.
 \end{enumerate}
@@ -2428,7 +2431,7 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 \begin{enumerate}
 \item The block says every counterexample falls into the three regimes \(r^3s\), \(r^2st\), \(\omega(N)\ge 4\). That is the superseded v0.10 list (Remark~\ref{prop:implies}). Theorem~\ref{thm:E} also leaves \(r^3st\) and \(r^2s^2t\); \(r^3st\) is now excluded (Theorem~\ref{thm:A-r3st-empty}), and by Theorem~\ref{thm:A-three}(b) the claim is equivalent to the emptiness of \(r^2s^2t\), which is open. So the claim is not proved, and it is not asserted here.
 \item The block treats \(r^2st\) as open beyond \(r\le 10^4\) through a quantity \(D_{\mathrm{true}}(p,r)\) dividing \(R_{10}(r)\). The polynomial \(R_{10}\) is not defined in the paper and this route was not checked; Theorem~\ref{thm:L}(iii) closes \(r^2st\) with no bound instead.
-\item The block's ``Hensel lifting excludes all primes \(5\le r\le 10^6\)'' is an external Python/SymPy computation, not a kernel certificate. The kernel bound is \(p\le 10^4\).
+\item The block's ``Hensel lifting excludes all primes \(5\le r\le 10^6\)'' is an external Python/SymPy computation, not a kernel certificate \DATAHENSEL. The kernel bound is \(p\le 10^4\).
 \item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'' and ``\(r_i>p\) for all \(r_i\mid N\)'' (its ``Lemma \path{omega-ge-4-constraints}'') were not proved in v1.3. They are now proved in Lean, in the stronger form \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (Theorem~\ref{thm:A-omega4}). The prime factor~\(5\) allowed by Appendix~\ref{app:p7} for \(p=7\) cannot occur when \(\omega(N)\ge 4\).
 \item The block's coverage phrase for \(5\le p\le 97\) via \(N>p^4\) is correct once Theorem~\ref{thm:A-omega4} is available: \(N>p^4\) and \(q\ge 3p^2>p^2\) hold for every solution with \(\omega(N)\ge 4\). The searched ranges in (2) are stated exactly.
 \item The block's ``exhaustive search over all distinct primes \(5\le p,q\le 10^4\)'' matches the external computation in (2), not a kernel certificate; the kernel-checked range is \(n\le 10^4\).
@@ -2439,9 +2442,9 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 
 These runs are ordinary computer-assisted checks. They are not used by any Lean theorem.
 \begin{itemize}
-\item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none.
+\item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none. \DATAHENSEL
 \item \texttt{scripts/omega4/jumps\_pq\_check.py A 10000} (PARI via cypari2, 13\,s): all \(1{,}509{,}212\) ordered pairs of distinct primes \(2\le p,q\le 10^4\); \(\ph(N)\), \(\sig(N)\) from the full factorization of \(N\); hits: none.
-\item \texttt{scripts/omega4/jumps\_pq\_check.py B 997 1000000} (71\,s): all \(8{,}912{,}452\) pairs with primes \(5\le p\le 997\), \(p^2<q\le 10^6\) (the range of the author's script below), no filter; hits: none.
+\item \texttt{scripts/omega4/jumps\_pq\_check.py B 997 1000000} (71\,s): all \(8{,}912{,}452\) pairs with primes \(5\le p\le 997\), \(p^2<q\le 10^6\) (the range of the author's script below), no filter; hits: none. \DATAOMEGAFOUR
 \item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); for \(\omega(N)\ge 4\) this step is sound by Theorem~\ref{thm:A-omega4}. Status: \OMEGAFOURSTATUS
 \end{itemize}
 

@@ -39,6 +39,7 @@ import P2qJumps.H2Reduction
 import P2qJumps.H3TwoAdic
 import P2qJumps.Semantics
 import P2qJumps.Semantics2
+import P2qJumps.Hensel
 
 /-!
 # P2qJumps

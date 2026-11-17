@@ -281,3 +281,7 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.H2_of_shapes
 #print axioms P2qJumps.H3_twoAdic
 #print axioms P2qJumps.H3_of_mod4
+#print axioms P2qJumps.Hensel.scan_sound
+#print axioms P2qJumps.Hensel.good_upto
+#print axioms P2qJumps.hensel_r_le_1e6
+#print axioms P2qJumps.r3s_r_le_1e6

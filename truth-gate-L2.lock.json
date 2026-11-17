@@ -1,0 +1,52 @@
+{
+  "schema": "p2q-jumps-lean/truth-gate-lock/v1",
+  "semantics": "P2qJumps/Semantics2.lean",
+  "paperClaim": {
+    "name": "P2qJumps.Semantics2.paper_claim2",
+    "sourceSha256": "625719c05513c61b4ed4ab2ed89492ca172deaf8b465ee2dfb54c583d44a5e6b",
+    "provenance": {
+      "paper": "paper/theorem-L2.tex",
+      "sha256": "0014494d52f73f89e1a36b1287f92f5bcac3b84ff7dc2bdd2cec79c22cd86dba",
+      "includedIn": "paper/p2q-jumps-v1.4.tex",
+      "section": "Lean-certified reductions (v1.4), Theorem L2 (thm:L2)",
+      "quote": [
+        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose φ(N)=φ(n)+12 and",
+        "σ(N)=σ(n)+12. Then:",
+        "(i) N is not prime, and N is not a product of two distinct primes;",
+        "(ii) N is not a product of three distinct primes;",
+        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t ≥ 5;",
+        "(iv) N is not of the form r^3s with distinct primes r,s;",
+        "(v) n>10^4;",
+        "(vi) N is not of the form r^k with r prime and k ≥ 1, and N is not of the form r^as with",
+        "distinct primes r,s and a ≥ 2;",
+        "(vii) if ω(N) ≥ 4, then q ≥ 3p^2 and every prime r dividing N satisfies r>p."
+      ]
+    }
+  },
+  "formalClaim": {
+    "name": "P2qJumps.Semantics2.formal_claim2",
+    "sourceSha256": "20b583cc7b0ed065533dd3bd1af25afc11e268815d0fe7b9edff34c7b6114f72"
+  },
+  "correspondence": {
+    "name": "P2qJumps.Semantics2.intended_correspondence2",
+    "direction": "iff",
+    "sourceSha256": "9a15745eb570bfc32f6f7a5694ff081de50168d12b2f9fd98db437a852199515"
+  },
+  "publicTheorem": {
+    "name": "P2qJumps.Semantics2.theorem_L2",
+    "sourceSha256": "db6e22b7b44873821c8650bb80340ca79639d20fe5aa2ab961a0f8c97a0014d0"
+  },
+  "axiomsAllowed": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "toolchain": "leanprover/lean4:v4.26.0",
+  "mathlib": "v4.26.0",
+  "leanSourcesCommit": "53c1ca2f59549378f156e195f33a6212a5e7cc2d",
+  "approval": {
+    "approvedBy": "PENDING",
+    "approvedAt": null,
+    "note": "PENDING AUTHOR APPROVAL: Benjamin Stanley Frohman must confirm paper_claim2 transcribes Theorem L2 (paper/theorem-L2.tex) as meant."
+  }
+}

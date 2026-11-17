@@ -462,10 +462,10 @@ From \(q\ge 1\), \(p^2\le p^2q\le 10^4\), so \(p\le 100\); and \(q\,p^2\le 10^4\
 
 Clause (v) of Theorem~\ref{thm:L} is the contrapositive: under~\eqref{eq:jumps}, \(n=p^2q>10^4\).
 
-\section{Beyond Theorem~\ref{thm:L}: four prime factors and the shape \(r^3s\)}
+\section{Beyond Theorem~\ref{thm:L}: four prime factors and the shapes \(r^3s\), \(r^3st\)}
 \label{sec:A-beyond}
 
-The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}. They are clauses (iv), (vi) and (vii) of the separately locked Theorem~\ref{thm:L2} (Section~\ref{sec:A-L2}).
+The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}. Except for Theorem~\ref{thm:A-r3st-empty} (the shape \(r^3st\)), they are clauses (iv), (vi) and (vii) of the separately locked Theorem~\ref{thm:L2} (Section~\ref{sec:A-L2}).
 
 \subsection{Four or more distinct prime factors}
 \label{sec:A-omega4}
@@ -599,6 +599,87 @@ m\,Q_1=P_1,\qquad Q_1=(p-r+1)R-p,\quad P_1=(p+1)(r-1)-rR+1.
 
 \begin{remark}
 The written v1.3 proof of Theorem~\ref{thm:A} (Part~\ref{part:B}) is correct in its parametrization and its \(r<p\), \(a\ge 3\) case (the identity \(mQ_1=P_1\) and \(Q_1-P_1=(p+1)(R-r)\) were checked symbolically). Two changes follow the Lean proof: the case \(r>p\), \(a\ge 4\) uses the size bound \(R\mid L(p)<p^3<r^3\le R\) instead of the sign argument on \(E=k^2-k-r+1\); and the case \(a=3\), \(r>p\) uses Theorem~\ref{thm:A-r3s-empty} (degree~\(5\), not~\(6\)). The case \(a=2\) follows the parametrization rather than the \(U,V\) elimination of Proposition~\ref{prop:r2s}; both are correct.
+\end{remark}
+
+\subsection{The shape \(r^3st\) is empty}
+\label{sec:A-r3st-empty}
+
+\begin{theorem}
+\label{thm:A-r3st-empty}
+Assume~\eqref{eq:jumps}. Then \(N\) is not of the form \(r^3st\) with pairwise distinct primes \(r,s,t\). There is no bound on \(p\).\lean{P2qJumps.r3st_empty}{R3ST.lean:217}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(p,q\ge 5\) and \(\gcd(N,6)=1\), so \(r,s,t\ge 5\). Put \(S=s+t\), \(P=st\). Then \(S\ge 10\), \(P>0\) and \(4P\le S^2\). With \(\ph(r^3st)=r^2(r-1)(s-1)(t-1)\) and \(\sig(r^3st)=(r^3+r^2+r+1)(s+1)(t+1)\),\lean{P2qJumps.totient_sigma_r3st}{R3ST.lean:62} Lemma~\ref{lem:A-jumps} gives three identities, linear in \((S,P,q)\):
+\begin{align*}
+E_0&:\ r^3P=p^2q+12,\\
+E_1&:\ r^2(r-1)(P-S+1)=p(p-1)(q-1)+12,\\
+E_2&:\ (r^3+r^2+r+1)(P+S+1)=(p^2+p+1)(q+1)+12.
+\end{align*}
+
+\textit{Step 2: three consequences.} Each is an exact \texttt{linear\_combination} of \(E_0,E_1,E_2\).
+\begin{enumerate}
+\item[(a)] (\(\delta\)-identity; \((2p^2+1)E_0-p^2E_1-p^2E_2\).) \(P\bigl(r^3-p^2(r+1)\bigr)=p^2(2r^2+r+1)S+p^2(2r^3+r+1)-2p^3-p^2+12\).
+\item[(b)] (\(X\)-identity; \((p-1)E_0-pE_1\).) \(r^2X=L(p):=p^3-p^2-12\), where \(X=p(r-1)(S-1)-(r-p)P\).
+\item[(c)] (Cramer's rule.) \(r^2D\,S=N_S\) and \(D\,q=N_Q\), where
+\begin{align*}
+D(p,r)={}&p^2r^2+p^2r+2p^2-2pr^3-pr^2-pr+r^4-r^3,\\
+N_S(p,r)={}&-p^4r-p^4+2p^3r^2+p^3r+p^3-2p^2r^5-p^2r^4-2p^2r^3+p^2r^2\\
+&+2pr^6+pr^4-pr^3+12pr+12p+r^6-r^5-12r^2,\\
+N_Q(p,r)={}&2p^2r^3+p^2r^2+p^2r-2pr^4-pr^2-pr+2r^7-r^4-r^3-12r^2-12r-24.
+\end{align*}
+The multipliers for \(D\,q=N_Q\) are \(2(r-1)(r+1)(r^2+1)\), \(-r(r+1)(r^2+1)\), \(-r^3(r-1)\).
+\end{enumerate}
+
+\textit{Step 3: \(p<r\).} Suppose \(r\le p\). Then \(r^3<p^2(r+1)\), so the left side of (a) is negative, and (a) gives \(p^2(2r^2+r+1)S<2p^3+p^2-12<p^2(2p+1)\). Hence \((2r^2+r+1)S<2p+1\), so \(r^2S\le p\) and \(r^4S^2\le p^2\). With \(4P\le S^2\) this gives \(4r\cdot r^3P\le p^2\), that is \(4r(p^2q+12)\le p^2\) by \(E_0\). This is false for \(r,q\ge 5\). Put \(k=r-p\ge 1\).
+
+\textit{Step 4: \(0<X<p\).} Since \(p\ge 5\), \(L(p)>0\), so \(X>0\) by (b). Also \(r^2p-L(p)=2kp^2+k^2p+p^2+12>0\), so \(X<p\).
+
+\textit{Step 5: \(5kS\ge 16p(r-1)\).} From the definition of \(X\), \(kP=p(r-1)(S-1)-X\). With \(4P\le S^2\) and \(X<p\le p(r-1)\) this gives \(4p(r-1)(S-2)\le kS^2\). If \(5kS<16p(r-1)\), multiplying by \(S>0\) and using \(p(r-1)(S-10)\ge 0\) contradicts the previous inequality.
+
+\textit{Step 6: \(D>0\) and \(G\ge 0\).} With \(p=5+a\), \(k=1+m\) (\(a,m\ge 0\)), \(N_Q\) expands to a polynomial in \(a,m\) with positive coefficients, so \(N_Q>0\).\lean{P2qJumps.NQr3st_pos}{R3ST.lean:82} As \(q>0\) and \(Dq=N_Q\), \(D>0\). Let
+\[
+G(p,k)=5k\,N_S(p,p+k)-16p(p+k-1)(p+k)^2D(p,p+k).
+\]
+By (c), \(G=r^2D\bigl(5kS-16p(r-1)\bigr)\), so \(G\ge 0\) by Step~5.
+
+\textit{Step 7: the band.} If \(k\ge 48\), then \(k^2<3p\). Indeed, suppose \(k\ge 48\) and \(3p\le k^2\). Write \(p=5+a\), \(k=48+m\) and
+\[
+\Lambda=16a^6+48a^5m+4288a^5+461936a^4+24283264a^3\ge 0.
+\]
+The polynomial \(-3G-\Lambda(k^2-3p)\) in \(a,m\) has positive coefficients after expansion, so it is positive. As \(\Lambda(k^2-3p)\ge 0\), this gives \(G<0\),\lean{P2qJumps.Gr3st_neg}{R3ST.lean:89} which contradicts Step~6. (\(\Lambda\) was found by linear programming. The proof uses only the expansion.)
+
+\textit{Step 8: the parameter \(i\).} Put \(i=X-p+1+2k\). Then (b) reads \((p+k)^2(p-1-2k+i)=L(p)\), and expanding gives
+\[
+i(p+k)^2=(3k^2+2k)p+2k^3+k^2-12.\tag{\(\ast\)}
+\]
+The right side is positive, so \(i\ge 1\). By Step~4 (\(X<p\)), \(i\le 2k\). If \(k^2<3p\), then \(i\le 9\): for \(i\ge 10\) the left side of \((\ast)\) is at least \(10(p+k)^2\), while the right side is less than \(9p^2+8kp+3p\) when \(k^2<3p\).
+
+\textit{Step 9: a square.} Regard \((\ast)\) as the quadratic \(ip^2+(2ik-3k^2-2k)p+(ik^2-2k^3-k^2+12)=0\). Then \(y=2ip+2ik-3k^2-2k\) satisfies \(y^2=\Delta_i(k)\) (\(4i\) times \((\ast)\)), where
+\[
+\Delta_i(k)=9k^4+(12-4i)k^3+(4-4i)k^2-48i.
+\]
+
+\textit{Step 10: \(k\ge 298\) (Runge).} Then \(k\ge 48\), so \(1\le i\le 9\) by Steps~7 and~8. Put \(H=81k^2+9(6-2i)k-2i(3+i)\). Then
+\[
+(27y)^2=729\,\Delta_i(k)=H^2-4i\bigl(i^3+6i^2+9i+8748+18k(i^2-9)\bigr).
+\]
+For \(i=1,2\) and \(k\ge 298\) the bracket is negative and \(H^2<(27y)^2<(H+1)^2\). For \(3\le i\le 9\) the bracket is positive and \((H-1)^2<(27y)^2<H^2\). Either way \((27y)^2\) lies strictly between consecutive squares, a contradiction.\lean{P2qJumps.Dlt_not_sq}{R3ST.lean:118}
+
+\textit{Step 11: \(k\le 297\) (kernel certificate).} If \(k\le 47\), then \(1\le i\le 2k\le 94\). If \(48\le k\le 297\), then \(1\le i\le 9\). The certificate \texttt{cert\_r3st} (\texttt{decide +kernel}) checks every such pair \((i,k)\): either \(\Delta_i(k)<0\), or \(\Delta_i(k)\) is not a perfect square, or \((i,k)\) is one of \((2,2)\), \((2,5)\), \((4,8)\), \((5,4)\), \((27,15)\).\lean{P2qJumps.cert_r3st; P2qJumps.r3stCheck_sound}{R3ST.lean:166,168} Substituting these into \((\ast)\) gives:\lean{P2qJumps.r3st_exceptions}{R3ST.lean:194}
+\begin{itemize}
+\item \((2,2)\): \(2p(p-4)=0\);
+\item \((2,5)\): \((p+3)(2p-71)=0\);
+\item \((5,4)\): \((p+2)(5p-26)=0\);
+\item \((27,15)\): \(3(p+8)(9p-37)=0\).
+\end{itemize}
+None of these has an integer root \(p\ge 5\). For \((4,8)\), \(4(p-41)(p+5)=0\) gives \(p=41\), so \(r=p+8=49=7^2\), which is not prime.
+
+Steps 10 and 11 exclude every \(k\ge 1\), which contradicts Step~3.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-r3st-empty} is not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. Adding it to Theorem~\ref{thm:L2} would change that locked statement, so it would need a new lock and the author's approval.
 \end{remark}
 
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
@@ -1880,7 +1961,8 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 \begin{enumerate}
 \item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the external check \(5\le r\le 10^6\)) remain true and are now superseded.
 \item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) covers the same range [result pending]. The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
-\item \textbf{Other shapes.} The shapes with a repeated prime left by Theorem~\ref{thm:E} and not covered by (1)--(2), such as \(r^3st\) and \(r^2s^2t\), remain in H2 of Proposition~\ref{prop:implies-corrected}.
+\item \textbf{\(N=r^3st\).} Excluded with no bound (Theorem~\ref{thm:A-r3st-empty}, kernel-checked, v1.4).
+\item \textbf{Other shapes.} The shapes with a repeated prime left by Theorem~\ref{thm:E} and not covered by (1)--(3), such as \(r^2s^2t\), remain in H2 of Proposition~\ref{prop:implies-corrected}.
 \end{enumerate}
 \end{theorem}
 

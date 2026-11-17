@@ -63,6 +63,7 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
   - Since r³s and r²st are now empty (Lean), the block's claim is equivalent to: **every counterexample has ω(N) ≥ 4**, which holds iff r³st, r²s²t (and the other ω = 3 repeated-prime shapes) are impossible. Neither is proved.
   - r³st exploration: E0, A(N) = A(n), B(N) = B(n) are linear in (s + t, st, q), so a solution is determined by (p, r) (as for r²st). Scan of all odd 5 ≤ p < 3000, 5 ≤ r ≤ p^{3/2}: the positivity region s + t > 0, st > 0, q > 0, (s+t)² > 4st is nonempty only for r = p + k with 4 ≤ k ≲ √(2p) (no r < p). Combined with r² | L(p) (per-prime Lemma K), writing L(p) = (p+k)²(p − 1 − 2k + i) forces i(p+k)² = (3k²+2k)p + 2k³ + k² − 12, so i is a small positive integer (i ≤ 6 inside the band) and p is a root of a quadratic in p with discriminant k²(3k+2)² − 4i(k³ + k² + 12). Finishing needs: a proof of the band, and for each i ≤ 6 a "square between consecutive squares" bound on k. Not done yet.
 - **Paper change:** none yet (ledger deviation (1) already says the claim is not justified; README "What remains open" updated).
+  - **Update (C8):** r³st is now empty with no bound (`r3st_empty`, kernel-checked). The block's claim is still open: r²s²t and the other ω = 3 repeated-prime shapes are not excluded.
 - **Scope change:** none.
 
 ## C6. D_true / R₁₀ (target e)
@@ -83,3 +84,13 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** Theorem L2 is input after the status paragraph of Theorem L ("Strengthened statement" paragraph, with sha256); new Part A section "Proof of Theorem L2 and its semantics lock" (`sec:A-L2`, Steps 1–5 and the lock description); the intro of `sec:A-beyond` now points to Theorem L2 instead of "locked statement file written separately".
 - **Unchanged:** `paper/theorem-L.tex`, `P2qJumps/Semantics.lean`, `truth-gate.lock.json`.
 - **Scope change:** none (strengthening; Theorem L unchanged). Note: (iv) of Theorem L2 removes the hypothesis r, s ≥ 5 present in Theorem L(iv); this widens the statement and is proved (`r3s_empty` derives r, s ≥ 5 from gcd(N, 6) = 1).
+
+## C8. The shape r³st is empty (task item 3)
+
+- **Claim:** under both jumps, N ≠ r³st for pairwise distinct primes r, s, t (no bound on p).
+- **Method:** Lean, `P2qJumps/R3ST.lean`, theorem `r3st_empty` (R3ST.lean:217). E0, E1, E2 linear in (S, P, q) = (s + t, st, q); δ-identity ⇒ r > p (k = r − p ≥ 1); X-identity r²X = L(p) ⇒ 0 < X < p; S² ≥ 4P, S ≥ 10 ⇒ 5kS ≥ 16p(r − 1); D > 0 (`NQr3st_pos`, R3ST.lean:82) ⇒ G ≥ 0; band certificate `Gr3st_neg` (R3ST.lean:89; multiplier Λ = 16a⁶ + 48a⁵m + 4288a⁵ + 461936a⁴ + 24283264a³, p = 5 + a, k = 48 + m): k ≥ 48 ⇒ k² < 3p. With i = X − p + 1 + 2k: i(p+k)² = (3k² + 2k)p + 2k³ + k² − 12, 1 ≤ i ≤ 2k, i ≤ 9 in the band, and (2ip + 2ik − 3k² − 2k)² = Δ_i(k) = 9k⁴ + (12 − 4i)k³ + (4 − 4i)k² − 48i. Runge (`Dlt_not_sq`, R3ST.lean:118): for 1 ≤ i ≤ 9, k ≥ 298, 729Δ_i(k) = H² − 4i(i³ + 6i² + 9i + 8748 + 18k(i² − 9)) with H = 81k² + 9(6 − 2i)k − 2i(3 + i) lies strictly between consecutive squares. Kernel certificate `cert_r3st` (R3ST.lean:166, `decide +kernel`) for k ≤ 297: Δ_i(k) is a square only at (i, k) ∈ {(2,2), (2,5), (4,8), (5,4), (27,15)}; `r3st_exceptions` (R3ST.lean:194): four have no integer root p ≥ 5, and (4,8) forces p = 41, r = 49 = 7², not prime.
+- **Outcome:** proved (kernel-checked), standard axioms only. This replaces the band estimate "4 ≤ k ≲ √(2p)" of C5 (numeric) by the proved statement "k ≤ 47 or k² < 3p", and the bound "i ≤ 6" by the proved "i ≤ 9".
+- **Paper changes:** new subsection "The shape r³st is empty" (`sec:A-r3st-empty`, Theorem `thm:A-r3st-empty`, Steps 1–11) in `sec:A-beyond` (title and intro updated); classification ledger item (3) now records r³st as excluded, and the old item (3) "Other shapes" is item (4), with r²s²t as the example.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. r³st is not added to Theorem L2: that would change a locked statement and needs a new lock and the author's approval.
+- **Scope change:** none.
+

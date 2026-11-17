@@ -117,6 +117,14 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.N_ne_rs
 #print axioms P2qJumps.r2st_bound
 #print axioms P2qJumps.r2st_empty
+#print axioms P2qJumps.totient_sigma_r3st
+#print axioms P2qJumps.NQr3st_pos
+#print axioms P2qJumps.Gr3st_neg
+#print axioms P2qJumps.Dlt_not_sq
+#print axioms P2qJumps.cert_r3st
+#print axioms P2qJumps.r3stCheck_sound
+#print axioms P2qJumps.r3st_exceptions
+#print axioms P2qJumps.r3st_empty
 #print axioms P2qJumps.r3s_bound
 #print axioms P2qJumps.Semantics.formal_claim_holds
 #print axioms P2qJumps.Semantics.intended_correspondence

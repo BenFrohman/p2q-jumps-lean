@@ -11,3 +11,7 @@ Author: Benjamin Stanley Frohman (ORCID: https://orcid.org/0009-0006-7068-3718)
 Repository: https://github.com/BenFrohman/p2q-jumps-lean
 Dedicated 1-to-1 Zenodo DOI: https://doi.org/10.5281/zenodo.22727814
 Earliest Commit Provenance: 83def85f7812df25e4f503c8176942b725fa1bf3 (2026-06-21 02:11:16 PM CDT (UTC-5))
+
+If you use this work, please cite it: Frohman, Benjamin Stanley (ORCID 0009-0006-7068-3718),
+p2q-jumps-lean, https://github.com/BenFrohman/p2q-jumps-lean (see CITATION.cff for the full
+citation metadata).

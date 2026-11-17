@@ -26,13 +26,24 @@ approval**, see [TRUTH_GATE.md](TRUTH_GATE.md)):
 | `N = r^3 s` ⇒ `p < r`, `r^2 ∣ p^3 - p^2 - 12`, `p > 10^4` | `r3s_bound` | proved |
 | no solution with `n ≤ 10^4` (any shape) | `Cert.no_jumps_p2q_le_10000` | proved |
 
+Beyond the locked Theorem L (kernel-checked, standard axioms; their own locked statement file is **pending**,
+see `paper/CHANGES-v1.4.md`):
+
+| Item | Lean theorem | Status |
+|---|---|---|
+| `p, q ≥ 5`, `N` odd, not a square, `gcd(N, 6pq) = 1` | `preamble` | proved |
+| `N ≠ r^k` (`k ≥ 1`) | `N_ne_prime_pow` | proved |
+| `N ≠ r^a s` for every `a ≥ 2` (Theorem A; includes `r^2 s`, `r s^2`) | `N_ne_ras` | proved |
+| `N ≠ r^3 s` (no bound on `p`; Theorem L(iv) becomes vacuous) | `r3s_empty` | proved |
+| `ω(N) ≥ 4` ⇒ `q ≥ 3p^2` and every prime factor of `N` exceeds `p` | `omega4_constraints` | proved |
+
 Kernel certificates (`decide +kernel` on checkers with proved soundness; **no `native_decide`**):
 
 | Certificate | Bound actually reached |
 |---|---|
 | `Cert.cert_line`: `2F(p)` not a square | every integer `5 ≤ p ≤ 10^4` |
 | `Cert.cert_strip_0..7`: no prime `r > p` with `r^2 ∣ L(p)` | every prime `5 ≤ p ≤ 10^4` |
-| `Cert.cert_pair_*`: both jumps fail | every `n = p^2 q ≤ 10^4` |
+| `Cert.cert_pair_*`: the σ-jump fails (so the pair of jumps fails) | every `n = p^2 q ≤ 10^4` |
 
 Axioms: `#print axioms P2qJumps.Semantics.theorem_L` → `[propext, Classical.choice, Quot.sound]`.
 Logs: [`certificates/`](certificates/).
@@ -42,16 +53,16 @@ Logs: [`certificates/`](certificates/).
 - `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy).
 - `scripts/omega4/jumps_pq_check.py`: no solution for distinct primes `p, q ≤ 10^4`, and none for
   `5 ≤ p ≤ 997`, `p^2 < q ≤ 10^6` (PARI factorization, no filter on ω(N) or on prime factors).
-- ω(N) ≥ 4 residual (conditional on the unproved hypothesis that every prime factor of N exceeds p, which forces
-  q > p^2): searched over primes `5 ≤ p ≤ ⌊√Q⌋`, `p^2 < q ≤ Q`. Kernel: `n ≤ 10^4`. PARI: `Q = 10^4` and the
+- ω(N) ≥ 4 residual (every prime factor of N exceeds p and q ≥ 3p^2, kernel-checked as
+  `P2qJumps.omega4_constraints`, so q > p^2 for every such pair): searched over primes `5 ≤ p ≤ ⌊√Q⌋`, `p^2 < q ≤ Q`. Kernel: `n ≤ 10^4`. PARI: `Q = 10^4` and the
   `Q = 10^6` range, no filters, 0 hits. Optional `scripts/omega4/search_omega4_1e6.py` (sha256 `ab59fc89…5046`),
-  `Q = 10^6`: **[result pending]**. Details and exact wording: `scripts/omega4/README.md`.
+  `Q = 10^6`: **did not finish** (3-hour timeout, exit 124, no output; the same range has 0 hits in the no-filter PARI run, computationally verified, not kernel-checked). Details and exact wording: `scripts/omega4/README.md`.
 
 ## What remains open
 
 - Conjecture 3 (no `n = p^2 q` satisfies both jumps).
-- `r^3 s` for `p > 10^4` in Lean (the paper's Theorem A is a written proof, not formalized here).
-- `ω(N) ≥ 4` beyond the bounds above; the paper's H2 (`p ≥ 10^6`) and H3; shapes such as `r^3 s t`, `r^2 s^2 t`.
+- `ω(N) ≥ 4` beyond the bounds above; the paper's H2 (`p ≥ 10^6`) and H3; shapes such as `r^3 s t`, `r^2 s^2 t`;
+  powerful `N` (paper Theorem B) and the exponent bounds of Theorem E are not yet in Lean.
 - Uniform analytic bounds: David's theorem across all twist fibres of `y^2 = x^3 - x^2 - 12`
   (LMFDB 3936.b1, **rank 1**, trivial torsion) and effective genus-one bounds.
 

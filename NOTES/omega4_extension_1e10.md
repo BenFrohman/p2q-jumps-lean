@@ -6,12 +6,13 @@ one core of the shared box), not measurements of a full run.
 
 ## 1. Range and pair count
 
-Under the unproved hypothesis H: every prime factor of N = p^2 q + 12 exceeds p, one has N > p^4, so q > p^2 and,
+By the kernel-checked theorem `P2qJumps.omega4_constraints` (v1.4; it was the unproved hypothesis H when this note
+was first written), every prime factor of N = p^2 q + 12 exceeds p and q ≥ 3p^2 when ω(N) ≥ 4; so q > p^2 and,
 for q ≤ Q, p < √Q. For Q = 10^10 the search is: primes 5 ≤ p ≤ 10^5 (9,590 primes), primes p^2 < q ≤ 10^10.
 
 Pair count ≈ Σ_{5 ≤ p ≤ 10^5} (π(10^10) − π(p^2)) with π(10^10) = 455,052,511:
 ≈ 9,590 · 4.55·10^8 − Σ π(p^2) ≈ **3.0·10^12 pairs** (Σ π(p^2) estimated with x/(ln x − 1)).
-Without H (all distinct primes p, q ≤ 10^10) the count is ≈ π(10^10)^2 ≈ 2·10^17: out of reach.
+For comparison, all distinct primes p, q ≤ 10^10 (no shape restriction) would be ≈ π(10^10)^2 ≈ 2·10^17 pairs: out of reach; for ω(N) ≥ 4 the restriction q > p^2 is now a theorem.
 
 ## 2. Why the current script cannot do it
 
@@ -55,9 +56,8 @@ magnitude. (At Q = 10^6 the same design already runs far longer than "a few seco
 
 ## 5. Proof obligations before any paper text cites such a run
 
-1. **Lemma H (every prime factor of N exceeds p) is unproved.** The paper proves only gcd(N, 6p) = 1, and the
-   p = 7 descent explicitly allows the factor 5. Without H the pre-sieve and the q > p^2 restriction can discard
-   genuine candidates. H must be proved (on paper, ideally in Lean) or every statement stays conditional on it.
+1. **Lemma H (every prime factor of N exceeds p) is proved in Lean** (`P2qJumps.omega4_constraints`, v1.4), with
+   q ≥ 3p^2. The pre-sieve and the q > p^2 restriction are sound for ω(N) ≥ 4. (Superseded obligation.)
 2. The least-factor bound (ω ≥ 4 ⇒ least prime factor ≤ N^{1/4}) and the cofactor bound are elementary but should
    be written out.
 3. Correctness of the sieve root q ≡ −12·p^{−2} (mod r) and of segment boundaries; planted positive controls

@@ -7,13 +7,15 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{hyperref}
-\newcommand{\OMEGAFOURSTATUS}{result pending (run in progress for v1.4; hit count: \underline{\hspace{2em}}; elapsed time: \underline{\hspace{2em}}). Its range is the \(Q=10^6\) range of the second PARI run above, which found 0 hits with no filter.}
+\newcommand{\OMEGAFOURSTATUS}{no result. The v1.4 run (\texttt{python3 search\_omega4\_1e6.py} under a 3-hour \texttt{timeout}, started 16 Nov 2026 17:42:14 CST) was stopped by the timeout at 20:42:14 CST (exit code 124, wall time 10800 s) before printing any output, so it reports no hit count and certifies nothing. Its range is the \(Q=10^6\) range of the second PARI run above, which found 0 hits with no filter; that run is the computational evidence for this range (computationally verified, not kernel-checked).}
 
 \newcommand{\ph}{\varphi}
 \newcommand{\sig}{\sigma}
 \newcommand{\TT}{\delta}
 \newcommand{\A}{A}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\lean}[2]{\footnote{Lean: \path{#1} (\path{#2}).}}
+\renewcommand{\thepart}{\Alph{part}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -43,14 +45,14 @@ Roy Choudhury and Wei formulate Conjecture~1.1 (attributed there to McCranie via
 \(n\), and found no counterexample with \(n\le 10^{12}\). This note treats the next family \(n=p^2q\).
 This REVIEW revision keeps the v0.10 technical development as historical record, but the original Proposition~32 implication is \textbf{superseded and not currently valid}: its factor-pattern reduction was incomplete. The corrected exhaustive classification (Proposition~\ref{prop:implies-corrected}) and Theorems~A,~B,~D,~E,~F with Lemmas~K,~G are the current statements. Theorem~28, Theorem~D, and structural Lean declarations for Lemmas~G,~K,~R,~S and Theorem~F are Lean-formalized and independently audited. Extensions (Corollary~F1, Lemmas~L1,~Q, repeated-prime size; 15 results + 2 defs) are Lean-formalized and independently audited. Theorems~A,~B,~E in full, the classification, and the \(p=7\) descent are not Lean-formalized. Hypothesis~H1 (squarefree \(\omega(N)\ge 4\)) is closed under ordinary computer-assisted trust via Theorems~D,~F and an independently audited exact \(p=7\) descent (not Lean). The only remaining residuals for Conjecture~\ref{conj:vanish} are Hypotheses~H2 (with \(p\ge 10^6\) still open) and~H3. No true \(n=p^2q\) solution of both jumps is known; parametrizations are necessary conditions, not existence.
 
-\emph{Version 1.4.} A new Lean~4 development (Section~\ref{sec:v14-lean}) proves Theorem~\ref{thm:L}: under both jumps, \(N\) is not prime, not a product of two or of three distinct primes, and not of the form \(r^2st\); in the shape \(r^3s\) one has \(p<r\), \(r^2\mid p^3-p^2-12\) and \(p>10^4\); and \(n>10^4\). The numerical parts rest on kernel-checked certificates (no \texttt{native\_decide}); the axioms are \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. Section~\ref{sec:v14-curve} records the verified data of the curve \(y^2=x^3-x^2-12\) (LMFDB \texttt{3936.b1}, rank~1) and its twists. Conjecture~\ref{conj:vanish} remains open.
+\emph{Version 1.4.} The leading result is Theorem~\ref{thm:L} (Section~\ref{sec:v14-lean}), proved in Lean~4: under both jumps, \(N\) is not prime, not a product of two or of three distinct primes, and not of the form \(r^2st\); in the shape \(r^3s\) one has \(p<r\), \(r^2\mid p^3-p^2-12\) and \(p>10^4\); and \(n>10^4\). The paper is in three parts: (A) Lean-proved statements, each with a step-by-step proof in ordinary mathematics that follows the Lean proof; (B) paper-only arguments, not kernel-checked; (C) computational certificates with exact ranges, separating kernel-checked certificates (no \texttt{native\_decide}) from external computations. The Lean axioms are \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. Part~B records the verified data of the curve \(y^2=x^3-x^2-12\) (LMFDB \texttt{3936.b1}, rank~1, trivial torsion) and its twists. Conjecture~\ref{conj:vanish} remains open.
 \end{abstract}
 
 \maketitle
 
 \vspace{-0.7em}
 {\small\noindent
-\textbf{Version 1.4} (16~November~2026), based on the v1.3 text (REVIEW draft v0.11-review2, 6~November~2026), with Sections~\ref{sec:v14-curve}--\ref{sec:v14-repro} added. Frohman, Benjamin Stanley; ORCID 0009-0006-7068-3718; Independent Researcher, Texas, United States; \texttt{frohmanbenjamin@gmail.com}.\\
+\textbf{Version 1.4} (16~November~2026), based on the v1.3 text (REVIEW draft v0.11-review2, 6~November~2026), restructured in v1.4 into Theorem~\ref{thm:L} and Parts~\ref{part:A}--\ref{part:C}. Frohman, Benjamin Stanley; ORCID 0009-0006-7068-3718; Independent Researcher, Texas, United States; \texttt{frohmanbenjamin@gmail.com}.\\
 Concept DOI \texttt{10.5281/zenodo.22713135}; public v0.10 record~22727814.
 Prior staged v0.11 files in deposition~24024593 are preserved unchanged.
 Reserved DOI \texttt{10.5281/zenodo.24024593} is an \textbf{unpublished} Zenodo draft (not a live publication citation).
@@ -58,15 +60,1108 @@ Prepared with computational assistance from Grok; the author is responsible for 
 Paper license CC~BY~4.0; Lean code Apache~2.0.
 Copyright \copyright\ 2026 Benjamin Stanley Frohman.}
 
-\section{Introduction}
+\section{Lean-certified reductions (v1.4)}
+\label{sec:v14-lean}
 
-Write \(\ph\) for Euler's totient and \(\sig\) for the sum-of-divisors function.
-Following Roy Choudhury and Wei~\cite{RCW2026}, we study the simultaneous jump identities
+Write \(\ph\) for Euler's totient and \(\sig\) for the sum of positive divisors. Following Roy Choudhury and Wei~\cite{RCW2026}, we study the simultaneous jump identities
 \begin{equation}
 \label{eq:jumps}
-\ph(N)=\ph(n)+12,\qquad \sig(N)=\sig(n)+12,
+\ph(N)=\ph(n)+12,\qquad \sig(N)=\sig(n)+12,\qquad N:=n+12,
 \end{equation}
-where \(N:=n+12\). Every prime quadruplet \((p,p+2,p+6,p+8)\) produces a composite solution \(n=p(p+8)\).
+for \(n=p^2q\) with distinct primes \(p,q\). The leading result of this version is the following theorem. It is input verbatim from the locked file \path{paper/theorem-L.tex} (sha256 \texttt{8172e9beaa\allowbreak{}7d88aae2f5\allowbreak{}95396bb4cd\allowbreak{}fa226f2292\allowbreak{}6f67c9e790\allowbreak{}44de3a53ed\allowbreak{}634d1}); its Lean transcription is \texttt{paper\_claim}, and the Lean theorem \texttt{theorem\_L} proves it (both in the namespace \texttt{P2qJumps.Semantics}) (Section~\ref{sec:A-lock}).
+
+\input{theorem-L}
+
+\noindent\textbf{Status.} Every clause of Theorem~\ref{thm:L} is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim} is \textbf{pending author approval} (Truth Gate, Section~\ref{sec:A-lock}). Theorem~\ref{thm:L} does not prove Conjecture~\ref{conj:vanish}, which remains open.
+
+\medskip
+\noindent\textbf{Strengthened statement.} Theorem~\ref{thm:L} is kept unchanged (its lock is unchanged). The following strengthening is input verbatim from the separately locked file \path{paper/theorem-L2.tex} (sha256 \texttt{0014494d52\allowbreak{}f73f89e1a3\allowbreak{}6b1287f92f\allowbreak{}5bcac3b84f\allowbreak{}f7dc2bdd2c\allowbreak{}ec79c22cd8\allowbreak{}6dba}); its Lean transcription is \texttt{paper\_claim2}, and the Lean theorem \texttt{theorem\_L2} proves it (both in the namespace \texttt{P2qJumps.Semantics2}) (Section~\ref{sec:A-L2}). Clause (iv) is the unbounded exclusion of \(r^3s\), which makes clause (iv) of Theorem~\ref{thm:L} vacuous; clauses (vi) and (vii) are new.
+
+\input{theorem-L2}
+
+\noindent\textbf{Status of Theorem~\ref{thm:L2}.} Every clause is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim2} is \textbf{pending author approval} (\path{truth-gate-L2.lock.json}). Theorem~\ref{thm:L2} does not prove Conjecture~\ref{conj:vanish}.
+
+\medskip
+\noindent\textbf{How this paper is organized.}
+\begin{itemize}
+\item \textbf{Part~\ref{part:A}: Lean-proved statements.} A step-by-step proof of each clause of Theorem~\ref{thm:L}, written in ordinary mathematics and following the Lean proof: the same lemmas, case splits, identities, inequalities and bounds. Each step names the Lean declaration and its location \texttt{file:line} in a footnote (paths are relative to \path{P2qJumps/} in the repository, at the Lean sources commit \texttt{4ae3e47}).
+\item \textbf{Part~\ref{part:B}: paper-only arguments.} The written v1.3 development (Theorems~A, B, E, the classification, the \(p=7\) descent, the twist link and the root-number formula). These are \textbf{not kernel-checked} in the v1.4 Lean development.
+\item \textbf{Part~\ref{part:C}: computational certificates.} The kernel certificates used in Part~\ref{part:A}, with their exact ranges, and the external (not kernel-checked) SymPy, PARI and Python runs.
+\end{itemize}
+
+\part{Lean-proved statements with translated proofs}
+\label{part:A}
+
+Throughout Part~\ref{part:A}, \(p\ne q\) are primes, \(n=p^2q\), \(N=n+12\), and~\eqref{eq:jumps} holds; in Lean this hypothesis is \(\mathtt{Jumps}(p^2q)\).\lean{P2qJumps.Jumps}{Statement.lean:29} Put
+\[
+L(p)=p^3-p^2-12 .
+\]
+In Lean this is \texttt{Lpoly}.\lean{P2qJumps.Lpoly}{R3S.lean:28}
+All identities below are identities in \(\Z\) (Lean casts the natural numbers to \(\Z\) before any subtraction). Every polynomial identity quoted below was checked by Lean's \texttt{ring}/\texttt{linear\_combination}, and the displayed multipliers are exactly those in the Lean source.
+
+\section{Shared arithmetic lemmas}
+\label{sec:A-arith}
+
+\begin{lemma}[Values of \(\ph\) and \(\sig\)]
+\label{lem:A-values}
+For distinct primes \(p,q\), pairwise distinct primes \(r,s,t\), and distinct primes \(r,s\) respectively,
+\begin{align*}
+\ph(p^2q)&=p(p-1)(q-1), & \sig(p^2q)&=(p^2+p+1)(q+1);\\
+\ph(r^2st)&=r(r-1)(s-1)(t-1), & \sig(r^2st)&=(r^2+r+1)(s+1)(t+1);\\
+\ph(r^3s)&=r^2(r-1)(s-1), & \sig(r^3s)&=(r^3+r^2+r+1)(s+1).
+\end{align*}
+In Lean these are three lemmas.\lean{totient_sigma_p2q; totient_sigma_r2st; totient_sigma_r3s}{Arith.lean:40,55,75}
+\end{lemma}
+
+\begin{proof}
+The factors \(p^2\) and \(q\) (resp.\ \(r^2s\) and \(t\), \(r^2\) and \(s\); resp.\ \(r^3\) and \(s\)) are coprime, so multiplicativity applies; then \(\ph(\ell^k)=\ell^{k-1}(\ell-1)\) and \(\sig(\ell^k)=1+\ell+\dots+\ell^k\) for a prime \(\ell\).\lean{sigma_one_prime', sigma_one_prime_sq, sigma_one_prime_cube}{Arith.lean:24,29,34}
+\end{proof}
+
+\begin{lemma}[The jumps as integer identities]
+\label{lem:A-jumps}
+Under~\eqref{eq:jumps},\lean{jumps_p2q_int}{Arith.lean:88}
+\begin{equation}
+\label{eq:A-J}
+\ph(N)=p(p-1)(q-1)+12,\qquad \sig(N)=(p^2+p+1)(q+1)+12.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Substitute Lemma~\ref{lem:A-values} into~\eqref{eq:jumps}.
+\end{proof}
+
+\begin{lemma}[\(p\ge 5\) and \(p\nmid N\)]
+\label{lem:A-p5}
+If \(N=p^2q+12\) is divisible neither by \(2\) nor by \(3\), then \(p\ge 5\) and \(p\nmid N\).\lean{p_ge_five_of_dvd}{Arith.lean:100}
+\end{lemma}
+
+\begin{proof}
+If \(p=2\) then \(N=2(2q+6)\); if \(p=3\) then \(N=3(3q+4)\); \(p=4\) is not prime. Hence \(p\ge 5\). If \(p\mid N\), then, since \(p\mid p^2q\), also \(p\mid 12\), so \(p\le 12\); checking \(5\le p\le 12\) one by one, no such \(p\) divides \(12\).
+\end{proof}
+
+\begin{lemma}
+\label{lem:A-coprime6}
+A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).
+\end{lemma}
+
+\section{Preamble facts: \(p,q\ge 5\), \(N\) odd, not a square, coprime to \(6pq\)}
+\label{sec:A-preamble}
+
+This section is the kernel-checked version of Proposition~\ref{prop:23}, Corollary~\ref{cor:gcd} and Proposition~\ref{prop:square} (Part~\ref{part:B}). The case \(p=2\) uses a different, shorter argument than the written one.
+
+\begin{lemma}
+\label{lem:A-totdiv}
+If a prime \(r\) divides \(m\), then \(\ph(m)+m/r\le m\).\lean{P2qJumps.totient_add_div_le}{Preamble.lean:24}
+\end{lemma}
+
+\begin{proof}
+The \(m/r\) integers \(0,r,2r,\dots,(m/r-1)r\) lie in \([0,m)\) and are not coprime to \(m\), since \(r\) divides their gcd with \(m\). The integers in \([0,m)\) coprime to \(m\), of which there are \(\ph(m)\), are disjoint from them, so \(\ph(m)+m/r\le m\).
+\end{proof}
+
+\begin{lemma}
+\label{lem:A-compA}
+Let \(m>1\) be composite with \(m\le\ph(m)+d\), and let \(r\) be the least prime factor of \(m\). Then \(r^2\le m\) and \(m<r(d+1)\).\lean{P2qJumps.composite_small_A}{Preamble.lean:54}
+\end{lemma}
+
+\begin{proof}
+\(r^2\le m\) holds for the least prime factor of a composite number. By Lemma~\ref{lem:A-totdiv}, \(m/r\le m-\ph(m)\le d\), where \(m/r\) is floor division, and \(m<r(\lfloor m/r\rfloor+1)\le r(d+1)\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:A-preamble}
+If~\eqref{eq:jumps} holds, then \(p\ge 5\), \(q\ge 5\), \(N\) is odd, \(N\) is not a square, and \(\gcd(N,6pq)=1\).\lean{P2qJumps.preamble}{Preamble.lean:217}
+\end{proposition}
+
+\begin{proof}
+We use the integer identities of Lemma~\ref{lem:A-jumps}: \(\ph(N)=p(p-1)(q-1)+12\) and \(\sig(N)=(p^2+p+1)(q+1)+12\).
+
+\textit{Step 1: \(p\ne 2\).}\lean{P2qJumps.p_ne_two}{Preamble.lean:89} If \(p=2\), then \(2\mid N=4q+12\), so Lemma~\ref{lem:A-totdiv} gives \(\ph(N)\le N-N/2=2q+6\). But \(\ph(N)=2(q-1)+12=2q+10\), a contradiction.
+
+\textit{Step 2: \(q\ne 2\).}\lean{P2qJumps.q_ne_two}{Preamble.lean:104} Let \(q=2\); \(p\) is odd by Step~1, so \(p\ge 3\). Put \(s=p^2+6\), which is odd, so \(N=2s\) and \(\ph(N)=\ph(s)\). The totient identity gives \(\ph(s)+p=s+6\). Since \(\ph(s)\le s\), this gives \(p\ge 6\), and as \(p\) is odd, \(p\ge 7\). If \(s\) is prime, \(\ph(s)=s-1\) forces \(p=7\), but \(s=55\) is not prime. If \(s\) is composite, Lemma~\ref{lem:A-compA} with \(d=p-6\) gives a prime \(r\) with \(r^2\le s<r(p-5)\); so \(r<p-5\) and \(s<(p-5)^2\le p^2<s\), a contradiction.
+
+\textit{Step 3: \(p\ne 3\).}\lean{P2qJumps.p_ne_three}{Preamble.lean:147} If \(p=3\), put \(u=3q+4\), so \(N=3u\) with \(3\nmid u\), and \(\ph(N)=2\ph(u)\). The totient identity gives \(\ph(u)+1=u\), so \(u\) is prime. Then \(\sig(N)=4(u+1)=12q+20\), while the \(\sig\)-identity requires \(\sig(N)=13(q+1)+12=13q+25\); hence \(q=-5\), impossible.
+
+\textit{Step 4: \(q\ne 3\).}\lean{P2qJumps.q_ne_three}{Preamble.lean:171} If \(q=3\), then \(p\ge 5\) by Steps~1 and~3. Put \(t=p^2+4\); since \(3\nmid p\), \(t\equiv 2\pmod 3\), so \(N=3t\) with \(3\nmid t\) and \(\ph(N)=2\ph(t)\). The totient identity gives \(\ph(t)+p=t+2\). If \(t\) is prime this says \(p=3\), excluded. If \(t\) is composite, Lemma~\ref{lem:A-compA} with \(d=p-2\) gives a prime \(r\) with \(r^2\le t<r(p-1)\); so \(r<p-1\) and \(t<(p-1)^2\le p^2<t\), a contradiction.
+
+\textit{Step 5: \(p,q\ge 5\) and \(N\) odd.} A prime other than \(2,3\) is at least \(5\). Then \(p,q\) are odd, \(p^2q\) is odd and \(N=p^2q+12\) is odd.
+
+\textit{Step 6: \(N\) is not a square.} Every divisor of the odd number \(N\) is odd, so \(\sig(N)\equiv d(N)\pmod 2\), where \(d(N)\) is the number of divisors. If \(N=m^2\) then \(d(N)=\prod_\ell(2v_\ell(m)+1)\) is odd, so \(\sig(N)\) is odd. But with \(q=2k+1\), \(\sig(N)=(p^2+p+1)(2k+2)+12\) is even.
+
+\textit{Step 7: \(\gcd(N,6pq)=1\).} \(N\) is odd. If \(3\mid N\) then \(3\mid p^2q\), so \(3\mid p\) or \(3\mid q\), impossible for primes \(\ge 5\). If \(x\in\{p,q\}\) divides \(N\), then since \(x\mid p^2q\) we get \(x\mid 12\), so \(x\le 12\); no prime \(5\le x\le 12\) divides \(12\). Coprimality to \(2\), \(3\), \(p\) and \(q\) gives coprimality to \(6pq\).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:L}(i)}
+\label{sec:A-i}
+
+\begin{proposition}[\(N\) is not prime]
+\label{prop:A-notprime}
+\(N\) is not prime.\lean{P2qJumps.N_not_prime}{Main.lean:33}
+\end{proposition}
+
+\begin{proof}
+If \(N\) is prime then \(\ph(N)=N-1=p^2q+11\). The first identity of~\eqref{eq:A-J} gives \(p^2q+11=p(p-1)(q-1)+12\), and subtracting,
+\[
+p\,(p+q-1)=1 .
+\]
+But \(p\ge 2\) and \(q\ge 2\) give \(p(p+q-1)\ge 2\cdot 3>1\), a contradiction (\texttt{nlinarith}).
+\end{proof}
+
+\begin{proposition}[\(N\) is not a product of two distinct primes]
+\label{prop:A-rs}
+\(N\ne rs\) for distinct primes \(r,s\).\lean{P2qJumps.N_ne_rs}{Main.lean:47}
+\end{proposition}
+
+\begin{proof}
+Suppose \(N=rs\). Then \(\ph(N)=(r-1)(s-1)\) and \(\sig(N)=(r+1)(s+1)\), and~\eqref{eq:A-J} together with \(E_0\colon rs=p^2q+12\) give
+\[
+(J_1)\ (r-1)(s-1)=p(p-1)(q-1)+12,\qquad (J_2)\ (r+1)(s+1)=(p^2+p+1)(q+1)+12 .
+\]
+The combination \(2E_0-J_1-J_2\) is the identity \(-2=-2p-q-1\), i.e.
+\[
+2p+q=1,
+\]
+which contradicts \(p,q\ge 2\) (\texttt{linarith}).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:L}(ii): Theorem~28}
+\label{sec:A-ii}
+
+\begin{proposition}[Theorem~28]
+\label{prop:A-rst}
+\(N\ne rst\) for pairwise distinct primes \(r,s,t\) (no lower bound on \(r,s,t\) is assumed).\lean{theorem28_discriminant, theorem28_holds}{ClosedShapes.lean:67,139}
+\end{proposition}
+
+This is a theorem in the repository, not a hypothesis: \texttt{theorem28\_holds : Theorem28} is proved from \texttt{theorem28\_discriminant}. The Lean proof below differs from the written v1.3 proof of Theorem~\ref{thm:R1} (Part~\ref{part:B}), which uses the complementary discriminant.
+
+\begin{proof}
+Suppose \(N=rst\). By multiplicativity, \(\ph(N)=(r-1)(s-1)(t-1)\) and \(\sig(N)=(r+1)(s+1)(t+1)\).
+
+\emph{Case \(p=2\).} Then \(rst=4q+12=2(2q+6)\) is even, so one of \(r,s,t\) equals \(2\); say \(r=2\) (the other two cases are identical). Then \(s,t\ne 2\) are odd primes and \(2st=4q+12\), so \(st=2q+6\) is even while \(st\) is odd, a contradiction.\lean{two_mul_odd_ne}{ClosedShapes.lean:38}
+
+\emph{Case \(p\) odd,} so \(p\ge 3\). Write \(e_1=r+s+t\), \(e_2=rs+rt+st\), \(e_3=rst\), and \(P=p\), \(Q=q\). Adding the two identities~\eqref{eq:A-J} and using \(e_3=P^2Q+12\) gives, after expanding \((r\pm1)(s\pm1)(t\pm1)=e_3\pm e_2+e_1\pm 1\),
+\begin{equation}
+\label{eq:A-e1}
+2e_1=Q+2P+1;
+\end{equation}
+subtracting them gives
+\begin{equation}
+\label{eq:A-e2}
+2e_2=2P^2+2PQ+Q-1 .
+\end{equation}
+The elementary inequalities
+\[
+3e_2\le e_1^2,\qquad 3e_1e_3\le e_2^2
+\]
+hold (they are sums of the squares \((r-s)^2,(s-t)^2,(r-t)^2\), resp.\ \((rs-st)^2,(st-rt)^2,(rs-rt)^2\)). Multiplying by \(4\) and substituting~\eqref{eq:A-e1},~\eqref{eq:A-e2} and \(e_3=P^2Q+12\):
+\begin{align}
+\label{eq:A-f1}
+(f_1)\quad & 6(2P^2+2PQ+Q-1)\le(Q+2P+1)^2,\\
+\label{eq:A-f2}
+(f_2)\quad & 6(Q+2P+1)(P^2Q+12)\le(2P^2+2PQ+Q-1)^2 .
+\end{align}
+These are incompatible for \(P\ge 3\), \(Q\ge 2\).\lean{int_ineq_false}{ClosedShapes.lean:44}
+
+\emph{Step 1: \(P<Q\).} Inequality \((f_1)\) reads \(Q^2-8P^2-8PQ-4Q+4P+7\ge 0\). If \(Q\le P\), then \(Q^2\le QP\le P^2\), so the left side is at most \(-7P^2-8PQ-4Q+4P+7<0\) for \(P\ge 3\); a contradiction.
+
+\emph{Step 2.} Expanding, \((f_2)\) says \(D\ge 0\) where
+\begin{align*}
+D&=(2P^2+2PQ+Q-1)^2-6(Q+2P+1)(P^2Q+12)\\
+&=-4P^3(Q-P)-Q^2(2P^2-4P-1)-2P^2Q-4P^2-4PQ-74Q-144P-71 .
+\end{align*}
+Here \(P^3(Q-P)\ge 0\) by Step~1, \(Q^2(2P^2-4P-1)\ge 0\) because \(2P^2-4P-1=2(P-1)^2-3\ge 5\) for \(P\ge 3\), and \(P^2Q,\,PQ\ge 0\). Hence \(D<0\), a contradiction. (Lean supplies exactly these four nonnegative products to \texttt{nlinarith}.)
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:L}(iii): the shape \(r^2st\) is empty}
+\label{sec:A-iii}
+
+Let \(r,s,t\ge 5\) be pairwise distinct primes with \(N=r^2st\). The proof has three steps: a reduction to the line \(r=p+4\) (Step~1), a kernel certificate giving \(p>10^4\) on that line (Step~2), and a divisibility argument (the case \(K=r\) of Lemma~K) that empties the line (Step~3).
+
+\subsection{Step 1: reduction to the line \(r=p+4\)}
+\label{sec:A-iii-1}
+
+\begin{proposition}
+\label{prop:A-r2st-red}
+Under the above hypotheses,\lean{r2st_reduction; F8}{R2ST.lean:96,48} \(r=p+4\) and
+\[
+(p+4)^2(p+12)^2(s-t)^2=2F(p),
+\]
+where
+\[
+F(p)=p^8+20p^7+158p^6+685p^5+2064p^4+4836p^3+7976p^2+5760p-2808 .
+\]
+\end{proposition}
+
+\begin{proof}
+\emph{(a) Preliminaries.} By Lemma~\ref{lem:A-coprime6}, \(p\ge 5\) and \(p\nmid N\); hence \(p\ne r\) (otherwise \(p\mid r^2st\)). Both \(p\) and \(r\) are odd primes.
+
+\emph{(b) Three integer identities.} From \(N=r^2st\), Lemma~\ref{lem:A-values} and~\eqref{eq:A-J}:
+\begin{align*}
+(E_0)\quad & r^2st=p^2q+12,\\
+(E_1)\quad & r(r-1)(s-1)(t-1)=p(p-1)(q-1)+12,\\
+(E_2)\quad & (r^2+r+1)(s+1)(t+1)=(p^2+p+1)(q+1)+12 .
+\end{align*}
+
+\emph{(c) Cramer's rule, cleared.} Put\lean{Qpoly, Apoly, Bpoly}{R2ST.lean:36,39,43}
+\begin{align*}
+Q(p,r)&=pr+2p-r^2+r,\\
+A(p,r)&=p^3-p^2r-p^2+2pr^3+pr^2-2pr+r^3-r^2-12,\\
+B(p,r)&=2p^4r+p^4-2p^3r^2-p^3+2p^2r^4-p^2r^2-p^2r-24pr-12p+12r^2-12r .
+\end{align*}
+Then\lean{r2st_linear}{R2ST.lean:69}
+\begin{align}
+\label{eq:A-sig}
+r\,Q\,(s+t)&=-A, &&\text{as } (-2pr-p-r+1)E_0+(pr+p+r)E_1+pr\,E_2,\\
+\label{eq:A-pi}
+r(p-r)\,Q\,st&=B, &&\text{as } (2p^2r^2+p^2-2pr-p+r^2-r)E_0-p^2(r^2+r+1)E_1-p^2r(r-1)E_2 ,
+\end{align}
+where ``as'' gives the linear combination of \(E_0,E_1,E_2\) (each read as left side minus right side) that equals the identity.
+
+\emph{(d) The discriminant identity.} Since \((s-t)^2=(s+t)^2-4st\),
+\[
+r^2(p-r)Q^2(s-t)^2=(p-r)\bigl(rQ(s+t)\bigr)^2-4rQ\bigl(r(p-r)Q\,st\bigr)=(p-r)A^2-4rQB,
+\]
+and the polynomial identity \((p-r)A^2-4rQB=H(p,r)\) holds,\lean{discriminant_identity; r2st_disc}{R2ST.lean:52,81} where
+\begin{align*}
+H(p,r)={}&p^7-3p^6r-2p^6-4p^5r^3-15p^5r^2-8p^5r+p^5\\
+&+8p^4r^4+5p^4r^3+2p^4r^2+11p^4r-24p^4\\
+&-4p^3r^6-16p^3r^5+7p^3r^4+4p^3r^3+14p^3r^2+48p^3r+24p^3\\
+&+4p^2r^7-8p^2r^6+3p^2r^5-2p^2r^4+50p^2r^3+192p^2r^2+120p^2r\\
+&-4pr^7+3pr^6+4pr^5-99pr^4+120pr^2+144p\\
+&-r^7+2r^6+47r^5-72r^4+24r^3-144r .
+\end{align*}
+(In Lean, \(H\) is defined in \path{Q_neg_positivity.lean}.\lean{H}{Q_neg_positivity.lean:22}) Hence
+\begin{equation}
+\label{eq:A-disc}
+r^2(p-r)\,Q^2(s-t)^2=H(p,r).
+\end{equation}
+
+\emph{(e) Case \(p>r\).} Write \(r=5+a\), \(p=6+a+u\) with integers \(a,u\ge 0\). Expanding,
+\begin{align*}
+A(6+a+u,5+a)&=2a^4+2a^3u+44a^3+32a^2u+358a^2+2au^2+170au+1278a\\
+&\quad+u^3+12u^2+301u+1678,\\
+Q(6+a+u,5+a)&=au+4a+7u+22,
+\end{align*}
+both with positive coefficients, so \(A>0\) and \(Q>0\).\lean{A_pos_of_gt; Q_pos_of_gt}{R2ST.lean:59,62} Then \(rQ(s+t)>0\), while~\eqref{eq:A-sig} says it equals \(-A<0\). Contradiction.
+
+\emph{(f) Case \(p<r\).} As \(p,r\) are odd, \(r-p\) is even and positive, so \(r=p+2\), \(r=p+4\) or \(r\ge p+6\).
+\begin{itemize}
+\item \(r=p+2\): write \(p=5+u\). Then \(A(5+u,7+u)=2u^4+54u^3+538u^2+2354u+3812>0\)\lean{A_pos_line_p2}{R2ST.lean:65} and \(Q(p,p+2)=p-2=3+u>0\); as in (e), \(rQ(s+t)>0>-A\). Contradiction.
+\item \(r\ge p+6\): write \(p=5+u\), \(r=11+u+v\) with \(u,v\ge 0\). The expansion of \(H(5+u,11+u+v)\) has \(50\) monomials in \(u,v\), every coefficient is at least \(4\), and the constant term is \(91908696\); hence \(H>0\).\lean{H_positive_on_region}{Q_neg_positivity.lean:32} But in~\eqref{eq:A-disc} one has \(r^2Q^2(s-t)^2\ge 0\) and \(p-r<0\), so the left side is \(\le 0\). Contradiction.
+\item \(r=p+4\): then \(H(p,p+4)=-8F(p)\)\lean{H_line_p4}{R2ST.lean:56} and \(Q(p,p+4)=-(p+12)\), so~\eqref{eq:A-disc} reads \(-4(p+4)^2(p+12)^2(s-t)^2=-8F(p)\), i.e.\ \((p+4)^2(p+12)^2(s-t)^2=2F(p)\).
+\end{itemize}
+Only the last case survives.
+\end{proof}
+
+\subsection{Step 2: the line certificate gives \(p>10^4\)}
+\label{sec:A-iii-2}
+
+\begin{proposition}
+\label{prop:A-r2st-bound}
+Under the above hypotheses, \(r=p+4\) and \(p>10^4\).\lean{P2qJumps.r2st_bound}{Main.lean:65}
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:A-r2st-red} gives \(r=p+4\). Suppose \(p\le 10^4\). Lemma~\ref{lem:A-coprime6} gives \(p\ge 5\). Put \(k=(p+4)(p+12)(s-t)\in\Z\); then \(k^2=2F(p)\) by Proposition~\ref{prop:A-r2st-red}. The kernel certificate \texttt{cert\_line} (Section~\ref{sec:C-line}) states that \(2F(p)\) is not the square of an integer for any integer \(5\le p<10001\).\lean{cert_line; lineCheck_sound}{Cert/Line.lean:18; Cert/Core.lean:108} Contradiction.
+\end{proof}
+
+\subsection{Step 3: the case \(K=r\) of Lemma~K empties the line}
+\label{sec:A-iii-3}
+
+\begin{theorem}[\(r^2st\) is impossible]
+\label{thm:A-r2st-empty}
+\(N\ne r^2st\) for pairwise distinct primes \(r,s,t\ge 5\).\lean{P2qJumps.r2st_empty}{Main.lean:92}
+\end{theorem}
+
+\begin{proof}
+Suppose \(N=r^2st\). By Proposition~\ref{prop:A-r2st-bound}, \(r=p+4\) and \(p>10^4\). From \((E_0)\) and \((E_1)\),
+\[
+r\,\bigl(rst-(r-1)(s-1)(t-1)\bigr)=r^2st-r(r-1)(s-1)(t-1)=p^2q-p(p-1)(q-1)=p\,(p+q-1),
+\]
+(the combination \(-E_0+E_1\)), so \(r\mid p(p+q-1)\). This is the case \(K=r\), \(U=rst\) of Lemma~\ref{lem:K} (\(K\,A(U)=p(p+q-1)\)); Lean proves this instance directly from \(E_0,E_1\) and does not use the statement of Lemma~\ref{lem:K}. Since \(r\) is prime and \(r=p+4>p\), \(r\nmid p\); hence
+\[
+r\mid p+q-1 .
+\]
+From \((E_0)\),
+\[
+L(p)=p^3-p^2-12=p^2(p+q-1)-r\cdot(rst),
+\]
+so \(r\mid L(p)\). Substituting \(r=p+4\) and using
+\[
+92=(p+4)(p^2-5p+20)-L(p),
+\]
+we get \(p+4\mid 92\), hence \(p+4\le 92\), i.e.\ \(p\le 88\). This contradicts \(p>10^4\).
+\end{proof}
+
+\begin{remark}
+Step~3 uses from Step~2 only that \(p+4>92\). The certificate of Step~2 is how the Lean proof excludes the primes \(5\le p\le 88\); no other argument for those primes is used.
+\end{remark}
+
+\section{Proof of Theorem~\ref{thm:L}(iv): the shape \(r^3s\)}
+\label{sec:A-iv}
+
+\begin{proposition}[Reduction]
+\label{prop:A-r3s-red}
+If \(N=r^3s\) with distinct primes \(r,s\ge 5\), then \(p<r\) and \(r^2\mid L(p)\).\lean{r3s_reduction}{R3S.lean:32}
+\end{proposition}
+
+\begin{proof}
+\emph{(a)} By Lemma~\ref{lem:A-coprime6}, \(p\ge 5\) and \(p\nmid N\), so \(p\ne r\).
+
+\emph{(b)} From Lemma~\ref{lem:A-values} and~\eqref{eq:A-J}:
+\begin{align*}
+(E_0)\quad & r^3s=p^2q+12,\\
+(E_1)\quad & r^2(r-1)(s-1)=p(p-1)(q-1)+12,\\
+(E_2)\quad & (r^3+r^2+r+1)(s+1)=(p^2+p+1)(q+1)+12 .
+\end{align*}
+
+\emph{(c)} \(E_0-E_1\) gives \(A(N)=A(n)\) in the form
+\[
+r^2(r+s-1)=p(p+q-1).
+\]
+Since \(p\ne r\) are primes, \(\gcd(p,r^2)=1\), so \(p\mid r+s-1\). Write \(r+s-1=pm\) with \(m\in\Z\). Then \(pr^2m=p(p+q-1)\), and cancelling \(p>0\),
+\[
+s=pm-r+1,\qquad q=r^2m-p+1 .
+\]
+Since \(r+s-1\ge 9>0\) and \(p>0\), \(m\ge 1\).
+
+\emph{(d) The \(\sig\)-identity.} The combination \(E_2-E_0-(r^2+r+1)\,(s-(pm-r+1))+(p+1)\,(q-(r^2m-p+1))\) gives
+\begin{equation}
+\label{eq:A-r3s-sig}
+m\,\bigl(p(r+1)-r^2\bigr)=p-r^2-r .
+\end{equation}
+
+\emph{(e) Divisibility.} The combination \(E_0-r^3\,(s-(pm-r+1))+p^2\,(q-(r^2m-p+1))\) gives
+\[
+L(p)=r^2\bigl(r(r-1)-pm(r-p)\bigr),
+\]
+so \(r^2\mid L(p)\).
+
+\emph{(f) \(p<r\).} Otherwise \(p>r\), i.e.\ \(p\ge r+1\). Then \(p(r+1)\ge(r+1)^2>r^2\), so \(D:=p(r+1)-r^2>0\). As \(m\ge 1\), \((m-1)D\ge 0\), i.e.\ \(mD\ge D\). By~\eqref{eq:A-r3s-sig}, \(p-r^2-r\ge pr+p-r^2\), i.e.\ \(0\ge pr+r>0\). Contradiction.
+\end{proof}
+
+\begin{proposition}[The bound \(p>10^4\)]
+\label{prop:A-r3s-bound}
+If \(N=r^3s\) with distinct primes \(r,s\ge 5\), then \(p<r\), \(r^2\mid L(p)\) and \(p>10^4\).\lean{P2qJumps.r3s_bound}{Main.lean:130}
+\end{proposition}
+
+\begin{proof}
+The first two claims are Proposition~\ref{prop:A-r3s-red}. Suppose \(p\le 10^4\). Lemma~\ref{lem:A-coprime6} gives \(p\ge 5\). The kernel certificate \texttt{strip\_le\_10000} (Section~\ref{sec:C-strip}) states: for every prime \(5\le p\le 10^4\), no prime \(r>p\) satisfies \(r^2\mid L(p)\).\lean{strip_le_10000}{Cert/Strip.lean:38} This contradicts \(r>p\), \(r\) prime, \(r^2\mid L(p)\).
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:L}(v): \(n>10^4\)}
+\label{sec:A-v}
+
+\begin{proposition}
+\label{prop:A-pairs}
+If \(p\ne q\) are primes with \(p^2q\le 10^4\), then~\eqref{eq:jumps} fails at \(n=p^2q\).\lean{no_jumps_p2q_le_10000}{Cert/Pairs.lean:47}
+\end{proposition}
+
+\begin{proof}
+From \(q\ge 1\), \(p^2\le p^2q\le 10^4\), so \(p\le 100\); and \(q\,p^2\le 10^4\) gives \(q<\lfloor 10^4/p^2\rfloor+1\). Lean splits into the cases \(p=0,1,\dots,100\). Non-prime \(p\) contradict the hypothesis. For each of the \(25\) primes \(p\le 97\), the kernel certificate \texttt{cert\_pair\_}\(p\) (Section~\ref{sec:C-pairs}) states: for every prime \(q<\lfloor 10^4/p^2\rfloor+1\) with \(q\ne p\), \(\sig(p^2q+12)\ne(p^2+p+1)(q+1)+12\). By Lemma~\ref{lem:A-values}, \((p^2+p+1)(q+1)+12=\sig(p^2q)+12\), so the \(\sig\)-jump fails and~\eqref{eq:jumps} fails.\lean{pairFastChunk_sound}{Cert/Core.lean:627} Only the \(\sig\)-jump is evaluated; the \(\ph\)-jump is not needed.
+\end{proof}
+
+Clause (v) of Theorem~\ref{thm:L} is the contrapositive: under~\eqref{eq:jumps}, \(n=p^2q>10^4\).
+
+\section{Beyond Theorem~\ref{thm:L}: four prime factors and the shapes \(r^3s\), \(r^3st\)}
+\label{sec:A-beyond}
+
+The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}. Except for Theorem~\ref{thm:A-r3st-empty} (the shape \(r^3st\)), they are clauses (iv), (vi) and (vii) of the separately locked Theorem~\ref{thm:L2} (Section~\ref{sec:A-L2}).
+
+\subsection{Four or more distinct prime factors}
+\label{sec:A-omega4}
+
+Write \(\delta(m)=\sig(m)+\ph(m)-2m\). Under~\eqref{eq:jumps}, Lemma~\ref{lem:A-jumps} gives \(\delta(N)=(p^2+p+1)(q+1)+p(p-1)(q-1)+24-2N=2p+q+1\).
+
+\begin{lemma}
+\label{lem:A-2M}
+For every \(M\ge 1\), \(2M\le\sig(M)+\ph(M)\).\lean{P2qJumps.two_mul_le_sigma_add_totient}{Omega4.lean:27}
+\end{lemma}
+
+\begin{proof}
+Gauss's identity \(\sum_{d\mid M}\ph(d)=M\) gives \(M-\ph(M)=\sum_{d\mid M,\,d<M}\ph(d)\le\sum_{d\mid M,\,d<M}d=\sig(M)-M\).
+\end{proof}
+
+\begin{lemma}[Pair inequality]
+\label{lem:A-pair}
+If \(a\ne b\) are primes dividing \(N\ge 1\), then \(2N\le\delta(N)\,ab\).\lean{P2qJumps.delta_pair}{Omega4.lean:76}
+\end{lemma}
+
+\begin{proof}
+Write \(N=a^{i+1}b^{j+1}M\) with \(a,b\nmid M\), and put \(\alpha=a^i\), \(\beta=b^j\), \(S=\sig(M)\), \(F=\ph(M)\). By multiplicativity, \(\ph(N)=\alpha(a-1)\beta(b-1)F\), and \(\sig(N)=\sig(a^{i+1})\sig(b^{j+1})S\) with \(\sig(a^{i+1})\ge a^i+a^{i+1}=\alpha(a+1)\)\lean{P2qJumps.sigma_prime_pow_succ_ge}{Omega4.lean:37} and likewise for \(b\). Lemma~\ref{lem:A-2M} gives \(S+F\ge 2M\), and \(F\le M\), so \(S\ge F\). The identity
+\[
+(a+1)(b+1)S+(a-1)(b-1)F-2abM-2M=(ab+1)(S+F-2M)+(a+b)(S-F)
+\]
+shows \((a+1)(b+1)S+(a-1)(b-1)F-2abM\ge 2M\). Multiplying by \(\alpha\beta>0\) and then by \(ab\) gives \(\delta(N)\,ab\ge 2\alpha\beta M\,ab=2N\).\lean{P2qJumps.delta_pair_core}{Omega4.lean:44}
+\end{proof}
+
+\begin{lemma}
+\label{lem:A-four}
+If \(N\ge 1\) has four pairwise distinct prime factors \(a,b,c,d\), then \(\delta(N)^2\ge 4N\).\lean{P2qJumps.four_primes_delta_sq}{Omega4.lean:111}
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:A-pair} for the pairs \((a,b)\) and \((c,d)\) gives \(4N^2\le\delta(N)^2\,abcd\). The four primes are pairwise coprime, so \(abcd\mid N\) and \(abcd\le N\). Hence \(4N^2\le\delta(N)^2N\), and \(\delta(N)^2\ge 4N\).
+\end{proof}
+
+\begin{theorem}[\(\omega(N)\ge 4\) constraints]
+\label{thm:A-omega4}
+Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints}{Omega4.lean:164}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: \(q\ge 3p^2\).} By Lemma~\ref{lem:A-four} and \(\delta(N)=2p+q+1\), \((2p+q+1)^2\ge 4(p^2q+12)\), with \(p,q\ge 5\) by Proposition~\ref{prop:A-preamble}. Suppose \(q<3p^2\). The identity
+\[
+(2p+q+1)^2-4(p^2q+12)=(q-5)(q-3p^2)-(p^2-4p-7)q-11p^2+4p-47
+\]
+has \((q-5)(q-3p^2)\le 0\). If \(p=5\) the remaining terms are \(2q-302<0\) since \(q<75\); if \(p\ge 6\) then \(p^2-4p-7\ge 5\) and they are negative. So the left side is negative, a contradiction.\lean{P2qJumps.q_ge_three_p_sq_core}{Omega4.lean:148}
+
+\textit{Step 2: every prime factor exceeds \(p\).} Let \(r\mid N\) be prime with \(r\le p\). By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6pq)=1\), so \(r\ne p\) and \(r\le p-1\). Lemma~\ref{lem:A-totdiv} gives \(t:=\lfloor N/r\rfloor\le N-\ph(N)=p(p+q-1)\), and \(N<r(t+1)\le(p-1)\bigl(p(p+q-1)+1\bigr)=p^3+p^2q-2p^2-pq+2p-1\). Hence \(pq<p^3-2p^2+2p-13<p^3\), so \(q<p^2\), contradicting Step~1.
+
+Finally, \(N>p^2q\ge 3p^4\).
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-omega4} proves the two \(\omega(N)\ge 4\) constraints of the author's theorem block (``every prime factor of \(N\) exceeds \(p\)'' and ``\(q>p-6\)''; indeed \(q\ge 3p^2\)). It also implies that, when \(\omega(N)\ge 4\), no prime factor of \(N\) equals~\(5\) unless \(p<5\), which Proposition~\ref{prop:A-preamble} excludes; for \(p=7\) this removes the prime~\(5\) from the squarefree descent of Appendix~\ref{app:p7}.
+\end{remark}
+
+\subsection{The shape \(r^3s\) is empty}
+\label{sec:A-r3s-empty}
+
+\begin{theorem}
+\label{thm:A-r3s-empty}
+Assume~\eqref{eq:jumps}. Then \(N\) is not of the form \(r^3s\) with distinct primes \(r,s\).\lean{P2qJumps.r3s_empty}{R3SEmpty.lean:112}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6)=1\), so \(r,s\ge 5\). Proposition~\ref{prop:A-r3s-red} gives \(p<r\); put \(k=r-p\ge 1\). Let \(E_0,E_1,E_2\) be the identities \(r^3s=p^2q+12\), \(r^2(r-1)(s-1)=p(p-1)(q-1)+12\) and \((r^3+r^2+r+1)(s+1)=(p^2+p+1)(q+1)+12\) (Lemma~\ref{lem:A-jumps} with \(\ph,\sig\) of \(r^3s\)).
+
+\textit{Step 2: master equation.} With \(D=pr+p-r^2\), \(\alpha=-p^2r^2-p^2r-p^2+pr^3+r^3\) and \(\beta=p^2r^2-pr^3\), the combination \(D\,E_0+\alpha(E_0-E_1)+\beta(E_2-E_0)\) eliminates \(s\) and \(q\) and gives \(H(p,r)=0\), where \(H(p,p+k)=G(p,k)\) with
+\begin{align*}
+G(p,k)={}&-p^5+(k^2-6k+2)p^4+(4k^3-12k^2+4k-1)p^3+(6k^4-12k^3+4k^2)p^2\\
+&+(4k^5-6k^4+k^3+12k-12)p+(k^6-k^5+12k^2).
+\end{align*}
+(The identity is checked by \texttt{linear\_combination}.)
+
+\textit{Step 3: \(G(p,k)<0\) for \(p\ge k^2-2k+4\).}\lean{P2qJumps.Gr3s_neg}{R3SEmpty.lean:32} Substituting \(p=k^2-2k+4+u\), \(k=1+w\) with \(u,w\ge 0\), \(-G\) becomes a polynomial in \(u,w\) with \(33\) positive integer coefficients and constant term \(630\).
+
+\textit{Step 4: \(G(p,k)>0\) for \(k\ge 6\) and \(1\le p\le c:=k^2-2k+3\).}\lean{P2qJumps.Gr3s_pos}{R3SEmpty.lean:56} For \(k\ge 6\) every coefficient of \(G\) other than the leading \(-1\) is nonnegative, so
+\[
+G(p,k)\,c^5-G(c,k)\,p^5=\sum_{i=0}^{4}a_i\,p^ic^i\bigl(c^{5-i}-p^{5-i}\bigr)\ge 0,
+\]
+where \(a_i\ge 0\) is the coefficient of \(p^i\). Moreover \(G(c,k)>0\): with \(k=6+w\) it equals \(w^8+40w^7+698w^6+6918w^5+42383w^4+163055w^3+379443w^2+475458w+230472\).\lean{P2qJumps.Gr3s_at_c_pos}{R3SEmpty.lean:46} Hence \(G(p,k)c^5\ge G(c,k)p^5>0\).
+
+\textit{Step 5: \(1\le k\le 5\).} Then \(2\le p\le k^2-2k+3\le 18\), and \(G(p,k)\ne 0\) at each of these finitely many points by direct evaluation.\lean{P2qJumps.Gr3s_ne_zero}{R3SEmpty.lean:101}
+
+Steps 3--5 show \(G(p,k)\ne 0\) for all integers \(k\ge 1\), \(p\ge 2\), contradicting Step~2.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-r3s-empty} makes Theorem~\ref{thm:L}(iv) vacuous: its hypothesis \(N=r^3s\) never holds. It also replaces the \(a=3\) case of the written proof of Theorem~\ref{thm:A}, whose polynomial in \(p\) has degree~\(5\), not~\(6\) as stated in v1.3. The twist link between \(r^3s\) and the curves \(E^{(k)}\) (Part~\ref{part:B}) is no longer needed for any exclusion.
+\end{remark}
+
+\subsection{Theorem~A: prime powers and \(r^as\)}
+\label{sec:A-thmA}
+
+\begin{proposition}
+\label{prop:A-primepower}
+Assume~\eqref{eq:jumps}. Then \(N\ne r^k\) for every prime \(r\) and \(k\ge 1\).\lean{P2qJumps.N_ne_prime_pow}{TheoremA.lean:30}
+\end{proposition}
+
+\begin{proof}
+Write \(k=j+1\). Then \(\ph(N)=r^j(r-1)\), and the totient identity with \(r^{j+1}=p^2q+12\) gives \(r^j=p(p+q-1)\). Multiplying by \(r\): \(p\bigl(r(p+q-1)-pq\bigr)=r^{j+1}-p^2q=12\). So \(p\mid 12\), and no prime \(5\le p\le 12\) divides \(12\) (Proposition~\ref{prop:A-preamble} gives \(p\ge 5\)).
+\end{proof}
+
+\begin{theorem}[Theorem~A]
+\label{thm:A-ras}
+Assume~\eqref{eq:jumps}. Then \(N\ne r^as\) for all distinct primes \(r,s\) and all \(a\ge 2\). (Since \(r^as=s\,r^a\), this also excludes \(rs^a\).)\lean{P2qJumps.N_ne_ras}{TheoremA.lean:62}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6pq)=1\); so \(r,s\ge 5\) and \(r\ne p\). Write \(a=b+1\) and \(R=r^b\). Then \(\ph(N)=R(r-1)(s-1)\), \(\sig(N)=G(s+1)\) with \(G=\sig(r^{b+1})\), and \(G(r-1)=r^2R-1\) (geometric sum).\lean{P2qJumps.sigma_prime_pow_mul_sub_one}{TheoremA.lean:52} The identities are \(E_0: Rrs=p^2q+12\), \(E_1: R(r-1)(s-1)=p(p-1)(q-1)+12\), \(E_2: G(s+1)=(p^2+p+1)(q+1)+12\).
+
+\textit{Step 2: the parametrization.} \(E_0-E_1\) gives \(R(r+s-1)=p(p+q-1)\). Since \(\gcd(p,R)=1\), \(p\mid r+s-1\); write \(r+s-1=pm\). Then \(s=pm-r+1\), \(q=Rm-p+1\) (cancel \(p\)), and \(m\ge 1\) because \(r+s-1>0\). Substituting into \(E_0\):
+\[
+L(p)=p^3-p^2-12=R\bigl(r(r-1)-pm(r-p)\bigr).
+\]
+Substituting into \((r-1)(E_2-E_0)\) and using \(G(r-1)=r^2R-1\):
+\[
+m\,Q_1=P_1,\qquad Q_1=(p-r+1)R-p,\quad P_1=(p+1)(r-1)-rR+1.
+\]
+
+\textit{Step 3: \(a=2\).} Then \(R=r\) and \(Q_1=P_1\), so \((m-1)Q_1=0\). If \(Q_1=0\) then \(r(p-r+1)=p\), so \(r\mid p\), impossible. Hence \(m=1\), \(s=p-r+1\) and \(q=r-p+1\); with \(s,q\ge 5\) this needs both \(p-r\ge 4\) and \(r-p\ge 4\), a contradiction.
+
+\textit{Step 4: \(a\ge 3\), \(r<p\).} Now \(R\ge r^2>r\), so \(Q_1-P_1=(p+1)(R-r)>0\). If \(P_1>0\), then \(Q_1>P_1>0\) and \(mQ_1\ge Q_1>P_1\), contradicting \(mQ_1=P_1\). If \(P_1\le 0\), then \(mQ_1\le 0\) forces \(Q_1\le 0\), i.e.\ \((p-r+1)R\le p\); as \(p-r+1\ge 2\), \(2R\le p\). Then \(2P_1\ge 2(p+1)(r-1)-rp+2=p(r-2)+2r>0\), a contradiction.
+
+\textit{Step 5: \(a=3\), \(r>p\).} This is Theorem~\ref{thm:A-r3s-empty}.
+
+\textit{Step 6: \(a\ge 4\), \(r>p\).} Then \(R\ge r^3>p^3\). Since \(L(p)>0\) (as \(p^2(p-1)\ge 100\)), the factor \(r(r-1)-pm(r-p)\) is a positive integer, so \(L(p)\ge R\ge r^3>p^3>L(p)\), a contradiction.
+\end{proof}
+
+\begin{remark}
+The written v1.3 proof of Theorem~\ref{thm:A} (Part~\ref{part:B}) is correct in its parametrization and its \(r<p\), \(a\ge 3\) case (the identity \(mQ_1=P_1\) and \(Q_1-P_1=(p+1)(R-r)\) were checked symbolically). Two changes follow the Lean proof: the case \(r>p\), \(a\ge 4\) uses the size bound \(R\mid L(p)<p^3<r^3\le R\) instead of the sign argument on \(E=k^2-k-r+1\); and the case \(a=3\), \(r>p\) uses Theorem~\ref{thm:A-r3s-empty} (degree~\(5\), not~\(6\)). The case \(a=2\) follows the parametrization rather than the \(U,V\) elimination of Proposition~\ref{prop:r2s}; both are correct.
+\end{remark}
+
+\subsection{The shape \(r^3st\) is empty}
+\label{sec:A-r3st-empty}
+
+\begin{theorem}
+\label{thm:A-r3st-empty}
+Assume~\eqref{eq:jumps}. Then \(N\) is not of the form \(r^3st\) with pairwise distinct primes \(r,s,t\). There is no bound on \(p\).\lean{P2qJumps.r3st_empty}{R3ST.lean:217}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(p,q\ge 5\) and \(\gcd(N,6)=1\), so \(r,s,t\ge 5\). Put \(S=s+t\), \(P=st\). Then \(S\ge 10\), \(P>0\) and \(4P\le S^2\). With \(\ph(r^3st)=r^2(r-1)(s-1)(t-1)\) and \(\sig(r^3st)=(r^3+r^2+r+1)(s+1)(t+1)\),\lean{P2qJumps.totient_sigma_r3st}{R3ST.lean:62} Lemma~\ref{lem:A-jumps} gives three identities, linear in \((S,P,q)\):
+\begin{align*}
+E_0&:\ r^3P=p^2q+12,\\
+E_1&:\ r^2(r-1)(P-S+1)=p(p-1)(q-1)+12,\\
+E_2&:\ (r^3+r^2+r+1)(P+S+1)=(p^2+p+1)(q+1)+12.
+\end{align*}
+
+\textit{Step 2: three consequences.} Each is an exact \texttt{linear\_combination} of \(E_0,E_1,E_2\).
+\begin{enumerate}
+\item[(a)] (\(\delta\)-identity; \((2p^2+1)E_0-p^2E_1-p^2E_2\).) \(P\bigl(r^3-p^2(r+1)\bigr)=p^2(2r^2+r+1)S+p^2(2r^3+r+1)-2p^3-p^2+12\).
+\item[(b)] (\(X\)-identity; \((p-1)E_0-pE_1\).) \(r^2X=L(p):=p^3-p^2-12\), where \(X=p(r-1)(S-1)-(r-p)P\).
+\item[(c)] (Cramer's rule.) \(r^2D\,S=N_S\) and \(D\,q=N_Q\), where
+\begin{align*}
+D(p,r)={}&p^2r^2+p^2r+2p^2-2pr^3-pr^2-pr+r^4-r^3,\\
+N_S(p,r)={}&-p^4r-p^4+2p^3r^2+p^3r+p^3-2p^2r^5-p^2r^4-2p^2r^3+p^2r^2\\
+&+2pr^6+pr^4-pr^3+12pr+12p+r^6-r^5-12r^2,\\
+N_Q(p,r)={}&2p^2r^3+p^2r^2+p^2r-2pr^4-pr^2-pr+2r^7-r^4-r^3-12r^2-12r-24.
+\end{align*}
+The multipliers for \(D\,q=N_Q\) are \(2(r-1)(r+1)(r^2+1)\), \(-r(r+1)(r^2+1)\), \(-r^3(r-1)\).
+\end{enumerate}
+
+\textit{Step 3: \(p<r\).} Suppose \(r\le p\). Then \(r^3<p^2(r+1)\), so the left side of (a) is negative, and (a) gives \(p^2(2r^2+r+1)S<2p^3+p^2-12<p^2(2p+1)\). Hence \((2r^2+r+1)S<2p+1\), so \(r^2S\le p\) and \(r^4S^2\le p^2\). With \(4P\le S^2\) this gives \(4r\cdot r^3P\le p^2\), that is \(4r(p^2q+12)\le p^2\) by \(E_0\). This is false for \(r,q\ge 5\). Put \(k=r-p\ge 1\).
+
+\textit{Step 4: \(0<X<p\).} Since \(p\ge 5\), \(L(p)>0\), so \(X>0\) by (b). Also \(r^2p-L(p)=2kp^2+k^2p+p^2+12>0\), so \(X<p\).
+
+\textit{Step 5: \(5kS\ge 16p(r-1)\).} From the definition of \(X\), \(kP=p(r-1)(S-1)-X\). With \(4P\le S^2\) and \(X<p\le p(r-1)\) this gives \(4p(r-1)(S-2)\le kS^2\). If \(5kS<16p(r-1)\), multiplying by \(S>0\) and using \(p(r-1)(S-10)\ge 0\) contradicts the previous inequality.
+
+\textit{Step 6: \(D>0\) and \(G\ge 0\).} With \(p=5+a\), \(k=1+m\) (\(a,m\ge 0\)), \(N_Q\) expands to a polynomial in \(a,m\) with positive coefficients, so \(N_Q>0\).\lean{P2qJumps.NQr3st_pos}{R3ST.lean:82} As \(q>0\) and \(Dq=N_Q\), \(D>0\). Let
+\[
+G(p,k)=5k\,N_S(p,p+k)-16p(p+k-1)(p+k)^2D(p,p+k).
+\]
+By (c), \(G=r^2D\bigl(5kS-16p(r-1)\bigr)\), so \(G\ge 0\) by Step~5.
+
+\textit{Step 7: the band.} If \(k\ge 48\), then \(k^2<3p\). Indeed, suppose \(k\ge 48\) and \(3p\le k^2\). Write \(p=5+a\), \(k=48+m\) and
+\[
+\Lambda=16a^6+48a^5m+4288a^5+461936a^4+24283264a^3\ge 0.
+\]
+The polynomial \(-3G-\Lambda(k^2-3p)\) in \(a,m\) has positive coefficients after expansion, so it is positive. As \(\Lambda(k^2-3p)\ge 0\), this gives \(G<0\),\lean{P2qJumps.Gr3st_neg}{R3ST.lean:89} which contradicts Step~6. (\(\Lambda\) was found by linear programming. The proof uses only the expansion.)
+
+\textit{Step 8: the parameter \(i\).} Put \(i=X-p+1+2k\). Then (b) reads \((p+k)^2(p-1-2k+i)=L(p)\), and expanding gives
+\[
+i(p+k)^2=(3k^2+2k)p+2k^3+k^2-12.\tag{\(\ast\)}
+\]
+The right side is positive, so \(i\ge 1\). By Step~4 (\(X<p\)), \(i\le 2k\). If \(k^2<3p\), then \(i\le 9\): for \(i\ge 10\) the left side of \((\ast)\) is at least \(10(p+k)^2\), while the right side is less than \(9p^2+8kp+3p\) when \(k^2<3p\).
+
+\textit{Step 9: a square.} Regard \((\ast)\) as the quadratic \(ip^2+(2ik-3k^2-2k)p+(ik^2-2k^3-k^2+12)=0\). Then \(y=2ip+2ik-3k^2-2k\) satisfies \(y^2=\Delta_i(k)\) (\(4i\) times \((\ast)\)), where
+\[
+\Delta_i(k)=9k^4+(12-4i)k^3+(4-4i)k^2-48i.
+\]
+
+\textit{Step 10: \(k\ge 298\) (Runge).} Then \(k\ge 48\), so \(1\le i\le 9\) by Steps~7 and~8. Put \(H=81k^2+9(6-2i)k-2i(3+i)\). Then
+\[
+(27y)^2=729\,\Delta_i(k)=H^2-4i\bigl(i^3+6i^2+9i+8748+18k(i^2-9)\bigr).
+\]
+For \(i=1,2\) and \(k\ge 298\) the bracket is negative and \(H^2<(27y)^2<(H+1)^2\). For \(3\le i\le 9\) the bracket is positive and \((H-1)^2<(27y)^2<H^2\). Either way \((27y)^2\) lies strictly between consecutive squares, a contradiction.\lean{P2qJumps.Dlt_not_sq}{R3ST.lean:118}
+
+\textit{Step 11: \(k\le 297\) (kernel certificate).} If \(k\le 47\), then \(1\le i\le 2k\le 94\). If \(48\le k\le 297\), then \(1\le i\le 9\). The certificate \texttt{cert\_r3st} (\texttt{decide +kernel}) checks every such pair \((i,k)\): either \(\Delta_i(k)<0\), or \(\Delta_i(k)\) is not a perfect square, or \((i,k)\) is one of \((2,2)\), \((2,5)\), \((4,8)\), \((5,4)\), \((27,15)\).\lean{P2qJumps.cert_r3st; P2qJumps.r3stCheck_sound}{R3ST.lean:166,168} Substituting these into \((\ast)\) gives:\lean{P2qJumps.r3st_exceptions}{R3ST.lean:194}
+\begin{itemize}
+\item \((2,2)\): \(2p(p-4)=0\);
+\item \((2,5)\): \((p+3)(2p-71)=0\);
+\item \((5,4)\): \((p+2)(5p-26)=0\);
+\item \((27,15)\): \(3(p+8)(9p-37)=0\).
+\end{itemize}
+None of these has an integer root \(p\ge 5\). For \((4,8)\), \(4(p-41)(p+5)=0\) gives \(p=41\), so \(r=p+8=49=7^2\), which is not prime.
+
+Steps 10 and 11 exclude every \(k\ge 1\), which contradicts Step~3.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-r3st-empty} is not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. Adding it to Theorem~\ref{thm:L2} would change that locked statement, so it would need a new lock and the author's approval.
+\end{remark}
+
+\section{Theorems B, D, E, Lemma K and Corollary F1 in Lean}
+\label{sec:A-BDE}
+
+The results of this section were proved in Lean in the earlier audited packages \texttt{P2qStructural}, \texttt{P2qExtensions}, \texttt{P2qTheoremD} and \texttt{P2qExclusions} (Lean v4.22.0). In v1.4 these packages are ported into this repository as \path{P2qJumps/Ext/} (toolchain v4.26.0; four proof steps were adapted to the newer Mathlib, no statement changed) and rebuilt here. Those packages assumed \(p\ge 5\), \(q\ge 5\) and, for E(i), \(\omega(N)\ge 2\). Here these hypotheses are discharged by Proposition~\ref{prop:A-preamble} and Proposition~\ref{prop:A-primepower}, so every statement below assumes only~\eqref{eq:jumps}. All are kernel-checked with the standard axioms only. They are not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. Write \(U=\mathrm{rad}(N)\) (the product of the distinct primes dividing \(N\)), \(K=N/U\), \(P=\prod_{\ell\mid N}(\ell-1)\), \(L(p)=p^3-p^2-12\), \(\delta(x)=\sig(x)+\ph(x)-2x\) and \(\omega(N)=\#\{\ell\text{ prime}:\ell\mid N\}\).
+
+\subsection{Shared lemmas}
+
+\begin{lemma}[\(\omega(N)\ge 2\)]
+\label{lem:A-omega2}
+Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lean{P2qJumps.two_le_omega}{TheoremsBE.lean:32}
+\end{lemma}
+\begin{proof}
+\(N>1\), so \(\omega(N)\ge 1\). If \(\omega(N)=1\), then \(N\) is a prime power \(r^k\) with \(k\ge 1\) (Mathlib: \texttt{isPrimePow\_iff\_card\_primeFactors\_eq\_one}), which Proposition~\ref{prop:A-primepower} excludes.
+\end{proof}
+
+\begin{lemma}[L1, Lemma Q and \(\delta(N)\)]
+\label{lem:A-L1Q}
+\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1}{Ext/Extensions/DeltaQ.lean:41}
+\textup{(b)} \(\delta(p^2q)=q+2p+1\) and \(Q(p^2q)=p^4+pq^2-p\), where \(Q(x)=x^2-\sig(x)\ph(x)\).\lean{P2qExtensions.delta_Q_p2q}{Ext/Extensions/DeltaQ.lean:91}
+\textup{(c)} Under~\eqref{eq:jumps}, \(\delta(N)=\delta(n)=q+2p+1\) and \(Q(N)=Q(n)-12\delta(n)=p^4+pq^2-p-12(2p+q+1)>0\).\lean{P2qExtensions.lemmaQ; P2qJumps.lemmaQ_formula}{Ext/Extensions/DeltaQ.lean:100; TheoremsBE.lean:214}
+\textup{(d)} If \(r\) is prime and \(r^2\mid N\), then \(N\le r^2(q+2p+1)\).\lean{P2qExtensions.repeated_prime_bound}{Ext/Extensions/RepeatedSize.lean:44}
+\end{lemma}
+\begin{proof}
+(a) \(\sig(x)=\sum_{ab=x}b\) and \(\ph(x)=\sum_{ab=x}\mu(a)b\); the terms with \(a=1\) give \(2x\). Each \(1+\mu(a)\ge 0\).
+(b) From \(\ph(p^2q)=p(p-1)(q-1)\) and \(\sig(p^2q)=(p^2+p+1)(q+1)\) by expansion.
+(c) Adding the two jumps gives \(\delta(N)=\delta(n)\). Expanding \(Q(N)=(n+12)^2-(\ph(n)+12)(\sig(n)+12)\) gives \(Q(n)-12\delta(n)\). Positivity: with \(p,q\ge 5\) (Proposition~\ref{prop:A-preamble}) the products of the nonnegative numbers \(p-5\), \(q-5\) supplied to \texttt{nlinarith} bound the polynomial below by a positive number.
+(d) The pair \((a,b)=(r^2,N/r^2)\) occurs in (a) with \(\mu(r^2)=0\), so \(\delta(N)\ge N/r^2\); by (c), \(\delta(N)=q+2p+1\).\lean{P2qExtensions.sq_mul_delta_ge}{Ext/Extensions/RepeatedSize.lean:21}
+\end{proof}
+
+\begin{lemma}[Lemma K]
+\label{lem:A-K}
+Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qExclusions.setupK; P2qJumps.lemmaK}{Ext/Exclusions/Setup.lean:56; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
+\end{lemma}
+\begin{proof}
+\textit{Step 1.} \(N=UK\) and \(\ph(N)=KP\).\lean{P2qExclusions.totient_eq_KP}{Ext/Exclusions/Setup.lean:31} The totient jump and \(N=p^2q+12\) give \(K(U-P)=N-\ph(N)=p(p+q-1)\).
+\textit{Step 2.} \(p\nmid N\) (as \(p\mid N\) would force \(p\mid 12\)), so \(p\nmid K\), and since \(p\) is prime, \(p\mid U-P\). Write \(U-P=pm\). Cancelling \(p\) gives \(Km=p+q-1\).
+\textit{Step 3.} \(P<U\) since \(N>1\), so \(pm>0\) and \(m\ge 1\).
+\textit{Step 4.} \(K(p^2m-U)=p^2(p+q-1)-N=p^3-p^2-12\), a linear combination of \(N=UK\), \(N=p^2q+12\) and \(Km=p+q-1\).
+\textit{Step 5.} Let \(r^{e+1}\mid N\). Write \(U=rM\) with \(M\) the product of the other primes of \(N\), so \(\gcd(r,M)=1\). From \(r^{e+1}\mid N=rMK\), cancelling \(r\) gives \(r^e\mid MK\), and \(\gcd(r^e,M)=1\) gives \(r^e\mid K\).
+\end{proof}
+
+\subsection{Theorem B}
+
+\begin{theorem}[Theorem~B]
+\label{thm:A-B}
+Assume~\eqref{eq:jumps}. Then \(N\) is not powerful with \(\omega(N)\ge 2\).\lean{P2qJumps.theoremB}{TheoremsBE.lean:46} Together with Lemma~\ref{lem:A-omega2}: \(N\) is not powerful.\lean{P2qJumps.N_not_powerful}{TheoremsBE.lean:54}
+\end{theorem}
+\begin{proof}
+Suppose \(\ell^2\mid N\) for every prime \(\ell\mid N\), and \(\omega(N)\ge 2\). Take \(m\) from Lemma~\ref{lem:A-K}, and put \(s=\sum_{\ell\mid N}U/\ell\).
+\textit{Step 1 (pair bound).} For powerful \(N\), \(\delta(N)\ge N\bigl(\sum_{\ell\mid N}1/\ell\bigr)^2\): in Lemma~\ref{lem:A-L1Q}(a), the terms \(a=\ell^2\) (\(\mu=0\)) and \(a=\ell\ell'\) with \(\ell<\ell'\) (\(\mu=1\), weight \(2\)) are present because \(N\) is powerful.\lean{P2qExclusions.delta_ge_pairs}{Ext/Exclusions/Pairs.lean:71} Multiplying by \(U\) and using \(N=UK\), \(s=U\sum 1/\ell\): \(Ks^2\le\delta(N)\,U=(Km+p+2)U\), since \(\delta(N)=q+2p+1=Km+p+2\) by Lemma~\ref{lem:A-L1Q}(c) and \(Km=p+q-1\).
+\textit{Step 2 (L3).} For \(\omega(N)\ge 2\), \(U+1\le s+P\) (strict union bound \(1-\prod(1-1/\ell)<\sum1/\ell\), multiplied by \(U\)).\lean{P2qExclusions.lemmaL3}{Ext/Exclusions/TheoremB.lean:62} With \(U-P=pm\): \(s\ge pm+1\) and, as \(P\ge 1\), \(U\ge pm+1\).
+\textit{Step 3 (\(U\le K\)).} Powerful gives \(U^2\mid N=UK\), so \(U\mid K\) and \(U\le K\).\lean{P2qExclusions.rad_sq_dvd}{Ext/Exclusions/TheoremB.lean:21}
+\textit{Step 4 (integer core).}\lean{P2qExclusions.B_arith}{Ext/Exclusions/TheoremB.lean:78} From \(K(p^2m-U)=L(p)>0\): \(K>0\) and \(p^2m-U>0\). From Steps 1--2, \(K(pm+1)^2\le Ks^2\le(Km+p+2)U<(Km+p+2)p^2m\); expanding, \(K(2pm+1)<(p+2)p^2m\), hence \(2K<p(p+2)\). By Step 3, \(L(p)=K(p^2m-U)\ge g(U):=U(p^2m-U)\).
+If \(U+pm+1\le p^2m\): \(g(U)-g(pm+1)=(U-pm-1)(p^2m-U-pm-1)\ge 0\), and \(g(pm+1)-(p+1)(p^2-p-1)=p(m-1)(mp^2-mp+p^2-2)\ge 0\), so \(L(p)\ge(p+1)(p^2-p-1)=L(p)+p^2-2p+11>L(p)\), a contradiction.
+Otherwise \(2U<p(p+2)\) (from \(U\le K\) and \(2K<p(p+2)\)) and \(p^2m\le 2U+p(p+2)-p^2m\). The identity \(4g(U)-c(2p^2m-c)=(c-2U)(2U+c-2p^2m)\) with \(c=p(p+2)\) gives \(4g(U)\ge c(2p^2m-c)\ge c(2p^2-c)\) (\(m\ge 1\)), while \(c(2p^2-c)-4L(p)=p^3(p-4)+48>0\). So \(4L(p)\ge 4g(U)>4L(p)\), a contradiction.
+\end{proof}
+
+\subsection{Theorem E}
+
+\begin{theorem}[Theorem~E]
+\label{thm:A-E}
+Assume~\eqref{eq:jumps} and write \(\delta=q+2p+1\). Let \(r,r_1,r_2,t\) and \(a,b,c\) denote primes.
+\begin{enumerate}
+\item[\textup{(i)}] \(r^4\nmid N\).\lean{P2qJumps.theoremE_i}{TheoremsBE.lean:60}
+\item[\textup{(ii)}] If \(r_1\ne r_2\), \(r_1^2,r_2^2\mid N\), and \(t\mid N\) with \(t\ne r_1,r_2\), then \(q>5p^2-4p-3\).\lean{P2qJumps.theoremE_ii}{TheoremsBE.lean:68}
+\item[\textup{(iii)}] There are no pairwise distinct \(a,b,c\) with \(a^2,b^2,c^2\mid N\).\lean{P2qJumps.theoremE_iii}{TheoremsBE.lean:78}
+\item[\textup{(iv)}] Under the hypotheses of \textup{(ii)}: \(r_1^3\nmid N\) (and likewise \(r_2^3\nmid N\));\lean{P2qJumps.theoremE_iv}{TheoremsBE.lean:88} \(r_1r_2\mid L(p)\);\lean{P2qJumps.theoremE_iv_dvd}{TheoremsBE.lean:138} \(N\le r_i^2\delta\);\lean{P2qJumps.theoremE_iv_size}{TheoremsBE.lean:151} and \(N/\delta>\sqrt{L(p)}\).\lean{P2qJumps.theoremE_iv_sqrt}{TheoremsBE.lean:235}
+\item[\textup{(v)}] If \(r^3\mid N\), then \(r^2\mid L(p)\).\lean{P2qJumps.theoremE_v}{TheoremsBE.lean:129}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+By Proposition~\ref{prop:A-preamble}, \(p,q\ge 5\) and every prime factor of \(N\) is \(\ge 5\).\lean{P2qExclusions.prime_factor_ge_five}{Ext/Exclusions/TheoremE.lean:65} Two facts are used throughout. (F1) If \(d\mid N\) and \(d\mid\ph(N)\), then \(d\mid L(p)\), because \((p-1)N-p\ph(N)=L(p)\);\lean{P2qStructural.phi_elim}{Ext/Structural/Basic.lean:78} as \(L(p)>0\), then \(d\le L(p)<p^3\).\lean{P2qExclusions.le_L}{Ext/Exclusions/TheoremE.lean:91} (F2) Lemma~\ref{lem:A-L1Q}(d): \(r^2\mid N\Rightarrow N\le r^2\delta\).
+
+\textit{(ii).} Since \(r_1^2r_2^2t\mid N\) and \(t\ge 5\): \(5r_1^2r_2^2\le N\). By (F2) twice, \(N^2\le r_1^2r_2^2\delta^2\), so \(5N\cdot N\le N\delta^2\) and \(5N\le\delta^2\), i.e.\ \(5(p^2q+12)\le(q+2p+1)^2\). If \(q\le 5p^2-4p-3\), \texttt{nlinarith} with \((q-5)(5p^2-4p-3-q)\ge 0\) and \((p-5)(q-5)\ge 0\) contradicts this.\lean{P2qExclusions.E_ii_arith}{Ext/Exclusions/TheoremE.lean:24}
+
+\textit{(iii).} By (ii) (with \(t=c\)), \(q>5p^2-4p-3\). \(abc\) divides \(N\) and \(\ph(a^2b^2c^2)\mid\ph(N)\), so by (F1) \(abc<p^3\). In Lemma~\ref{lem:A-L1Q}(a) the terms \(a^2,b^2,c^2\) (each \(\mu=0\)) give \(N/a^2+N/b^2+N/c^2\le\delta\).\lean{P2qExclusions.terms_le_delta}{Ext/Exclusions/TheoremE.lean:138} Multiplying by \((abc)^2\): \(NS\le\delta(abc)^2\) with \(S=b^2c^2+a^2c^2+a^2b^2\). AM--GM for three terms gives \(27(abc)^4\le S^3\).\lean{P2qExclusions.amgm3}{Ext/Exclusions/TheoremE.lean:30} Hence \(27N^3\le\delta^3(abc)^2<\delta^3p^6\), so \(3N<\delta p^2\), i.e.\ \(2p^2q+36<p^2(2p+1)\), so \(2q<2p+1\), contradicting \(q>5p^2-4p-3\).\lean{P2qExclusions.E_iii_tail}{Ext/Exclusions/TheoremE.lean:159}
+
+\textit{(iv), exponents.} Suppose \(r_1^3\mid N\). By (ii), \(q>5p^2-4p-3\). \(r_1^2r_2\mid N\) and \(r_1^2r_2\mid\ph(r_1^3r_2^2)\mid\ph(N)\), so (F1) gives \(r_1^2r_2\le L(p)\). By (F2) for \(r_1\) twice and \(r_2\) once, \(N^3\le(r_1^2r_2)^2\delta^3\le L(p)^2\delta^3\). The positive-coefficient certificate \(L(p)^2\delta^3<N^3\) for \(p\ge 5\), \(q\ge 5p^2-4p-3\) (\texttt{ring\_nf}; \texttt{positivity} after \(p=5+v\), \(q=5p^2-4p-3+u\))\lean{P2qExclusions.E_iv_cert}{Ext/Exclusions/TheoremE.lean:54} contradicts this.
+
+\textit{(iv), divisibility.} By Lemma~\ref{lem:A-K} with \(e=1\), \(r_1\mid K\) and \(r_2\mid K\); they are coprime, so \(r_1r_2\mid K\mid L(p)\).
+
+\textit{(iv), size.} \(N\le r_i^2\delta\) is (F2). For \(N/\delta>\sqrt{L(p)}\): the companion certificate \(L(p)\delta^2<N^2\) for \(p\ge 5\), \(q\ge 5p^2-4p-3\) is proved by \texttt{nlinarith} after \(p=5+a\), \(q=5p^2-4p-3+b\) with products of \(a,b\ge 0\) as hints;\lean{P2qJumps.E_iv_companion}{TheoremsBE.lean:157} dividing by \(\delta^2>0\) and taking square roots gives the claim.
+
+\textit{(v).} By Lemma~\ref{lem:A-K} with \(e=2\), \(r^2\mid K\mid L(p)\).
+
+\textit{(i).} Suppose \(r^4\mid N\). Then \(r^3\mid N\) and \(r^3\mid\ph(r^4)\mid\ph(N)\), so (F1) gives \(r^3\le L(p)<p^3\), hence \(r<p\); both are odd, so \(r\le p-2\). By Lemma~\ref{lem:A-omega2} there is a prime \(t\ne r\) with \(t\mid N\), \(t\ge 5\), so \(5r^4\le N\). With (F2): \(N^2\le r^4\delta^2\), so \(5N\le\delta^2\); and \(N\le r^2\delta\le(p-2)^2\delta\). \texttt{nlinarith} shows these two inequalities are incompatible for \(p,q\ge 5\).\lean{P2qExclusions.E_i_arith}{Ext/Exclusions/TheoremE.lean:38}
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-E}(iii) needs no prime of exponent~\(1\), so it is stronger than Theorem~\ref{thm:E}(iii) of Part~\ref{part:B}; (ii) and (iv) need a third prime factor \(t\) of any exponent, which is weaker than the hypothesis \(j\ge 1\) of Theorem~\ref{thm:E}. Combining (iv) with Theorem~\ref{thm:A-B}: if \(r^3\mid N\), then no prime \(s\ne r\) has \(s^2\mid N\).\lean{P2qJumps.cube_excludes_second_square}{TheoremsBE.lean:250} Indeed, if \(N\) has a prime factor \(t\ne r,s\), (iv) applies; otherwise \(r\) and \(s\) are the only primes of \(N\), both with square dividing \(N\), so \(N\) is powerful with \(\omega(N)=2\), which Theorem~\ref{thm:A-B} excludes.
+\end{remark}
+
+\subsection{Theorem D and Corollary F1 (squarefree \(N\))}
+
+\begin{theorem}[Theorem~D]
+\label{thm:A-D}
+Assume~\eqref{eq:jumps}, \(N\) squarefree and \(k=\omega(N)\ge 4\). Then \(q\ge p^2(k^2-k-1)^2\ge 121p^2\) and \(k\ge p\). In particular \(k=4\) is impossible.\lean{P2qJumps.theoremD; P2qJumps.theoremD_four}{TheoremsBE.lean:173,185}
+\end{theorem}
+\begin{proof}
+\textit{Step 1.} For squarefree \(N=\prod_{i}x_i\) (product over its \(k\) primes): \(\ph(N)=\prod(x_i-1)\), \(\sig(N)=\prod(x_i+1)\), and every \(x_i\ge 3\) (\(N\) is odd).
+\textit{Step 2.} For reals \(x_i\ge 3\) and \(k\ge 4\): \(k(k-1)\sqrt{\prod x_i}\le\prod(x_i+1)+\prod(x_i-1)-2\prod x_i\), by induction on the number of factors from a four-factor base case (no real-exponent AM--GM is assumed).\lean{P2qTheoremD.finite_delta_bound_sharp}{Ext/TheoremD/FiniteProduct.lean:97} The right side is \(\delta(N)=q+2p+1\), so \(k(k-1)\sqrt N\le q+2p+1\).
+\textit{Step 3.} With \(N=p^2q+12\), \(p,q\ge 5\), \(k\ge 4\): \(q\ge p^2(k^2-k-1)^2\) and \(q\ge 121p^2\) (put \(x=\sqrt q\); then \(k(k-1)px<q+2p+1\) forces \(x>p(k^2-k-1)\)).\lean{P2qTheoremD.q_bound_of_delta}{Ext/TheoremD/GeneralAnalytic.lean:52}
+\textit{Step 4.} For reals \(x_i\ge 1\): \(\bigl(\prod x_i-\prod(x_i-1)\bigr)^2\prod(x_i-1)\prod(x_i+1)\le k\bigl((\prod x_i)^2-\prod(x_i-1)\prod(x_i+1)\bigr)(\prod x_i)^2\) (union bound plus Cauchy--Schwarz).\lean{P2qTheoremD.finite_cauchy}{Ext/TheoremD/GeneralAnalytic.lean:18} With Step 1 this is \(A(N)^2(N^2-Q(N))\le k\,Q(N)N^2\), where \(A(N)=N-\ph(N)\).
+\textit{Step 5.} If \(k\le p-1\), Step 4 gives \(A^2(N^2-Q)\le(p-1)QN^2\). But \(H(p,q)=A^2(N^2-Q)-(p-1)QN^2\), written with \(p=5+v\), \(q=121p^2+u\), is a polynomial in \(u,v\) with positive coefficients and constant term \(255548359570022612\), so \(H>0\) when \(q\ge 121p^2\) (Step 3).\lean{P2qTheoremD.gapH_positive}{Ext/TheoremD/Certificate.lean:80} Hence \(k\ge p\ge 5\), and \(k\ne 4\).
+\end{proof}
+
+\begin{corollary}[Corollary~F1]
+\label{cor:A-F1}
+Assume~\eqref{eq:jumps}, \(N\) squarefree and \(\omega(N)\ge 4\). Then \(p=7\) and \(7\le\omega(N)\le 9\).\lean{P2qJumps.corollaryF1}{TheoremsBE.lean:193}
+\end{corollary}
+\begin{proof}
+\textit{Step 1 (Lemma~G and Theorem~F).} \(p(p-1)\sig(N)-(p^2+p+1)\ph(N)=2T(p)\) with \(T(p)=p^4-13p-6\) (linear combination of the jumps).\lean{P2qStructural.lemmaG}{Ext/Structural/Basic.lean:71} Each odd prime \(\ell\mid N\) contributes a factor \(2\) to \(\ph(N)\), and each odd prime of odd exponent a factor \(2\) to \(\sig(N)\); hence \(2^{\min(\omega_{\mathrm{odd}},\,e_{\mathrm{odd}})}\mid 2T(p)\).\lean{P2qStructural.theoremF}{Ext/Structural/TwoAdic.lean:71} For odd squarefree \(N\) both counts equal \(k=\omega(N)\), so \(2^{k-1}\mid T(p)\).
+\textit{Step 2.} By Theorem~\ref{thm:A-D}, \(k\ge p\), so \(2^{p-1}\mid T(p)\) and \(2^{p-1}\le T(p)<p^4\). Since \(p^4<2^{p-1}\) for \(p\ge 19\), \(p\le 17\).
+\textit{Step 3.} For the primes \(5\le p\le 17\), \(2^{p-1}\mid T(p)\) holds only for \(p=7\) (\(T(7)=2304=2^8\cdot 9\)). Then \(2^{k-1}\mid 2304\) gives \(k\le 9\), and \(k\ge p=7\).
+\end{proof}
+
+\begin{corollary}
+\label{cor:A-omega4-five}
+Assume~\eqref{eq:jumps} and \(\omega(N)\ge 4\). Then \(5\nmid N\).\lean{P2qJumps.omega4_five_not_dvd}{TheoremsBE.lean:201}
+\end{corollary}
+\begin{proof}
+By Theorem~\ref{thm:A-omega4} every prime factor of \(N\) exceeds \(p\ge 5\).
+\end{proof}
+
+\section{Identities and side remarks of Part~\ref{part:B} in Lean}
+\label{sec:A-prose}
+
+This section collects the statements of the prose of Part~\ref{part:B} that are kernel-checked in \path{P2qJumps/ProseClaims.lean} (standard axioms only). The ledger \path{paper/PROSE-CLAIMS.md} lists every mathematical statement of the paper's prose with its status. Write \(A(m)=m-\ph(m)\), \(B(m)=\sig(m)-m\), \(\delta(m)=\sig(m)+\ph(m)-2m\), all in \(\mathbb Z\), and \(T(p)=p^4-13p-6\).
+
+\begin{lemma}[Lemma~\ref{lem:equiv}]
+\label{lem:A-equiv}
+For every \(n\), \(\ph(n+12)=\ph(n)+12\) and \(\sig(n+12)=\sig(n)+12\) hold if and only if \(A(n+12)=A(n)\) and \(B(n+12)=B(n)\); they imply \(\delta(n+12)=\delta(n)\).\lean{P2qJumps.jumps_iff_AB; P2qJumps.jumps_delta}{ProseClaims.lean:23; ProseClaims.lean:41}
+\end{lemma}
+\begin{proof}
+Step 1 (\(\Rightarrow\)): substitute \(\ph(N)=\ph(n)+12\), \(\sig(N)=\sig(n)+12\) and \(N=n+12\) and simplify (\texttt{push\_cast; ring}).
+Step 2 (\(\Leftarrow\)): from \(A(N)=A(n)\) one gets \(\ph(N)=\ph(n)+12\) in \(\mathbb Z\) by \texttt{linarith}, then in \(\mathbb N\) by casting back; likewise for \(\sig\).
+Step 3: \(\delta(N)=\delta(n)\) follows by substituting both jumps.
+\end{proof}
+
+\begin{lemma}[Lemma~\ref{lem:AB}]
+\label{lem:A-AB}
+If \(p\ne q\) are primes, then \(A(p^2q)=p(p+q-1)\), \(B(p^2q)=(1+p)(1+q)+p^2\) and \(\delta(p^2q)=2p+q+1\).\lean{P2qJumps.AB_p2q}{ProseClaims.lean:48}
+\end{lemma}
+\begin{proof}
+Insert \(\ph(p^2q)=p(p-1)(q-1)\) and \(\sig(p^2q)=(p^2+p+1)(q+1)\) (\texttt{totient\_sigma\_p2q}) and expand with \texttt{ring}.
+\end{proof}
+
+\begin{lemma}[Lemmas~\ref{lem:Ark} and~\ref{lem:cot}]
+\label{lem:A-cot}
+\textup{(a)} For a prime \(r\) and \(k\ge 1\), \(A(r^k)=r^{k-1}\).\lean{P2qJumps.A_prime_pow}{ProseClaims.lean:59}
+\textup{(b)} For \(m>1\) with least prime factor \(r\), \(m/r\le A(m)\) (natural division).\lean{P2qJumps.cot_le}{ProseClaims.lean:68}
+\textup{(c)} Equality \(A(m)=m/r\) holds if and only if \(m\) is a power of \(r\).\lean{P2qJumps.cot_eq_iff}{ProseClaims.lean:75}
+\end{lemma}
+\begin{proof}
+(a) Write \(k=j+1\); \(\ph(r^{j+1})=r^j(r-1)\), so \(A=r^j\).
+(b) \(\ph(m)+m/r\le m\) for a prime divisor \(r\) of \(m\) (\texttt{totient\_add\_div\_le}).
+(c) \(\Leftarrow\): if \(m=r^{j+1}\) then \(A(m)=r^j=m/r\). \(\Rightarrow\): suppose \(m\) is not a power of \(r\). Step 1: then \(m\) is not a prime power with prime \(r\), so \(\mathcal P(m)\ne\{r\}\) and some prime \(s\ne r\) divides \(m\). Step 2: \(\ph(m)\prod_{\ell\mid m}\ell=m\prod_{\ell\mid m}(\ell-1)\); split off \(r\) and \(s\), leaving a set \(T\) of primes with \(\prod_T(\ell-1)\le\prod_T\ell\). Step 3: equality \(A(m)=m/r\) means \(\ph(m)\,r=m(r-1)\). Step 4: then \(\ph(m)rs\prod_T\ell=m(r-1)s\prod_T\ell\), while also \(=m(r-1)(s-1)\prod_T(\ell-1)\le m(r-1)(s-1)\prod_T\ell<m(r-1)s\prod_T\ell\), a contradiction.
+\end{proof}
+
+\begin{lemma}[Lemma~\ref{lem:L2}, radical scaling]
+\label{lem:A-radscale}
+For every \(N\), with \(U=\mathrm{rad}(N)\) and \(K=N/U\): \(\ph(N)=K\ph(U)\) and \(A(N)=K\,A(U)\).\lean{P2qJumps.radical_scaling}{ProseClaims.lean:150}
+\end{lemma}
+\begin{proof}
+Step 1: \(\mathcal P(U)=\mathcal P(N)\), so \(\ph(U)U=U\prod_{\ell\mid N}(\ell-1)\) and \(\ph(U)=P:=\prod_{\ell\mid N}(\ell-1)\). Step 2: \(\ph(N)=KP\) (\texttt{totient\_eq\_KP}). Step 3: \(A(N)=UK-K\ph(U)=K(U-\ph(U))\) using \(N=UK\).
+\end{proof}
+
+\begin{lemma}[Lemma~\ref{lem:G}, remaining clauses]
+\label{lem:A-G}
+Under~\eqref{eq:jumps}, \(\gcd(\ph(N),\sig(N))\mid 2T(p)\);\lean{P2qJumps.lemmaG_gcd}{ProseClaims.lean:172} and \(T(p)>0\) for every integer \(p\ge 5\).\lean{P2qJumps.T_pos}{ProseClaims.lean:182}
+\end{lemma}
+\begin{proof}
+Step 1: Lemma~G (\texttt{P2qStructural.lemmaG}) gives \(p(p-1)\sig(N)-(p^2+p+1)\ph(N)=2T(p)\). Step 2: the gcd divides both terms on the left, hence their difference. Step 3: \(T(p)>0\) for \(p\ge 5\) by \texttt{nlinarith} with \((p-5)^2\ge 0\) and \((p-5)^3\ge 0\).
+\end{proof}
+
+\begin{lemma}[Link with the shape \(r^3s\), Section~\ref{sec:v14-curve}]
+\label{lem:A-twist}
+Let \(p,r,s,k\) be integers. \textup{(a)} If \(L(p)=kr^2\), then \((X,Y)=(kp,k^2r)\) satisfies \(Y^2=X^3-kX^2-12k^3\).\lean{P2qJumps.twist_point}{ProseClaims.lean:247} \textup{(b)} If \(p\ge 5\) and \(r^2\mid L(p)\), then \(r^2<p^3\).\lean{P2qJumps.twist_r_bound}{ProseClaims.lean:253} \textup{(c)} If \(p\) is prime, \(p\nmid r\), \(p\mid r^2(r+s-1)\) and \(p\mid r^3s-12\), then \(p\mid r+s-1\) and \(p\mid r^4-r^3+12\).\lean{P2qJumps.twist_link_congr}{ProseClaims.lean:189}
+\end{lemma}
+\begin{proof}
+(a) \(X^3-kX^2-12k^3=k^3L(p)=k^4r^2=Y^2\). (b) \(L(p)>0\) for \(p\ge 5\), so \(r^2\le L(p)<p^3\). (c) Since \(p\) is prime and \(p\nmid r^2\), \(p\mid r+s-1\); then \(r^4-r^3+12=r^3(r+s-1)-(r^3s-12)\). In the paper's setting the hypotheses of (c) are \(r^2(r+s-1)=p(p+q-1)\) and \(N=r^3s\equiv 12\pmod p\). By Theorem~\ref{thm:A-r3s-empty} the shape \(r^3s\) does not occur, so this link is now vacuous.
+\end{proof}
+
+\begin{proposition}[Soundness note on \(\mathrm{rad}\)]
+\label{prop:A-rad}
+\textup{(a)} For \(N\ne 0\), \(N/\gcd(N,\ph(N))\) divides \(\mathrm{rad}(N)\).\lean{P2qJumps.div_gcd_totient_dvd_rad}{ProseClaims.lean:202} \textup{(b)} The identity \(\mathrm{rad}(N)=N/\gcd(N,\ph(N))\) is false: \(\mathrm{rad}(12)=6\) and \(12/\gcd(12,\ph(12))=3\).\lean{P2qJumps.rad_ne_div_gcd_totient}{ProseClaims.lean:228}
+\end{proposition}
+\begin{proof}
+(a) Step 1: \(K=N/\mathrm{rad}(N)\) divides \(N\) and \(\ph(N)=KP\), so \(K\mid g:=\gcd(N,\ph(N))\); write \(g=Kc\), \(N=gd\). Step 2: \(UK=N=dcK\) and \(K>0\) give \(U=dc\), so \(d=N/g\mid U\). (b) \(\mathcal P(12)=\{2,3\}\), \(\ph(12)=4\), \(\gcd(12,4)=4\).
+\end{proof}
+
+\section{Further statements of Part~\ref{part:B} in Lean}
+\label{sec:A-prose2}
+
+The statements below are kernel-checked in \path{P2qJumps/ProseClaims2.lean} (standard axioms only). Write \(D(p,\rho)=2p^2-2p\rho+\rho^2-\rho\), \(C(\rho)=(\rho-3)(\rho^2+3\rho+8)\), \(\Phi(p,\rho)=-\rho^4+(2p+1)\rho^3-(2p^3+p^2-12)\rho+2p^4-p^2-24p-12\), and \(N(p,k)\) for the polynomial of Theorem~\ref{thm:rst-far}.
+
+\begin{proposition}[Pure statements]
+\label{prop:A-pure}
+\textup{(a)} If \(p,p+2,p+6,p+8\) are prime, then \(n=p(p+8)\) satisfies~\eqref{eq:jumps}.\lean{P2qJumps.quadruplet_jumps}{ProseClaims2.lean:75}
+\textup{(b)} \(D(p,\rho)>0\) for all integers \(p,\rho\ge 5\);\lean{P2qJumps.D_pos}{ProseClaims2.lean:266} and \((2\rho^3-2p\rho^2+2p^2\rho-\rho^2-\rho-24)-\rho D(p,\rho)=C(\rho)\).\lean{P2qJumps.C_identity}{ProseClaims2.lean:270}
+\textup{(c)} \(\Phi(p,\rho)<0\) for all integers \(p\ge 5\), \(\rho\ge 2p\).\lean{P2qJumps.Phi_neg}{ProseClaims2.lean:52}
+\textup{(d)} \(N(p,k)<0\) for all integers \(p\ge 5\) and \(k\in[5-p,p-1]\setminus\{0\}\).\lean{P2qJumps.Nfar_neg}{ProseClaims2.lean:35}
+\textup{(e)} The values \(T(5),\dots,T(19)\) and their \(2\)-adic valuations listed in Corollary~\ref{cor:F1};\lean{P2qJumps.T_values}{ProseClaims2.lean:236} and \(T(m)<m^4<2^{m-1}\) for every integer \(m\ge 23\).\lean{P2qJumps.F1_tail; P2qJumps.pow_gt_T}{ProseClaims2.lean:260; ProseClaims2.lean:62}
+\textup{(f)} For the model \([0,-1,0,0,-12]\) of \(E\): \(\Delta=-62976=-2^9\cdot 3\cdot 41\), \(c_4^3/\Delta=-8/123\), \(3936=2^5\cdot 3\cdot 41\), and \((4,6)\), \((12388,1378746)\) lie on \(y^2=x^3-x^2-12\).\lean{P2qJumps.curve_disc; P2qJumps.curve_j; P2qJumps.curve_factorizations; P2qJumps.curve_points}{ProseClaims2.lean:92; ProseClaims2.lean:95; ProseClaims2.lean:99; ProseClaims2.lean:98}
+\textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\).\lean{P2qJumps.F_mod16; P2qJumps.sq_mod16; P2qJumps.F_even}{ProseClaims2.lean:276; ProseClaims2.lean:282; ProseClaims2.lean:283}
+\textup{(h)} \(4t^4+4t^3+11t^2+6t+7>6\) for every real \(t\).\lean{P2qJumps.quartic_gt_six}{ProseClaims2.lean:286}
+\end{proposition}
+\begin{proof}
+(a) Step 1: \(p(p+8)+12=(p+2)(p+6)\). Step 2: the four primes are pairwise distinct, so \(\ph\) and \(\sig\) are multiplicative on both products: \(\ph(n)=(p-1)(p+7)\), \(\ph(N)=(p+1)(p+5)\), \(\sig(n)=(p+1)(p+9)\), \(\sig(N)=(p+3)(p+7)\). Step 3: \((p+1)(p+5)-(p-1)(p+7)=12\) and \((p+3)(p+7)-(p+1)(p+9)=12\).
+(b) \(D=p^2+(p-\rho)^2-\rho\). If \(\rho\le 2p\), then \(\rho\le 2p<p^2\); if \(\rho>2p\), then \((\rho-p)^2>\rho^2/4\ge 5\rho/4>\rho\). Lean: \texttt{nlinarith} with \((p-\rho)^2\ge0\), \(p^2\ge0\). The identity is \texttt{ring}.
+(c) Put \(p=5+b\), \(\rho=2p+a\) with \(a,b\in\mathbb N\); \(-\Phi\) expands to a polynomial in \(a,b\) with nonnegative coefficients and positive constant term (\texttt{ring\_nf; positivity}).
+(d) Case \(k\le -1\): put \(k=-1-j\), \(p=6+j+b\) (\(j,b\in\mathbb N\); \(p\ge 5-k\)). Case \(k\ge 1\): put \(k=1+a\), \(p=2+a+b\) (\(p\ge k+1\)). In both cases \(-N(p,k)\) expands to a polynomial with nonnegative coefficients and positive constant term.
+(e) The values by \texttt{norm\_num}; each valuation from a factorization \(2^e\cdot\text{odd}\). For the tail: \(T(m)=m^4-13m-6<m^4\); and \(m^4<2^{m-1}\) by induction from \(23^4<2^{22}\), using \((n+1)^4\le 2n^4\) for \(n\ge 23\) (\(2(23+c)^4-(24+c)^4\) has positive coefficients in \(c\)).
+(f) The discriminant and \(c_4\) by unfolding Mathlib's \(b_2,b_4,b_6,b_8\) and \texttt{norm\_num}; the rest by \texttt{norm\_num}.
+(g) In \(\mathbb Z/16\) (resp.\ \(\mathbb Z/2\)) each statement is a finite check over all residues, done by the kernel (\texttt{decide}). (h) \(4t^4+4t^3+11t^2+6t+1=t^2(2t+1)^2+10(t+\tfrac{3}{10})^2+\tfrac1{10}>0\) (\texttt{nlinarith} with these squares).
+\end{proof}
+
+\begin{proposition}[Statements about shapes that do not occur]
+\label{prop:A-vacuous}
+Assume~\eqref{eq:jumps}. The statements of Part~\ref{part:B} listed below concern shapes of \(N\) that are proved impossible, and each is kernel-checked, with the paper's conclusion stated in Lean, as a consequence of that impossibility (so it holds vacuously).
+\textup{(a)} \(N=rst\) (excluded by Theorem~\ref{thm:L}(ii)):\lean{P2qJumps.rst_false}{ProseClaims2.lean:103} Lemma~\ref{lem:e123};\lean{P2qJumps.lem_e123}{ProseClaims2.lean:109} Lemmas~\ref{lem:qform}, \ref{lem:C}, the first two clauses of Lemma~\ref{lem:Phi} and Theorem~\ref{thm:rigid}(a);\lean{P2qJumps.lem_qform_C_Phi}{ProseClaims2.lean:117} Proposition~\ref{prop:balanced} and Theorem~\ref{thm:closed}(5);\lean{P2qJumps.rst_balanced}{ProseClaims2.lean:130} Proposition~\ref{prop:pm2}, Theorem~\ref{thm:closed}(6) and Theorem~\ref{thm:rst-off};\lean{P2qJumps.rst_off}{ProseClaims2.lean:138} the clauses \(5-p\le k<p\), \(k\ne0\), the discriminant formula and the conclusion of Theorem~\ref{thm:rst-far}.\lean{P2qJumps.rst_far}{ProseClaims2.lean:146}
+\textup{(b)} \(N=r^3s\) (Theorem~\ref{thm:A-r3s-empty}): Theorem~\ref{thm:rigid}(b), Theorems~\ref{thm:r3sint}, \ref{thm:r3s-plarge}, \ref{thm:r3s-strip}.\lean{P2qJumps.r3s_statements}{ProseClaims2.lean:155}
+\textup{(c)} \(N=r^2st\) with any primes (Theorem~\ref{thm:L}(iii); \(r,s,t\ge5\) is derived from Proposition~\ref{prop:A-preamble}):\lean{P2qJumps.r2st_false}{ProseClaims2.lean:190} Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}.\lean{P2qJumps.r2st_statements}{ProseClaims2.lean:201}
+\textup{(d)} \(N\) squarefree with four prime factors (Theorem~\ref{thm:A-D}, \(k=4\)):\lean{P2qJumps.four_false}{ProseClaims2.lean:168} Theorem~\ref{thm:four}(1),(4);\lean{P2qJumps.four_statements}{ProseClaims2.lean:218} clauses (2),(3) through the generic form.\lean{P2qJumps.four_vacuous}{ProseClaims2.lean:229}
+\end{proposition}
+\begin{proof}
+Each Lean statement is proved by \texttt{False.elim} applied to the impossibility of the shape. For (c), Step 1: Proposition~\ref{prop:A-preamble} gives \(p,q\ge 5\); Step 2: every prime factor of \(N\) is \(\ge5\) (\texttt{prime\_factor\_ge\_five}), so \(r,s,t\ge5\); Step 3: Theorem~\ref{thm:A-r2st-empty}. For (d), Step 1: a product of four distinct primes is squarefree (\texttt{Nat.squarefree\_mul\_iff}, pairwise coprimality); Step 2: its set of prime factors is \(\{r,s,t,u\}\), of cardinality \(4\); Step 3: Theorem~\ref{thm:A-D} excludes \(k=4\).
+\end{proof}
+
+\subsection{Theorem E: the remaining repeated-prime shapes}
+
+\begin{theorem}[final sentence of Theorem~\ref{thm:E}]
+\label{thm:A-E-shapes}
+Assume~\eqref{eq:jumps} and that \(r^2\mid N\) for some prime \(r\). Then one of the following holds.\lean{P2qJumps.theoremE_shapes}{ThmEShapes.lean:45}
+\begin{enumerate}
+\item[\textup{(a)}] \(N=r^2V\) or \(N=r^3V\) for a prime \(r\) and a squarefree \(V\) with \(\gcd(r,V)=1\) and \(\omega(V)\ge 2\).
+\item[\textup{(b)}] \(N=r_1^2r_2^2V\) for distinct primes \(r_1,r_2\) and a squarefree \(V\) with \(\gcd(r_1r_2,V)=1\) and \(\omega(V)\ge 1\); moreover \(r_1r_2\mid L(p)\) and \(q>5p^2-4p-3\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1.} Write \(N=r^eW\) with \(r\nmid W\) (\texttt{Nat.exists\_eq\_pow\_mul\_and\_not\_dvd}). If \(e\le 1\), then \(r^2\mid N\) forces \(r\mid W\); so \(e\ge 2\). If \(e\ge 4\), then \(r^4\mid N\), contradicting Theorem~\ref{thm:A-E}(i); so \(e\in\{2,3\}\).
+
+\textit{Step 2 (\(W\) squarefree).} If \(\omega(W)=0\), then \(W=1\) and \(N=r^e\), which Proposition~\ref{prop:A-primepower} excludes. If \(\omega(W)=1\), then \(W\) is a prime \(s\ne r\) (a squarefree number is the product of its prime factors), and \(N=r^es\) with \(e\ge 2\) is excluded by Theorem~\ref{thm:A-ras}. Hence \(\omega(W)\ge 2\) and (a) holds with \(V=W\).
+
+\textit{Step 3 (\(W\) not squarefree).} Then \(s^2\mid W\) for some prime \(s\), and \(s\ne r\) because \(r\nmid W\); thus \(s^2\mid N\). If \(e=3\), then \(r^3\mid N\) and \(s^2\mid N\), which \texttt{cube\_excludes\_second\_square} (remark after Theorem~\ref{thm:A-E}) rules out; so \(e=2\). Write \(W=s^fV\) with \(s\nmid V\); as in Step~1, \(f\ge 2\), and \(f\ge 3\) would give \(s^3\mid N\) together with \(r^2\mid N\), again excluded; so \(f=2\) and \(N=r^2s^2V\). Neither \(r\) nor \(s\) divides \(V\), so \(\gcd(rs,V)=1\).
+
+\textit{Step 4.} \(V\) is squarefree: a prime \(\ell\) with \(\ell^2\mid V\) differs from \(r\) and \(s\), and \(\ell^2,r^2,s^2\mid N\) contradicts Theorem~\ref{thm:A-E}(iii). If \(\omega(V)=0\), then \(V=1\) and every prime of \(N=r^2s^2\) has its square dividing \(N\), so \(N\) is powerful, contradicting Theorem~\ref{thm:A-B} (\texttt{N\_not\_powerful}). So \(V\) has a prime factor \(t\), and \(t\ne r,s\).
+
+\textit{Step 5.} Theorem~\ref{thm:A-E}(iv) (divisibility) gives \(rs\mid L(p)\), and Theorem~\ref{thm:A-E}(ii) with the third prime \(t\) gives \(q>5p^2-4p-3\). This is (b) with \(r_1=r\), \(r_2=s\).
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-E-shapes} is the final sentence of Theorem~\ref{thm:E}. In (a), \(\omega(V)\) is the number \(j\) of primes of exponent~\(1\). In (b) it also proves that \(V\) is squarefree, prime to \(r_1r_2\), and has \(\omega(V)\ge 1\); the paper sentence leaves these implicit.
+\end{remark}
+
+\section{Proposition C: the divisor \(K\) and the linear systems for \(j\in\{1,2\}\)}
+\label{sec:A-propC}
+
+Write \(a=p(p-1)\), \(b=p^2+p+1\), \(f=\ph(M)\) and \(g=\sig(M)\). All equations are in \(\mathbb Z\) or \(\mathbb Q\).
+
+\begin{proposition}[the divisor \(K\)]
+\label{prop:A-C-K}
+Assume~\eqref{eq:jumps} and \(r^2\mid N\) for some prime \(r\). Then \(K=N/\mathrm{rad}(N)\) satisfies \(K>1\), \(K\mid L(p)\) and \(\gcd(K,6p)=1\).\lean{P2qJumps.propC_K}{PropC.lean:40}
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By Lemma~\ref{lem:A-K} with \(e=1\), \(r\mid K\) (\texttt{pow\_dvd\_K}). \(K\) divides \(N\ne 0\), so \(K\ne 0\) and \(K\ge r>1\).
+
+\textit{Step 2.} \(K\mid L(p)\) is Lemma~\ref{lem:A-K} (\texttt{lemmaK}).
+
+\textit{Step 3.} \(\gcd(N,6pq)=1\) (Proposition~\ref{prop:A-preamble}); \(6p\mid 6pq\) and \(K\mid N\), so \(\gcd(K,6p)=1\).
+\end{proof}
+
+\begin{proposition}[the system for \(j=1\)]
+\label{prop:A-C-j1}
+Assume~\eqref{eq:jumps} and \(N=Ms\) with \(s\) prime and \(\gcd(M,s)=1\). Then\lean{P2qJumps.propC_j1}{PropC.lean:64}
+\[
+Ms-p^2q=12,\qquad fs-aq=f-a+12,\qquad gs-bq=b+12-g,
+\]
+the determinant \(p^2f-aM\) of the first two equations in the unknowns \((s,q)\) is nonzero, and \((s,q)\) is the only rational solution \((x,y)\) of \(Mx-p^2y=12\), \(fx-ay=f-a+12\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} \(\ph(N)=\ph(M)\ph(s)=f(s-1)\) and \(\sig(N)=g(s+1)\) by multiplicativity. With \(\ph(N)=a(q-1)+12\) and \(\sig(N)=b(q+1)+12\) (\texttt{jumps\_p2q\_int}) this gives the last two equations; the first is \(N=p^2q+12=Ms\).
+
+\textit{Step 2.} \(M\mid N\) and \(p\nmid N\) (Proposition~\ref{prop:A-preamble}), so \(p\nmid M\).
+
+\textit{Step 3.} If \(p^2f-aM=0\), then \(p\,(pf-(p-1)M)=0\), so \(pf=(p-1)M\) and \(M=p(M-f)\), i.e.\ \(p\mid M\), contradicting Step~2.
+
+\textit{Step 4.} If \((x,y)\) is a second solution, subtracting gives \((p^2f-aM)(x-s)=0\), so \(x=s\); then \(p^2(y-q)=0\), so \(y=q\).
+\end{proof}
+
+\begin{proposition}[the system for \(j=2\)]
+\label{prop:A-C-j2}
+Assume~\eqref{eq:jumps} and \(N=Mst\) with \(s\ne t\) prime and \(\gcd(M,st)=1\). Put \(S=s+t\), \(\Pi=st\). Then\lean{P2qJumps.propC_j2}{PropC.lean:109}
+\[
+M\Pi-p^2q=12,\qquad f\Pi-fS-aq=12-a-f,\qquad g\Pi+gS-bq=b+12-g,
+\]
+the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S,\Pi)\) is nonzero, and \((q,S,\Pi)\) is its only rational solution.
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By multiplicativity \(\ph(N)=f(s-1)(t-1)=f(\Pi-S+1)\) and \(\sig(N)=g(s+1)(t+1)=g(\Pi+S+1)\); with \texttt{jumps\_p2q\_int} this gives the second and third equations, and \(N=M\Pi\) gives the first.
+
+\textit{Step 2.} \(p\nmid M\), as in Proposition~\ref{prop:A-C-j1}.
+
+\textit{Step 3.} \(p\nmid f\): otherwise \(f=pc\) and \(\ph(N)=pc(s-1)(t-1)=a(q-1)+12\) give \(12=p\bigl(c(s-1)(t-1)-(p-1)(q-1)\bigr)\), so \(p\mid 12\), impossible for a prime \(p\ge 5\).
+
+\textit{Step 4.} \(\Delta-Mf=p\bigl(M(p-1)g+M(p+1)f-2pfg\bigr)\). If \(\Delta=0\), then \(p\mid Mf\), so \(p\mid M\) or \(p\mid f\), contradicting Steps~2--3.
+
+\textit{Step 5.} For a second solution \((x,S',P)\), subtract and combine: \((ag+bf)\) times the first difference minus \(p^2\) times (\(g\) times the second plus \(f\) times the third) gives \(\Delta(P-\Pi)=0\), so \(P=\Pi\); then the first equation gives \(p^2(x-q)=0\), so \(x=q\); then the second gives \(f(S'-S)=0\) with \(f=\ph(M)>0\), so \(S'=S\).
+\end{proof}
+
+\begin{remark}
+These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked.
+\end{remark}
+
+\section{The corrected residual equivalence}
+\label{sec:A-implies}
+
+For \(N>1\) let \(R(N)\) be the set of primes \(r\) with \(r^2\mid N\) (\texttt{repPrimes}) and \(j(N)\) the number of primes of exponent exactly~\(1\) (\texttt{simpleCount}).\lean{P2qJumps.repPrimes, P2qJumps.simpleCount}{ImpliesCorrected.lean:24,27} Quantifying over distinct primes \(p,q\) with~\eqref{eq:jumps}, let\lean{P2qJumps.H1, P2qJumps.H2, P2qJumps.H3}{ImpliesCorrected.lean:30,35,42}
+H1: \(N\) is never squarefree with \(\omega(N)\ge 4\);
+H2: never \(R(N)\ne\emptyset\), \(j(N)\in\{1,2\}\) and \(N\ne r^as\) for all distinct primes \(r,s\) and \(a\ge 2\);
+H3: never \(R(N)\ne\emptyset\) and \(j(N)\ge 3\).
+
+\begin{theorem}[Proposition~\ref{prop:implies-corrected}]
+\label{thm:A-implies}
+Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 and H3 hold.\lean{P2qJumps.prop_implies_corrected}{ImpliesCorrected.lean:47} Consequently, if H1 holds, Conjecture~\ref{conj:vanish} holds if and only if H2 and H3 hold.\lean{P2qJumps.implies_corrected_of_H1}{ImpliesCorrected.lean:114}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1 (\(\Rightarrow\)).} The conjecture says no pair \(p,q\) satisfies~\eqref{eq:jumps}, so each of H1--H3, which only concerns such pairs, holds.
+
+\textit{Step 2 (\(\Leftarrow\), setup).} Assume H1--H3 and~\eqref{eq:jumps} for distinct primes \(p,q\); we derive a contradiction. \(N\ne 0\).
+
+\textit{Step 3 (\(R(N)=\emptyset\)).} Every prime has exponent \(\le 1\) in \(N\), so \(N\) is squarefree and \(N=\prod_{\ell\mid N}\ell\). If \(\omega(N)\ge 4\), H1 is contradicted. \(\omega(N)=0\) would give \(N\le 1\). \(\omega(N)=1,2,3\) give \(N=r\), \(N=rs\), \(N=rst\) with distinct primes, excluded by Propositions~\ref{prop:A-notprime}, \ref{prop:A-rs} and~\ref{prop:A-rst}.
+
+\textit{Step 4 (\(R(N)\ne\emptyset\), \(j(N)=0\)).} Every prime \(\ell\mid N\) has exponent \(\ge 1\) and \(\ne 1\), hence \(\ge 2\), so \(\ell^2\mid N\): \(N\) is powerful, contradicting Theorem~\ref{thm:A-B} (\texttt{N\_not\_powerful}).
+
+\textit{Step 5 (\(R(N)\ne\emptyset\), \(j(N)\ge 3\)).} This contradicts H3.
+
+\textit{Step 6 (\(R(N)\ne\emptyset\), \(j(N)\in\{1,2\}\)).} If \(N=r^as\) with distinct primes \(r,s\) and \(a\ge 2\), Theorem~\ref{thm:A-ras} is contradicted; otherwise H2 is.
+
+\textit{Step 7.} The second sentence follows from the first with H1 as a hypothesis.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-implies} proves the equivalence only. None of H1, H2, H3 is proved in Lean, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}, which is computer-assisted and not kernel-checked; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation.
+\end{remark}
+
+\section{The shape \(r^2s^2t\) and the ``three regimes'' claim}
+\label{sec:A-three}
+
+\begin{theorem}[reduction to \(\omega(N)\ge 4\) or \(r^2s^2t\)]
+\label{thm:A-three}
+\begin{enumerate}
+\item[\textup{(a)}] Assume~\eqref{eq:jumps}. Then \(\omega(N)\ge 4\), or \(N=r^2s^2t\) for pairwise distinct primes \(r,s,t\).\lean{P2qJumps.omega4_or_r2s2t}{ThreeRegimes.lean:41}
+\item[\textup{(b)}] The claim ``every solution has \(N=r^3s\), \(N=r^2st\) or \(\omega(N)\ge 4\)'' (\texttt{ThreeRegimes}) holds if and only if no solution has \(N=r^2s^2t\) with pairwise distinct primes \(r,s,t\) (\texttt{R2S2TEmpty}).\lean{P2qJumps.threeRegimes_iff_r2s2t}{ThreeRegimes.lean:150}
+\end{enumerate}
+Neither \texttt{ThreeRegimes} nor \texttt{R2S2TEmpty} is proved.
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1 (no repeated prime).} If no \(r^2\) divides \(N\), \(N\) is squarefree and is the product of its prime factors. \(\omega(N)=0,1,2,3\) give \(N\le 1\), \(N\) prime, \(N=rs\), \(N=rst\), excluded by Propositions~\ref{prop:A-notprime}, \ref{prop:A-rs}, \ref{prop:A-rst}. So \(\omega(N)\ge 4\).
+
+\textit{Step 2 (case (a) of Theorem~\ref{thm:A-E-shapes}).} \(N=r^eV\) with \(e\in\{2,3\}\), \(V\) squarefree, \(\gcd(r,V)=1\), \(\omega(V)\ge 2\). If \(\omega(V)=2\), then \(V=st\) with distinct primes \(s,t\ne r\), and \(N=r^2st\) or \(N=r^3st\), excluded by Theorem~\ref{thm:L}(iii) (\texttt{N\_ne\_r2st}) and Theorem~\ref{thm:A-r3st-empty}. Otherwise \(\omega(V)\ge 3\), and since \(r^e\) and \(V\) are coprime, \(\omega(N)=1+\omega(V)\ge 4\).
+
+\textit{Step 3 (case (b) of Theorem~\ref{thm:A-E-shapes}).} \(N=r^2s^2V\) with \(V\) squarefree, prime to \(rs\), \(\omega(V)\ge 1\), so \(\omega(N)=2+\omega(V)\). If \(\omega(V)=1\), then \(V=t\) is a prime \(\ne r,s\) and \(N=r^2s^2t\); otherwise \(\omega(N)\ge 4\). This proves (a).
+
+\textit{Step 4 (b, \(\Rightarrow\)).} \(\omega(r^2s^2t)=3\). If a solution had \(N=r^2s^2t\), the claim would give \(N=r^3s\) (excluded by Theorem~\ref{thm:A-r3s-empty}), \(N=r^2st\) (excluded by Theorem~\ref{thm:L}(iii)) or \(\omega(N)\ge 4\) (false).
+
+\textit{Step 5 (b, \(\Leftarrow\)).} By (a), a solution has \(\omega(N)\ge 4\) or \(N=r^2s^2t\), and the second is excluded by hypothesis.
+\end{proof}
+
+\begin{remark}[why \(r^2s^2t\) is not closed by size alone]
+For \(N=r^2s^2t\), Lemma~\ref{lem:A-K} gives \(K=rs\mid L(p)\), and Propositions~\ref{prop:A-C-K}--\ref{prop:A-C-j1} (with \(M=r^2s^2\)) determine \((t,q)\) uniquely from \((p,r,s)\). The size inequalities used for \(r^2st\) and \(\omega(N)\ge 4\) do not exclude it: for \(p=101\), \(1009\), \(10007\) and \(r\approx 1.5p\), the real equations for \(N\), \(\ph(N)\), \(\sig(N)\) have real solutions with \(p<r<s\), \(rs<p^3\), \(t>1\), \(q>1\) (\path{NOTES/r2s2t_status.md}). Excluding the shape needs an arithmetic argument (integrality of \(t\) and \(q\), or a square discriminant), which is not available.
+\end{remark}
+
+\section{The \(p=7\) residual: equations, the prime \(5\), and the prefix bound}
+\label{sec:A-p7}
+
+\begin{proposition}[the \(p=7\) equations]
+\label{prop:A-p7}
+Let \(p=7\) and let \(q\ne 7\) be prime with~\eqref{eq:jumps}. Then, in \(\mathbb Z\),\lean{P2qJumps.p7_identities}{P7.lean:24}
+\[
+\ph(N)=42q-30,\quad \sig(N)=57q+69,\quad 7\ph(N)=6N-282,\quad 49\sig(N)=57N+2697,
+\]
+\[
+42\sig(N)-57\ph(N)=4608,\qquad 343\,\ph(N)\sig(N)=342N^2+108N-760554 .
+\]
+Moreover\lean{P2qJumps.p7_mod}{P7.lean:38} \(N\equiv 5\) and \(\ph(N)\equiv 5\pmod 7\); in particular \(7\nmid\ph(N)\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} By Lemma~\ref{lem:A-values} and~\eqref{eq:jumps} (\texttt{jumps\_p2q\_int}), \(\ph(N)=p(p-1)(q-1)+12\) and \(\sig(N)=(p^2+p+1)(q+1)+12\). With \(p=7\): \(\ph(N)=42(q-1)+12=42q-30\) and \(\sig(N)=57(q+1)+12=57q+69\).
+
+\textit{Step 2.} \(N=49q+12\). Then \(6N-282=294q-210=7(42q-30)\) and \(57N+2697=2793q+3381=49(57q+69)\).
+
+\textit{Step 3.} \(42(57q+69)-57(42q-30)=2898+1710=4608\).
+
+\textit{Step 4.} Multiply the two identities of Step~2: \(343\ph\sig=(6N-282)(57N+2697)=342N^2+(16182-16074)N-760554\).
+
+\textit{Step 5.} Since \(q\ge 5\) (Proposition~\ref{prop:A-preamble}), \(\ph(N)=42q-30=7(6q-5)+5\) and \(N=7\cdot 7q+7+5\), so both are \(\equiv 5\pmod 7\).
+\end{proof}
+
+\begin{proposition}[no prime \(\le 7\) when \(\omega(N)\ge 4\)]
+\label{prop:A-p7-ge11}
+With \(p=7\) and four pairwise distinct primes dividing \(N\), every prime factor of \(N\) is at least \(11\); in particular \(5\nmid N\).\lean{P2qJumps.p7_omega4_ge11}{P7.lean:47}
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{thm:A-omega4} gives \(r>7\) for every prime \(r\mid N\). The integers \(8,9,10\) are not prime, so \(r\ge 11\). Apply this to \(r=5\): \(5\ge 11\) is false, so \(5\nmid N\).
+\end{proof}
+
+\begin{proposition}[prefix bound]
+\label{prop:A-p7-prefix}
+Let \(b,h,s,M,F_-,F_+\) be integers with \(b,h,s,M\ge 0\) and \(F_-F_+\le M^2\). If
+\(343(hF_-)(sF_+)=342(bM)^2+108bM-760554\) and \(342b^2-343hs\ge 1\), then \(M\le 872\).\lean{P2qJumps.p7_prefix_bound}{P7.lean:65}
+Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).
+\end{proposition}
+
+\begin{proof}
+\textit{Step 1.} \(hs\ge 0\) and \(F_-F_+\le M^2\) give \(343hs\,F_-F_+\le 343hs\,M^2\).
+
+\textit{Step 2.} By the hypothesis, \(342b^2M^2+108bM-760554\le 343hsM^2\), i.e.\ \((342b^2-343hs)M^2+108bM\le 760554\).
+
+\textit{Step 3.} The coefficient is \(\ge 1\) and \(bM\ge 0\), so \(M^2\le 760554<873^2=762129\), hence \(M\le 872\).
+
+\textit{Step 4 (application).} At a prefix \(b\) of a squarefree \(N=bM\) with \(h=\ph(b)\), \(s=\sig(b)\), \(F_-=\prod(r-1)\), \(F_+=\prod(r+1)\) over the remaining primes, one has \(\ph(N)=hF_-\), \(\sig(N)=sF_+\) and \(F_-F_+=\prod(r^2-1)\le M^2\); Proposition~\ref{prop:A-p7} supplies the identity. Three remaining distinct primes \(\ge 11\) (Proposition~\ref{prop:A-p7-ge11}) give \(M\ge 2431>872\).
+\end{proof}
+
+\noindent\textit{Status of the descent.} Propositions~\ref{prop:A-p7}--\ref{prop:A-p7-prefix} are the kernel-checked inputs of the descent of Appendix~\ref{app:p7}; the enumeration itself is not kernel-checked. With primes \(\ge 11\) and the prefix bound, \path{scripts/p7/descent.py} visits \(134\), \(748\) and \(5{,}773\) nodes for \(k=7,8,9\) (largest branch bounds \(65\), \(86\), \(130\)), with zero solutions. The open step is a Lean proof of the soundness of the branch bounds, the product enumeration and the terminal two-prime elimination.
+
+\section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
+\label{sec:A-lock}
+
+The Lean development states the results above in native form in \texttt{formal\_claim}\lean{formal_claim; formal_claim_holds}{Semantics.lean:65,79} (with \(\mathtt{Jumps}\), the named polynomial \texttt{Lpoly}, the numeral \(10000\), and (v) as ``\(p^2q\le 10000\Rightarrow\neg\mathtt{Jumps}\)''). Independently, \texttt{paper\_claim}\lean{paper_claim}{Semantics.lean:44} transcribes Theorem~\ref{thm:L} literally (with \(\ph\), \(\sig\), the inline polynomial \(p^3-p^2-12\), \(10^4\), and one hypothesis block per pair \((p,q)\)); it mentions none of the definitions of the formal proof. The theorem \texttt{intended\_correspondence : formal\_claim \(\leftrightarrow\) paper\_claim}\lean{intended_correspondence}{Semantics.lean:92} is proved by unfolding, using \(10^4=10000\), \(\mathtt{Lpoly}\,p=p^3-p^2-12\), and the contrapositive for (v); it is not proved by \texttt{rfl}. Finally \texttt{theorem\_L : paper\_claim := intended\_correspondence.mp formal\_claim\_holds}.\lean{theorem_L}{Semantics.lean:123} The command \texttt{\#print axioms P2qJumps.Semantics.theorem\_L} prints \texttt{[propext, Classical.choice, Quot.sound]}.
+
+\noindent\textbf{Author approval.} The CI job \texttt{author-approval} fails until the author approves the wording of \path{paper/theorem-L.tex} (sha256 above), which is the exact wording printed as Theorem~\ref{thm:L} here, and its transcription \texttt{paper\_claim}. Approval is recorded in \path{truth-gate.lock.json}; it is not given in this version.
+
+
+\begin{remark}[New content requiring author approval]
+Items (iii) and the \(p>r\) half of (iv) are new relative to v1.3. In particular (iii) closes the shape \(r^2st\) completely, whereas the v1.3 text and the author's v1.4 theorem block list \(r^2st\) as open beyond computational bounds. Every step is kernel-checked. The author decided on 16~November~2026 to include the \(r^2st\) closure in the paper; the formal approval of the wording of Theorem~\ref{thm:L} in \path{truth-gate.lock.json} is still pending.
+\end{remark}
+
+
+\section{Proof of Theorem~\ref{thm:L2} and its semantics lock}
+\label{sec:A-L2}
+
+Theorem~\ref{thm:L2} assembles results proved above; this section gives the proof clause by clause, following \texttt{formal\_claim2\_holds} and \texttt{intended\_correspondence2}.\lean{P2qJumps.Semantics2.formal_claim2_holds}{Semantics2.lean:139}
+
+\begin{proof}[Proof of Theorem~\ref{thm:L2}]
+Assume~\eqref{eq:jumps} with \(n=p^2q\), \(p\ne q\) primes.
+
+\textit{Step 1: clauses (i)--(iii) and (v).} These are clauses (i)--(iii) and (v) of Theorem~\ref{thm:L}, with the same proofs: Propositions~\ref{prop:A-notprime} and~\ref{prop:A-rs}, Proposition~\ref{prop:A-rst}, Theorem~\ref{thm:A-r2st-empty} and Proposition~\ref{prop:A-pairs}. For (v), Proposition~\ref{prop:A-pairs} says that \(p^2q\le 10^4\) is incompatible with~\eqref{eq:jumps}; hence \(n>10^4\).
+
+\textit{Step 2: clause (iv).} This is Theorem~\ref{thm:A-r3s-empty}, which needs no bound on \(p\) and no hypothesis \(r,s\ge 5\) (the proof derives \(r,s\ge 5\) from \(\gcd(N,6)=1\)).
+
+\textit{Step 3: clause (vi).} The first half is Proposition~\ref{prop:A-primepower} (\(N\ne r^k\), \(k\ge 1\)); the second half is Theorem~\ref{thm:A-ras} (\(N\ne r^as\), \(a\ge 2\)).
+
+\textit{Step 4: \(\omega(N)\ge 4\) gives four distinct prime divisors.}\lean{P2qJumps.Semantics2.exists_four_primes_of_omega}{Semantics2.lean:39} By definition \(\omega(N)\) is the number of distinct primes dividing \(N\), i.e.\ the cardinality of the set \(\mathcal P(N)\) of prime factors of \(N\). If this cardinality is at least \(4\), choose a \(4\)-element subset \(\{a,b,c,d\}\subseteq\mathcal P(N)\); its elements are pairwise distinct primes dividing \(N\).
+
+\textit{Step 5: clause (vii).} Given \(\omega(N)\ge 4\), Step~4 provides pairwise distinct primes \(a,b,c,d\) dividing \(N\), and Theorem~\ref{thm:A-omega4} gives \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\).
+\end{proof}
+
+\noindent\textbf{Semantics lock for Theorem~\ref{thm:L2}.} The native statement \texttt{formal\_claim2}\lean{P2qJumps.Semantics2.formal_claim2}{Semantics2.lean:117} uses \(\mathtt{Jumps}\), \(\mathtt{Theorem28}\), the numeral \(10000\) with (v) as ``\(p^2q\le 10000\Rightarrow\neg\mathtt{Jumps}\)'', and (vii) in the form ``four pairwise distinct primes divide \(N\)''. Independently, \texttt{paper\_claim2}\lean{P2qJumps.Semantics2.paper_claim2}{Semantics2.lean:92} transcribes \path{paper/theorem-L2.tex} literally, with \(\ph\), \(\sig\), \(10^4\), Mathlib's \(\omega\) (\texttt{ArithmeticFunction.cardDistinctFactors}) and one hypothesis block per pair \((p,q)\); it mentions none of the definitions of the formal proof. The theorem \texttt{intended\_correspondence2 : formal\_claim2 \(\leftrightarrow\) paper\_claim2}\lean{P2qJumps.Semantics2.intended_correspondence2}{Semantics2.lean:155} is proved by unfolding, \(10^4=10000\), the contrapositive for (v), Step~4 for the direction formal\(\Rightarrow\)paper, and for the converse the fact that four pairwise distinct primes dividing \(N\ne 0\) form a \(4\)-element subset of \(\mathcal P(N)\), so \(\omega(N)\ge 4\);\lean{P2qJumps.Semantics2.omega_ge_four_of_primes}{Semantics2.lean:58} it is not proved by \texttt{rfl}. Finally \texttt{theorem\_L2 : paper\_claim2 := intended\_correspondence2.mp formal\_claim2\_holds}.\lean{P2qJumps.Semantics2.theorem_L2}{Semantics2.lean:196} The lock \path{truth-gate-L2.lock.json} records the hashes of these four blocks, the sha256 of \path{paper/theorem-L2.tex} and its verbatim quote; \path{scripts/verify-lock-L2.py} checks them in \path{scripts/verify-lock.sh}. The author's approval of the wording of Theorem~\ref{thm:L2} and of \texttt{paper\_claim2} is \textbf{pending}; it is not given in this version.
+
+
+\part{Written arguments, cited and computational results}
+\label{part:B}
+
+\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Not kernel-checked are in particular: the \(p=7\) descent (Appendix~\ref{app:p7}) and hence Theorem~\ref{thm:H1-comp}; the enumeration of Proposition~\ref{prop:C} (its structural clauses are Section~\ref{sec:A-propC}) and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
+
+Where Part~\ref{part:B} overlaps Part~\ref{part:A}, Part~\ref{part:A} is the kernel-checked version: Theorem~\ref{thm:closed}(1),(3) are Theorem~\ref{thm:L}(i); Theorem~\ref{thm:R1} is Theorem~\ref{thm:L}(ii), whose Lean proof (Section~\ref{sec:A-ii}) is a different argument from the written one below; and Theorem~\ref{thm:r3s-plarge} together with the divisibility of Theorem~\ref{thm:r3s-strip} is Theorem~\ref{thm:L}(iv), again with a different Lean argument (Section~\ref{sec:A-iv}). Since Theorem~\ref{thm:L}(iii) shows that the shape \(r^2st\) does not occur, the \(r^2st\) material below (Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}, the square-discriminant sections and the \(r^2st\) rows of Table~\ref{tab:bounds}) is kept as the v1.3 record and is no longer needed.
+
+\section{Background and the v1.3 statements}
+
+Write \(\ph\) for Euler's totient and \(\sig\) for the sum-of-divisors function.
+Following Roy Choudhury and Wei~\cite{RCW2026}, we study the simultaneous jump identities~\eqref{eq:jumps}, where \(N:=n+12\). Every prime quadruplet \((p,p+2,p+6,p+8)\) produces a composite solution \(n=p(p+8)\).
 Their Conjecture~1.1 asserts the converse for composite \(n\); they attribute the broader prime-quadruplet classification to Jud~McCranie via OEIS~A056777~\cite{RCW2026}. They established that conjecture when \(n\) and \(N\)
 are both squarefree semiprimes~\cite[Thm.~2.2]{RCW2026}, excluded the case that \(n\) is a prime power~\cite[Thm.~3.1]{RCW2026},
 and verified it for every composite \(n\le 10^{12}\). The Hardy--Littlewood \(k\)-tuple conjecture~\cite{HL1923} supplies the
@@ -126,7 +1221,7 @@ If \(N=r^2st\) with distinct primes \(r,s,t\ge 5\), write \(\sigma=s+t\) and \(\
 \label{eq:r2st-q}
 q&=\frac{2p^2r^2+p^2r-2pr^3-pr+2r^5-r^3-r^2-12r-24}{(p-r)\bigl(pr+2p-r^2+r\bigr)}.
 \end{align}
-In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty.
+In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not occur at all, by Theorem~\ref{thm:L}(iii); part~(c) is kept as the v1.3 record.)
 \end{enumerate}
 \end{theorem}
 
@@ -136,6 +1231,7 @@ There do not exist distinct primes \(p\) and \(q\) such that \(n=p^2q\) satisfie
 \end{conjecture}
 
 Conjecture~\ref{conj:vanish} is not a theorem. Theorem~\ref{thm:R1} empties every triple \(N=rst\). The original v0.10 claim that Hypotheses~\ref{hyp:R2}--\ref{hyp:R3} would finish the family is \textbf{not justified} (incomplete reduction); see Appendix~\ref{app:hist-prop32}. The current equivalence is Proposition~\ref{prop:implies-corrected}. With H1 closed only under ordinary computer-assisted trust (Theorem~\ref{thm:H1-comp}), the conjecture remains open precisely on H2 and H3. No true solutions of both jumps with \(n=p^2q\) are known. The parametrizations of Theorem~\ref{thm:rigid} are necessary conditions, not existence statements.
+
 
 \section{Identities}
 \label{sec:ident}
@@ -519,7 +1615,7 @@ Unbalanced four-tuples whose two smallest primes are not \(5\) and \(7\), and co
 
 A square-discriminant proof writes the complementary discriminant as a rational function, clears the denominator, and shows that the numerator cannot be a square: either it is negative, or it is forbidden modulo \(4\), \(8\), or \(16\). A negative rational is not the discriminant of two real primes. That is a stronger conclusion than a modular obstruction.
 
-The model case is \(N=r^2st\) with \(r=p+4\). Theorem~\ref{thm:rigid}(c) gives
+(v1.4: by Theorem~\ref{thm:L}(iii) the shape \(r^2st\) does not occur; this section is kept as the v1.3 record of the method.) The model case is \(N=r^2st\) with \(r=p+4\). Theorem~\ref{thm:rigid}(c) gives
 \[
 \sigma^2-4\pi=\frac{2F(p)}{(p+4)^2(p+12)^2},
 \]
@@ -668,6 +1764,10 @@ The denominator is a square. For an odd prime \(p\), \(F(p)\) is even. Reducing 
 Neither residue is a quadratic residue modulo \(16\). The classes \(p\equiv 5,7,13,15\pmod{16}\) are not excluded by this congruence.
 \end{proof}
 
+\begin{remark}[Superseded in v1.4]
+Theorem~\ref{thm:L}(iii) shows that no solution lies on the line \(r=p+4\) for any \(p\) (Section~\ref{sec:A-iii-3}); Theorem~\ref{thm:rp4} is kept as the v1.3 record.
+\end{remark}
+
 \begin{theorem}[No cube-times-prime with \(p>r\)]
 \label{thm:r3s-plarge}
 If~\eqref{eq:jumps} holds and \(N=r^3s\), then \(p<r\).
@@ -692,6 +1792,8 @@ whose discriminant \(-3r^6+8r^5-8r^4+4r^3-48r^2+48r-48\) is negative for every p
 
 The equality \((r-1)(p^2-r^3)=12\) would force \(\delta=0\), hence \(r-1\mid 12\) and \(r\in\{5,7,13\}\); none of those three values makes \(p^2\) a square. Therefore no prime solution with \(p>r\) exists.
 \end{proof}
+
+\noindent(The kernel-checked proof of \(p<r\) in Section~\ref{sec:A-iv}, step~(f), uses the \(\sig\)-identity~\eqref{eq:A-r3s-sig} instead of this argument.)
 
 \begin{theorem}[Cube-times-prime strip]
 \label{thm:r3s-strip}
@@ -773,6 +1875,8 @@ After three primes have been eliminated in the four-prime case, a quadratic in t
 \label{thm:R1}
 If~\eqref{eq:jumps} holds and \(n=p^2q\), then \(N\) is not a product of three distinct primes.
 \end{theorem}
+
+\noindent(This is Theorem~\ref{thm:L}(ii), kernel-checked with the different argument of Section~\ref{sec:A-ii}. The written v1.3 proof follows.)
 
 \begin{proof}
 Theorem~\ref{thm:closed} already excludes the balanced case in which every prime factor of \(N\) is at least \(2p\). Thus if \(N=rst\), the least prime factor \(\rho\) satisfies \(5\le\rho<2p\). Write \(k=\rho-p\), so \(5-p\le k\le p-2\) and \(k\neq 0\). Theorem~\ref{thm:rigid}(a) makes the complementary discriminant
@@ -942,10 +2046,10 @@ By Corollary~\ref{cor:gcd}, \(p\nmid N\), so \(p\nmid K\). Lemma~\ref{lem:L2} an
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:K} is Lean-formalized as \texttt{P2qStructural.lemmaK} (with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)) and independently audited; see Table~\ref{tab:formalization}.
+Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qExclusions.setupK}, \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
 \end{remark}
 
-\begin{theorem}[Theorem~B: powerful \(N\) impossible]
+\begin{theorem}[Theorem~B: powerful \(N\) impossible; kernel-checked in v1.4, Theorem~\ref{thm:A-B}]
 \label{thm:B}
 If~\eqref{eq:jumps} holds with \(n=p^2q\), then \(N\) is not powerful with \(\omega(N)\ge 2\).
 \end{theorem}
@@ -962,7 +2066,7 @@ g(pm+1)\ge(p+1)(p^2-p-1)=L(p)+p^2-2p+11>L(p),
 and at the upper endpoint \(g\ge p^2(p^2-4)/4>p^3>L(p)\). This contradiction proves the claim.
 \end{proof}
 
-\begin{theorem}[Theorem~A: mixed powers \(r^as\)]
+\begin{theorem}[Theorem~A: mixed powers \(r^as\); kernel-checked in v1.4, Theorem~\ref{thm:A-ras}]
 \label{thm:A}
 If~\eqref{eq:jumps} holds with \(n=p^2q\), then \(N\) is not of the form \(r^as\) with distinct primes \(r,s\) and an integer \(a\ge 2\). (The form \(rs^a\) is identical after renaming.)
 \end{theorem}
@@ -1001,7 +2105,7 @@ Fix a prime \(p\ge 5\). Under~\eqref{eq:jumps} with \(R\neq\emptyset\) and \(j\i
 \end{proposition}
 
 \begin{proof}[Sketch with trust boundary]
-Lemma~\ref{lem:K} supplies the finite list of eligible \(K\). Writing \(M=K\cdot\mathrm{rad}(K)\) and \(N=M\cdot V\) with \(V\) a product of \(j\) new primes, the jump identities become linear in \((q,s)\) for \(j=1\) and in \((q,S=s+t,\Pi=st)\) for \(j=2\). If the \(j=1\) denominator \(f-aM/p^2\) vanishes then \(p\mid M\), contradicting \(p\nmid N\). If the \(j=2\) determinant vanishes then \(p\mid f=\ph(M)\), contradicting the totient identity modulo \(p\). The enumeration of all \(644{,}350\) eligible \(K\) across \(78{,}496\) primes \(5\le p<10^6\) was reproduced by an independent integer Cramer implementation with planted positive controls and singular/nonintegral negative controls; both original and independent runs report zero validated hits. The shared trust base is SymPy factoring/primality and exact integer arithmetic; this is ordinary computer-assisted verification, not a Lean certificate. The result does not exclude H2 for \(p\ge 10^6\).
+The structural clauses (the divisor \(K\), the linear systems and their nonsingularity) are kernel-checked in Section~\ref{sec:A-propC}. Lemma~\ref{lem:K} supplies the finite list of eligible \(K\). Writing \(M=K\cdot\mathrm{rad}(K)\) and \(N=M\cdot V\) with \(V\) a product of \(j\) new primes, the jump identities become linear in \((q,s)\) for \(j=1\) and in \((q,S=s+t,\Pi=st)\) for \(j=2\). If the \(j=1\) denominator \(f-aM/p^2\) vanishes then \(p\mid M\), contradicting \(p\nmid N\). If the \(j=2\) determinant vanishes then \(p\mid f=\ph(M)\), contradicting the totient identity modulo \(p\). The enumeration of all \(644{,}350\) eligible \(K\) across \(78{,}496\) primes \(5\le p<10^6\) was reproduced by an independent integer Cramer implementation with planted positive controls and singular/nonintegral negative controls; both original and independent runs report zero validated hits. The shared trust base is SymPy factoring/primality and exact integer arithmetic; this is ordinary computer-assisted verification, not a Lean certificate. The result does not exclude H2 for \(p\ge 10^6\).
 \end{proof}
 
 \section{Squarefree many-factor obstruction (Theorem~D)}
@@ -1042,13 +2146,13 @@ The polynomial \(H(p,q)=A(N)^2(N^2-Q)-(p-1)QN^2\) expands, on the region \(p=5+v
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:D} is Lean-formalized as \texttt{P2qTheoremD.theoremD} (with an elementary finite-product replacement for the fractional-power AM--GM step) and independently audited; see Table~\ref{tab:formalization}. Lemma~\ref{lem:Q} itself is not separately Lean-formalized.
+Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}.
 \end{remark}
 
 \section{Limits on repeated primes (Theorem~E)}
 \label{sec:thmE}
 
-\begin{theorem}[Theorem~E]
+\begin{theorem}[Theorem~E; kernel-checked in v1.4, Theorem~\ref{thm:A-E}]
 \label{thm:E}
 Assume~\eqref{eq:jumps} with \(n=p^2q\). Write \(\delta=\delta(N)=q+2p+1\).
 \begin{enumerate}
@@ -1076,7 +2180,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is not Lean-formalized. Its analytic certificates are independently audited in the written package recorded in Section~\ref{sec:manifest}.
+Theorem~\ref{thm:E} is kernel-checked in v1.4 as Theorem~\ref{thm:A-E}, clause by clause, with the hypothesis \(j\ge 1\) replaced by the weaker ``a third prime factor'' in (ii) and (iv) and dropped in (iii). The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}
@@ -1114,7 +2218,7 @@ If~\eqref{eq:jumps} holds and \(N\) is squarefree with \(k=\omega(N)\ge 4\), the
 \end{corollary}
 
 \begin{remark}
-Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are Lean-formalized in \texttt{P2qStructural} (with F counting odd primes via \texttt{Nat.primeFactors}; for odd \(N\) these counts agree with the paper) and independently audited. Corollary~\ref{cor:F1} is Lean-formalized as \texttt{corollaryF1} in the extensions package and independently audited; see Table~\ref{tab:formalization}. It does not formalize the local \(q\)-congruence refinements.
+Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
 \end{remark}
 
 \section{Corrected residual analysis}
@@ -1134,7 +2238,7 @@ In the present draft, H1 is established under ordinary computer-assisted trust b
 \end{proposition}
 
 \begin{proof}
-(\(\Rightarrow\)) is immediate. (\(\Leftarrow\)): every factor pattern of \(N>1\) appears in exactly one row of Table~\ref{tab:classify}. The rows other than H1--H3 are excluded by Theorem~\ref{thm:closed}(1)--(4), Theorem~\ref{thm:R1}, Theorem~\ref{thm:A}, and Theorem~\ref{thm:B}.
+The equivalence is kernel-checked as Theorem~\ref{thm:A-implies} (\texttt{P2qJumps.prop\_implies\_corrected}); the trust statements about H1 and H2 are not. (\(\Rightarrow\)) is immediate. (\(\Leftarrow\)): every factor pattern of \(N>1\) appears in exactly one row of Table~\ref{tab:classify}. The rows other than H1--H3 are excluded by Theorem~\ref{thm:closed}(1)--(4), Theorem~\ref{thm:R1}, Theorem~\ref{thm:A}, and Theorem~\ref{thm:B}.
 \end{proof}
 
 \begin{theorem}[H1 under ordinary computer-assisted trust]
@@ -1201,16 +2305,16 @@ Write \(L(x)=x^3-x^2-12\) and \(E\colon y^2=L(x)\). Every item below was checked
 \item Reproduce in Sage: \texttt{E = EllipticCurve([0, -1, 0, 0, -12]); E.integral\_points(); E.gens()}.
 \end{itemize}
 
-\noindent\textbf{Correction recorded in v1.4.} A text supplied during preparation of v1.4 described this curve as rank~\(0\) with torsion \(\mathbb{Z}/2\mathbb{Z}\) and used that to close the \(r^3s\) residual by a torsion pull-back. That description is false: \texttt{3936.b1} has rank~\(1\) and trivial torsion. No argument of that kind is used anywhere in this paper or in the Lean development.
+\noindent\textbf{Correction recorded in v1.4 (the only place where a rank-\(0\) claim is mentioned).} A text supplied during preparation of v1.4 described this curve as rank~\(0\) with torsion \(\mathbb{Z}/2\mathbb{Z}\) and used that to close the \(r^3s\) residual by a torsion pull-back. That description is false: \texttt{3936.b1} has rank~\(1\) and trivial torsion. No argument of that kind is used anywhere in this paper or in the Lean development.
 
 \medskip
-\noindent\textbf{Link with the shape \(r^3s\).} If \(N=r^3s\) then Theorem~\ref{thm:L}(iv) gives \(p<r\) and \(r^2\mid L(p)\), so \(r<p^{3/2}\). Writing \(L(p)=k\,r^2\) with an integer \(k\ge 1\), the point \((X,Y)=(kp,\,k^2r)\) is an integral point on the quadratic twist
+\noindent\textbf{Link with the shape \(r^3s\) (kernel-checked, Lemma~\ref{lem:A-twist}).} If \(N=r^3s\) then Theorem~\ref{thm:L}(iv) gives \(p<r\) and \(r^2\mid L(p)\), so \(r<p^{3/2}\). Writing \(L(p)=k\,r^2\) with an integer \(k\ge 1\), the point \((X,Y)=(kp,\,k^2r)\) is an integral point on the quadratic twist
 \[
 E^{(k)}\colon\ Y^2=X^3-kX^2-12k^3 .
 \]
-Moreover \(r^2(r+s-1)=p(p+q-1)\) and \(p\nmid r\) give \(s\equiv 1-r\pmod p\); together with \(N\equiv 12\pmod p\) this yields \(p\mid r^4-r^3+12\). (These two congruence statements are proved here on paper; only \(p<r\) and \(r^2\mid L(p)\) are Lean-formalized.)
+Moreover \(r^2(r+s-1)=p(p+q-1)\) and \(p\nmid r\) give \(s\equiv 1-r\pmod p\); together with \(N\equiv 12\pmod p\) this yields \(p\mid r^4-r^3+12\). (The integral point, the bound \(r^2<p^3\) and both congruences are kernel-checked as Lemma~\ref{lem:A-twist}; since the shape \(r^3s\) is empty (Theorem~\ref{thm:A-r3s-empty}), the link is vacuous.)
 
-\begin{remark}[Root numbers of the twists]
+\begin{remark}[Root numbers of the twists; not kernel-checked]
 For a fundamental discriminant \(D\ne 1\) with \(\gcd(D,3936)=1\),
 \[
 w\bigl(E^{(D)}\bigr)=-\Bigl(\frac{-3936}{|D|}\Bigr)
@@ -1222,26 +2326,43 @@ w\bigl(E^{(D)}\bigr)=-\Bigl(\frac{-3936}{|D|}\Bigr)
 For each fixed \(k\), Siegel's theorem makes the integral points of \(E^{(k)}\) finite, and lower bounds for linear forms in elliptic logarithms (David~\cite{David1995}) make them effectively computable. This gives no bound uniform in \(k\), so it does not close the \(r^3s\) residual. Neither statement is formalized in Lean. Uniform analytic bounds (David's theorem across all twist fibres, effective genus-one bounds) remain open.
 \end{remark}
 
-\noindent\textbf{Deferred search.} The search for \(\omega(N)\ge 4\) up to \(10^6\) is deferred past v1.4; the main theorem keeps the bound of Theorem~\ref{thm:L}(v). An optional external run is recorded in Section~\ref{sec:v14-external}.
+\part{Computational certificates}
+\label{part:C}
 
-\section{Lean-certified reductions (v1.4)}
-\label{sec:v14-lean}
+Part~\ref{part:C} separates two kinds of computation. The \emph{kernel certificates} (Section~\ref{sec:C-kernel}) are evaluated by the Lean kernel and are part of the proof of Theorem~\ref{thm:L}. The \emph{external computations} (Section~\ref{sec:v14-external}) are ordinary computer-assisted checks; they are not kernel-checked and no Lean theorem uses them.
 
-The statement below is input verbatim from the locked file \texttt{paper/theorem-L.tex}; its Lean transcription \texttt{P2qJumps.Semantics.paper\_claim} is \textbf{pending author approval}.
+\section{Kernel certificates}
+\label{sec:C-kernel}
 
-\input{theorem-L}
+Each certificate is a theorem of the form \(\mathtt{check}(\dots)=\mathtt{true}\), proved by \texttt{decide +kernel}: the Lean kernel itself reduces the Boolean checker, which is built from \texttt{Nat.rec} and the kernel-accelerated natural-number operations \(+,\times,/,\bmod,<,\gcd,\log_2\). No \texttt{native\_decide} and no \texttt{Lean.ofReduceBool} is used. A soundness theorem, proved in Lean, turns the value \texttt{true} into the mathematical statement. Helper functions (the Newton integer square root \texttt{isqrt}, the trial-division prime filter) only \emph{propose} data; every proposal is re-verified by the checker, or is harmless for soundness.\lean{allBelow; allBelow_spec; isqrt; primeFilter_of_prime}{Cert/Core.lean:37,40,63,206} The bounded quantifier \(\mathtt{allBelow}\,f\,n\) is \texttt{true} exactly when \(f(k)=\mathtt{true}\) for all \(k<n\).
 
-\begin{proof}[Proof outline (each step is a Lean theorem)]
-(i) If \(N\) is prime then \(\ph(N)=N-1\) and the totient jump gives \(p(p+q-1)=1\). If \(N=rs\) the two jumps and \(rs=N\) give \(2p+q=1\) (\texttt{N\_not\_prime}, \texttt{N\_ne\_rs}).
-(ii) Theorem~\ref{thm:R1} (Theorem~28), proved in \texttt{ClosedShapes} as \texttt{theorem28\_holds}. It is a theorem in the repository, not a hypothesis.
-(iii) Put \(Q=pr+2p-r^2+r\). The jumps give \(rQ(s+t)=-A\) and \(r(p-r)Q\,st=B\) with explicit polynomials \(A,B\), and \((p-r)A^2-4rQB=H\), whence \(r^2(p-r)Q^2(s-t)^2=H\) (\texttt{r2st\_linear}, \texttt{r2st\_disc}). For \(p>r\) and for \(r=p+2\) the sum \(s+t\) would be negative; for \(r\ge p+6\) one has \(H>0\), which is incompatible with the sign of the left side. Hence \(r=p+4\), \(Q=-(p+12)\), and \(\bigl((p+4)(p+12)(s-t)\bigr)^2=2F(p)\) with \(F(p)=p^8+20p^7+158p^6+685p^5+2064p^4+4836p^3+7976p^2+5760p-2808\) (\texttt{r2st\_reduction}). The kernel certificate \texttt{cert\_line} shows \(2F(p)\) is not a square for \(5\le p\le 10^4\), so \(p>10^4\). Finally Lemma~\ref{lem:K} in the case \(K=r\) (proved directly in Lean) gives \(r\mid L(p)\); with \(r=p+4\) and \(L(p)=(p+4)(p^2-5p+20)-92\) this forces \(p+4\mid 92\), so \(p\le 88\), a contradiction (\texttt{r2st\_empty}).
-(iv) \(r^2(r+s-1)=p(p+q-1)\) and the \(\sig\)-jump exclude \(p>r\) and give \(r^2\mid L(p)\) (\texttt{r3s\_reduction}); the kernel certificate \texttt{strip\_le\_10000} shows no prime \(r>p\) has \(r^2\mid L(p)\) for primes \(5\le p\le 10^4\) (\texttt{r3s\_bound}).
-(v) The kernel certificate \texttt{no\_jumps\_p2q\_le\_10000} evaluates \(\ph\) and \(\sig\) for every \(n=p^2q\le 10^4\).
-\end{proof}
+\subsection{The line certificate (used in Theorem~\ref{thm:L}(iii))}
+\label{sec:C-line}
+\emph{What is computed.} \(\mathtt{lineCheck}(10001)\) evaluates, for every integer \(0\le p<10001\), the test ``\(p<5\) or \(\mathtt{notSquareB}(2F(p))\)''.\lean{lineCheck; lineB; cert_line}{Cert/Core.lean:106,103; Cert/Line.lean:18} Here \(\mathtt{notSquareB}(m)\) computes a proposed \(k=\mathtt{isqrt}(m)\) and checks \(k^2<m<(k+1)^2\); \(F(p)\) is computed as a natural number, which equals the integer \(F(p)\) for \(p\ge 1\).\lean{notSquareB; F8nat_cast}{Cert/Core.lean:66,93}
 
-\begin{remark}[New content requiring author approval]
-Items (iii) and the \(p>r\) half of (iv) are new relative to v1.3. In particular (iii) closes the shape \(r^2st\) completely, whereas the v1.3 text and the author's v1.4 theorem block list \(r^2st\) as open beyond computational bounds. Every step is kernel-checked, but its insertion into the paper is pending the author's review.
-\end{remark}
+\emph{Soundness theorem.} If \(\mathtt{notSquareB}(m)=\mathtt{true}\) then \(m\) is not the square of any integer (a square root \(j\) would satisfy \(k<|j|<k+1\)).\lean{notSquareB_spec; notSquareB_spec_int}{Cert/Core.lean:70,79} Hence \(\mathtt{lineCheck}(B)=\mathtt{true}\) implies: for every integer \(5\le p<B\) and every \(j\in\Z\), \(j^2\ne 2F(p)\).\lean{lineCheck_sound}{Cert/Core.lean:108}
+
+\emph{Range.} Every integer \(5\le p\le 10^4\).
+
+\subsection{The strip certificate (used in Theorem~\ref{thm:L}(iv))}
+\label{sec:C-strip}
+\emph{What is computed.} For each \(p\) in a chunk \(a\le p<a+\ell\), carrying \(F=p!\) (updated by \(F\mapsto F\cdot(p+1)\)), the loop \(\mathtt{gstripLoop}\) tests ``\(p<5\), or \(p\) fails the prime filter, or \(\mathtt{gstripB}(p,F)\)''.\lean{gstripLoop; gstripB}{Cert/Core.lean:495,434} The test \(\mathtt{gstripB}(p,p!)\) computes \(M\) from \(L(p)\) by repeatedly replacing \(m\) with \(m/\gcd(m,p!)\) while \(\gcd(m,p!)\ne 1\) (at most \(64\) times), and then checks \(\gcd(M,p!)=1\) and (\(M=1\) or \(M\) is not a square).\lean{gstrip}{Cert/Core.lean:407} The eight certificates \texttt{cert\_strip\_0}--\texttt{cert\_strip\_7} run the chunks \(a=0,1250,\dots,8750\) with \(\ell=1250\) (the last with \(\ell=1251\)), so together they cover \(0\le p\le 10000\); the split only bounds kernel memory.\lean{cert_strip_0 .. cert_strip_7}{Cert/Strip.lean:20-34}
+
+\emph{Soundness theorem.} Let \(p\ge 5\) with \(\mathtt{gstripB}(p,p!)=\mathtt{true}\), and suppose a prime \(r>p\) has \(r^2\mid L(p)\).\lean{gstripB_sound}{Cert/Core.lean:438} Since \(r>p\), \(\gcd(r^2,p!)=1\); dividing by numbers \(\gcd(m,p!)\) coprime to \(r^2\) keeps \(r^2\) as a divisor, so \(M\mid L(p)\) and \(r^2\mid M\).\lean{gstrip_spec}{Cert/Core.lean:413} Write \(M=r^2c\) with \(c\ge 1\) (as \(L(p)>0\)). Also \(M\le L(p)<p^3\). If \(M=1\) then \(r^2\le 1\), impossible. If \(c=1\) then \(M=r^2\) is a square, contradicting the check. If \(c>1\), its least prime factor \(\ell\) divides \(M\); since \(\gcd(M,p!)=1\), \(\ell>p\), so \(c\ge p+1\) and \(M=r^2c\ge(p+1)^3>p^3\), a contradiction. The prime filter is used only in the direction ``every prime passes'', so composite \(p\) can only be skipped, never wrongly certified. Combining the chunks gives \texttt{strip\_le\_10000}: for every prime \(5\le p\le 10^4\) and every prime \(r>p\), \(r^2\nmid L(p)\).\lean{gstripLoop_sound; strip_le_10000}{Cert/Core.lean:505; Cert/Strip.lean:38}
+
+\emph{Range.} Every prime \(5\le p\le 10^4\).
+
+\subsection{The pair certificates (used in Theorem~\ref{thm:L}(v))}
+\label{sec:C-pairs}
+\emph{What is computed.} For each prime \(p\le 97\), \(\mathtt{cert\_pair\_}p\) evaluates \(\mathtt{pairFastChunk}(p,0,\lfloor 10^4/p^2\rfloor+1)\): for every \(0\le q\le\lfloor 10^4/p^2\rfloor\), ``\(q\) fails the prime filter, or \(q=p\), or \(\mathtt{pairFastB}(p,q)\)''.\lean{pairFastChunk; pairFastB}{Cert/Core.lean:624,618} The test \(\mathtt{pairFastB}(p,q)\) computes \(N=p^2q+12\), proposes \(K=\mathtt{isqrt}(N)\), checks \(N<(K+1)^2\), computes
+\[
+\sum_{\substack{1\le d\le K\\ d\mid N}}\Bigl(d+[\,K<N/d\,]\cdot\frac{N}{d}\Bigr),
+\]
+and checks that this value differs from \((p^2+p+1)(q+1)+12\).\lean{sigFast; sigSAux}{Cert/Core.lean:607,537}
+
+\emph{Soundness theorem.} If \(N<(K+1)^2\), the displayed sum equals \(\sig(N)\): each divisor \(d\le K\) is counted once, and each divisor \(e>K\) is counted once as \(N/d\) with \(d=N/e\le K\).\lean{sigSAux_eq_sigma; sigFast_eq}{Cert/Core.lean:557,611} Hence \(\mathtt{pairFastChunk}(p,a,\ell)=\mathtt{true}\) implies: for prime \(p\) and every prime \(q\ne p\) with \(a\le q<a+\ell\), \(\sig(p^2q+12)\ne\sig(p^2q)+12\), so~\eqref{eq:jumps} fails at \(p^2q\).\lean{pairFastChunk_sound}{Cert/Core.lean:627}
+
+\emph{Range.} Every pair of distinct primes with \(n=p^2q\le 10^4\) (all shapes of \(N\); no hypothesis on the prime factors of \(N\)).
 
 \begin{table}[ht]
 \centering
@@ -1250,17 +2371,18 @@ Items (iii) and the \(p>r\) half of (iv) are new relative to v1.3. In particular
 {\footnotesize
 \begin{tabular}{@{}p{3.2cm}p{4.6cm}p{4.4cm}@{}}
 \toprule
-Certificate & Statement certified & Bound actually reached \\
+Certificate & Statement certified & Range actually reached \\
 \midrule
 \texttt{cert\_line} & \(2F(p)\) is not a perfect square & every integer \(5\le p\le 10^4\) \\
 \texttt{cert\_strip\_0}--\texttt{7} & no prime \(r>p\) with \(r^2\mid L(p)\) & every prime \(5\le p\le 10^4\) \\
-\texttt{cert\_pair\_*} & both jumps fail at \(n=p^2q\) & every \(n=p^2q\le 10^4\), all shapes of \(N\) \\
+\texttt{cert\_pair\_}\(p\) (25 primes \(p\le 97\)) & the \(\sig\)-jump fails at \(n=p^2q\) & every \(n=p^2q\le 10^4\), all shapes of \(N\) \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-\noindent\textbf{Soundness note (\(\mathrm{rad}\)).} The identity \(\mathrm{rad}(N)=N/\gcd(N,\ph(N))\) is false (for \(N=12\) the right side is \(3\), while \(\mathrm{rad}(12)=6\); in general \(N/\gcd(N,\ph(N))\) only divides \(\mathrm{rad}(N)\)). It does not occur in this paper, in v1.3, or in any Lean checker or script of the repository: the paper defines \(U=\mathrm{rad}(N)\) and \(K=N/U\) directly (Lemmas~\ref{lem:L2},~\ref{lem:K}), and no checker filters on \(\omega(N)\) or on \(\mathrm{rad}(N)\). A script named \texttt{rcw\_vectorized\_sieves.py} was not available and was not audited.
+
+\noindent\textbf{Soundness note (\(\mathrm{rad}\)).} The identity \(\mathrm{rad}(N)=N/\gcd(N,\ph(N))\) is false (for \(N=12\) the right side is \(3\), while \(\mathrm{rad}(12)=6\); in general \(N/\gcd(N,\ph(N))\) only divides \(\mathrm{rad}(N)\)). Both facts are kernel-checked (Proposition~\ref{prop:A-rad}: the divisibility, and the counterexample \(N=12\)). The identity does not occur in this paper, in v1.3, or in any Lean checker or script of the repository: the paper defines \(U=\mathrm{rad}(N)\) and \(K=N/U\) directly (Lemmas~\ref{lem:L2},~\ref{lem:K}), and no checker filters on \(\omega(N)\) or on \(\mathrm{rad}(N)\). A script named \texttt{rcw\_vectorized\_sieves.py} was not available and was not audited.
 
 \section{Classification ledger aligned with the author's v1.4 theorem block}
 \label{sec:v14-ledger}
@@ -1271,19 +2393,20 @@ The author supplied a classification theorem for v1.4. The version below keeps i
 \label{thm:main-p2q}
 Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover:
 \begin{enumerate}
-\item \textbf{\(N=r^3s\).} Then \(p<r<p^{3/2}\), \(r^2\mid L(p)\) and \(p\mid r^4-r^3+12\), and \((kp,k^2r)\in E^{(k)}(\Z)\) with \(k=L(p)/r^2\). Kernel-checked: no solution with \(p\le 10^4\). External computation (not kernel-checked; Section~\ref{sec:v14-external}): no prime \(5\le r\le 10^6\) admits a prime \(5\le p<r\) with \(r^2\mid L(p)\). The v1.3 Theorem~\ref{thm:A} (written proof, independently audited, not Lean) states that \(r^as\) with \(a\ge 3\) is excluded; the author's block lists this case as open. The Lean development proves only the bounded statement.
-\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Conditional on the constraint that every prime factor of \(N\) exceeds \(p\) (stated as a hypothesis; not yet proved), which forces \(N>p^4\) and hence \(q>p^2\), the residual can occur only for pairs with \(p^2<q\). Under that hypothesis, an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) excludes every solution with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\); no hypothesis needed); the external PARI search covers \(Q=10^4\) (in fact all distinct primes \(p,q\le 10^4\), any shape, no hypothesis, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) covers \(Q=10^6\) [result pending]. The main theorem keeps the bound \(n\le 10^4\). Beyond these ranges this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
-\item \textbf{Other shapes.} The shapes with a repeated prime left by Theorem~\ref{thm:E} and not covered by (1)--(2), such as \(r^3st\) and \(r^2s^2t\), remain in H2 of Proposition~\ref{prop:implies-corrected}.
+\item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the external check \(5\le r\le 10^6\)) remain true and are now superseded.
+\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
+\item \textbf{\(N=r^3st\).} Excluded with no bound (Theorem~\ref{thm:A-r3st-empty}, kernel-checked, v1.4).
+\item \textbf{Other shapes.} Every solution has \(\omega(N)\ge 4\) or \(N=r^2s^2t\) with pairwise distinct primes (Theorem~\ref{thm:A-three}(a), kernel-checked). The shape \(r^2s^2t\) lies in H2 of Proposition~\ref{prop:implies-corrected} and remains open.
 \end{enumerate}
 \end{theorem}
 
 \noindent\textbf{Deviations from the supplied block} (each needs the author's decision):
 \begin{enumerate}
-\item The block says every counterexample falls into the three regimes \(r^3s\), \(r^2st\), \(\omega(N)\ge 4\). That is the superseded v0.10 list (Remark~\ref{prop:implies}); Theorem~\ref{thm:E} leaves, for example, \(r^3st\) and \(r^2s^2t\) (three distinct primes), which none of the three regimes contains.
+\item The block says every counterexample falls into the three regimes \(r^3s\), \(r^2st\), \(\omega(N)\ge 4\). That is the superseded v0.10 list (Remark~\ref{prop:implies}). Theorem~\ref{thm:E} also leaves \(r^3st\) and \(r^2s^2t\); \(r^3st\) is now excluded (Theorem~\ref{thm:A-r3st-empty}), and by Theorem~\ref{thm:A-three}(b) the claim is equivalent to the emptiness of \(r^2s^2t\), which is open. So the claim is not proved, and it is not asserted here.
 \item The block treats \(r^2st\) as open beyond \(r\le 10^4\) through a quantity \(D_{\mathrm{true}}(p,r)\) dividing \(R_{10}(r)\). The polynomial \(R_{10}\) is not defined in the paper and this route was not checked; Theorem~\ref{thm:L}(iii) closes \(r^2st\) with no bound instead.
 \item The block's ``Hensel lifting excludes all primes \(5\le r\le 10^6\)'' is an external Python/SymPy computation, not a kernel certificate. The kernel bound is \(p\le 10^4\).
-\item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'', ``\(r_i>p\) for all \(r_i\mid N\)'' and ``Lemma \path{omega-ge-4-constraints}'' are not proved in this paper or in Lean; there is no such lemma in the text. Only \(\gcd(N,6p)=1\) is proved (Corollary~\ref{cor:gcd}), and Appendix~\ref{app:p7} explicitly allows the prime factor~\(5\) when \(p=7\). They are not used here.
-\item The block's coverage phrase for \(5\le p\le 97\) via \(N>p^4\) is replaced, at the author's direction, by the conditional statement in (2): the bound \(N>p^4\), hence \(q>p^2\), holds only under the unproved hypothesis that every prime factor of \(N\) exceeds \(p\) (item 4), and the searched ranges are stated exactly. No claim of full coverage in \(q\) without that hypothesis is made.
+\item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'' and ``\(r_i>p\) for all \(r_i\mid N\)'' (its ``Lemma \path{omega-ge-4-constraints}'') were not proved in v1.3. They are now proved in Lean, in the stronger form \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (Theorem~\ref{thm:A-omega4}). The prime factor~\(5\) allowed by Appendix~\ref{app:p7} for \(p=7\) cannot occur when \(\omega(N)\ge 4\).
+\item The block's coverage phrase for \(5\le p\le 97\) via \(N>p^4\) is correct once Theorem~\ref{thm:A-omega4} is available: \(N>p^4\) and \(q\ge 3p^2>p^2\) hold for every solution with \(\omega(N)\ge 4\). The searched ranges in (2) are stated exactly.
 \item The block's ``exhaustive search over all distinct primes \(5\le p,q\le 10^4\)'' matches the external computation in (2), not a kernel certificate; the kernel-checked range is \(n\le 10^4\).
 \end{enumerate}
 
@@ -1295,8 +2418,11 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py A 10000} (PARI via cypari2, 13\,s): all \(1{,}509{,}212\) ordered pairs of distinct primes \(2\le p,q\le 10^4\); \(\ph(N)\), \(\sig(N)\) from the full factorization of \(N\); hits: none.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py B 997 1000000} (71\,s): all \(8{,}912{,}452\) pairs with primes \(5\le p\le 997\), \(p^2<q\le 10^6\) (the range of the author's script below), no filter; hits: none.
-\item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); that step is sound only under the unproved claim \(r_i>p\) above. Status: \OMEGAFOURSTATUS
+\item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); for \(\omega(N)\ge 4\) this step is sound by Theorem~\ref{thm:A-omega4}. Status: \OMEGAFOURSTATUS
 \end{itemize}
+
+
+\part*{Status, reproducibility and history}
 
 \section{Open items after v1.4}
 \label{sec:v14-open}
@@ -1318,7 +2444,7 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \end{itemize}
 
 \section*{Change log (v1.4)}
-Added Sections~\ref{sec:v14-curve}--\ref{sec:v14-repro}: verified data for LMFDB \texttt{3936.b1} with the Sage snippet, the root-number formula with its hypotheses, the per-fibre finiteness remark, the deferral of the \(10^6\) search for \(\omega(N)\ge 4\), Theorem~\ref{thm:L} with kernel certificates, the aligned classification ledger with its deviations, external computations, open items and reproducibility data. Updated Tables~\ref{tab:classify} and~\ref{tab:formalization} for \(r^2st\) and Theorem~\ref{thm:L}. Added the author's metadata. The rest of the v1.3 text is unchanged.
+Restructured the paper: Theorem~\ref{thm:L} (input verbatim from the locked \path{paper/theorem-L.tex}, unchanged) now leads; Part~\ref{part:A} gives step-by-step proofs of clauses (i)--(v) that follow the Lean proofs, with declaration names and \texttt{file:line} references; Part~\ref{part:B} collects the paper-only arguments with explicit not-kernel-checked labels; Part~\ref{part:C} describes each kernel certificate (what it computes, its soundness theorem, its range) and the external computations. Corrected the description of the pair certificates: they evaluate only \(\sig\) (the \(\sig\)-jump already fails), not \(\ph\) and \(\sig\). Added Sections~\ref{sec:v14-curve}--\ref{sec:v14-repro}: verified data for LMFDB \texttt{3936.b1} with the Sage snippet, the root-number formula with its hypotheses, the per-fibre finiteness remark, the deferral of the \(10^6\) search for \(\omega(N)\ge 4\), Theorem~\ref{thm:L} with kernel certificates, the aligned classification ledger with its deviations, external computations, open items and reproducibility data. Updated Tables~\ref{tab:classify} and~\ref{tab:formalization} for \(r^2st\) and Theorem~\ref{thm:L}. Added the author's metadata. The rest of the v1.3 text is unchanged.
 
 \fussy
 \section{Certificate and log manifest hooks}
@@ -1344,14 +2470,15 @@ Package directories dated 2026-11-06 under \path{/workspace/} accompany this REV
 
 This REVIEW draft does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed only under the ordinary computer-assisted trust boundary of Appendix~\ref{app:p7}, not by a Lean certificate. H2 for \(p\ge 10^6\) and H3 remain open. Theorems~A,~B,~E in full, the exhaustive classification, and the \(p=7\) descent are not Lean-formalized (F1/L1/Q/repeated-size extensions are Lean+independently audited). No claim is made that the \(p=7\) descent is kernel-checked, nor that the Lean portfolio is complete. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
 
+
 \appendix
 
-\section{Exact finite descent for the squarefree \(p=7\) residual}
+\section{Exact finite descent for the squarefree \(p=7\) residual (Part~\ref{part:B}; not kernel-checked)}
 \label{app:p7}
 
 \subsection{Trust boundary (read first)}
 \label{app:p7-trust}
-The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. It is \textbf{not} Lean/kernel-certified. Ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Until a Lean formalization of the descent is independently audited, Theorem~\ref{thm:H1-comp} must not be cited as a Lean theorem.
+The argument of this appendix is an exact finite computer-assisted exclusion, matching the authoritative audited \(p=7\) descent package. It has been independently reproduced with a separate integer implementation (two complete runs of each of \(k=7,8,9\), matching node counts, zero solutions) and a repaired singular-branch proof. It is \textbf{not} Lean/kernel-certified. Ordinary trust covers: CPython arbitrary-precision integers; an independent finite traversal and prime sieve; execution of that program; and the separately audited mathematical reductions D/F. This is not a substitute for a Lean formalization. Until a Lean formalization of the descent is independently audited, Theorem~\ref{thm:H1-comp} must not be cited as a Lean theorem. Since v1.4 the equations below, the congruences \(N\equiv\ph(N)\equiv 5\pmod 7\) used in the singular-branch argument, the exclusion of every prime factor \(\le 7\) (in particular~\(5\)) when \(\omega(N)\ge 4\), and an additional prefix bound are kernel-checked (Section~\ref{sec:A-p7}); the enumeration is not.
 
 \subsection{Equations and enlarged negative domain}
 For \(p=7\),
@@ -1363,7 +2490,7 @@ equivalently
 \label{eq:p7out}
 7\ph(N)=6N-282,\qquad 49\sig(N)=57N+2697.
 \end{equation}
-Every prime factor of \(N\) is \(\ge 5\) and different from~7. The first identity forces \(N\equiv 5\pmod 7\). The search excludes the larger class of squarefree products of exactly \(k\in\{7,8,9\}\) such primes satisfying~\eqref{eq:p7out}, without imposing \(q\)-integrality, \(q\)-primality, local congruences, or the lower bound of Theorem~\ref{thm:D}. A negative result on this enlarged domain therefore excludes every genuine residual solution.
+Every prime factor of \(N\) is \(\ge 5\) and different from~7. (Proposition~\ref{prop:A-p7-ge11} strengthens this to \(\ge 11\); the search below keeps the larger domain.) The first identity forces \(N\equiv 5\pmod 7\). The search excludes the larger class of squarefree products of exactly \(k\in\{7,8,9\}\) such primes satisfying~\eqref{eq:p7out}, without imposing \(q\)-integrality, \(q\)-primality, local congruences, or the lower bound of Theorem~\ref{thm:D}. A negative result on this enlarged domain therefore excludes every genuine residual solution.
 
 \subsection{Prefix descent and exact bounds}
 Order factors \(r_1<\cdots<r_k\). At a prefix of product \(b\), with \(h=\ph(b)\), \(s=\sig(b)\), and \(m\ge 3\) remaining primes, write \(M=N/b\) and let \(F_-\) (resp.\ \(F_+\)) be the product of remaining factors of the form \(r-1\) (resp.\ \(r+1\)). Then
@@ -1392,7 +2519,7 @@ Eliminating \(S\) yields a unique rational \(P\) whenever the determinant \(D=2f
 If \(D_0=0\), then \(D_0\equiv -bh\pmod 7\). Since \(7\nmid b\), one has \(7\mid h\), whence \(7\mid\ph(N)\). But eliminating \(N\) from~\eqref{eq:p7out} gives \(42\sig(N)-57\ph(N)=4608\), so \(\ph(N)\equiv 5\pmod 7\), a contradiction. Thus every singular terminal system is integer-infeasible; empirical absence of singular nodes is not required.
 
 \subsection{Results}
-Independent complete runs report: \(k=7\), \(93{,}159\) nodes, largest branch bound \(790\), zero solutions; \(k=8\), \(1{,}804{,}946\) nodes, bound \(1{,}416\), zero solutions; \(k=9\), \(37{,}791{,}874\) nodes, bound \(2{,}542\), zero solutions. Branch bounds apply only to primes explicitly branched upon; the final two factors are eliminated algebraically. Combining with Corollary~\ref{cor:F1} closes H1 under the trust boundary of~\S\ref{app:p7-trust}. H2 and H3, and therefore Conjecture~\ref{conj:vanish}, remain open.
+Independent complete runs report: \(k=7\), \(93{,}159\) nodes, largest branch bound \(790\), zero solutions; \(k=8\), \(1{,}804{,}946\) nodes, bound \(1{,}416\), zero solutions; \(k=9\), \(37{,}791{,}874\) nodes, bound \(2{,}542\), zero solutions. Branch bounds apply only to primes explicitly branched upon; the final two factors are eliminated algebraically. Restricting to primes \(\ge 11\) (Proposition~\ref{prop:A-p7-ge11}) removes one node for each \(k\); adding the prefix bound of Proposition~\ref{prop:A-p7-prefix} reduces the runs to \(134\), \(748\) and \(5{,}773\) nodes (largest branch bounds \(65\), \(86\), \(130\)), again with zero solutions (\path{scripts/p7/descent.py}). Combining with Corollary~\ref{cor:F1} closes H1 under the trust boundary of~\S\ref{app:p7-trust}. H2 and H3, and therefore Conjecture~\ref{conj:vanish}, remain open.
 
 \section{Historical quotation: original Proposition~32 (superseded)}
 \label{app:hist-prop32}

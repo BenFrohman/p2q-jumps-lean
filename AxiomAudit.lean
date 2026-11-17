@@ -266,3 +266,8 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.P7Cert.cert8
 #print axioms P2qJumps.P7Cert.cert9
 #print axioms P2qJumps.P7Cert.desc_sound
+#print axioms P2qJumps.p7_squarefree_empty
+#print axioms P2qJumps.p7_squarefree_7_8_9
+#print axioms P2qJumps.H1_holds
+#print axioms P2qJumps.no_squarefree
+#print axioms P2qJumps.conjecture_iff_H2_H3

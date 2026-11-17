@@ -682,6 +682,130 @@ Steps 10 and 11 exclude every \(k\ge 1\), which contradicts Step~3.
 Theorem~\ref{thm:A-r3st-empty} is not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. Adding it to Theorem~\ref{thm:L2} would change that locked statement, so it would need a new lock and the author's approval.
 \end{remark}
 
+\section{Theorems B, D, E, Lemma K and Corollary F1 in Lean}
+\label{sec:A-BDE}
+
+The results of this section were proved in Lean in the earlier audited packages \texttt{P2qStructural}, \texttt{P2qExtensions}, \texttt{P2qTheoremD} and \texttt{P2qExclusions} (Lean v4.22.0). In v1.4 these packages are ported into this repository as \path{P2qJumps/Ext/} (toolchain v4.26.0; four proof steps were adapted to the newer Mathlib, no statement changed) and rebuilt here. Those packages assumed \(p\ge 5\), \(q\ge 5\) and, for E(i), \(\omega(N)\ge 2\). Here these hypotheses are discharged by Proposition~\ref{prop:A-preamble} and Proposition~\ref{prop:A-primepower}, so every statement below assumes only~\eqref{eq:jumps}. All are kernel-checked with the standard axioms only. They are not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. Write \(U=\mathrm{rad}(N)\) (the product of the distinct primes dividing \(N\)), \(K=N/U\), \(P=\prod_{\ell\mid N}(\ell-1)\), \(L(p)=p^3-p^2-12\), \(\delta(x)=\sig(x)+\ph(x)-2x\) and \(\omega(N)=\#\{\ell\text{ prime}:\ell\mid N\}\).
+
+\subsection{Shared lemmas}
+
+\begin{lemma}[\(\omega(N)\ge 2\)]
+\label{lem:A-omega2}
+Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lean{P2qJumps.two_le_omega}{TheoremsBE.lean:32}
+\end{lemma}
+\begin{proof}
+\(N>1\), so \(\omega(N)\ge 1\). If \(\omega(N)=1\), then \(N\) is a prime power \(r^k\) with \(k\ge 1\) (Mathlib: \texttt{isPrimePow\_iff\_card\_primeFactors\_eq\_one}), which Proposition~\ref{prop:A-primepower} excludes.
+\end{proof}
+
+\begin{lemma}[L1, Lemma Q and \(\delta(N)\)]
+\label{lem:A-L1Q}
+\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1}{Ext/Extensions/DeltaQ.lean:41}
+\textup{(b)} \(\delta(p^2q)=q+2p+1\) and \(Q(p^2q)=p^4+pq^2-p\), where \(Q(x)=x^2-\sig(x)\ph(x)\).\lean{P2qExtensions.delta_Q_p2q}{Ext/Extensions/DeltaQ.lean:91}
+\textup{(c)} Under~\eqref{eq:jumps}, \(\delta(N)=\delta(n)=q+2p+1\) and \(Q(N)=Q(n)-12\delta(n)=p^4+pq^2-p-12(2p+q+1)>0\).\lean{P2qExtensions.lemmaQ; P2qJumps.lemmaQ_formula}{Ext/Extensions/DeltaQ.lean:100; TheoremsBE.lean:214}
+\textup{(d)} If \(r\) is prime and \(r^2\mid N\), then \(N\le r^2(q+2p+1)\).\lean{P2qExtensions.repeated_prime_bound}{Ext/Extensions/RepeatedSize.lean:44}
+\end{lemma}
+\begin{proof}
+(a) \(\sig(x)=\sum_{ab=x}b\) and \(\ph(x)=\sum_{ab=x}\mu(a)b\); the terms with \(a=1\) give \(2x\). Each \(1+\mu(a)\ge 0\).
+(b) From \(\ph(p^2q)=p(p-1)(q-1)\) and \(\sig(p^2q)=(p^2+p+1)(q+1)\) by expansion.
+(c) Adding the two jumps gives \(\delta(N)=\delta(n)\). Expanding \(Q(N)=(n+12)^2-(\ph(n)+12)(\sig(n)+12)\) gives \(Q(n)-12\delta(n)\). Positivity: with \(p,q\ge 5\) (Proposition~\ref{prop:A-preamble}) the products of the nonnegative numbers \(p-5\), \(q-5\) supplied to \texttt{nlinarith} bound the polynomial below by a positive number.
+(d) The pair \((a,b)=(r^2,N/r^2)\) occurs in (a) with \(\mu(r^2)=0\), so \(\delta(N)\ge N/r^2\); by (c), \(\delta(N)=q+2p+1\).\lean{P2qExtensions.sq_mul_delta_ge}{Ext/Extensions/RepeatedSize.lean:21}
+\end{proof}
+
+\begin{lemma}[Lemma K]
+\label{lem:A-K}
+Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qExclusions.setupK; P2qJumps.lemmaK}{Ext/Exclusions/Setup.lean:56; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
+\end{lemma}
+\begin{proof}
+\textit{Step 1.} \(N=UK\) and \(\ph(N)=KP\).\lean{P2qExclusions.totient_eq_KP}{Ext/Exclusions/Setup.lean:31} The totient jump and \(N=p^2q+12\) give \(K(U-P)=N-\ph(N)=p(p+q-1)\).
+\textit{Step 2.} \(p\nmid N\) (as \(p\mid N\) would force \(p\mid 12\)), so \(p\nmid K\), and since \(p\) is prime, \(p\mid U-P\). Write \(U-P=pm\). Cancelling \(p\) gives \(Km=p+q-1\).
+\textit{Step 3.} \(P<U\) since \(N>1\), so \(pm>0\) and \(m\ge 1\).
+\textit{Step 4.} \(K(p^2m-U)=p^2(p+q-1)-N=p^3-p^2-12\), a linear combination of \(N=UK\), \(N=p^2q+12\) and \(Km=p+q-1\).
+\textit{Step 5.} Let \(r^{e+1}\mid N\). Write \(U=rM\) with \(M\) the product of the other primes of \(N\), so \(\gcd(r,M)=1\). From \(r^{e+1}\mid N=rMK\), cancelling \(r\) gives \(r^e\mid MK\), and \(\gcd(r^e,M)=1\) gives \(r^e\mid K\).
+\end{proof}
+
+\subsection{Theorem B}
+
+\begin{theorem}[Theorem~B]
+\label{thm:A-B}
+Assume~\eqref{eq:jumps}. Then \(N\) is not powerful with \(\omega(N)\ge 2\).\lean{P2qJumps.theoremB}{TheoremsBE.lean:46} Together with Lemma~\ref{lem:A-omega2}: \(N\) is not powerful.\lean{P2qJumps.N_not_powerful}{TheoremsBE.lean:54}
+\end{theorem}
+\begin{proof}
+Suppose \(\ell^2\mid N\) for every prime \(\ell\mid N\), and \(\omega(N)\ge 2\). Take \(m\) from Lemma~\ref{lem:A-K}, and put \(s=\sum_{\ell\mid N}U/\ell\).
+\textit{Step 1 (pair bound).} For powerful \(N\), \(\delta(N)\ge N\bigl(\sum_{\ell\mid N}1/\ell\bigr)^2\): in Lemma~\ref{lem:A-L1Q}(a), the terms \(a=\ell^2\) (\(\mu=0\)) and \(a=\ell\ell'\) with \(\ell<\ell'\) (\(\mu=1\), weight \(2\)) are present because \(N\) is powerful.\lean{P2qExclusions.delta_ge_pairs}{Ext/Exclusions/Pairs.lean:71} Multiplying by \(U\) and using \(N=UK\), \(s=U\sum 1/\ell\): \(Ks^2\le\delta(N)\,U=(Km+p+2)U\), since \(\delta(N)=q+2p+1=Km+p+2\) by Lemma~\ref{lem:A-L1Q}(c) and \(Km=p+q-1\).
+\textit{Step 2 (L3).} For \(\omega(N)\ge 2\), \(U+1\le s+P\) (strict union bound \(1-\prod(1-1/\ell)<\sum1/\ell\), multiplied by \(U\)).\lean{P2qExclusions.lemmaL3}{Ext/Exclusions/TheoremB.lean:62} With \(U-P=pm\): \(s\ge pm+1\) and, as \(P\ge 1\), \(U\ge pm+1\).
+\textit{Step 3 (\(U\le K\)).} Powerful gives \(U^2\mid N=UK\), so \(U\mid K\) and \(U\le K\).\lean{P2qExclusions.rad_sq_dvd}{Ext/Exclusions/TheoremB.lean:21}
+\textit{Step 4 (integer core).}\lean{P2qExclusions.B_arith}{Ext/Exclusions/TheoremB.lean:78} From \(K(p^2m-U)=L(p)>0\): \(K>0\) and \(p^2m-U>0\). From Steps 1--2, \(K(pm+1)^2\le Ks^2\le(Km+p+2)U<(Km+p+2)p^2m\); expanding, \(K(2pm+1)<(p+2)p^2m\), hence \(2K<p(p+2)\). By Step 3, \(L(p)=K(p^2m-U)\ge g(U):=U(p^2m-U)\).
+If \(U+pm+1\le p^2m\): \(g(U)-g(pm+1)=(U-pm-1)(p^2m-U-pm-1)\ge 0\), and \(g(pm+1)-(p+1)(p^2-p-1)=p(m-1)(mp^2-mp+p^2-2)\ge 0\), so \(L(p)\ge(p+1)(p^2-p-1)=L(p)+p^2-2p+11>L(p)\), a contradiction.
+Otherwise \(2U<p(p+2)\) (from \(U\le K\) and \(2K<p(p+2)\)) and \(p^2m\le 2U+p(p+2)-p^2m\). The identity \(4g(U)-c(2p^2m-c)=(c-2U)(2U+c-2p^2m)\) with \(c=p(p+2)\) gives \(4g(U)\ge c(2p^2m-c)\ge c(2p^2-c)\) (\(m\ge 1\)), while \(c(2p^2-c)-4L(p)=p^3(p-4)+48>0\). So \(4L(p)\ge 4g(U)>4L(p)\), a contradiction.
+\end{proof}
+
+\subsection{Theorem E}
+
+\begin{theorem}[Theorem~E]
+\label{thm:A-E}
+Assume~\eqref{eq:jumps} and write \(\delta=q+2p+1\). Let \(r,r_1,r_2,t\) and \(a,b,c\) denote primes.
+\begin{enumerate}
+\item[\textup{(i)}] \(r^4\nmid N\).\lean{P2qJumps.theoremE_i}{TheoremsBE.lean:60}
+\item[\textup{(ii)}] If \(r_1\ne r_2\), \(r_1^2,r_2^2\mid N\), and \(t\mid N\) with \(t\ne r_1,r_2\), then \(q>5p^2-4p-3\).\lean{P2qJumps.theoremE_ii}{TheoremsBE.lean:68}
+\item[\textup{(iii)}] There are no pairwise distinct \(a,b,c\) with \(a^2,b^2,c^2\mid N\).\lean{P2qJumps.theoremE_iii}{TheoremsBE.lean:78}
+\item[\textup{(iv)}] Under the hypotheses of \textup{(ii)}: \(r_1^3\nmid N\) (and likewise \(r_2^3\nmid N\));\lean{P2qJumps.theoremE_iv}{TheoremsBE.lean:88} \(r_1r_2\mid L(p)\);\lean{P2qJumps.theoremE_iv_dvd}{TheoremsBE.lean:138} \(N\le r_i^2\delta\);\lean{P2qJumps.theoremE_iv_size}{TheoremsBE.lean:151} and \(N/\delta>\sqrt{L(p)}\).\lean{P2qJumps.theoremE_iv_sqrt}{TheoremsBE.lean:235}
+\item[\textup{(v)}] If \(r^3\mid N\), then \(r^2\mid L(p)\).\lean{P2qJumps.theoremE_v}{TheoremsBE.lean:129}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+By Proposition~\ref{prop:A-preamble}, \(p,q\ge 5\) and every prime factor of \(N\) is \(\ge 5\).\lean{P2qExclusions.prime_factor_ge_five}{Ext/Exclusions/TheoremE.lean:65} Two facts are used throughout. (F1) If \(d\mid N\) and \(d\mid\ph(N)\), then \(d\mid L(p)\), because \((p-1)N-p\ph(N)=L(p)\);\lean{P2qStructural.phi_elim}{Ext/Structural/Basic.lean:78} as \(L(p)>0\), then \(d\le L(p)<p^3\).\lean{P2qExclusions.le_L}{Ext/Exclusions/TheoremE.lean:91} (F2) Lemma~\ref{lem:A-L1Q}(d): \(r^2\mid N\Rightarrow N\le r^2\delta\).
+
+\textit{(ii).} Since \(r_1^2r_2^2t\mid N\) and \(t\ge 5\): \(5r_1^2r_2^2\le N\). By (F2) twice, \(N^2\le r_1^2r_2^2\delta^2\), so \(5N\cdot N\le N\delta^2\) and \(5N\le\delta^2\), i.e.\ \(5(p^2q+12)\le(q+2p+1)^2\). If \(q\le 5p^2-4p-3\), \texttt{nlinarith} with \((q-5)(5p^2-4p-3-q)\ge 0\) and \((p-5)(q-5)\ge 0\) contradicts this.\lean{P2qExclusions.E_ii_arith}{Ext/Exclusions/TheoremE.lean:24}
+
+\textit{(iii).} By (ii) (with \(t=c\)), \(q>5p^2-4p-3\). \(abc\) divides \(N\) and \(\ph(a^2b^2c^2)\mid\ph(N)\), so by (F1) \(abc<p^3\). In Lemma~\ref{lem:A-L1Q}(a) the terms \(a^2,b^2,c^2\) (each \(\mu=0\)) give \(N/a^2+N/b^2+N/c^2\le\delta\).\lean{P2qExclusions.terms_le_delta}{Ext/Exclusions/TheoremE.lean:138} Multiplying by \((abc)^2\): \(NS\le\delta(abc)^2\) with \(S=b^2c^2+a^2c^2+a^2b^2\). AM--GM for three terms gives \(27(abc)^4\le S^3\).\lean{P2qExclusions.amgm3}{Ext/Exclusions/TheoremE.lean:30} Hence \(27N^3\le\delta^3(abc)^2<\delta^3p^6\), so \(3N<\delta p^2\), i.e.\ \(2p^2q+36<p^2(2p+1)\), so \(2q<2p+1\), contradicting \(q>5p^2-4p-3\).\lean{P2qExclusions.E_iii_tail}{Ext/Exclusions/TheoremE.lean:159}
+
+\textit{(iv), exponents.} Suppose \(r_1^3\mid N\). By (ii), \(q>5p^2-4p-3\). \(r_1^2r_2\mid N\) and \(r_1^2r_2\mid\ph(r_1^3r_2^2)\mid\ph(N)\), so (F1) gives \(r_1^2r_2\le L(p)\). By (F2) for \(r_1\) twice and \(r_2\) once, \(N^3\le(r_1^2r_2)^2\delta^3\le L(p)^2\delta^3\). The positive-coefficient certificate \(L(p)^2\delta^3<N^3\) for \(p\ge 5\), \(q\ge 5p^2-4p-3\) (\texttt{ring\_nf}; \texttt{positivity} after \(p=5+v\), \(q=5p^2-4p-3+u\))\lean{P2qExclusions.E_iv_cert}{Ext/Exclusions/TheoremE.lean:54} contradicts this.
+
+\textit{(iv), divisibility.} By Lemma~\ref{lem:A-K} with \(e=1\), \(r_1\mid K\) and \(r_2\mid K\); they are coprime, so \(r_1r_2\mid K\mid L(p)\).
+
+\textit{(iv), size.} \(N\le r_i^2\delta\) is (F2). For \(N/\delta>\sqrt{L(p)}\): the companion certificate \(L(p)\delta^2<N^2\) for \(p\ge 5\), \(q\ge 5p^2-4p-3\) is proved by \texttt{nlinarith} after \(p=5+a\), \(q=5p^2-4p-3+b\) with products of \(a,b\ge 0\) as hints;\lean{P2qJumps.E_iv_companion}{TheoremsBE.lean:157} dividing by \(\delta^2>0\) and taking square roots gives the claim.
+
+\textit{(v).} By Lemma~\ref{lem:A-K} with \(e=2\), \(r^2\mid K\mid L(p)\).
+
+\textit{(i).} Suppose \(r^4\mid N\). Then \(r^3\mid N\) and \(r^3\mid\ph(r^4)\mid\ph(N)\), so (F1) gives \(r^3\le L(p)<p^3\), hence \(r<p\); both are odd, so \(r\le p-2\). By Lemma~\ref{lem:A-omega2} there is a prime \(t\ne r\) with \(t\mid N\), \(t\ge 5\), so \(5r^4\le N\). With (F2): \(N^2\le r^4\delta^2\), so \(5N\le\delta^2\); and \(N\le r^2\delta\le(p-2)^2\delta\). \texttt{nlinarith} shows these two inequalities are incompatible for \(p,q\ge 5\).\lean{P2qExclusions.E_i_arith}{Ext/Exclusions/TheoremE.lean:38}
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-E}(iii) needs no prime of exponent~\(1\), so it is stronger than Theorem~\ref{thm:E}(iii) of Part~\ref{part:B}; (ii) and (iv) need a third prime factor \(t\) of any exponent, which is weaker than the hypothesis \(j\ge 1\) of Theorem~\ref{thm:E}. Combining (iv) with Theorem~\ref{thm:A-B}: if \(r^3\mid N\), then no prime \(s\ne r\) has \(s^2\mid N\).\lean{P2qJumps.cube_excludes_second_square}{TheoremsBE.lean:250} Indeed, if \(N\) has a prime factor \(t\ne r,s\), (iv) applies; otherwise \(r\) and \(s\) are the only primes of \(N\), both with square dividing \(N\), so \(N\) is powerful with \(\omega(N)=2\), which Theorem~\ref{thm:A-B} excludes.
+\end{remark}
+
+\subsection{Theorem D and Corollary F1 (squarefree \(N\))}
+
+\begin{theorem}[Theorem~D]
+\label{thm:A-D}
+Assume~\eqref{eq:jumps}, \(N\) squarefree and \(k=\omega(N)\ge 4\). Then \(q\ge p^2(k^2-k-1)^2\ge 121p^2\) and \(k\ge p\). In particular \(k=4\) is impossible.\lean{P2qJumps.theoremD; P2qJumps.theoremD_four}{TheoremsBE.lean:173,185}
+\end{theorem}
+\begin{proof}
+\textit{Step 1.} For squarefree \(N=\prod_{i}x_i\) (product over its \(k\) primes): \(\ph(N)=\prod(x_i-1)\), \(\sig(N)=\prod(x_i+1)\), and every \(x_i\ge 3\) (\(N\) is odd).
+\textit{Step 2.} For reals \(x_i\ge 3\) and \(k\ge 4\): \(k(k-1)\sqrt{\prod x_i}\le\prod(x_i+1)+\prod(x_i-1)-2\prod x_i\), by induction on the number of factors from a four-factor base case (no real-exponent AM--GM is assumed).\lean{P2qTheoremD.finite_delta_bound_sharp}{Ext/TheoremD/FiniteProduct.lean:97} The right side is \(\delta(N)=q+2p+1\), so \(k(k-1)\sqrt N\le q+2p+1\).
+\textit{Step 3.} With \(N=p^2q+12\), \(p,q\ge 5\), \(k\ge 4\): \(q\ge p^2(k^2-k-1)^2\) and \(q\ge 121p^2\) (put \(x=\sqrt q\); then \(k(k-1)px<q+2p+1\) forces \(x>p(k^2-k-1)\)).\lean{P2qTheoremD.q_bound_of_delta}{Ext/TheoremD/GeneralAnalytic.lean:52}
+\textit{Step 4.} For reals \(x_i\ge 1\): \(\bigl(\prod x_i-\prod(x_i-1)\bigr)^2\prod(x_i-1)\prod(x_i+1)\le k\bigl((\prod x_i)^2-\prod(x_i-1)\prod(x_i+1)\bigr)(\prod x_i)^2\) (union bound plus Cauchy--Schwarz).\lean{P2qTheoremD.finite_cauchy}{Ext/TheoremD/GeneralAnalytic.lean:18} With Step 1 this is \(A(N)^2(N^2-Q(N))\le k\,Q(N)N^2\), where \(A(N)=N-\ph(N)\).
+\textit{Step 5.} If \(k\le p-1\), Step 4 gives \(A^2(N^2-Q)\le(p-1)QN^2\). But \(H(p,q)=A^2(N^2-Q)-(p-1)QN^2\), written with \(p=5+v\), \(q=121p^2+u\), is a polynomial in \(u,v\) with positive coefficients and constant term \(255548359570022612\), so \(H>0\) when \(q\ge 121p^2\) (Step 3).\lean{P2qTheoremD.gapH_positive}{Ext/TheoremD/Certificate.lean:80} Hence \(k\ge p\ge 5\), and \(k\ne 4\).
+\end{proof}
+
+\begin{corollary}[Corollary~F1]
+\label{cor:A-F1}
+Assume~\eqref{eq:jumps}, \(N\) squarefree and \(\omega(N)\ge 4\). Then \(p=7\) and \(7\le\omega(N)\le 9\).\lean{P2qJumps.corollaryF1}{TheoremsBE.lean:193}
+\end{corollary}
+\begin{proof}
+\textit{Step 1 (Lemma~G and Theorem~F).} \(p(p-1)\sig(N)-(p^2+p+1)\ph(N)=2T(p)\) with \(T(p)=p^4-13p-6\) (linear combination of the jumps).\lean{P2qStructural.lemmaG}{Ext/Structural/Basic.lean:71} Each odd prime \(\ell\mid N\) contributes a factor \(2\) to \(\ph(N)\), and each odd prime of odd exponent a factor \(2\) to \(\sig(N)\); hence \(2^{\min(\omega_{\mathrm{odd}},\,e_{\mathrm{odd}})}\mid 2T(p)\).\lean{P2qStructural.theoremF}{Ext/Structural/TwoAdic.lean:71} For odd squarefree \(N\) both counts equal \(k=\omega(N)\), so \(2^{k-1}\mid T(p)\).
+\textit{Step 2.} By Theorem~\ref{thm:A-D}, \(k\ge p\), so \(2^{p-1}\mid T(p)\) and \(2^{p-1}\le T(p)<p^4\). Since \(p^4<2^{p-1}\) for \(p\ge 19\), \(p\le 17\).
+\textit{Step 3.} For the primes \(5\le p\le 17\), \(2^{p-1}\mid T(p)\) holds only for \(p=7\) (\(T(7)=2304=2^8\cdot 9\)). Then \(2^{k-1}\mid 2304\) gives \(k\le 9\), and \(k\ge p=7\).
+\end{proof}
+
+\begin{corollary}
+\label{cor:A-omega4-five}
+Assume~\eqref{eq:jumps} and \(\omega(N)\ge 4\). Then \(5\nmid N\).\lean{P2qJumps.omega4_five_not_dvd}{TheoremsBE.lean:201}
+\end{corollary}
+\begin{proof}
+By Theorem~\ref{thm:A-omega4} every prime factor of \(N\) exceeds \(p\ge 5\).
+\end{proof}
+
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
 
@@ -1612,10 +1736,10 @@ By Corollary~\ref{cor:gcd}, \(p\nmid N\), so \(p\nmid K\). Lemma~\ref{lem:L2} an
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:K} is Lean-formalized as \texttt{P2qStructural.lemmaK} (with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)) and independently audited; see Table~\ref{tab:formalization}.
+Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qExclusions.setupK}, \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
 \end{remark}
 
-\begin{theorem}[Theorem~B: powerful \(N\) impossible; not kernel-checked]
+\begin{theorem}[Theorem~B: powerful \(N\) impossible; kernel-checked in v1.4, Theorem~\ref{thm:A-B}]
 \label{thm:B}
 If~\eqref{eq:jumps} holds with \(n=p^2q\), then \(N\) is not powerful with \(\omega(N)\ge 2\).
 \end{theorem}
@@ -1632,7 +1756,7 @@ g(pm+1)\ge(p+1)(p^2-p-1)=L(p)+p^2-2p+11>L(p),
 and at the upper endpoint \(g\ge p^2(p^2-4)/4>p^3>L(p)\). This contradiction proves the claim.
 \end{proof}
 
-\begin{theorem}[Theorem~A: mixed powers \(r^as\); not kernel-checked]
+\begin{theorem}[Theorem~A: mixed powers \(r^as\); kernel-checked in v1.4, Theorem~\ref{thm:A-ras}]
 \label{thm:A}
 If~\eqref{eq:jumps} holds with \(n=p^2q\), then \(N\) is not of the form \(r^as\) with distinct primes \(r,s\) and an integer \(a\ge 2\). (The form \(rs^a\) is identical after renaming.)
 \end{theorem}
@@ -1712,13 +1836,13 @@ The polynomial \(H(p,q)=A(N)^2(N^2-Q)-(p-1)QN^2\) expands, on the region \(p=5+v
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:D} is Lean-formalized as \texttt{P2qTheoremD.theoremD} (with an elementary finite-product replacement for the fractional-power AM--GM step) and independently audited; see Table~\ref{tab:formalization}. Lemma~\ref{lem:Q} itself is not separately Lean-formalized.
+Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}.
 \end{remark}
 
 \section{Limits on repeated primes (Theorem~E)}
 \label{sec:thmE}
 
-\begin{theorem}[Theorem~E; not kernel-checked]
+\begin{theorem}[Theorem~E; kernel-checked in v1.4, Theorem~\ref{thm:A-E}]
 \label{thm:E}
 Assume~\eqref{eq:jumps} with \(n=p^2q\). Write \(\delta=\delta(N)=q+2p+1\).
 \begin{enumerate}
@@ -1746,7 +1870,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is not Lean-formalized. Its analytic certificates are independently audited in the written package recorded in Section~\ref{sec:manifest}.
+Theorem~\ref{thm:E} is kernel-checked in v1.4 as Theorem~\ref{thm:A-E}, clause by clause, with the hypothesis \(j\ge 1\) replaced by the weaker ``a third prime factor'' in (ii) and (iv) and dropped in (iii). The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is not a single Lean theorem; its ingredients are Theorem~\ref{thm:A-E}, Theorem~\ref{thm:A-B} and \texttt{P2qJumps.cube\_excludes\_second\_square}.
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}
@@ -1784,7 +1908,7 @@ If~\eqref{eq:jumps} holds and \(N\) is squarefree with \(k=\omega(N)\ge 4\), the
 \end{corollary}
 
 \begin{remark}
-Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are Lean-formalized in \texttt{P2qStructural} (with F counting odd primes via \texttt{Nat.primeFactors}; for odd \(N\) these counts agree with the paper) and independently audited. Corollary~\ref{cor:F1} is Lean-formalized as \texttt{corollaryF1} in the extensions package and independently audited; see Table~\ref{tab:formalization}. It does not formalize the local \(q\)-congruence refinements.
+Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
 \end{remark}
 
 \section{Corrected residual analysis}

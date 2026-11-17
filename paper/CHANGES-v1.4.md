@@ -103,3 +103,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Unchanged:** the main-theorem kernel bound n ≤ 10^4; `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** none.
 
+## C10. Theorems B, D, E, Lemma K, Lemma Q, Corollary F1 in Lean (task item 4, part)
+
+- **Claim:** Part B's Theorem B, Theorem D, Theorem E(i)–(v), Lemma K, Lemma L1, Lemma Q, Lemma G, Theorem F and Corollary F1, under the jumps only.
+- **Method:** Lean. The audited packages `P2qStructural`, `P2qExtensions`, `P2qTheoremD`, `P2qExclusions` (Lean v4.22.0, `/workspace/p2q-lean-exclusions-corrected-2026-11-06`) are ported to `P2qJumps/Ext/` (v4.26.0). Changes: import paths; `open scoped ArithmeticFunction.sigma ArithmeticFunction.Moebius` (σ, μ notation is scoped in the newer Mathlib); four proof steps adapted to the newer Mathlib (`FourAnalytic.four_cauchy`, `GeneralAnalytic.finite_cauchy`: the final `field_simp` already yields the goal, closed by `linarith`; `F1.corollaryF1` and `Setup.p_not_dvd_N`: `interval_cases` case closing). No statement changed. New file `P2qJumps/TheoremsBE.lean` discharges the packages' extra hypotheses (p, q ≥ 5 from `preamble`; ω(N) ≥ 2 from `two_le_omega` via `N_ne_prime_pow`) and adds `pow_dvd_K` (r^(e+1) ∣ N ⇒ r^e ∣ N/rad N), `theoremE_v`, `theoremE_iv_dvd` (r₁r₂ ∣ L(p)), `E_iv_companion` (L(p)δ² < N²), `theoremE_iv_sqrt` (N/δ > √L(p)), `lemmaQ_formula` (Q(N) formula and Q(N) > 0), `cube_excludes_second_square`, `omega4_five_not_dvd`.
+- **Outcome:** proved (kernel-checked), standard axioms only.
+- **Paper changes:** new Part A section `sec:A-BDE` (Lemmas `lem:A-omega2`, `lem:A-L1Q`, `lem:A-K`; Theorems `thm:A-B`, `thm:A-E`, `thm:A-D`; Corollaries `cor:A-F1`, `cor:A-omega4-five`), step-by-step proofs following the Lean proofs. Part B: titles of Theorems A, B, E now say "kernel-checked in v1.4" with a pointer; the remarks after Lemma K, Theorem D, Theorem E and Theorem F/Corollary F1 now point to this repository instead of the external packages.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. None of these results is added to a locked statement.
+- **Scope change:** none for B, D, F1, E(i), E(v). E(ii) and E(iv) are proved under a weaker hypothesis than Part B states (a third prime factor of any exponent instead of j ≥ 1) and E(iii) without j ≥ 1: these widen the statements. The final sentence of Part B Theorem E ("Consequently every remaining repeated-prime solution has shape …") is not one Lean theorem; its parts are proved separately.
+

@@ -15,6 +15,7 @@ import P2qJumps.R3SEmpty
 import P2qJumps.TheoremA
 import P2qJumps.R2ST
 import P2qJumps.R3ST
+import P2qJumps.TheoremsBE
 import P2qJumps.R3S
 import P2qJumps.Cert.Core
 import P2qJumps.Cert.Line

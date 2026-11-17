@@ -1,5 +1,13 @@
 # Certificates and logs (v1.4)
 
+**Only directories under `certificates/passed/` are certificates.** Each was produced by
+`scripts/cert-bundle.sh` from a `lake build` and `#print axioms` run that both exited 0 with only
+propext / Classical.choice / Quot.sound, and carries a `CERTIFICATE` file plus the committed
+`lake-manifest.json` and its sha256, commit, toolchain, Mathlib rev, elan/lake/lean versions, the full
+build log and the axioms output. Records under `certificates/attempt-logs/` (marked
+`FAILED-NOT-A-CERTIFICATE.txt`) are failed or partial runs and certify nothing. The files below
+(16 Nov 2026) predate this rule and are superseded; see `AUDIT-2026-11-17.md`.
+
 Lean sources commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc (toolchain leanprover/lean4:v4.26.0, Mathlib v4.26.0).
 Recorded 2026-11-16 17:19 CST.
 

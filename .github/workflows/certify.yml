@@ -16,20 +16,29 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Get Mathlib cache
         run: lake exe cache get
-      - name: Build + axiom audit from the committed lake-manifest.json (certificate bundle)
+      - name: Build + axiom audit from the committed lake-manifest.json
         id: bundle
         run: |
           set +e
-          scripts/cert-bundle.sh > bundle.out; rc=$?; out=$(tail -1 bundle.out)
+          scripts/cert-bundle.sh > bundle.out; rc=$?
+          out=$(tail -1 bundle.out)
           echo "dir=$out" >> "$GITHUB_OUTPUT"
           cp "$out/print-axioms.log" axioms.txt 2>/dev/null
           exit $rc
-      - name: Upload certificate bundle (pass, fail or partial)
-        if: always()
+      - name: Upload certificate (passed builds only)
+        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: certificate-bundle-${{ github.sha }}
-          path: certificates/attempts/
+          name: certificate-${{ github.sha }}
+          path: certificates/passed/
+          if-no-files-found: error
+      - name: Upload failed-attempt log (NOT a certificate)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-attempt-log-NOT-A-CERTIFICATE-${{ github.sha }}
+          path: certificates/attempt-logs/
+          if-no-files-found: ignore
       - name: Check axioms are standard only
         run: |
           test -s axioms.txt

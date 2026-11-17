@@ -137,6 +137,52 @@ If \(p=2\) then \(N=2(2q+6)\); if \(p=3\) then \(N=3(3q+4)\); \(p=4\) is not pri
 A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).
 \end{lemma}
 
+\section{Preamble facts: \(p,q\ge 5\), \(N\) odd, not a square, coprime to \(6pq\)}
+\label{sec:A-preamble}
+
+This section is the kernel-checked version of Proposition~\ref{prop:23}, Corollary~\ref{cor:gcd} and Proposition~\ref{prop:square} (Part~\ref{part:B}). The case \(p=2\) uses a different, shorter argument than the written one.
+
+\begin{lemma}
+\label{lem:A-totdiv}
+If a prime \(r\) divides \(m\), then \(\ph(m)+m/r\le m\).\lean{P2qJumps.totient_add_div_le}{Preamble.lean:24}
+\end{lemma}
+
+\begin{proof}
+The \(m/r\) integers \(0,r,2r,\dots,(m/r-1)r\) lie in \([0,m)\) and are not coprime to \(m\), since \(r\) divides their gcd with \(m\). The integers in \([0,m)\) coprime to \(m\), of which there are \(\ph(m)\), are disjoint from them, so \(\ph(m)+m/r\le m\).
+\end{proof}
+
+\begin{lemma}
+\label{lem:A-compA}
+Let \(m>1\) be composite with \(m\le\ph(m)+d\), and let \(r\) be the least prime factor of \(m\). Then \(r^2\le m\) and \(m<r(d+1)\).\lean{P2qJumps.composite_small_A}{Preamble.lean:54}
+\end{lemma}
+
+\begin{proof}
+\(r^2\le m\) holds for the least prime factor of a composite number. By Lemma~\ref{lem:A-totdiv}, \(m/r\le m-\ph(m)\le d\), where \(m/r\) is floor division, and \(m<r(\lfloor m/r\rfloor+1)\le r(d+1)\).
+\end{proof}
+
+\begin{proposition}
+\label{prop:A-preamble}
+If~\eqref{eq:jumps} holds, then \(p\ge 5\), \(q\ge 5\), \(N\) is odd, \(N\) is not a square, and \(\gcd(N,6pq)=1\).\lean{P2qJumps.preamble}{Preamble.lean:217}
+\end{proposition}
+
+\begin{proof}
+We use the integer identities of Lemma~\ref{lem:A-jumps}: \(\ph(N)=p(p-1)(q-1)+12\) and \(\sig(N)=(p^2+p+1)(q+1)+12\).
+
+\textit{Step 1: \(p\ne 2\).}\lean{P2qJumps.p_ne_two}{Preamble.lean:89} If \(p=2\), then \(2\mid N=4q+12\), so Lemma~\ref{lem:A-totdiv} gives \(\ph(N)\le N-N/2=2q+6\). But \(\ph(N)=2(q-1)+12=2q+10\), a contradiction.
+
+\textit{Step 2: \(q\ne 2\).}\lean{P2qJumps.q_ne_two}{Preamble.lean:104} Let \(q=2\); \(p\) is odd by Step~1, so \(p\ge 3\). Put \(s=p^2+6\), which is odd, so \(N=2s\) and \(\ph(N)=\ph(s)\). The totient identity gives \(\ph(s)+p=s+6\). Since \(\ph(s)\le s\), this gives \(p\ge 6\), and as \(p\) is odd, \(p\ge 7\). If \(s\) is prime, \(\ph(s)=s-1\) forces \(p=7\), but \(s=55\) is not prime. If \(s\) is composite, Lemma~\ref{lem:A-compA} with \(d=p-6\) gives a prime \(r\) with \(r^2\le s<r(p-5)\); so \(r<p-5\) and \(s<(p-5)^2\le p^2<s\), a contradiction.
+
+\textit{Step 3: \(p\ne 3\).}\lean{P2qJumps.p_ne_three}{Preamble.lean:147} If \(p=3\), put \(u=3q+4\), so \(N=3u\) with \(3\nmid u\), and \(\ph(N)=2\ph(u)\). The totient identity gives \(\ph(u)+1=u\), so \(u\) is prime. Then \(\sig(N)=4(u+1)=12q+20\), while the \(\sig\)-identity requires \(\sig(N)=13(q+1)+12=13q+25\); hence \(q=-5\), impossible.
+
+\textit{Step 4: \(q\ne 3\).}\lean{P2qJumps.q_ne_three}{Preamble.lean:171} If \(q=3\), then \(p\ge 5\) by Steps~1 and~3. Put \(t=p^2+4\); since \(3\nmid p\), \(t\equiv 2\pmod 3\), so \(N=3t\) with \(3\nmid t\) and \(\ph(N)=2\ph(t)\). The totient identity gives \(\ph(t)+p=t+2\). If \(t\) is prime this says \(p=3\), excluded. If \(t\) is composite, Lemma~\ref{lem:A-compA} with \(d=p-2\) gives a prime \(r\) with \(r^2\le t<r(p-1)\); so \(r<p-1\) and \(t<(p-1)^2\le p^2<t\), a contradiction.
+
+\textit{Step 5: \(p,q\ge 5\) and \(N\) odd.} A prime other than \(2,3\) is at least \(5\). Then \(p,q\) are odd, \(p^2q\) is odd and \(N=p^2q+12\) is odd.
+
+\textit{Step 6: \(N\) is not a square.} Every divisor of the odd number \(N\) is odd, so \(\sig(N)\equiv d(N)\pmod 2\), where \(d(N)\) is the number of divisors. If \(N=m^2\) then \(d(N)=\prod_\ell(2v_\ell(m)+1)\) is odd, so \(\sig(N)\) is odd. But with \(q=2k+1\), \(\sig(N)=(p^2+p+1)(2k+2)+12\) is even.
+
+\textit{Step 7: \(\gcd(N,6pq)=1\).} \(N\) is odd. If \(3\mid N\) then \(3\mid p^2q\), so \(3\mid p\) or \(3\mid q\), impossible for primes \(\ge 5\). If \(x\in\{p,q\}\) divides \(N\), then since \(x\mid p^2q\) we get \(x\mid 12\), so \(x\le 12\); no prime \(5\le x\le 12\) divides \(12\). Coprimality to \(2\), \(3\), \(p\) and \(q\) gives coprimality to \(6pq\).
+\end{proof}
+
 \section{Proof of Theorem~\ref{thm:L}(i)}
 \label{sec:A-i}
 

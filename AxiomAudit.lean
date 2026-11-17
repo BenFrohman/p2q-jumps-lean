@@ -120,3 +120,11 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Semantics.formal_claim_holds
 #print axioms P2qJumps.Semantics.intended_correspondence
 #print axioms P2qJumps.Semantics.theorem_L
+#print axioms P2qJumps.totient_add_div_le
+#print axioms P2qJumps.composite_small_A
+#print axioms P2qJumps.sigma_odd_of_odd_square
+#print axioms P2qJumps.p_ne_two
+#print axioms P2qJumps.q_ne_two
+#print axioms P2qJumps.p_ne_three
+#print axioms P2qJumps.q_ne_three
+#print axioms P2qJumps.preamble

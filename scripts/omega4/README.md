@@ -8,8 +8,8 @@ Four or more distinct prime factors (ω(N) ≥ 4). Every prime factor of N excee
 n = p^2 q ≤ 10^4 (any shape of N; no hypothesis needed); the external PARI search covers Q = 10^4 (in fact all
 distinct primes p, q ≤ 10^4, any shape, no hypothesis, 0 hits) and the Q = 10^6 range 5 ≤ p ≤ 997,
 p^2 < q ≤ 10^6 (any shape, no filter, 0 hits); the optional Python certificate search_omega4_1e6.py (not
-kernel-checked; sha256 ab59fc89f59e79970b1e4185db678a19edcba66cd87de456e8dc4b4e55e15046) covers Q = 10^6
-[result pending]. The main theorem keeps the bound n ≤ 10^4.
+kernel-checked; sha256 ab59fc89f59e79970b1e4185db678a19edcba66cd87de456e8dc4b4e55e15046) was run for Q = 10^6 and
+did not finish (3-hour timeout, no output). The main theorem keeps the bound n ≤ 10^4.
 
 ## search_omega4_1e6.py
 
@@ -18,7 +18,11 @@ kernel-checked; sha256 ab59fc89f59e79970b1e4185db678a19edcba66cd87de456e8dc4b4e5
 - Run command: `python3 search_omega4_1e6.py` (Python 3.13.5).
 - Pre-sieve and `factor_omega_min_prime` discard every `N` with a prime factor `≤ p`: valid only under the
   hypothesis above.
-- Result: **[result pending]** hit count: ____ ; elapsed: ____ ; full console output: ____ .
+- Result: **no result.** Run `timeout 10800 python3 search_omega4_1e6.py` started Mon 16 Nov 2026 17:42:14 CST and was
+  stopped by the timeout at 20:42:14 CST (exit code 124, wall_s = 10800). The script prints only at the end, so there is
+  no hit count and no partial output; this run certifies nothing. The same range is covered by the assumption-free PARI
+  run B below (8,912,452 pairs, 0 hits): computationally verified, not kernel-checked. The main theorem keeps the
+  kernel-checked bound n ≤ 10^4.
 
 ## Assumption-free runs (PARI factorization; no filter on ω(N) or on prime factors)
 

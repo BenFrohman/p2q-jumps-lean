@@ -94,3 +94,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. r³st is not added to Theorem L2: that would change a locked statement and needs a new lock and the author's approval.
 - **Scope change:** none.
 
+## C9. Outcome of the ω(N) ≥ 4 Python run at Q = 10^6 (task item 0)
+
+- **Claim:** `search_omega4_1e6.py` (sha256 ab59fc89…5046) finds no solution for primes 5 ≤ p ≤ 997, p² < q ≤ 10^6.
+- **Method:** external run `timeout 10800 python3 search_omega4_1e6.py`, started Mon 16 Nov 2026 17:42:14 CST.
+- **Outcome:** **no result.** Stopped by the timeout at 20:42:14 CST (exit code 124, wall_s = 10800). The script prints only at the end, so there is no hit count and no partial output. The same range remains covered by the assumption-free PARI run B (8,912,452 pairs, 0 hits): computationally verified, not kernel-checked.
+- **Paper changes:** `\OMEGAFOURSTATUS` and the ledger item (2) of the classification theorem record the timeout; README.md, certificates/README.md and scripts/omega4/README.md likewise.
+- **Unchanged:** the main-theorem kernel bound n ≤ 10^4; `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** none.
+

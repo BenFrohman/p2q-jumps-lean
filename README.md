@@ -56,7 +56,7 @@ Logs: [`certificates/`](certificates/).
 - ω(N) ≥ 4 residual (every prime factor of N exceeds p and q ≥ 3p^2, kernel-checked as
   `P2qJumps.omega4_constraints`, so q > p^2 for every such pair): searched over primes `5 ≤ p ≤ ⌊√Q⌋`, `p^2 < q ≤ Q`. Kernel: `n ≤ 10^4`. PARI: `Q = 10^4` and the
   `Q = 10^6` range, no filters, 0 hits. Optional `scripts/omega4/search_omega4_1e6.py` (sha256 `ab59fc89…5046`),
-  `Q = 10^6`: **[result pending]**. Details and exact wording: `scripts/omega4/README.md`.
+  `Q = 10^6`: **did not finish** (3-hour timeout, exit 124, no output; the same range has 0 hits in the no-filter PARI run, computationally verified, not kernel-checked). Details and exact wording: `scripts/omega4/README.md`.
 
 ## What remains open
 

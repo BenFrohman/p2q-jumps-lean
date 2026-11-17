@@ -128,3 +128,15 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.p_ne_three
 #print axioms P2qJumps.q_ne_three
 #print axioms P2qJumps.preamble
+#print axioms P2qJumps.two_mul_le_sigma_add_totient
+#print axioms P2qJumps.sigma_prime_pow_succ_ge
+#print axioms P2qJumps.delta_pair_core
+#print axioms P2qJumps.delta_pair
+#print axioms P2qJumps.four_primes_delta_sq
+#print axioms P2qJumps.q_ge_three_p_sq_core
+#print axioms P2qJumps.omega4_constraints
+#print axioms P2qJumps.Gr3s_neg
+#print axioms P2qJumps.Gr3s_at_c_pos
+#print axioms P2qJumps.Gr3s_pos
+#print axioms P2qJumps.Gr3s_ne_zero
+#print axioms P2qJumps.r3s_empty

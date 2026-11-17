@@ -455,6 +455,103 @@ From \(q\ge 1\), \(p^2\le p^2q\le 10^4\), so \(p\le 100\); and \(q\,p^2\le 10^4\
 
 Clause (v) of Theorem~\ref{thm:L} is the contrapositive: under~\eqref{eq:jumps}, \(n=p^2q>10^4\).
 
+\section{Beyond Theorem~\ref{thm:L}: four prime factors and the shape \(r^3s\)}
+\label{sec:A-beyond}
+
+The results of this section are kernel-checked (standard axioms only) but are not part of the locked statement \path{theorem-L.tex}; their locked statement file is written separately (see \path{paper/CHANGES-v1.4.md}).
+
+\subsection{Four or more distinct prime factors}
+\label{sec:A-omega4}
+
+Write \(\delta(m)=\sig(m)+\ph(m)-2m\). Under~\eqref{eq:jumps}, Lemma~\ref{lem:A-jumps} gives \(\delta(N)=(p^2+p+1)(q+1)+p(p-1)(q-1)+24-2N=2p+q+1\).
+
+\begin{lemma}
+\label{lem:A-2M}
+For every \(M\ge 1\), \(2M\le\sig(M)+\ph(M)\).\lean{P2qJumps.two_mul_le_sigma_add_totient}{Omega4.lean:27}
+\end{lemma}
+
+\begin{proof}
+Gauss's identity \(\sum_{d\mid M}\ph(d)=M\) gives \(M-\ph(M)=\sum_{d\mid M,\,d<M}\ph(d)\le\sum_{d\mid M,\,d<M}d=\sig(M)-M\).
+\end{proof}
+
+\begin{lemma}[Pair inequality]
+\label{lem:A-pair}
+If \(a\ne b\) are primes dividing \(N\ge 1\), then \(2N\le\delta(N)\,ab\).\lean{P2qJumps.delta_pair}{Omega4.lean:76}
+\end{lemma}
+
+\begin{proof}
+Write \(N=a^{i+1}b^{j+1}M\) with \(a,b\nmid M\), and put \(\alpha=a^i\), \(\beta=b^j\), \(S=\sig(M)\), \(F=\ph(M)\). By multiplicativity, \(\ph(N)=\alpha(a-1)\beta(b-1)F\), and \(\sig(N)=\sig(a^{i+1})\sig(b^{j+1})S\) with \(\sig(a^{i+1})\ge a^i+a^{i+1}=\alpha(a+1)\)\lean{P2qJumps.sigma_prime_pow_succ_ge}{Omega4.lean:37} and likewise for \(b\). Lemma~\ref{lem:A-2M} gives \(S+F\ge 2M\), and \(F\le M\), so \(S\ge F\). The identity
+\[
+(a+1)(b+1)S+(a-1)(b-1)F-2abM-2M=(ab+1)(S+F-2M)+(a+b)(S-F)
+\]
+shows \((a+1)(b+1)S+(a-1)(b-1)F-2abM\ge 2M\). Multiplying by \(\alpha\beta>0\) and then by \(ab\) gives \(\delta(N)\,ab\ge 2\alpha\beta M\,ab=2N\).\lean{P2qJumps.delta_pair_core}{Omega4.lean:44}
+\end{proof}
+
+\begin{lemma}
+\label{lem:A-four}
+If \(N\ge 1\) has four pairwise distinct prime factors \(a,b,c,d\), then \(\delta(N)^2\ge 4N\).\lean{P2qJumps.four_primes_delta_sq}{Omega4.lean:111}
+\end{lemma}
+
+\begin{proof}
+Lemma~\ref{lem:A-pair} for the pairs \((a,b)\) and \((c,d)\) gives \(4N^2\le\delta(N)^2\,abcd\). The four primes are pairwise coprime, so \(abcd\mid N\) and \(abcd\le N\). Hence \(4N^2\le\delta(N)^2N\), and \(\delta(N)^2\ge 4N\).
+\end{proof}
+
+\begin{theorem}[\(\omega(N)\ge 4\) constraints]
+\label{thm:A-omega4}
+Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints}{Omega4.lean:164}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: \(q\ge 3p^2\).} By Lemma~\ref{lem:A-four} and \(\delta(N)=2p+q+1\), \((2p+q+1)^2\ge 4(p^2q+12)\), with \(p,q\ge 5\) by Proposition~\ref{prop:A-preamble}. Suppose \(q<3p^2\). The identity
+\[
+(2p+q+1)^2-4(p^2q+12)=(q-5)(q-3p^2)-(p^2-4p-7)q-11p^2+4p-47
+\]
+has \((q-5)(q-3p^2)\le 0\). If \(p=5\) the remaining terms are \(2q-302<0\) since \(q<75\); if \(p\ge 6\) then \(p^2-4p-7\ge 5\) and they are negative. So the left side is negative, a contradiction.\lean{P2qJumps.q_ge_three_p_sq_core}{Omega4.lean:148}
+
+\textit{Step 2: every prime factor exceeds \(p\).} Let \(r\mid N\) be prime with \(r\le p\). By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6pq)=1\), so \(r\ne p\) and \(r\le p-1\). Lemma~\ref{lem:A-totdiv} gives \(t:=\lfloor N/r\rfloor\le N-\ph(N)=p(p+q-1)\), and \(N<r(t+1)\le(p-1)\bigl(p(p+q-1)+1\bigr)=p^3+p^2q-2p^2-pq+2p-1\). Hence \(pq<p^3-2p^2+2p-13<p^3\), so \(q<p^2\), contradicting Step~1.
+
+Finally, \(N>p^2q\ge 3p^4\).
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-omega4} proves the two \(\omega(N)\ge 4\) constraints of the author's theorem block (``every prime factor of \(N\) exceeds \(p\)'' and ``\(q>p-6\)''; indeed \(q\ge 3p^2\)). It also implies that, when \(\omega(N)\ge 4\), no prime factor of \(N\) equals~\(5\) unless \(p<5\), which Proposition~\ref{prop:A-preamble} excludes; for \(p=7\) this removes the prime~\(5\) from the squarefree descent of Appendix~\ref{app:p7}.
+\end{remark}
+
+\subsection{The shape \(r^3s\) is empty}
+\label{sec:A-r3s-empty}
+
+\begin{theorem}
+\label{thm:A-r3s-empty}
+Assume~\eqref{eq:jumps}. Then \(N\) is not of the form \(r^3s\) with distinct primes \(r,s\).\lean{P2qJumps.r3s_empty}{R3SEmpty.lean:112}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1: setup.} By Proposition~\ref{prop:A-preamble}, \(\gcd(N,6)=1\), so \(r,s\ge 5\). Proposition~\ref{prop:A-r3s-red} gives \(p<r\); put \(k=r-p\ge 1\). Let \(E_0,E_1,E_2\) be the identities \(r^3s=p^2q+12\), \(r^2(r-1)(s-1)=p(p-1)(q-1)+12\) and \((r^3+r^2+r+1)(s+1)=(p^2+p+1)(q+1)+12\) (Lemma~\ref{lem:A-jumps} with \(\ph,\sig\) of \(r^3s\)).
+
+\textit{Step 2: master equation.} With \(D=pr+p-r^2\), \(\alpha=-p^2r^2-p^2r-p^2+pr^3+r^3\) and \(\beta=p^2r^2-pr^3\), the combination \(D\,E_0+\alpha(E_0-E_1)+\beta(E_2-E_0)\) eliminates \(s\) and \(q\) and gives \(H(p,r)=0\), where \(H(p,p+k)=G(p,k)\) with
+\begin{align*}
+G(p,k)={}&-p^5+(k^2-6k+2)p^4+(4k^3-12k^2+4k-1)p^3+(6k^4-12k^3+4k^2)p^2\\
+&+(4k^5-6k^4+k^3+12k-12)p+(k^6-k^5+12k^2).
+\end{align*}
+(The identity is checked by \texttt{linear\_combination}.)
+
+\textit{Step 3: \(G(p,k)<0\) for \(p\ge k^2-2k+4\).}\lean{P2qJumps.Gr3s_neg}{R3SEmpty.lean:32} Substituting \(p=k^2-2k+4+u\), \(k=1+w\) with \(u,w\ge 0\), \(-G\) becomes a polynomial in \(u,w\) with \(33\) positive integer coefficients and constant term \(630\).
+
+\textit{Step 4: \(G(p,k)>0\) for \(k\ge 6\) and \(1\le p\le c:=k^2-2k+3\).}\lean{P2qJumps.Gr3s_pos}{R3SEmpty.lean:56} For \(k\ge 6\) every coefficient of \(G\) other than the leading \(-1\) is nonnegative, so
+\[
+G(p,k)\,c^5-G(c,k)\,p^5=\sum_{i=0}^{4}a_i\,p^ic^i\bigl(c^{5-i}-p^{5-i}\bigr)\ge 0,
+\]
+where \(a_i\ge 0\) is the coefficient of \(p^i\). Moreover \(G(c,k)>0\): with \(k=6+w\) it equals \(w^8+40w^7+698w^6+6918w^5+42383w^4+163055w^3+379443w^2+475458w+230472\).\lean{P2qJumps.Gr3s_at_c_pos}{R3SEmpty.lean:46} Hence \(G(p,k)c^5\ge G(c,k)p^5>0\).
+
+\textit{Step 5: \(1\le k\le 5\).} Then \(2\le p\le k^2-2k+3\le 18\), and \(G(p,k)\ne 0\) at each of these finitely many points by direct evaluation.\lean{P2qJumps.Gr3s_ne_zero}{R3SEmpty.lean:101}
+
+Steps 3--5 show \(G(p,k)\ne 0\) for all integers \(k\ge 1\), \(p\ge 2\), contradicting Step~2.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-r3s-empty} makes Theorem~\ref{thm:L}(iv) vacuous: its hypothesis \(N=r^3s\) never holds. It also replaces the \(a=3\) case of the written proof of Theorem~\ref{thm:A}, whose polynomial in \(p\) has degree~\(5\), not~\(6\) as stated in v1.3. The twist link between \(r^3s\) and the curves \(E^{(k)}\) (Part~\ref{part:B}) is no longer needed for any exclusion.
+\end{remark}
+
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
 
@@ -1710,8 +1807,8 @@ The author supplied a classification theorem for v1.4. The version below keeps i
 \label{thm:main-p2q}
 Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover:
 \begin{enumerate}
-\item \textbf{\(N=r^3s\).} Then \(p<r<p^{3/2}\), \(r^2\mid L(p)\) and \(p\mid r^4-r^3+12\), and \((kp,k^2r)\in E^{(k)}(\Z)\) with \(k=L(p)/r^2\). Kernel-checked: no solution with \(p\le 10^4\). External computation (not kernel-checked; Section~\ref{sec:v14-external}): no prime \(5\le r\le 10^6\) admits a prime \(5\le p<r\) with \(r^2\mid L(p)\). The v1.3 Theorem~\ref{thm:A} (written proof, independently audited, not Lean) states that \(r^as\) with \(a\ge 3\) is excluded; the author's block lists this case as open. The Lean development proves only the bounded statement.
-\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Conditional on the constraint that every prime factor of \(N\) exceeds \(p\) (stated as a hypothesis; not yet proved), which forces \(N>p^4\) and hence \(q>p^2\), the residual can occur only for pairs with \(p^2<q\). Under that hypothesis, an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) excludes every solution with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\); no hypothesis needed); the external PARI search covers \(Q=10^4\) (in fact all distinct primes \(p,q\le 10^4\), any shape, no hypothesis, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) covers \(Q=10^6\) [result pending]. The main theorem keeps the bound \(n\le 10^4\). Beyond these ranges this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
+\item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the external check \(5\le r\le 10^6\)) remain true and are now superseded.
+\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked); the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) covers the same range [result pending]. The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
 \item \textbf{Other shapes.} The shapes with a repeated prime left by Theorem~\ref{thm:E} and not covered by (1)--(2), such as \(r^3st\) and \(r^2s^2t\), remain in H2 of Proposition~\ref{prop:implies-corrected}.
 \end{enumerate}
 \end{theorem}
@@ -1721,8 +1818,8 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 \item The block says every counterexample falls into the three regimes \(r^3s\), \(r^2st\), \(\omega(N)\ge 4\). That is the superseded v0.10 list (Remark~\ref{prop:implies}); Theorem~\ref{thm:E} leaves, for example, \(r^3st\) and \(r^2s^2t\) (three distinct primes), which none of the three regimes contains.
 \item The block treats \(r^2st\) as open beyond \(r\le 10^4\) through a quantity \(D_{\mathrm{true}}(p,r)\) dividing \(R_{10}(r)\). The polynomial \(R_{10}\) is not defined in the paper and this route was not checked; Theorem~\ref{thm:L}(iii) closes \(r^2st\) with no bound instead.
 \item The block's ``Hensel lifting excludes all primes \(5\le r\le 10^6\)'' is an external Python/SymPy computation, not a kernel certificate. The kernel bound is \(p\le 10^4\).
-\item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'', ``\(r_i>p\) for all \(r_i\mid N\)'' and ``Lemma \path{omega-ge-4-constraints}'' are not proved in this paper or in Lean; there is no such lemma in the text. Only \(\gcd(N,6p)=1\) is proved (Corollary~\ref{cor:gcd}), and Appendix~\ref{app:p7} explicitly allows the prime factor~\(5\) when \(p=7\). They are not used here.
-\item The block's coverage phrase for \(5\le p\le 97\) via \(N>p^4\) is replaced, at the author's direction, by the conditional statement in (2): the bound \(N>p^4\), hence \(q>p^2\), holds only under the unproved hypothesis that every prime factor of \(N\) exceeds \(p\) (item 4), and the searched ranges are stated exactly. No claim of full coverage in \(q\) without that hypothesis is made.
+\item The block's \(\omega(N)\ge 4\) constraints ``\(q>p-6\)'' and ``\(r_i>p\) for all \(r_i\mid N\)'' (its ``Lemma \path{omega-ge-4-constraints}'') were not proved in v1.3. They are now proved in Lean, in the stronger form \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (Theorem~\ref{thm:A-omega4}). The prime factor~\(5\) allowed by Appendix~\ref{app:p7} for \(p=7\) cannot occur when \(\omega(N)\ge 4\).
+\item The block's coverage phrase for \(5\le p\le 97\) via \(N>p^4\) is correct once Theorem~\ref{thm:A-omega4} is available: \(N>p^4\) and \(q\ge 3p^2>p^2\) hold for every solution with \(\omega(N)\ge 4\). The searched ranges in (2) are stated exactly.
 \item The block's ``exhaustive search over all distinct primes \(5\le p,q\le 10^4\)'' matches the external computation in (2), not a kernel certificate; the kernel-checked range is \(n\le 10^4\).
 \end{enumerate}
 
@@ -1734,7 +1831,7 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py A 10000} (PARI via cypari2, 13\,s): all \(1{,}509{,}212\) ordered pairs of distinct primes \(2\le p,q\le 10^4\); \(\ph(N)\), \(\sig(N)\) from the full factorization of \(N\); hits: none.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py B 997 1000000} (71\,s): all \(8{,}912{,}452\) pairs with primes \(5\le p\le 997\), \(p^2<q\le 10^6\) (the range of the author's script below), no filter; hits: none.
-\item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); that step is sound only under the unproved claim \(r_i>p\) above. Status: \OMEGAFOURSTATUS
+\item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); for \(\omega(N)\ge 4\) this step is sound by Theorem~\ref{thm:A-omega4}. Status: \OMEGAFOURSTATUS
 \end{itemize}
 
 

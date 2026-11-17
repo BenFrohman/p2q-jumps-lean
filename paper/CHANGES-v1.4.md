@@ -14,3 +14,30 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
   - Case p = 2: old text (Part B) argued via q + 3 = 2^k t and φ(t) = t + 2^{1−k}. New Part A text uses the Lean route: 2 | N gives φ(N) ≤ N/2 = 2q + 6 < 2q + 10. Both are correct; Part A follows Lean.
   - Lemma "cot" (A(m) ≥ m/r) is replaced in Part A by the Lean form φ(m) + ⌊m/r⌋ ≤ m and its consequence m < r(d + 1) for composite m with A(m) ≤ d (floor division made explicit; the written lemma used real division).
 - **Scope change:** none.
+
+## C2. ω(N) ≥ 4 constraints: "every prime factor of N exceeds p" and "q > p − 6" (target a, b)
+
+- **Claim (author's block, Lemma "omega-ge-4-constraints"):** if ω(N) ≥ 4 then every prime factor r_i of N satisfies r_i > p, and q > p − 6.
+- **Method:** hand algebra, checked with sympy and a numeric sweep (pair inequality δ(N)·ab ≥ 2N tested on all N < 2·10^5 and all prime pairs: 0 failures), then Lean, `P2qJumps/Omega4.lean`.
+  1. 2M ≤ σ(M) + φ(M) (Gauss: M − φ(M) = Σ_{d|M, d<M} φ(d) ≤ σ(M) − M).
+  2. Pair inequality: for distinct primes a, b | N, δ(N)·ab ≥ 2N, where δ = σ + φ − 2·id, via N = a^{i+1} b^{j+1} M and (a+1)(b+1)S + (a−1)(b−1)F − 2abM − 2M = (ab+1)(S+F−2M) + (a+b)(S−F).
+  3. Two disjoint pairs and abcd | N give δ(N)² ≥ 4N.
+  4. Under both jumps δ(N) = 2p + q + 1, so (2p+q+1)² ≥ 4(p²q+12), which forces q ≥ 3p² (identity (2p+q+1)² − 4(p²q+12) = (q−5)(q−3p²) − (p²−4p−7)q − 11p² + 4p − 47).
+  5. If a prime r ≤ p divides N then r ≤ p − 1 (gcd(N, p) = 1) and φ(N) + ⌊N/r⌋ ≤ N gives N < (p−1)(p(p+q−1)+1), i.e. q < p², contradicting step 4.
+- **Outcome:** **proved (kernel-checked)**: `omega4_constraints` — if N has four pairwise distinct prime factors then 3p² ≤ q and p < r for every prime r | N. Both block constraints hold (q ≥ 3p² is far stronger than q > p − 6). Standard axioms only.
+- **Paper changes:**
+  - New Part A subsection "Four or more distinct prime factors" (`sec:A-omega4`, Theorem `thm:A-omega4`).
+  - Ledger item (2), old: "Conditional on the constraint that every prime factor of N exceeds p (stated as a hypothesis; not yet proved), which forces N > p^4 and hence q > p^2, … Under that hypothesis, an exhaustive search … excludes every solution with ω(N) ≥ 4 and q ≤ Q." New: "Every prime factor of N exceeds p, and q ≥ 3p², hence N > p^4 (Theorem thm:A-omega4, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes 5 ≤ p ≤ ⌊√Q⌋ and all primes q with p² < q ≤ Q covers every pair with ω(N) ≥ 4 and q ≤ Q. … so by Theorem thm:A-omega4 there is no solution with ω(N) ≥ 4 and q ≤ 10^6 (computationally verified, not kernel-checked) …". Why: the hypothesis is now a Lean theorem, so the conditional wording would understate what is proved; the PARI no-filter run over 5 ≤ p ≤ 997, p² < q ≤ 10^6 now covers all ω ≥ 4 pairs with q ≤ 10^6.
+  - Deviations (4)–(5) rewritten: the constraints are proved; the p = 7 factor 5 cannot occur when ω(N) ≥ 4.
+  - External-computation note on `search_omega4_1e6.py`: old "that step is sound only under the unproved claim r_i > p above"; new "for ω(N) ≥ 4 this step is sound by Theorem thm:A-omega4".
+- **Scope change:** none (strengthening). The main theorem's kernel bound stays n ≤ 10^4.
+- **Hint from the p = 7 descent:** Appendix p7 allows the prime 5 for p = 7. That appendix concerns squarefree N with ω(N) ∈ {7, 8, 9}; by Theorem thm:A-omega4 every prime factor then exceeds 7, so 5 cannot occur. The descent's search space can be shrunk accordingly (not yet re-run).
+
+## C3. The shape r³s (Theorem A, a = 3; target d)
+
+- **Claim (Theorem A, v1.3, written proof):** N ≠ r^a s for a ≥ 2; the a = 3, p < r case was argued by Descartes' rule and Sturm isolation of "a degree-6 polynomial in p".
+- **Method:** sympy elimination of s, q from E0, A(N) = A(n), B(N) = B(n); sign certificates; Lean, `P2qJumps/R3SEmpty.lean`.
+- **Outcome:** **proved (kernel-checked)**: `r3s_empty` — N ≠ r³s for all distinct primes r, s, **no bound on p**. Standard axioms only.
+  - Correction to the written proof: with r = p + k the master polynomial G(p, k) has degree **5** in p, not 6. Its root location k² − 2k + 3 < p* < k² − 2k + 4 (k ≥ 6) is confirmed. The Lean proof replaces Descartes/Sturm by: (i) −G has 33 positive coefficients after p = k²−2k+4+u, k = 1+w; (ii) G(p)/p⁵ is decreasing for k ≥ 6 and G(k²−2k+3, k) > 0; (iii) direct evaluation for k ≤ 5, p ≤ 18.
+- **Paper changes:** new Part A subsection "The shape r³s is empty" (`sec:A-r3s-empty`). Ledger item (1) old: "Then p < r < p^{3/2}, r² | L(p) and p | r⁴ − r³ + 12, and (kp, k²r) ∈ E^{(k)}(Z) … The Lean development proves only the bounded statement." New: "Excluded with no bound (Theorem thm:A-r3s-empty, kernel-checked, v1.4). The earlier bounded statements … remain true and are now superseded." Remark added: Theorem L(iv) is vacuous; the twist link is no longer needed for any exclusion.
+- **Scope change:** none (strengthening). `theorem-L.tex` is untouched; clause (iv) stays true (vacuously). The new result will get its own locked statement file once the remaining Theorem A cases are green.

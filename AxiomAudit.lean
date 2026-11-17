@@ -276,3 +276,8 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Lpoly_pos
 #print axioms P2qJumps.r2s2t_rs_dvd_L
 #print axioms P2qJumps.r2s2t_jumps_hypothesis_needed
+
+-- H2 reduction to the shapes r²s²t and r²s²tu; H3 two-adic necessary condition
+#print axioms P2qJumps.H2_of_shapes
+#print axioms P2qJumps.H3_twoAdic
+#print axioms P2qJumps.H3_of_mod4

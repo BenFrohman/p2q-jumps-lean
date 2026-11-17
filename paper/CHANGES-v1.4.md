@@ -197,3 +197,9 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 
 - **Change:** the paper now carries "Copyright (c) 2026 Benjamin Stanley Frohman" and is licensed under the Apache License, Version 2.0 (title-page footnote, version note, provenance paragraph); the previous "Paper license CC BY 4.0" lines are replaced. The bibliography entry for the published v0.10 record keeps that record's own license (CC BY 4.0), which is a fact about that record. `NOTICE` gains a request to cite the work.
 - **Mathematics:** none changed. **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+
+## C21. H2 reduction and the H3 two-adic condition (Lean)
+
+- **Lean:** `P2qJumps/H2Reduction.lean`: `H2_of_shapes : R2S2TEmpty → R2S2TUEmpty → H2` (every other shape of Theorem E with `j ∈ {1, 2}` is already excluded). `P2qJumps/H3TwoAdic.lean`: `H3_twoAdic` (a solution with `R(N) ≠ ∅` and `j(N) ≥ 3` has `2^(j−1) ∣ T(p)` and `p ≡ 3 (mod 4)`) and `H3_of_mod4` (no such solution when `p ≡ 1 (mod 4)`). Axioms: propext, Classical.choice, Quot.sound.
+- **Open (not claimed):** `R2S2TEmpty`, `R2S2TUEmpty`, and H3 for `p ≡ 3 (mod 4)`. H2 and H3 are therefore not proved; Conjecture 3 stays open.
+- **Certificates:** `scripts/cert-bundle.sh` runs the real `lake build` and `#print axioms` from the committed `lake-manifest.json` and stores manifest, sha256, commit, toolchain, Mathlib rev, elan/lake/lean versions and the verbatim logs under `certificates/attempts/`, for passing, failing and partial runs alike.

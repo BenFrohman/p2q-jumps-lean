@@ -1,0 +1,185 @@
+# p2q-jumps-lean certificate MANIFEST
+#
+# Lean sources commit (truth-gate.lock.json leanSourcesCommit):
+#   4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+# Current main at the time this MANIFEST was written:
+#   6a6c05d6e3d2c1b55feb63e552c07ebff63d6342
+# No .lean files changed between 4ae3e47 and 6a6c05d.
+# (4ae3e47 itself only added a blank line after the copyright header in nine
+#  .lean files relative to e201597, the commit against which axiom-audit.txt,
+#  lean4checker.log, verify-lock.log, and the sorry scan were first recorded.
+#  lake-build.log was regenerated on 4ae3e47 in commit c8ace3f.)
+#
+# Toolchain: leanprover/lean4:v4.26.0
+# Mathlib:   v4.26.0  (lakefile.toml require rev)
+#
+# Single rebuild command for the kernel-checked Lean certificates
+# (Mathlib from cache; never rebuild Mathlib):
+#   lake exe cache get && lake build && lake env lean AxiomAudit.lean && python3 scripts/check_no_sorry.py && scripts/verify-lock.sh
+# Additional kernel replay (not in CI): lean4checker v4.26.0 on each P2qJumps module.
+#
+# CI: GitHub Actions workflow "Lean certificate" (certify.yml), run 43983732101
+# on 6a6c05d, succeeded (lake exe cache get; lake build; lake env lean
+# AxiomAudit.lean; python3 scripts/check_no_sorry.py). That workflow does not
+# upload artifacts; the committed files in certificates/ are the certificate store.
+#
+# Truth Gate: technical checks passed; lock approval remains PENDING.
+# This MANIFEST does not change truth-gate.lock.json approval fields.
+#
+# Hashes below are SHA-256 of the file bytes as committed (raw logs are not
+# rewritten). This MANIFEST file is not listed.
+#
+# columns: sha256  size_bytes  path
+#
+0f6fb5835863919a27e8e5b6c2e9e3b44fbeb09896196561f8aafbd8a58d265a      1417  certificates/README.md
+6996d961463542656baef6f3665302ef81598e4d6b7c55f39f124a196ae74010      7381  certificates/axiom-audit.txt
+af717e8aa7d9fb0d18fc6b7c094051d5d58989587b6d237a4948f1f457224b0b       211  certificates/external/jumps_pq_A_1e4.log
+9ac5461a2d38a6595373e0402d463e86b8495ee49991dadb1b453e0ef0cdf5e4       217  certificates/external/jumps_pq_B_997_1e6.log
+b84f9166da65fb42c300cf8ecb722238b455107903acdbb902222af14fc5e13c      2387  certificates/external/lmfdb_curvedata.json
+7e25c9c5b60a05810eeb36e738741970ff3157f5886d85abde19ce2e649ff214      1334  certificates/external/lmfdb_mwbsd.json
+9cc40ab0ca7511c7c2e2b176ee3e35babe50e9dfe1868216534a69a83195a67e       912  certificates/external/pari_ec_3936b1.out
+61d21885591521f99f9741c42c22191883d8abe937753e2cf41090670f2ae1c7       634  certificates/external/pari_minimal_model.out
+0e7c40cac2267714e8d44bf30186d2237f8e31b94dcdcf344389a96095578fa4       453  certificates/external/pari_root_numbers.out
+14f415a1e14280e4c064c90e962dfe419ac7c0acfbb91d1bf4e9841e2154114a       124  certificates/external/r2_rbound_1e6.out
+b8d75a50d85369bcf986b481ab4b6a320f61d3f927d7ae12cf7baa2beab1400f      3208  certificates/lake-build.log
+12f4b4a5b7bd814ac734a4057e038ff82e4e12ab1bc25d7d23a299f93074a305       387  certificates/lean4checker.log
+6b9ad8c621292c80df8ae6865dd47f73baca64015138c63f8275f051b3931c23       827  certificates/rad_identity_audit.md
+4cbe3b5ce30bd6deb9d9fda177abc4284e551d5b8b688f824b09025e4c043e9a        56  certificates/scan-sorry-admit-native_decide.txt
+2c8a226fa19b862fac56c1c612d036323f97742667df6c86143c0d080223860d      7689  certificates/verify-lock.log
+
+# Per-file metadata
+
+## certificates/README.md
+kind: inventory/audit
+sha256: 0f6fb5835863919a27e8e5b6c2e9e3b44fbeb09896196561f8aafbd8a58d265a
+size_bytes: 1417
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: human-readable inventory (not a kernel log)
+
+## certificates/axiom-audit.txt
+kind: kernel-checked Lean certificate
+sha256: 6996d961463542656baef6f3665302ef81598e4d6b7c55f39f124a196ae74010
+size_bytes: 7381
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: lake env lean AxiomAudit.lean
+
+## certificates/external/jumps_pq_A_1e4.log
+kind: external (NOT kernel-checked)
+sha256: af717e8aa7d9fb0d18fc6b7c094051d5d58989587b6d237a4948f1f457224b0b
+size_bytes: 211
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/jumps_pq_B_997_1e6.log
+kind: external (NOT kernel-checked)
+sha256: 9ac5461a2d38a6595373e0402d463e86b8495ee49991dadb1b453e0ef0cdf5e4
+size_bytes: 217
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/lmfdb_curvedata.json
+kind: external (NOT kernel-checked)
+sha256: b84f9166da65fb42c300cf8ecb722238b455107903acdbb902222af14fc5e13c
+size_bytes: 2387
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/lmfdb_mwbsd.json
+kind: external (NOT kernel-checked)
+sha256: 7e25c9c5b60a05810eeb36e738741970ff3157f5886d85abde19ce2e649ff214
+size_bytes: 1334
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/pari_ec_3936b1.out
+kind: external (NOT kernel-checked)
+sha256: 9cc40ab0ca7511c7c2e2b176ee3e35babe50e9dfe1868216534a69a83195a67e
+size_bytes: 912
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/pari_minimal_model.out
+kind: external (NOT kernel-checked)
+sha256: 61d21885591521f99f9741c42c22191883d8abe937753e2cf41090670f2ae1c7
+size_bytes: 634
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/pari_root_numbers.out
+kind: external (NOT kernel-checked)
+sha256: 0e7c40cac2267714e8d44bf30186d2237f8e31b94dcdcf344389a96095578fa4
+size_bytes: 453
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/external/r2_rbound_1e6.out
+kind: external (NOT kernel-checked)
+sha256: 14f415a1e14280e4c064c90e962dfe419ac7c0acfbb91d1bf4e9841e2154114a
+size_bytes: 124
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: external computation or data; NOT kernel-checked; not used as a Lean theorem certificate
+
+## certificates/lake-build.log
+kind: kernel-checked Lean certificate
+sha256: b8d75a50d85369bcf986b481ab4b6a320f61d3f927d7ae12cf7baa2beab1400f
+size_bytes: 3208
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: lake exe cache get && rm -rf .lake/build && lake build   # clean rebuild of P2qJumps; Mathlib oleans from cache, Mathlib not rebuilt. Log header already records commit 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc, start 2026-11-16 17:22:02 CST, EXIT 0 at 17:25:07 CST.
+
+## certificates/lean4checker.log
+kind: kernel-checked Lean certificate
+sha256: 12f4b4a5b7bd814ac734a4057e038ff82e4e12ab1bc25d7d23a299f93074a305
+size_bytes: 387
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: lean4checker v4.26.0 kernel replay of each P2qJumps module (log lines: '<module> exit=0 <seconds>'). Typical invocation per module: lake env lean4checker <Module>. No wrapper script is in the repo; this log was recorded at commit 922aa91, immediately before the header-only blank-line change 4ae3e47. Not re-run in CI.
+
+## certificates/rad_identity_audit.md
+kind: inventory/audit
+sha256: 6b9ad8c621292c80df8ae6865dd47f73baca64015138c63f8275f051b3931c23
+size_bytes: 827
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: manual audit of the false identity rad(N) = N/gcd(N, φ(N)); not a lake/kernel log
+
+## certificates/scan-sorry-admit-native_decide.txt
+kind: kernel-checked Lean certificate
+sha256: 4cbe3b5ce30bd6deb9d9fda177abc4284e551d5b8b688f824b09025e4c043e9a
+size_bytes: 56
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: python3 scripts/check_no_sorry.py
+
+## certificates/verify-lock.log
+kind: kernel-checked Lean certificate
+sha256: 2c8a226fa19b862fac56c1c612d036323f97742667df6c86143c0d080223860d
+size_bytes: 7689
+lean_sources_commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc
+toolchain: leanprover/lean4:v4.26.0
+mathlib: v4.26.0
+command: scripts/verify-lock.sh

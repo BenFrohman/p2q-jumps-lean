@@ -3,6 +3,9 @@
 Lean sources commit: 4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc (toolchain leanprover/lean4:v4.26.0, Mathlib v4.26.0).
 Recorded 2026-11-16 17:19 CST.
 
+SHA-256 hashes, the Lean sources commit, the toolchain (leanprover/lean4:v4.26.0, Mathlib v4.26.0), and the rebuild command for each file are in `certificates/MANIFEST`. Raw kernel logs were not rewritten.
+
+
 Kernel-checked (inside `lake build`; lake-build.log is a clean rebuild of all P2qJumps modules with Mathlib from cache):
 - lake-build.log: full `lake build` (exit 0).
 - axiom-audit.txt: `lake env lean AxiomAudit.lean` (1 99 declarations; only propext, Classical.choice, Quot.sound).

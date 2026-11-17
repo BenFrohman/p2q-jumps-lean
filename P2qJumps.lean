@@ -15,6 +15,9 @@ import P2qJumps.R3SEmpty
 import P2qJumps.TheoremA
 import P2qJumps.R2ST
 import P2qJumps.R3ST
+import P2qJumps.TheoremsBE
+import P2qJumps.ProseClaims
+import P2qJumps.ProseClaims2
 import P2qJumps.R2S2T
 import P2qJumps.R3S
 import P2qJumps.Cert.Core
@@ -22,6 +25,12 @@ import P2qJumps.Cert.Line
 import P2qJumps.Cert.Strip
 import P2qJumps.Cert.Pairs
 import P2qJumps.Main
+import P2qJumps.ClosedLedger
+import P2qJumps.P7
+import P2qJumps.ThmEShapes
+import P2qJumps.PropC
+import P2qJumps.ImpliesCorrected
+import P2qJumps.ThreeRegimes
 import P2qJumps.Semantics
 import P2qJumps.Semantics2
 

@@ -46,7 +46,10 @@ Kernel certificates (`decide +kernel` on checkers with proved soundness; **no `n
 | `Cert.cert_pair_*`: the σ-jump fails (so the pair of jumps fails) | every `n = p^2 q ≤ 10^4` |
 
 Axioms: `#print axioms P2qJumps.Semantics.theorem_L` → `[propext, Classical.choice, Quot.sound]`.
-Logs: [`certificates/`](certificates/).
+Certificate of record: the GitHub Actions artifact `lean-certificate-<commit sha>` from a fresh
+[`certify.yml`](.github/workflows/certify.yml) run on the pushed commit (committed `lake-manifest.json`
++ sha256, toolchain, Mathlib rev, elan/lake versions, full build log, full `#print axioms` output).
+Local logs ([`local-dev-logs/`](local-dev-logs/), historical [`certificates/`](certificates/)) are not certificates.
 
 ## External computations (NOT kernel-checked; not used by any Lean theorem)
 

@@ -262,8 +262,26 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.omega4_or_r2s2t
 #print axioms P2qJumps.card_pf_r2s2t
 #print axioms P2qJumps.threeRegimes_iff_r2s2t
+#print axioms P2qJumps.P7Cert.cert7
+#print axioms P2qJumps.P7Cert.cert8
+#print axioms P2qJumps.P7Cert.cert9
+#print axioms P2qJumps.P7Cert.desc_sound
+#print axioms P2qJumps.p7_squarefree_empty
+#print axioms P2qJumps.p7_squarefree_7_8_9
+#print axioms P2qJumps.H1_holds
+#print axioms P2qJumps.no_squarefree
+#print axioms P2qJumps.conjecture_iff_H2_H3
 #print axioms P2qJumps.totient_sigma_r2s2t
 #print axioms P2qJumps.r2s2t_combo
 #print axioms P2qJumps.Lpoly_pos
 #print axioms P2qJumps.r2s2t_rs_dvd_L
 #print axioms P2qJumps.r2s2t_jumps_hypothesis_needed
+
+-- H2 reduction to the shapes r²s²t and r²s²tu; H3 two-adic necessary condition
+#print axioms P2qJumps.H2_of_shapes
+#print axioms P2qJumps.H3_twoAdic
+#print axioms P2qJumps.H3_of_mod4
+#print axioms P2qJumps.Hensel.scan_sound
+#print axioms P2qJumps.Hensel.good_upto
+#print axioms P2qJumps.hensel_r_le_1e6
+#print axioms P2qJumps.r3s_r_le_1e6

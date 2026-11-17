@@ -93,3 +93,7 @@ Cite the paper as Frohman, *Further constraints on simultaneous totient and divi
 ## Zenodo archive
 
 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867497.svg)](https://doi.org/10.5281/zenodo.23867497) Formal Verification of 2-Adic Valuation Shifts and p^2 q Jump Dynamics in Generalized Collatz Extensions (Lean 4) — all versions: [10.5281/zenodo.23867497](https://doi.org/10.5281/zenodo.23867497); latest version: [10.5281/zenodo.23905258](https://doi.org/10.5281/zenodo.23905258)
+
+## License and attribution
+
+This work is licensed under the Apache License 2.0 (see [LICENSE](LICENSE) and [NOTICE](NOTICE)). Any use, reproduction, or redistribution, in whole or in part, must retain the NOTICE file and credit Benjamin Stanley Frohman as the author. If you use this work in a publication, please cite it (see [CITATION.cff](CITATION.cff) / the Zenodo DOI).

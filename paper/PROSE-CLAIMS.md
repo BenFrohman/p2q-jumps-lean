@@ -96,7 +96,7 @@ Paths are relative to `P2qJumps/`.
 | 48 | `lem:Q` (Q(N) formula, Q > 0; Q(m)/m² = 1 − ∏(1 − r^{−e−1})) | Lean `lemmaQ_formula` (TheoremsBE.lean:214); product formula `P2qExtensions.sigma_mul_totient_prod` (Ext/Extensions/DeltaQ.lean:72) |
 | 49 | `thm:D` | Lean `theoremD` (TheoremsBE.lean:173), `theoremD_four` (:185) |
 | 50 | `thm:E` (i)–(v) | Lean `theoremE_i` … `theoremE_iv_sqrt` (TheoremsBE.lean:60–235); see the remark in Part A for the widened hypotheses |
-| 51 | `thm:E` final sentence ("every remaining repeated-prime solution has shape r²V, r³V (ω(V) ≥ 2) or r₁²r₂²V …") | in progress — blocker: one Lean theorem over the factorization (exponent multiset) of N is not yet written; all ingredients are proved (`theoremE_*`, `theoremB`, `cube_excludes_second_square`, TheoremsBE.lean:250) |
+| 51 | `thm:E` final sentence ("every remaining repeated-prime solution has shape r²V, r³V (ω(V) ≥ 2) or r₁²r₂²V …") | Lean `theoremE_shapes` (ThmEShapes.lean:45) |
 | 52 | `lem:G` (identity, gcd ∣ 2T(p), T(p) > 0) | Lean `lemmaG` (ClosedLedger.lean:83); `lemmaG_gcd`, `T_pos` (ProseClaims.lean:172, :182) |
 | 53 | `thm:F` | Lean `theoremF` (ClosedLedger.lean:115) |
 | 54 | `cor:F1` (p = 7, 7 ≤ k ≤ 9; T-values, v₂; 2^{m−1} > m⁴ > T(m) for m ≥ 23) | Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260) |
@@ -134,11 +134,11 @@ Paths are relative to `P2qJumps/`.
 
 68 ledger rows (some rows group several clauses of one statement):
 
-- **Lean: 51** (of which 20 rows are proved vacuously, from the impossibility of the shape they
+- **Lean: 52** (of which 20 rows are proved vacuously, from the impossibility of the shape they
   concern: rst, r³s, r²st, squarefree rstu).
 - **cited external: 8** (rows 2, 3, 39, 40, 41, 59, 61, 66).
 - **removed: 1** (row 64, rad(N) = N/gcd(N, φ(N)); counterexample N = 12, kernel-checked).
-- **in progress: 6** (rows 4 Conjecture — the open problem itself; 51 Theorem E final sentence;
+- **in progress: 5** (rows 4 Conjecture — the open problem itself;
   55 Proposition `prop:implies-corrected`; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
   67 the shape r²s²t).
 - **mixed: 1** (row 47, Proposition C: enumeration cited external, structural clauses in progress).

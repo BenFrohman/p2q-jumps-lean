@@ -253,3 +253,4 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.p7_omega4_ge11
 #print axioms P2qJumps.p7_prefix_bound
 #print axioms P2qJumps.p7_prune_threshold
+#print axioms P2qJumps.theoremE_shapes

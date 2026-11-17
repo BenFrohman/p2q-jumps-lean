@@ -147,3 +147,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-p7` (Propositions `prop:A-p7`, `prop:A-p7-ge11`, `prop:A-p7-prefix`) with step-by-step proofs following Lean; Appendix `app:p7`: trust boundary records what is now kernel-checked, a pointer from "every prime factor ≥ 5", and the reduced node counts. `paper/PROSE-CLAIMS.md`: row 62 narrowed to the enumeration (in progress), new row 68 (Lean).
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. Theorem `thm:H1-comp` remains not kernel-checked.
 - **Scope change:** none. `p7_prefix_bound` is stated for arbitrary integers (wider than the descent needs).
+
+## C15. Theorem E, final sentence, as one Lean theorem (prose ledger row 51)
+
+- **Claim:** `thm:E`, final sentence: under both jumps, if some prime square divides `N`, then `N = r^2 V` or `N = r^3 V` with `V` squarefree, prime to `r`, `ω(V) ≥ 2`; or `N = r₁^2 r₂^2 V` with `V` squarefree, prime to `r₁ r₂`, `ω(V) ≥ 1`, `r₁ r₂ ∣ L(p)` and `q > 5p^2 - 4p - 3`.
+- **Method:** Lean, new file `P2qJumps/ThmEShapes.lean`: `theoremE_shapes` (:45), from `theoremE_i`, `theoremE_ii`, `theoremE_iii`, `theoremE_iv_dvd`, `cube_excludes_second_square`, `N_not_powerful`, `N_ne_prime_pow`, `N_ne_ras`; added to `AxiomAudit.lean`.
+- **Outcome:** proved (kernel-checked), standard axioms only.
+- **Paper changes:** new Part A subsection "Theorem E: the remaining repeated-prime shapes" (Theorem `thm:A-E-shapes`, step-by-step proof following Lean, and a remark on the extra conclusions in case (b)); the remark after Part B `thm:E` now cites it. `paper/PROSE-CLAIMS.md` row 51: Lean.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** stronger than the paper sentence in case (b): `V` squarefree, prime to `r₁ r₂`, and `ω(V) ≥ 1` are proved, not assumed.

@@ -911,6 +911,33 @@ Assume~\eqref{eq:jumps}. The statements of Part~\ref{part:B} listed below concer
 Each Lean statement is proved by \texttt{False.elim} applied to the impossibility of the shape. For (c), Step 1: Proposition~\ref{prop:A-preamble} gives \(p,q\ge 5\); Step 2: every prime factor of \(N\) is \(\ge5\) (\texttt{prime\_factor\_ge\_five}), so \(r,s,t\ge5\); Step 3: Theorem~\ref{thm:A-r2st-empty}. For (d), Step 1: a product of four distinct primes is squarefree (\texttt{Nat.squarefree\_mul\_iff}, pairwise coprimality); Step 2: its set of prime factors is \(\{r,s,t,u\}\), of cardinality \(4\); Step 3: Theorem~\ref{thm:A-D} excludes \(k=4\).
 \end{proof}
 
+\subsection{Theorem E: the remaining repeated-prime shapes}
+
+\begin{theorem}[final sentence of Theorem~\ref{thm:E}]
+\label{thm:A-E-shapes}
+Assume~\eqref{eq:jumps} and that \(r^2\mid N\) for some prime \(r\). Then one of the following holds.\lean{P2qJumps.theoremE_shapes}{ThmEShapes.lean:45}
+\begin{enumerate}
+\item[\textup{(a)}] \(N=r^2V\) or \(N=r^3V\) for a prime \(r\) and a squarefree \(V\) with \(\gcd(r,V)=1\) and \(\omega(V)\ge 2\).
+\item[\textup{(b)}] \(N=r_1^2r_2^2V\) for distinct primes \(r_1,r_2\) and a squarefree \(V\) with \(\gcd(r_1r_2,V)=1\) and \(\omega(V)\ge 1\); moreover \(r_1r_2\mid L(p)\) and \(q>5p^2-4p-3\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1.} Write \(N=r^eW\) with \(r\nmid W\) (\texttt{Nat.exists\_eq\_pow\_mul\_and\_not\_dvd}). If \(e\le 1\), then \(r^2\mid N\) forces \(r\mid W\); so \(e\ge 2\). If \(e\ge 4\), then \(r^4\mid N\), contradicting Theorem~\ref{thm:A-E}(i); so \(e\in\{2,3\}\).
+
+\textit{Step 2 (\(W\) squarefree).} If \(\omega(W)=0\), then \(W=1\) and \(N=r^e\), which Proposition~\ref{prop:A-primepower} excludes. If \(\omega(W)=1\), then \(W\) is a prime \(s\ne r\) (a squarefree number is the product of its prime factors), and \(N=r^es\) with \(e\ge 2\) is excluded by Theorem~\ref{thm:A-ras}. Hence \(\omega(W)\ge 2\) and (a) holds with \(V=W\).
+
+\textit{Step 3 (\(W\) not squarefree).} Then \(s^2\mid W\) for some prime \(s\), and \(s\ne r\) because \(r\nmid W\); thus \(s^2\mid N\). If \(e=3\), then \(r^3\mid N\) and \(s^2\mid N\), which \texttt{cube\_excludes\_second\_square} (remark after Theorem~\ref{thm:A-E}) rules out; so \(e=2\). Write \(W=s^fV\) with \(s\nmid V\); as in Step~1, \(f\ge 2\), and \(f\ge 3\) would give \(s^3\mid N\) together with \(r^2\mid N\), again excluded; so \(f=2\) and \(N=r^2s^2V\). Neither \(r\) nor \(s\) divides \(V\), so \(\gcd(rs,V)=1\).
+
+\textit{Step 4.} \(V\) is squarefree: a prime \(\ell\) with \(\ell^2\mid V\) differs from \(r\) and \(s\), and \(\ell^2,r^2,s^2\mid N\) contradicts Theorem~\ref{thm:A-E}(iii). If \(\omega(V)=0\), then \(V=1\) and every prime of \(N=r^2s^2\) has its square dividing \(N\), so \(N\) is powerful, contradicting Theorem~\ref{thm:A-B} (\texttt{N\_not\_powerful}). So \(V\) has a prime factor \(t\), and \(t\ne r,s\).
+
+\textit{Step 5.} Theorem~\ref{thm:A-E}(iv) (divisibility) gives \(rs\mid L(p)\), and Theorem~\ref{thm:A-E}(ii) with the third prime \(t\) gives \(q>5p^2-4p-3\). This is (b) with \(r_1=r\), \(r_2=s\).
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-E-shapes} is the final sentence of Theorem~\ref{thm:E}. In (a), \(\omega(V)\) is the number \(j\) of primes of exponent~\(1\). In (b) it also proves that \(V\) is squarefree, prime to \(r_1r_2\), and has \(\omega(V)\ge 1\); the paper sentence leaves these implicit.
+\end{remark}
+
 \section{The \(p=7\) residual: equations, the prime \(5\), and the prefix bound}
 \label{sec:A-p7}
 
@@ -2030,7 +2057,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is kernel-checked in v1.4 as Theorem~\ref{thm:A-E}, clause by clause, with the hypothesis \(j\ge 1\) replaced by the weaker ``a third prime factor'' in (ii) and (iv) and dropped in (iii). The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is not a single Lean theorem; its ingredients are Theorem~\ref{thm:A-E}, Theorem~\ref{thm:A-B} and \texttt{P2qJumps.cube\_excludes\_second\_square}.
+Theorem~\ref{thm:E} is kernel-checked in v1.4 as Theorem~\ref{thm:A-E}, clause by clause, with the hypothesis \(j\ge 1\) replaced by the weaker ``a third prime factor'' in (ii) and (iv) and dropped in (iii). The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}

@@ -100,7 +100,7 @@ Paths are relative to `P2qJumps/`.
 | 52 | `lem:G` (identity, gcd ∣ 2T(p), T(p) > 0) | Lean `lemmaG` (ClosedLedger.lean:83); `lemmaG_gcd`, `T_pos` (ProseClaims.lean:172, :182) |
 | 53 | `thm:F` | Lean `theoremF` (ClosedLedger.lean:115) |
 | 54 | `cor:F1` (p = 7, 7 ≤ k ≤ 9; T-values, v₂; 2^{m−1} > m⁴ > T(m) for m ≥ 23) | Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260) |
-| 55 | `prop:implies-corrected` (Conjecture ⇔ H1 ∧ H2 ∧ H3) | in progress — blocker: R, j and H1–H3 are not yet defined in Lean; the case split uses only proved shapes (prime, prime power, rs, rst, r^a s, powerful) |
+| 55 | `prop:implies-corrected` (Conjecture ⇔ H1 ∧ H2 ∧ H3; given H1, Conjecture ⇔ H2 ∧ H3) | Lean `prop_implies_corrected`, `implies_corrected_of_H1` (ImpliesCorrected.lean:47, :114), with R, j, H1–H3 defined at ImpliesCorrected.lean:24–42; the equivalence only (H1–H3 are not proved). The trust statements (H1 by `thm:H1-comp`, H2 for p < 10^6 by Proposition C) are row 56 and row 47 |
 | 56 | `thm:H1-comp` (H1 under computer-assisted trust) | in progress — blocker: the p = 7 enumeration (item 62) is not kernel-checked |
 | 57 | Remark "Status of Conjecture" | commentary (excluded) |
 
@@ -134,12 +134,11 @@ Paths are relative to `P2qJumps/`.
 
 68 ledger rows (some rows group several clauses of one statement):
 
-- **Lean: 52** (of which 20 rows are proved vacuously, from the impossibility of the shape they
+- **Lean: 53** (of which 20 rows are proved vacuously, from the impossibility of the shape they
   concern: rst, r³s, r²st, squarefree rstu).
 - **cited external: 8** (rows 2, 3, 39, 40, 41, 59, 61, 66).
 - **removed: 1** (row 64, rad(N) = N/gcd(N, φ(N)); counterexample N = 12, kernel-checked).
-- **in progress: 5** (rows 4 Conjecture — the open problem itself;
-  55 Proposition `prop:implies-corrected`; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
+- **in progress: 4** (rows 4 Conjecture — the open problem itself; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
   67 the shape r²s²t).
 - **mixed: 1** (row 47, Proposition C: structural clauses Lean, enumeration cited external).
 - **excluded as commentary: 1** (row 57).

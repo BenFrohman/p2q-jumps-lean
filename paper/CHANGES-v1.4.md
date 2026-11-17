@@ -165,3 +165,12 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-propC` (Propositions `prop:A-C-K`, `prop:A-C-j1`, `prop:A-C-j2`, step-by-step proofs following Lean, and a remark); the proof sketch of `prop:C` and the Part B trust label point to it. `paper/PROSE-CLAIMS.md` row 47: structural clauses Lean, enumeration cited external.
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** wider than the paper: the systems and their nonsingularity hold for every divisor `M` of `N` with the stated prime cofactor, not only `M = K·rad(K)`. "Finitely many rational candidates" is proved in the stronger form "exactly one".
+
+## C17. The corrected residual equivalence in Lean (prose ledger row 55)
+
+- **Claim:** `prop:implies-corrected`: Conjecture `conj:vanish` holds if and only if H1, H2 and H3 hold, with `R(N)` the primes of exponent ≥ 2 and `j(N)` the number of primes of exponent 1; and, given H1, the conjecture holds if and only if H2 and H3 hold.
+- **Method:** Lean, new file `P2qJumps/ImpliesCorrected.lean`: definitions `repPrimes` (:24), `simpleCount` (:27), `H1` (:30), `H2` (:35), `H3` (:42); theorems `prop_implies_corrected` (:47), `implies_corrected_of_H1` (:114). The case split uses `N_not_prime`, `N_ne_rs`, `theorem28_holds`, `N_not_powerful`, `N_ne_ras`. Added to `AxiomAudit.lean`.
+- **Outcome:** proved (kernel-checked), standard axioms only. This is the equivalence only: H1, H2, H3 and the conjecture are not proved.
+- **Paper changes:** new Part A section `sec:A-implies` (definitions, Theorem `thm:A-implies`, step-by-step proof following Lean, remark on what is not proved); the proof of Part B `prop:implies-corrected` cites it. `paper/PROSE-CLAIMS.md` row 55: Lean.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. Row 4 (the conjecture) stays open and is not asserted.
+- **Scope change:** none. The Lean proof of (⇐) does not use Table `tab:classify`: H2 already excludes every pattern with `j ∈ {1, 2}` other than `r^a s`.

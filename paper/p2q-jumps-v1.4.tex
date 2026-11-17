@@ -1000,6 +1000,39 @@ the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S
 These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked.
 \end{remark}
 
+\section{The corrected residual equivalence}
+\label{sec:A-implies}
+
+For \(N>1\) let \(R(N)\) be the set of primes \(r\) with \(r^2\mid N\) (\texttt{repPrimes}) and \(j(N)\) the number of primes of exponent exactly~\(1\) (\texttt{simpleCount}).\lean{P2qJumps.repPrimes, P2qJumps.simpleCount}{ImpliesCorrected.lean:24,27} Quantifying over distinct primes \(p,q\) with~\eqref{eq:jumps}, let\lean{P2qJumps.H1, P2qJumps.H2, P2qJumps.H3}{ImpliesCorrected.lean:30,35,42}
+H1: \(N\) is never squarefree with \(\omega(N)\ge 4\);
+H2: never \(R(N)\ne\emptyset\), \(j(N)\in\{1,2\}\) and \(N\ne r^as\) for all distinct primes \(r,s\) and \(a\ge 2\);
+H3: never \(R(N)\ne\emptyset\) and \(j(N)\ge 3\).
+
+\begin{theorem}[Proposition~\ref{prop:implies-corrected}]
+\label{thm:A-implies}
+Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 and H3 hold.\lean{P2qJumps.prop_implies_corrected}{ImpliesCorrected.lean:47} Consequently, if H1 holds, Conjecture~\ref{conj:vanish} holds if and only if H2 and H3 hold.\lean{P2qJumps.implies_corrected_of_H1}{ImpliesCorrected.lean:114}
+\end{theorem}
+
+\begin{proof}
+\textit{Step 1 (\(\Rightarrow\)).} The conjecture says no pair \(p,q\) satisfies~\eqref{eq:jumps}, so each of H1--H3, which only concerns such pairs, holds.
+
+\textit{Step 2 (\(\Leftarrow\), setup).} Assume H1--H3 and~\eqref{eq:jumps} for distinct primes \(p,q\); we derive a contradiction. \(N\ne 0\).
+
+\textit{Step 3 (\(R(N)=\emptyset\)).} Every prime has exponent \(\le 1\) in \(N\), so \(N\) is squarefree and \(N=\prod_{\ell\mid N}\ell\). If \(\omega(N)\ge 4\), H1 is contradicted. \(\omega(N)=0\) would give \(N\le 1\). \(\omega(N)=1,2,3\) give \(N=r\), \(N=rs\), \(N=rst\) with distinct primes, excluded by Propositions~\ref{prop:A-notprime}, \ref{prop:A-rs} and~\ref{prop:A-rst}.
+
+\textit{Step 4 (\(R(N)\ne\emptyset\), \(j(N)=0\)).} Every prime \(\ell\mid N\) has exponent \(\ge 1\) and \(\ne 1\), hence \(\ge 2\), so \(\ell^2\mid N\): \(N\) is powerful, contradicting Theorem~\ref{thm:A-B} (\texttt{N\_not\_powerful}).
+
+\textit{Step 5 (\(R(N)\ne\emptyset\), \(j(N)\ge 3\)).} This contradicts H3.
+
+\textit{Step 6 (\(R(N)\ne\emptyset\), \(j(N)\in\{1,2\}\)).} If \(N=r^as\) with distinct primes \(r,s\) and \(a\ge 2\), Theorem~\ref{thm:A-ras} is contradicted; otherwise H2 is.
+
+\textit{Step 7.} The second sentence follows from the first with H1 as a hypothesis.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:A-implies} proves the equivalence only. None of H1, H2, H3 is proved in Lean, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}, which is computer-assisted and not kernel-checked; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation.
+\end{remark}
+
 \section{The \(p=7\) residual: equations, the prime \(5\), and the prefix bound}
 \label{sec:A-p7}
 
@@ -2177,7 +2210,7 @@ In the present draft, H1 is established under ordinary computer-assisted trust b
 \end{proposition}
 
 \begin{proof}
-(\(\Rightarrow\)) is immediate. (\(\Leftarrow\)): every factor pattern of \(N>1\) appears in exactly one row of Table~\ref{tab:classify}. The rows other than H1--H3 are excluded by Theorem~\ref{thm:closed}(1)--(4), Theorem~\ref{thm:R1}, Theorem~\ref{thm:A}, and Theorem~\ref{thm:B}.
+The equivalence is kernel-checked as Theorem~\ref{thm:A-implies} (\texttt{P2qJumps.prop\_implies\_corrected}); the trust statements about H1 and H2 are not. (\(\Rightarrow\)) is immediate. (\(\Leftarrow\)): every factor pattern of \(N>1\) appears in exactly one row of Table~\ref{tab:classify}. The rows other than H1--H3 are excluded by Theorem~\ref{thm:closed}(1)--(4), Theorem~\ref{thm:R1}, Theorem~\ref{thm:A}, and Theorem~\ref{thm:B}.
 \end{proof}
 
 \begin{theorem}[H1 under ordinary computer-assisted trust]

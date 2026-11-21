@@ -1,6 +1,6 @@
 # Truth Gate (p2q-jumps-lean)
 
-**Status: paper_claim PENDING AUTHOR APPROVAL.**
+**Status: paper_claim and paper_claim2 approved by Benjamin Stanley Frohman on 2026-11-21.**
 
 The gate checks one thing: the Lean development proves the locked transcription `paper_claim` of the paper's
 Theorem L. It says nothing beyond that statement.

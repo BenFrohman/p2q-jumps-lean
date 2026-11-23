@@ -294,3 +294,9 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.lemmaK_param
 #print axioms P2qJumps.totient_mul_sigma_prod_primes_le
 #print axioms P2qJumps.p7_prefix_no_completion
+#print axioms P2qJumps.lemmaL1_terms_nonneg
+#print axioms P2qJumps.sq_mod16_exact
+#print axioms P2qJumps.rigid_finite_candidates
+#print axioms P2qJumps.r2st_offset_sigma_neg
+#print axioms P2qJumps.p_not_dvd_K
+#print axioms P2qJumps.theoremE_v_lt

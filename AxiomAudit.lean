@@ -285,3 +285,12 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Hensel.good_upto
 #print axioms P2qJumps.hensel_r_le_1e6
 #print axioms P2qJumps.r3s_r_le_1e6
+
+-- 4-sort drift formalization (2026-11-23)
+#print axioms P2qJumps.coprime_of_prime_ge_five
+#print axioms P2qJumps.coprime6_r2st
+#print axioms P2qJumps.coprime6_r3s
+#print axioms P2qJumps.omega4_N_gt_p4
+#print axioms P2qJumps.lemmaK_param
+#print axioms P2qJumps.totient_mul_sigma_prod_primes_le
+#print axioms P2qJumps.p7_prefix_no_completion

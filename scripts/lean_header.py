@@ -198,11 +198,6 @@ def fix_file(path: Path, root: Path) -> str:
     original = path.read_text(encoding="utf-8")
     title = module_title(path, root)
     updated = transform(original, title)
-    if path.as_posix().endswith("RCW-Residuals-Lean/RCW/R2TwistFibers.lean") or (
-        root.name == "RCW-Residuals-Lean" and path.name == "R2TwistFibers.lean"
-    ):
-        updated = updated.replace("namespace RCW_R2_TwistFibers", "namespace RCW.R2TwistFibers")
-        updated = updated.replace("end RCW_R2_TwistFibers", "end RCW.R2TwistFibers")
     if decls(original) != decls(updated):
         raise SystemExit(f"declaration list changed: {path}")
     if original.count("sorry") != updated.count("sorry"):
@@ -226,9 +221,6 @@ def main():
             original = path.read_text(encoding="utf-8")
             title = module_title(path, root)
             updated = transform(original, title)
-            if root.name == "RCW-Residuals-Lean" and path.name == "R2TwistFibers.lean":
-                updated = updated.replace("namespace RCW_R2_TwistFibers", "namespace RCW.R2TwistFibers")
-                updated = updated.replace("end RCW_R2_TwistFibers", "end RCW.R2TwistFibers")
             if updated != original:
                 print(f"header drift: {path.relative_to(root)}")
                 changed += 1

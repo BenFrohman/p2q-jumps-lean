@@ -1792,7 +1792,14 @@
    "paper_sha256": "b8fe79d621e699f2b955a578678eeb32842618ce442be9176bc39e3f4ea2eb1c",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "statement: no solution with N squarefree; thus H1"
+   "note": "statement: no solution with N squarefree; thus H1",
+   "reviewed_status_sentences": [
+    {
+     "sha256": "87d4aba23ded2a16c84c174dfab3bde5a5f30a7db3f592b45cc981b3a59d90d3",
+     "text": "after <SELF> , only H2 and H3 remain open",
+     "reason": "the open status words refer to H2 and H3, not to H1 (prop:implies remark, line 2026); reviewed 2026-11-23 by Grok Bot"
+    }
+   ]
   },
   {
    "id": "nolabel:remark:3e0585123507",
@@ -1947,7 +1954,7 @@
    "kind": "remark",
    "where": "paper/p2q-jumps-v1.4.tex:2313",
    "title": "Status of Conjecture~\\ref{conj:vanish}",
-   "disposition": "external",
+   "disposition": "commentary",
    "lean": [
     "H1_holds"
    ],
@@ -1955,7 +1962,7 @@
    "paper_sha256": "8948373e5daec6ea45bad882163c8a4147b8bf7395f98e8abceb953bad28908b",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "remark on external/cited material, labeled as such"
+   "note": "remark asserting kernel-checked status; cites these declarations"
   }
  ]
 }

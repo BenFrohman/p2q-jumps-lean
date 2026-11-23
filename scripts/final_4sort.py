@@ -208,12 +208,30 @@ def parse_paper(lines, envs):
         e["id"] = e["label"] or "nolabel:%s:%s" % (e["kind"], e["sha256"][:12])
     return found, text_lines, sec_of_line
 
+REF_CMD = r"\\(?:ref|cref|Cref|autoref|eqref)\{([^}]*)\}"
+
+def tokenize_refs(cfg, text, self_label=None):
+    """Replace 'Theorem~\\ref{x}' (name word included) by <SELF> for self_label and <REF> otherwise, and
+    drop identifier-like content (\\path, \\texttt, \\lean) so Lean names such as conjecture_iff_H2_H3
+    are not read as status words."""
+    words = "|".join(map(re.escape, cfg["ref_words"]))
+    def rep(m):
+        labs = [x.strip() for x in m.group(1).split(",")]
+        return " <SELF> " if self_label in labs else " <REF> "
+    text = remove_macro(text, "lean", 2)
+    text = re.sub(r"(?:(?:%s)s?~?\s*)?%s(?:\([^)]*\))?" % (words, REF_CMD), rep, text)
+    text = re.sub(r"\\(?:path|texttt|url|href)\{[^}]*\}", " <ID> ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
 def mention_clauses(cfg, text_lines, lines, envs_found):
-    """For every label, collect the clauses of the paper that mention it (\\ref, \\Cref, ...) plus the
-    status paragraph right after the environment.  Returns {label: [(file, line, clause_text)]}."""
+    """For every label, the sentences of the paper that mention it (\\ref, \\Cref, ...) plus the status
+    paragraph right after its environment.  Returns {label: [(file, line, tokenized_sentence)]}.
+    In a tokenized sentence the label itself is <SELF>, other references are <REF>."""
     joined, starts = "", []
     for t in text_lines:
         starts.append(len(joined)); joined += t + "\n"
+    # mask punctuation inside braces so a sentence never ends inside \ref{conj:vanish} or \path{a.b}
+    masked = re.sub(r"\{[^{}]*\}", lambda m: re.sub(r"[.;:,]", "\x00", m.group(0)), joined)
     def pos2line(p):
         lo, hi = 0, len(starts) - 1
         while lo < hi:
@@ -221,22 +239,16 @@ def mention_clauses(cfg, text_lines, lines, envs_found):
             if starts[mid] <= p: lo = mid
             else: hi = mid - 1
         return lines[lo][0], lines[lo][1]
-    words = "|".join(map(re.escape, cfg["ref_words"]))
+    bounds = [". ", ".\n", ";", "\n\n", "\\item", "\\begin", "\\end", "\\\\", "&"]
     out = {}
-    for m in re.finditer(r"\\(?:ref|cref|Cref|autoref|eqref)\{([^}]+)\}", joined):
+    for m in re.finditer(REF_CMD, joined):
+        a = max(masked.rfind(x, 0, m.start()) for x in bounds)
+        ends = [e for e in (masked.find(x, m.end()) for x in bounds) if e >= 0]
+        b = min(ends) if ends else len(joined)
+        sent = joined[a + 1 if a >= 0 else 0:b]
+        f, n = pos2line(m.start())
         for lab in m.group(1).split(","):
-            lab = lab.strip()
-            # clause boundaries: sentence ends, semicolons, commas, ' which ', ' while ', ' but ', parens
-            a = max(joined.rfind(x, 0, m.start()) for x in [". ", ".\n", ";", ",", "\n\n", "(", "\\item", " which ", " while ", " but ", ":"])
-            ends = [joined.find(x, m.end()) for x in [". ", ".\n", ";", ",", "\n\n", ")", "\\item", " which ", " while ", " but ", ":"]]
-            ends = [e for e in ends if e >= 0]
-            b = min(ends) if ends else len(joined)
-            clause = joined[a + 1 if a >= 0 else 0:b]
-            clause = re.sub(r"(?:%s)s?~?\\(?:ref|cref|Cref|autoref|eqref)\{[^}]*\}(?:\([^)]*\))?" % words, " <REF> ", clause)
-            clause = re.sub(r"\\(?:ref|cref|Cref|autoref|eqref)\{[^}]*\}", " <REF> ", clause)
-            f, n = pos2line(m.start())
-            out.setdefault(lab, []).append((f, n, re.sub(r"\s+", " ", clause).strip()))
-    # status paragraph directly after the environment (up to the next blank line / environment / section)
+            out.setdefault(lab.strip(), []).append((f, n, tokenize_refs(cfg, sent, lab.strip())))
     for e in envs_found:
         if not e["label"]:
             continue
@@ -251,9 +263,54 @@ def mention_clauses(cfg, text_lines, lines, envs_found):
                 para.append(t)
             k += 1
         if para and re.match(r"\s*(\\noindent)?\s*\\textbf\{Status", para[0]):
-            f, n, _ = lines[e["end_line_index"] + 1]
-            out.setdefault(e["label"], []).append((f, n, re.sub(r"\s+", " ", " ".join(para))))
+            f, n, _ = lines[min(e["end_line_index"] + 1, len(lines) - 1)]
+            # status sentences without any reference speak about this environment
+            for sent in re.split(r"(?<=\.)\s+", " ".join(para)):
+                tok = tokenize_refs(cfg, sent, e["label"])
+                if "<SELF>" not in tok and "<REF>" not in tok:
+                    tok = "<SELF> " + tok
+                out.setdefault(e["label"], []).append((f, n, tok))
     return out
+
+def _paren_groups(text):
+    """Index of the innermost (...) group of every character (0 = outside any group)."""
+    gid, stack, nxt, out = 0, [0], 1, []
+    for ch in text:
+        if ch == "(":
+            stack.append(nxt); nxt += 1; out.append(stack[-1])
+        elif ch == ")" and len(stack) > 1:
+            out.append(stack[-1]); stack.pop()
+        else:
+            out.append(stack[-1])
+    return out
+
+def self_hits(text, pats, macros=(), own=False):
+    """Status words attributed to this claim.  A hit is attributed to the nearest reference token before it
+    in the same parenthesis group (failing that, after it in the same group); a hit in a group with no token
+    goes to the token right before that group (\"<SELF> (not kernel-checked)\"); tokens inside a group
+    other than the hit's are ignored.  A hit with no token at all counts only in the claim's own text."""
+    low = text.lower()
+    grp = _paren_groups(low)
+    toks = [(m.start(), m.group(0), grp[m.start()]) for m in re.finditer(r"<self>|<ref>", low)]
+    hits = []
+    for p in pats:
+        for m in re.finditer(p, low):
+            g = grp[m.start()]
+            same = [t for t in toks if t[2] == g]
+            before = [t for t in same if t[0] < m.start()]
+            after = [t for t in same if t[0] > m.start()]
+            tok = before[-1][1] if before else (after[0][1] if after else None)
+            if tok is None and g != 0:
+                open_at = max(i for i in range(m.start() + 1) if low[i] == "(" and grp[i] == g)
+                prev = [t for t in toks if t[0] < open_at and t[2] == grp[open_at - 1 if open_at else 0]]
+                if prev and re.fullmatch(r"\s*", low[prev[-1][0] + len(prev[-1][1]):open_at]):
+                    tok = prev[-1][1]
+            if tok == "<self>" or (tok is None and own):
+                hits.append(m.group(0))
+    for mac in macros:
+        if mac in text and (own or "<SELF>" in text):
+            hits.append(mac)
+    return hits
 
 def find_patterns(text, pats, macros=()):
     low = text.lower()
@@ -377,11 +434,17 @@ def classify(cfg, env, entry, lean, mentions):
                           "certified": ok, "problem": prob}
     all_ok = bool(decls) and all(ok for ok, _ in statuses.values())
     # retraction / proof language around the claim
-    own = env["statement"]
-    ctx = [(env["file"], env["line"], own)] + mentions.get(env["label"], [])
+    own = tokenize_refs(cfg, env["statement"])
+    ctx = [(env["file"], env["line"], own, True)] + [(f, n, c, False) for f, n, c in mentions.get(env["label"], [])]
     retr = []
-    for f, n, c in ctx:
-        h = find_patterns(c, cfg["retraction_patterns"], cfg["retraction_macros"])
+    for f, n, c, is_own in ctx:
+        h = self_hits(c, cfg["retraction_patterns"], cfg["retraction_macros"], own=is_own)
+        ack = [x for x in entry.get("reviewed_status_sentences", [])
+               if x.get("sha256") == hashlib.sha256(c.encode()).hexdigest()]
+        if h and ack:
+            det.setdefault("acknowledged_status_sentences", []).append(
+                {"at": "%s:%d" % (f, n), "words": sorted(set(h)), "text": c[:400], "reason": ack[0].get("reason", "")})
+            continue
         if h:
             retr.append({"at": "%s:%d" % (f, n), "words": sorted(set(h)), "text": c[:400]})
     det["retraction_mentions"] = retr
@@ -389,7 +452,7 @@ def classify(cfg, env, entry, lean, mentions):
                       or env["section"]["title"] in cfg["external_sections"])
     ext_marked = in_ext_section or bool(find_patterns(own, [re.escape(x.lower()) for x in cfg["external_markers"]],
                                                       cfg["retraction_macros"]))
-    proof_words = find_patterns(strip_negated_proof(own), cfg["proof_patterns"])
+    proof_words = self_hits(strip_negated_proof(own), cfg["proof_patterns"], own=True)
 
     if not entry.get("reviewed"):
         return "UNJUDGED", ["no recorded review of this claim (claim-map field 'reviewed' is empty)"], det
@@ -517,6 +580,8 @@ def write_reports(outdir, meta, results):
                 L.append("- **fix route: %s**" % r["fix_route"])
             for why in r["reasons"]:
                 L.append("- **mismatch:** %s" % why)
+            for m in r["details"].get("acknowledged_status_sentences", []):
+                L.append("- acknowledged status sentence at %s (reviewed, not hidden): %s: \"%s\" (reason: %s)" % (m["at"], m["words"], m["text"][:200], m["reason"]))
             for m in r["details"].get("retraction_mentions", [])[:6]:
                 L.append("- status wording at %s: %s: \"%s\"" % (m["at"], m["words"], m["text"][:300]))
             if r.get("note"):

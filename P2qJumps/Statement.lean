@@ -6,9 +6,9 @@ Authors: Benjamin Stanley Frohman
 
 /-
 This file records the *statement* of Theorem 28 from
-Frohman, Zenodo 10.5281/zenodo.22727814.
-The paper proof is not transcribed here. `Theorem28` is a named hypothesis;
-results that use it take it as an explicit argument.
+Frohman, Zenodo 10.5281/zenodo.22727814, as the proposition `Theorem28`.
+It is proved in this repository: `theorem28_holds : Theorem28`
+(`P2qJumps/ClosedShapes.lean`).
 -/
 import Mathlib.Tactic
 import Mathlib.Data.Nat.Prime.Basic
@@ -44,8 +44,8 @@ def Theorem28 : Prop :=
     Jumps (p ^ 2 * q) →
     p ^ 2 * q + 12 ≠ r * s * t
 
-/-- Instance of Theorem 28, conditional on the hypothesis `Theorem28`.
-The proof of `Theorem28` itself is the Zenodo PDF, not this repository. -/
+/-- Instance of Theorem 28 from a proof `h : Theorem28`.
+`Theorem28` is proved in this repository as `theorem28_holds` (`P2qJumps/ClosedShapes.lean`). -/
 theorem theorem28_from_paper (h : Theorem28) {p q r s t : ℕ}
     (hp : p.Prime) (hq : q.Prime) (hr : r.Prime) (hs : s.Prime) (ht : t.Prime)
     (hpq : p ≠ q) (hrs : r ≠ s) (hrt : r ≠ t) (hst : s ≠ t) (hJ : Jumps (p ^ 2 * q)) :

@@ -510,11 +510,11 @@
     "P2qJumps.lemmaQ_formula",
     "P2qExtensions.repeated_prime_bound"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "189db664579a75df5dc427b4a602250af7c65756ca72a4980be17d9833e4f56b",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: (a) 'every term is >= 0' for every x is lemmaL1_terms_nonneg (PR #15)"
   },
   {
    "id": "lem:A-K",
@@ -753,11 +753,11 @@
     "P2qJumps.F_even",
     "P2qJumps.quartic_gt_six"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "9d9ec82fed2e4c15500f7637d957938d270820ba7bd60bc56b277e081b03109d",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: (g) 'the squares modulo 16 are 0,1,4,9' (exact set) is sq_mod16_exact (PR #15)"
   },
   {
    "id": "prop:A-vacuous",
@@ -779,11 +779,11 @@
     "P2qJumps.four_statements",
     "P2qJumps.four_vacuous"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "7dc7ec1f3eb1b6b1d91afbbbd072ec4127dc8e9f64cf84c2d29b8e9d0ad50b2e",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: the finite-candidates sentence of thm:rigid(a) and the offset sentence of thm:rigid(c) are not vacuous; rigid_finite_candidates, r2st_offset_sigma_neg (PR #15)"
   },
   {
    "id": "thm:A-E-shapes",
@@ -822,11 +822,11 @@
    "lean": [
     "P2qJumps.propC_K"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "129fa4484b1c4260e2d0bce43b92d8030e9978f83ecf7f23700b991690d76171",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1"
   },
   {
    "id": "prop:A-C-j1",
@@ -837,11 +837,11 @@
    "lean": [
     "P2qJumps.propC_j1"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "dfbed5977da81178e237e8e0d3172cb332c540faeff2b1686470c359558a9106",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1; determinant and unique rational solution clause by clause"
   },
   {
    "id": "prop:A-C-j2",
@@ -852,11 +852,11 @@
    "lean": [
     "P2qJumps.propC_j2"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "9a89de145e50f672428fbec751ceaaded9882f07c9a5b9f649d0071958c97d5f",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "Delta = M(ag+bf)-2p^2 fg with the same f,a,g,b; unknowns (q,S,Pi)"
   },
   {
    "id": "nolabel:remark:7751db65c983",
@@ -881,11 +881,11 @@
     "P2qJumps.prop_implies_corrected",
     "P2qJumps.implies_corrected_of_H1"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "7489fe785f2ae80b3e861cd1cc19c9d8502ef3ff3a6cf0ff9714172835a88dd5",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "nolabel:remark:a3dc429c4d0d",
@@ -913,11 +913,11 @@
     "P2qJumps.omega4_or_r2s2t",
     "P2qJumps.threeRegimes_iff_r2s2t"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "f7a39646c1a752990e408721334c01989f013aee382f0d1930414077d5151fc7",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "ThreeRegimes and R2S2TEmpty as defined in ThreeRegimes.lean; 'neither is proved' is a status sentence"
   },
   {
    "id": "nolabel:remark:6c8769e94602",
@@ -1023,11 +1023,11 @@
     "rst_balanced",
     "rst_off"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "b787f03b5fca3956d3c32a7ccaa6f0787b10ff4ffe293f4e36e5d0615ca0fe0a",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 5: Lean `theorem_closed` (ClosedLedger.lean:253); items (5),(6) also `rst_balanced` (ProseClaims2.lean:130), `rst_off` (ProseClaims2.lean:138)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "items 1-6 and the closing sentence are conjuncts of theorem_closed"
   },
   {
    "id": "thm:rigid",
@@ -1035,12 +1035,19 @@
    "where": "paper/p2q-jumps-v1.4.tex:1217",
    "title": "Rigidity equations",
    "disposition": "proved",
-   "lean": [],
-   "relation": "unjudged",
+   "lean": [
+    "lem_qform_C_Phi",
+    "r3s_statements",
+    "r2st_statements",
+    "P2qJumps.rst_false",
+    "P2qJumps.r3s_empty",
+    "P2qJumps.r2st_false"
+   ],
+   "relation": "lean-narrower",
    "paper_sha256": "4450f70c7919026691c39590ad82dfc7a2e709d1c3d78cfe00db12ce002b4e2b",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: rigid_finite_candidates, r2st_offset_sigma_neg (PR #15)"
   },
   {
    "id": "conj:vanish",
@@ -1065,11 +1072,11 @@
     "jumps_iff_AB",
     "jumps_delta"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "a4489b514aa541423362e4669d6592929961f127ebb2bfad0b25544c045bfb3d",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 6: Lean `jumps_iff_AB`, `jumps_delta` (ProseClaims.lean:23, :41)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "HUMAN: Lean proves jumps <-> (A(N)=A(n) and B(N)=B(n)) and jumps -> delta(N)=delta(n). The paper's 'hence also [equivalent] to delta(N)=delta(n)' is false as an equivalence: n=63=3^2*7 has delta(75)=delta(63)=14 but A(75)=35 != A(63)=27 (also n=7^2*17). Rewording to 'imply' changes the stated claim; author decision"
   },
   {
    "id": "lem:AB",
@@ -1080,11 +1087,11 @@
    "lean": [
     "AB_p2q"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "91f4c8ead214c37724d7b677d35fbe00cc8c43a7e336b86850cdb32631a2b885",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 7: Lean `AB_p2q` (ProseClaims.lean:48)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:cot",
@@ -1096,11 +1103,11 @@
     "cot_le",
     "cot_eq_iff"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "7b439ce4e565bee706701e3eb9ef52a2eff3742ab283b367f3178ac53a093d05",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 8: Lean `cot_le`, `cot_eq_iff` (ProseClaims.lean:68, :75)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:Ark",
@@ -1111,11 +1118,11 @@
    "lean": [
     "A_prime_pow"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "590fe8aa9f7e8375639aa4bfdfb1731c3df2e61c31a3ae62301bde1065d61517",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 9: Lean `A_prime_pow` (ProseClaims.lean:59)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:23",
@@ -1126,11 +1133,11 @@
    "lean": [
     "prop_23"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "54d738827c8e1ef9adeb595641af3e9428a1f851a2e33ad34ec3b4061f4424cd",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 10: Lean `prop_23` (ClosedLedger.lean:194)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "cor:gcd",
@@ -1141,11 +1148,11 @@
    "lean": [
     "cor_gcd"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "94835769dd40d48d4c9c7206749ffdab725ff2a7c7868154aff9d7c5701fb6eb",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 11: Lean `cor_gcd` (ClosedLedger.lean:187)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:square",
@@ -1156,11 +1163,11 @@
    "lean": [
     "prop_square"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "010c5d636efadbe33a6a536152076d23cd41008e133bce12252549e9e3f424e4",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 12: Lean `prop_square` (ClosedLedger.lean:216)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:primepower",
@@ -1171,11 +1178,11 @@
    "lean": [
     "prop_primepower"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "801988831c2f07f04678f4947ff5e537358f1fa83650c06b7cbae639d6c3bf78",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 13: Lean `prop_primepower` (ClosedLedger.lean:222)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:rs",
@@ -1186,11 +1193,11 @@
    "lean": [
     "prop_rs"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "51a444ef2742ee69b394bbb6ec9cb002a7e4847a9b42221acac04bc59f109905",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 14: Lean `prop_rs` (ClosedLedger.lean:228)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:r2s",
@@ -1201,11 +1208,11 @@
    "lean": [
     "prop_r2s"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "548e0bfa06bdf2d32abe4c635e5761c967feb94c4bba75b963c443c2a9b61d9e",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 15: Lean `prop_r2s` (ClosedLedger.lean:234)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:e123",
@@ -1214,13 +1221,14 @@
    "title": "",
    "disposition": "proved",
    "lean": [
-    "lem_e123"
+    "lem_e123",
+    "P2qJumps.rst_false"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "2b754e664ac3563877122c5613ac67b712b757d6235dee79720d6bc6263159c9",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 16: Lean, vacuous: `lem_e123` (ProseClaims2.lean:109)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "shape rst does not occur (rst_false); the conclusion is stated in Lean (prop:A-vacuous)"
   },
   {
    "id": "lem:qform",
@@ -1232,11 +1240,11 @@
     "lem_qform_C_Phi",
     "D_pos"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "d615a1f4b594f274852846c29e0c06319e5452b711c9ad68b7fddadc75bae5d3",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 17: Lean `lem_qform_C_Phi` (vacuous, ProseClaims2.lean:117); D > 0: `D_pos` (ProseClaims2.lean:266)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:C",
@@ -1248,11 +1256,11 @@
     "lem_qform_C_Phi",
     "C_identity"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "bc0d9159843ea881cbebd76ccb006b0fb5f62ce55c91f4694b19feb224276b3f",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 18: Lean `lem_qform_C_Phi` (vacuous); identity `C_identity` (ProseClaims2.lean:270)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:Phi",
@@ -1264,11 +1272,11 @@
     "lem_qform_C_Phi",
     "Phi_neg"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "788187e62932cf68d6f1b2ece4679dc68f38e736fc246bc43bd6b56884a8b725",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 19: Lean `lem_qform_C_Phi` (vacuous, first two clauses); `Phi_neg` (ProseClaims2.lean:52)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:balanced",
@@ -1278,13 +1286,14 @@
    "disposition": "proved",
    "lean": [
     "prop_balanced",
-    "rst_balanced"
+    "rst_balanced",
+    "theorem_closed"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "dd6672ceac9f5cf89834390db8d434b2ce7e7e8e5c82c68eea9c422c3f00f35d",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 20: Lean `prop_balanced` (ClosedLedger.lean:284), `rst_balanced` (ProseClaims2.lean:130)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "prop:pm2",
@@ -1296,11 +1305,11 @@
     "prop_pm2",
     "rst_off"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "9e476da3381c59a689678b07bc218b6338793ca384da890eb79b1e5b21ecd921",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 21: Lean `prop_pm2` (ClosedLedger.lean:293), `rst_off` (ProseClaims2.lean:138)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "thm:r3sint",
@@ -1309,13 +1318,14 @@
    "title": "Integrality criterion for \\(r^3s\\)",
    "disposition": "proved",
    "lean": [
-    "r3s_statements"
+    "r3s_statements",
+    "P2qJumps.r3s_empty"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "b48c6fa83a571bf088c24c1ba0be929c45e63396512f57024343ff00fa0bd1ab",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 25: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "Lean needs no integrality hypothesis; r3s does not occur (r3s_empty)"
   },
   {
    "id": "thm:four",
@@ -1328,11 +1338,11 @@
     "four_false",
     "four_vacuous"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "214ad6357c663bdc9bf6b087bc8957ec311cc458c465db1fe80a4680dc249511",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 27: Lean, vacuous (squarefree ω = 4 excluded by Theorem D): `four_statements` (ProseClaims2.lean:218) via `four_false` (:168)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "squarefree omega=4 does not occur (four_false); the conclusions are stated in Lean"
   },
   {
    "id": "thm:rst-off",
@@ -1343,11 +1353,11 @@
    "lean": [
     "rst_off"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "cb0aa4230e4b8bc21be7e0d38dc2c8df9640eb032bb380154306308d2d344ca8",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 32: Lean, vacuous: `rst_off` (ProseClaims2.lean:138)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "thm:rst-far",
@@ -1359,11 +1369,11 @@
     "rst_far",
     "Nfar_neg"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "ba85d28d098cf4246bb58a671ae073b397c83bb80e592206d52587e8c3a74d5d",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 33: Lean `rst_far` (vacuous, ProseClaims2.lean:146); N(p,k) < 0: `Nfar_neg` (ProseClaims2.lean:35) for all integers p ≥ 5"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "Nfar is the paper polynomial term by term"
   },
   {
    "id": "thm:r2st-off",
@@ -1374,11 +1384,11 @@
    "lean": [
     "r2st_statements"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "6a0784a3a738fd569b4d78973809ef691ea00aa1f64c0e52b140aaa6d6f26e7e",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 34: Lean, vacuous: `r2st_statements` (ProseClaims2.lean:201)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "thm:rp4",
@@ -1389,11 +1399,11 @@
    "lean": [
     "r2st_statements"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "0d9494f96d2868cc06d92bccbf19af226d0320a92179ad34a072e56578a10316",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 34: Lean, vacuous: `r2st_statements` (ProseClaims2.lean:201)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "nolabel:remark:5957e57bde4f",
@@ -1417,11 +1427,11 @@
    "lean": [
     "r3s_statements"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "ae3121fb9a23ebee97b1c3cf9926b45a873498bac016b79572c58e363c82efb0",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 35: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "thm:r3s-strip",
@@ -1432,11 +1442,11 @@
    "lean": [
     "r3s_statements"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "b3b9248fa56026c323c1f3c2e44edf20cf8e06ab9e6e8509b045f4931df1bd20",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 35: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "thm:R1",
@@ -1445,13 +1455,14 @@
    "title": "Unbalanced triples are empty",
    "disposition": "proved",
    "lean": [
-    "theorem28_holds"
+    "theorem28_holds",
+    "P2qJumps.rst_false"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "0968511c3b567392cdfb271a518324a9ba059b3c6ab877f40c5c20a5e4b0753a",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 36: Lean `theorem28_holds` (ClosedShapes.lean:139)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "Theorem28 = no rst solution of the jumps"
   },
   {
    "id": "hyp:R1",
@@ -1460,11 +1471,11 @@
    "title": "R1",
    "disposition": "open",
    "lean": [],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "bbbadaa5a265fbf9ec9fc4eb57da407d1d9e8de17ed1aa1ed2d160afb5ff2bff",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "HUMAN: '(Discharged by Theorem thm:R1)' needs that the data (p, rho, q from eq:qCD, the quadratic splitting) gives an rst solution of the jumps; that sufficiency is not in Lean, and V is not defined in the hypothesis's statement"
   },
   {
    "id": "hyp:R2",
@@ -1515,11 +1526,11 @@
     "lemmaL1",
     "P2qExtensions.lemmaL1"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "526ea52c02b7d0157925713acf062db43ab9160e96cc6af7b4488a78e953a2be",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 42: Lean `lemmaL1` (ClosedLedger.lean:36); `P2qExtensions.lemmaL1` (Ext/Extensions/DeltaQ.lean:41)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "lem:L2",
@@ -1530,11 +1541,11 @@
    "lean": [
     "radical_scaling"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "038c4bf34d815e0243564f3724ff6250d435a314e5197abfb4f5d63036e9d192",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 43: Lean `radical_scaling` (ProseClaims.lean:150)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "phi(N)=K phi(U), A(N)=K A(U)"
   },
   {
    "id": "lem:K",
@@ -1546,11 +1557,11 @@
     "lemmaK",
     "pow_dvd_K"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "09d54f028401993a93497d8ad074b70e34f1230f38eb82da7a20ef2e1e4eb463",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 44: Lean `lemmaK` (TheoremsBE.lean:123), `pow_dvd_K` (TheoremsBE.lean:97)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: lemmaK_param (jumps only), p_not_dvd_K (PR #15)"
   },
   {
    "id": "nolabel:remark:7331b32b1cd9",
@@ -1639,11 +1650,11 @@
     "lemmaQ_formula",
     "P2qExtensions.sigma_mul_totient_prod"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "333dce92a02beaff8cc53b02c944528a524a3b8ef8265a75fa23316deab82551",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 48: Lean `lemmaQ_formula` (TheoremsBE.lean:214); product formula `P2qExtensions.sigma_mul_totient_prod` (Ext/Extensions/DeltaQ.lean:72)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: Q(m)/m^2 = 1 - prod(1-r^(-e-1)) is lemmaQ_ratio (PR #15)"
   },
   {
    "id": "thm:D",
@@ -1685,15 +1696,23 @@
    "title": "Theorem~E; kernel-checked in v1.4, Theorem~\\ref{thm:A-E}",
    "disposition": "proved",
    "lean": [
+    "P2qJumps.theoremE_i",
+    "P2qJumps.theoremE_ii",
+    "P2qJumps.theoremE_iii",
+    "P2qJumps.theoremE_iv",
+    "P2qJumps.theoremE_iv_dvd",
+    "P2qJumps.theoremE_iv_size",
+    "P2qJumps.theoremE_iv_sqrt",
+    "P2qJumps.theoremE_v",
     "theoremE_i",
     "theoremE_iv_sqrt",
     "theoremE_shapes"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "fdd1373b008111a60c9e686d655ee7a9d0f4b85221d7003e3ad52494990d96a2",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 50: Lean `theoremE_i` … `theoremE_iv_sqrt` (TheoremsBE.lean:60–235); see the remark in Part A for the widened hypotheses"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: theoremE_v_lt for r < p^(3/2) (PR #15); clause list as thm:A-E"
   },
   {
    "id": "lem:G",
@@ -1706,11 +1725,11 @@
     "lemmaG_gcd",
     "T_pos"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "9b740b5a8e24bc0a6e9a6c32b63748f5c7f1b8fe2231e9da813d473880c380ef",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 52: Lean `lemmaG` (ClosedLedger.lean:83); `lemmaG_gcd`, `T_pos` (ProseClaims.lean:172, :182)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "T(p)=p^4-13p-6"
   },
   {
    "id": "thm:F",
@@ -1721,11 +1740,11 @@
    "lean": [
     "theoremF"
    ],
-   "relation": "unjudged",
+   "relation": "lean-narrower",
    "paper_sha256": "773786940faff2a364cdec3e73370d8f41a71a65f2e3f201efb699b7e8414e9c",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 53: Lean `theoremF` (ClosedLedger.lean:115)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: 'equivalently o <= 1 + v2(T(p))' is theoremF_v2 (PR #15)"
   },
   {
    "id": "cor:F1",
@@ -1739,11 +1758,11 @@
     "T_values",
     "F1_tail"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "a3ea7906fb4fdb542b30613bf2134e64b92beef613006afdabf0d7fcaaf14120",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 54: Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": ""
   },
   {
    "id": "nolabel:remark:ef55cdf210a9",
@@ -1772,11 +1791,11 @@
     "prop_implies_corrected",
     "implies_corrected_of_H1"
    ],
-   "relation": "unjudged",
+   "relation": "exact",
    "paper_sha256": "3459c1773b0d7a79ae456cebf0f226bd4a5cd980ef485414bfd50d828444a988",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded; PROSE-CLAIMS.md row 55: Lean `prop_implies_corrected`, `implies_corrected_of_H1` (ImpliesCorrected.lean:47, :114), with R, j, H1–H3 defined at ImpliesCorrected.lean:24–42; the equivalence only (H1–H3 are not proved). The trust statements (H1 by `thm:H1-comp`, H2 for p < 10^6 by Proposition C) are row 56 and row 47"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "the 10^6 computation is labeled external (DATAHTWO)"
   },
   {
    "id": "thm:H1-comp",
@@ -1833,12 +1852,22 @@
    "where": "paper/p2q-jumps-v1.4.tex:2419",
    "title": "Classification ledger, v1.4",
    "disposition": "proved",
-   "lean": [],
-   "relation": "unjudged",
+   "lean": [
+    "theorem_closed",
+    "theorem28_holds",
+    "P2qJumps.rst_false",
+    "r2st_empty",
+    "r3s_empty",
+    "omega4_constraints",
+    "r3st_empty",
+    "omega4_or_r2s2t",
+    "H1_holds"
+   ],
+   "relation": "lean-narrower",
    "paper_sha256": "2ec51a28232274b7f66d6c0677a9a31a67c3b8e690561e295b37ccd9a22864dd",
    "lean_expected": {},
-   "reviewed": "",
-   "note": "seeded automatically; review required"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "note": "PENDING15: 'hence N > p^4' is omega4_N_gt_p4 (PR #15); search ranges are labeled external (DATAOMEGAFOUR)"
   },
   {
    "id": "nolabel:remark:768e45b1cc54",

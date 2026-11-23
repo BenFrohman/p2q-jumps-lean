@@ -52,7 +52,7 @@ finish() {  # $1 = PASS or FAILED, $2 = reason
       echo "Verbatim record of a CI attempt that did not pass: $2"
     } > "$out/FAILED-NOT-A-CERTIFICATE.txt"
   fi
-  (cd "$out" && sha256sum $(ls | grep -v '^SHA256SUMS$') > SHA256SUMS)
+  (cd "$out" && find . -maxdepth 1 -type f ! -name SHA256SUMS -printf '%f\n' | LC_ALL=C sort | xargs -d '\n' sha256sum > SHA256SUMS)
   echo "$out"
   [ "$1" = PASS ] && exit 0 || exit 1
 }

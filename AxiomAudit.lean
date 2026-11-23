@@ -300,3 +300,5 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.r2st_offset_sigma_neg
 #print axioms P2qJumps.p_not_dvd_K
 #print axioms P2qJumps.theoremE_v_lt
+#print axioms P2qJumps.two_pow_dvd_two_mul_iff
+#print axioms P2qJumps.theoremF_v2

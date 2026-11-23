@@ -109,8 +109,8 @@ theorem prop_implies_corrected : Conjecture3 ↔ H1 ∧ H2 ∧ H3 := by
           exact theorem28_holds p q a b c hp hq hap hbp hcp hpq hab hac hbc hJ
             (show N = a * b * c by rw [← hprod]; ring)
 
-/-- The last sentence of `prop:implies-corrected`: given H1 (here a hypothesis; in the paper it
-is Theorem `thm:H1-comp`, not kernel-checked), `Conjecture3 ↔ H2 ∧ H3`. -/
+/-- The last sentence of `prop:implies-corrected`: given H1 (a hypothesis here; proved as `H1_holds`
+in `P2qJumps/H1.lean`, paper Theorem `thm:H1-comp`), `Conjecture3 ↔ H2 ∧ H3`. -/
 theorem implies_corrected_of_H1 (h1 : H1) : Conjecture3 ↔ H2 ∧ H3 :=
   ⟨fun hC => (prop_implies_corrected.1 hC).2, fun h => prop_implies_corrected.2 ⟨h1, h⟩⟩
 

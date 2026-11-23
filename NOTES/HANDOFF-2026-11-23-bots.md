@@ -22,7 +22,7 @@
 ### Key Files for Bots
 - Lean sources: entire `P2qJumps/` tree + `P2qJumps.lean` (imports all).
 - CI: `.github/workflows/certify.yml` (produces `lean-certificate-<sha>` artifact on green).
-- Certificates: `CERTIFICATE.md`, `AxiomAudit.lean`, `paper/verification_certificate.*`.
+- Certificates: the only certificate of record is the official CI artifact named in root `CERTIFICATE.md`. `AxiomAudit.lean` is the in-repo axiom list, not a certificate. `paper/historical/verification_certificate-821e35e.*` are stale historical documents, not certificates.
 - Notes / residual ledger: `NOTES/R2.md`, `NOTES/R3.md`, `NOTES/R3_closure.md`, `NOTES/version_update_ready.md`.
 - Paper: `paper/p2q-jumps-v1.4.pdf` (and .tex if present).
 - Provenance: `PROVENANCE_MERKLE_ROOT.json`, `.zenodo.json`, `CITATION.cff`.

@@ -37,6 +37,14 @@ jobs:
           name: lean-certificate-${{ github.sha }}
           path: cert-out/
           if-no-files-found: error
+      - name: Hand the built oleans to the final 4-sort job (passed runs only)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lake-build-${{ github.sha }}
+          path: .lake/build/lib/
+          retention-days: 3
+          if-no-files-found: error
       - name: Upload record of a failed attempt (NOT a certificate)
         if: failure()
         uses: actions/upload-artifact@v4
@@ -44,3 +52,10 @@ jobs:
           name: lean-attempt-FAILED-NOT-A-CERTIFICATE-${{ github.sha }}
           path: cert-out/
           if-no-files-found: ignore
+
+  # Last-mile check: runs only after certify passed, on the same commit and the same built oleans.
+  final-4sort:
+    needs: certify
+    uses: ./.github/workflows/final-4sort.yml
+    with:
+      build-artifact: lake-build-${{ github.sha }}

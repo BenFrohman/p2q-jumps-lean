@@ -1,0 +1,1890 @@
+{
+ "schema": "final-4sort/1",
+ "config": {
+  "paper": "paper/p2q-jumps-v1.4.tex",
+  "envs": [
+   "theorem",
+   "lemma",
+   "proposition",
+   "corollary",
+   "conjecture",
+   "hypothesis",
+   "remark"
+  ],
+  "lean_imports": [
+   "P2qJumps"
+  ],
+  "lean_open": [
+   "P2qJumps",
+   "P2qJumps.Semantics",
+   "P2qJumps.Semantics2",
+   "P2qJumps.Cert"
+  ],
+  "lean_cmd": [
+   "lake",
+   "env",
+   "lean"
+  ],
+  "external_sections": [
+   "sec:v14-external",
+   "Computational survey"
+  ],
+  "retraction_macros": [
+   "\\DATAHTWO",
+   "\\DATAOMEGAFOUR",
+   "\\DATAHENSEL",
+   "\\OMEGAFOURSTATUS"
+  ]
+ },
+ "claims": [
+  {
+   "id": "thm:L",
+   "kind": "theorem",
+   "where": "paper/theorem-L.tex:3",
+   "title": "Theorem~L: Lean-certified statement, v1.4",
+   "disposition": "proved",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "542cd1b3b397067ea7d72fe11fc30aae92bfb6dbb52f8b09fdff2ed95b3bbe95",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:L2",
+   "kind": "theorem",
+   "where": "paper/theorem-L2.tex:3",
+   "title": "Theorem~L2: strengthened Lean-certified statement, v1.4",
+   "disposition": "proved",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "aad724cfd682d7c9f0396a37866f1f7c0b4444ae49fff3e56ebe841c99a6bac8",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-values",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:107",
+   "title": "Values of \\(\\ph\\) and \\(\\sig\\)",
+   "disposition": "proved",
+   "lean": [
+    "totient_sigma_p2q",
+    "totient_sigma_r2st",
+    "totient_sigma_r3s"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "8a7a43ec57d869f712d81fa49d9e641d2f6452b4e8735ae389fcb1bd8bc5f7f6",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-jumps",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:122",
+   "title": "The jumps as integer identities",
+   "disposition": "proved",
+   "lean": [
+    "jumps_p2q_int"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c837708e82faf0b2ebb55f8960932c0b4bfb0f17a89fe70a7b7dd67b3ac0608c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-p5",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:135",
+   "title": "\\(p\\ge 5\\) and \\(p\\nmid N\\)",
+   "disposition": "proved",
+   "lean": [
+    "p_ge_five_of_dvd"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "fe67ea0359ba5b93e0c8b5db2d3d8ccc769349d263505329b70fc498e841bca4",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-coprime6",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:144",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prime_ge_five_not_dvd"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "94f722eecfd226aa8c0b3122397f76df91ac8070e77707c8b9fe2f6a52d2724d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-totdiv",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:154",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.totient_add_div_le"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "2c5f3cd967a351fe705ad0e7a7468698233c463d55763be1b32add3a509324c3",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-compA",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:163",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.composite_small_A"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "ec630fa6c26c164d7b8ff5b730f09ea64659a31bf4e98d665397d3448d74ac13",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-preamble",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:172",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.preamble"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "65cb24536cb6b8494e6ef37d9021b8dfc404297972c0f10d90dc50356ee2f7cf",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-notprime",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:198",
+   "title": "\\(N\\) is not prime",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.N_not_prime"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c6b325fb0cb4a544e85b6a61f6dbb235a4b4fc80c40f4cdaf32adea241da2f41",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-rs",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:211",
+   "title": "\\(N\\) is not a product of two distinct primes",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.N_ne_rs"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c9c6ca015ff99cd515662cccbb820c22ad41add3111a8c5f60f27169bfef5607",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-rst",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:231",
+   "title": "Theorem~28",
+   "disposition": "proved",
+   "lean": [
+    "theorem28_discriminant",
+    "theorem28_holds"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "418df72599b4b5bfeca4d4c6b513959721745291b2f67ca86899a3715065c0ea",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-r2st-red",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:284",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "r2st_reduction",
+    "F8"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "4c16b36df0dda6ec470cc2c802a67fc88c639c073167e30794c84990cc389778",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-r2st-bound",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:360",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.r2st_bound"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "d9e1a3d1959868ac7b9e89a07cb6a89b6287ac045e32098294689dfda50e939c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-r2st-empty",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:372",
+   "title": "\\(r^2st\\) is impossible",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.r2st_empty"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "e4b7b666096bfe371cad547da1bc50e27d5717e0ac6f74eca1355c6f98641fa8",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:fae4e01a37ca",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:397",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "fae4e01a37cadad1c406086799c316fbf39bcac03781563063e713e85dfdb791",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-r3s-red",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:404",
+   "title": "Reduction",
+   "disposition": "proved",
+   "lean": [
+    "r3s_reduction"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c933aa52ee0f1aefe3c08b2e7359d7c8fe895cb92a5a071bd931b4fabe1df211",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-r3s-bound",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:444",
+   "title": "The bound \\(p>10^4\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.r3s_bound"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "929158501f08122747c841a712ce3acc32e6c5f1918d3b67badaaa1a10d8a7a4",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-pairs",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:456",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "no_jumps_p2q_le_10000"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "f8d6702bd3b55d33c8c6db200e897cdb825105323a2191aca9539f78d6495480",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-2M",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:477",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.two_mul_le_sigma_add_totient"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c4d8f9631dfaadba98c46d4f771c51889b5883ef19cbd89e0c1af032001c9b88",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-pair",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:486",
+   "title": "Pair inequality",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.delta_pair"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "02dc8e92af4b8d15df68d675dfd496de3f656a8ffd27bd12169f0a56aee32939",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-four",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:499",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.four_primes_delta_sq"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "43c1fe1daf6fd629c92302a1cc2d029dd9f57270f234d15f06bf896903acb79f",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-omega4",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:508",
+   "title": "\\(\\omega(N)\\ge 4\\) constraints",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.omega4_constraints"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c85943c1d53bd559e7a539665a983916a2c8de096971d62fedca58d5451fef9b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:21eb4d25d6a0",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:525",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "21eb4d25d6a0da35836ecef39e826b284e12d52cf13e56c3de77e75750636097",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-r3s-empty",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:532",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.r3s_empty"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "93f03cdd34f4008fc173ebe81d22d158adb148373d00a8680bc612a4631990bb",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:689fe0dce7fd",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:560",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "689fe0dce7fdcf898b6620360b7f0e7cd6069e9fcfb13aa184c877eb191841df",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-primepower",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:567",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.N_ne_prime_pow"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "e3469abefc4f7f14bfb8d891380e86a5caee1f6ee9982d04418f31be555c5617",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-ras",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:576",
+   "title": "Theorem~A",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.N_ne_ras"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "c72da0db16910a855752f0e548c5d885f9c1c619287cca9b2b9e5da55b283257",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:a96a1e132fe2",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:602",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "a96a1e132fe2834cddad2cffa86662723bf1d9e720d3f0734337f540666c6364",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-r3st-empty",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:609",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.r3st_empty"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "01b54bf2e39c0133cd21b177d310b7a2431444f145726d593789d4580886bf0d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:3fb358bb8292",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:683",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "3fb358bb8292d81a614a9275c543aa79b6446087c9bac779cc0f902349c112e2",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-omega2",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:694",
+   "title": "\\(\\omega(N)\\ge 2\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.two_le_omega"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "d28ab158f669971b00438819c4fe1791f6a8dc073f1a6544cd698821ea9a7613",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-L1Q",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:702",
+   "title": "L1, Lemma Q and \\(\\delta(N)\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qExtensions.lemmaL1",
+    "P2qExtensions.delta_Q_p2q",
+    "P2qExtensions.lemmaQ",
+    "P2qJumps.lemmaQ_formula",
+    "P2qExtensions.repeated_prime_bound"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "189db664579a75df5dc427b4a602250af7c65756ca72a4980be17d9833e4f56b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-K",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:716",
+   "title": "Lemma K",
+   "disposition": "proved",
+   "lean": [
+    "P2qExclusions.setupK",
+    "P2qJumps.lemmaK",
+    "P2qJumps.pow_dvd_K"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "252c638553f31cdc4cb7b2524bceba823d738c1df442e2d3743c8d117054a340",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-B",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:730",
+   "title": "Theorem~B",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.theoremB",
+    "P2qJumps.N_not_powerful"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "7268ff723a5cef38b993db336087dcc52590ac2773b08189abf38f2c2537826d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-E",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:746",
+   "title": "Theorem~E",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.theoremE_i",
+    "P2qJumps.theoremE_ii",
+    "P2qJumps.theoremE_iii",
+    "P2qJumps.theoremE_iv",
+    "P2qJumps.theoremE_iv_dvd",
+    "P2qJumps.theoremE_iv_size",
+    "P2qJumps.theoremE_iv_sqrt",
+    "P2qJumps.theoremE_v"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "acac48a0ad87036429acc184bd84b92ec85ae7f13144bfe3f76711f9d60e8783",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:f02b436ea06c",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:775",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.cube_excludes_second_square"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "f02b436ea06c8ede2ec2d1dda8581a81b784ad58fc705f3a42fd2597bb313658",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-D",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:781",
+   "title": "Theorem~D",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.theoremD",
+    "P2qJumps.theoremD_four"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "b3c47305d1d8548363abd627d7f253fea0431be17b53565ee302d933a48f9500",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "cor:A-F1",
+   "kind": "corollary",
+   "where": "paper/p2q-jumps-v1.4.tex:793",
+   "title": "Corollary~F1",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.corollaryF1"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "a5849f32e1afdac6f83a40d7201eaceaa73bbc8118e43eac107a46f53c89d40c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "cor:A-omega4-five",
+   "kind": "corollary",
+   "where": "paper/p2q-jumps-v1.4.tex:803",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.omega4_five_not_dvd"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "4657702bfa00ea97a11201497fecddec068df35a81de240ba0f598848f1e3703",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-equiv",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:816",
+   "title": "Lemma~\\ref{lem:equiv}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.jumps_iff_AB",
+    "P2qJumps.jumps_delta"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "ca4569a2c45d171dbeee847fd7974583b8f7ef2bd244801d2612f4bc8199a5db",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-AB",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:826",
+   "title": "Lemma~\\ref{lem:AB}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.AB_p2q"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "05973b825ff8c7bb085741586b5458fd9d82d8ac1a055d870cfd0949a07cb316",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-cot",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:834",
+   "title": "Lemmas~\\ref{lem:Ark} and~\\ref{lem:cot}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.A_prime_pow",
+    "P2qJumps.cot_le",
+    "P2qJumps.cot_eq_iff"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "be66bc49af91d10337bfe0a7b63f7f00f4865b68c0aeab24d4f597c8499d484b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-radscale",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:846",
+   "title": "Lemma~\\ref{lem:L2}, radical scaling",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.radical_scaling"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "a41e24ee5991b99f9c58c02fb11cfe504f0df20dec7edf85eee938224863eec5",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-G",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:854",
+   "title": "Lemma~\\ref{lem:G}, remaining clauses",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.lemmaG_gcd",
+    "P2qJumps.T_pos"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9ac112101bd1f65244624de21f525fe961704c862822abd04a0a4ec166da80e3",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:A-twist",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:862",
+   "title": "Link with the shape \\(r^3s\\), Section~\\ref{sec:v14-curve}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.twist_point",
+    "P2qJumps.twist_r_bound",
+    "P2qJumps.twist_link_congr"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "ea02d3a5071bde836a130fc805e70e1572ba366cff53aac4308ee43a6c8e0a1e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-rad",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:870",
+   "title": "Soundness note on \\(\\mathrm{rad}\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.div_gcd_totient_dvd_rad",
+    "P2qJumps.rad_ne_div_gcd_totient"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "a87e50036bd20c0351f082f6a658c2331ca63db8f91fe942d88893284085cefb",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-pure",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:883",
+   "title": "Pure statements",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.quadruplet_jumps",
+    "P2qJumps.D_pos",
+    "P2qJumps.C_identity",
+    "P2qJumps.Phi_neg",
+    "P2qJumps.Nfar_neg",
+    "P2qJumps.T_values",
+    "P2qJumps.F1_tail",
+    "P2qJumps.pow_gt_T",
+    "P2qJumps.curve_disc",
+    "P2qJumps.curve_j",
+    "P2qJumps.curve_factorizations",
+    "P2qJumps.curve_points",
+    "P2qJumps.F_mod16",
+    "P2qJumps.sq_mod16",
+    "P2qJumps.F_even",
+    "P2qJumps.quartic_gt_six"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9d9ec82fed2e4c15500f7637d957938d270820ba7bd60bc56b277e081b03109d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-vacuous",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:904",
+   "title": "Statements about shapes that do not occur",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.rst_false",
+    "P2qJumps.lem_e123",
+    "P2qJumps.lem_qform_C_Phi",
+    "P2qJumps.rst_balanced",
+    "P2qJumps.rst_off",
+    "P2qJumps.rst_far",
+    "P2qJumps.r3s_statements",
+    "P2qJumps.r2st_false",
+    "P2qJumps.r2st_statements",
+    "P2qJumps.four_false",
+    "P2qJumps.four_statements",
+    "P2qJumps.four_vacuous"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "7dc7ec1f3eb1b6b1d91afbbbd072ec4127dc8e9f64cf84c2d29b8e9d0ad50b2e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-E-shapes",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:918",
+   "title": "final sentence of Theorem~\\ref{thm:E}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.theoremE_shapes"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "dd5596651db3785fafca9ed1e562656cf344463bff03adcb0dc175c20cbcf29b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:80bda696b840",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:939",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "80bda696b840a7a372749c69cf5215d0a579cfb659aaa78a7529180cdd6ea9eb",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-C-K",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:948",
+   "title": "the divisor \\(K\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.propC_K"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "129fa4484b1c4260e2d0bce43b92d8030e9978f83ecf7f23700b991690d76171",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-C-j1",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:961",
+   "title": "the system for \\(j=1\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.propC_j1"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "dfbed5977da81178e237e8e0d3172cb332c540faeff2b1686470c359558a9106",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-C-j2",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:980",
+   "title": "the system for \\(j=2\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.propC_j2"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9a89de145e50f672428fbec751ceaaded9882f07c9a5b9f649d0071958c97d5f",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:7751db65c983",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1001",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "7751db65c9830388ff36845c2817011f3952d62eb565a764dc5a2231a95f39eb",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-implies",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1013",
+   "title": "Proposition~\\ref{prop:implies-corrected}",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.prop_implies_corrected",
+    "P2qJumps.implies_corrected_of_H1"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "7489fe785f2ae80b3e861cd1cc19c9d8502ef3ff3a6cf0ff9714172835a88dd5",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:a3dc429c4d0d",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1034",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "a3dc429c4d0d221cf27b43968279f5887bc6baae31b85aa95930ee28b50c8e77",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-three",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1041",
+   "title": "reduction to \\(\\omega(N)\\ge 4\\) or \\(r^2s^2t\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.omega4_or_r2s2t",
+    "P2qJumps.threeRegimes_iff_r2s2t"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "f7a39646c1a752990e408721334c01989f013aee382f0d1930414077d5151fc7",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:6c8769e94602",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1062",
+   "title": "why \\(r^2s^2t\\) is not closed by size alone",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "6c8769e94602a29210e690d177136c45b1f97c4cbb746ef52b371b959c00e964",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-p7",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1069",
+   "title": "the \\(p=7\\) equations",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.p7_identities",
+    "P2qJumps.p7_mod"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "e0b64c45390bfa6e3f743f5028f051386668e210cddc373a94e5b7d933ad8cb8",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-p7-ge11",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1093",
+   "title": "no prime \\(\\le 7\\) when \\(\\omega(N)\\ge 4\\)",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.p7_omega4_ge11"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "932a4849e4908f3fd2ba042ec5bdb8a1c8d860e3071531566d8573fe4f2d7081",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:A-p7-prefix",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1102",
+   "title": "prefix bound",
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.p7_prefix_bound",
+    "P2qJumps.p7_prune_threshold"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "60f3beebe4d2d5b1ce712f077f92389790aec08f8834debad2688b1ce4fd2c0f",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-p7-descent",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1126",
+   "title": "\\(p=7\\) descent; \\path{p7_squarefree_empty}, \\path{p7_squarefree_7_8_9}",
+   "disposition": "proved",
+   "lean": [
+    "p7_squarefree_empty",
+    "p7_squarefree_7_8_9"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "3711aa505a613d84eba5e83ebd8c1ebec18e92b02117f8a2bb01c38e39ecc9fe",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:A-H1",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1135",
+   "title": "H1; \\path{H1_holds}, \\path{no_squarefree}",
+   "disposition": "proved",
+   "lean": [
+    "H1_holds",
+    "no_squarefree"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "4824b0869f7459cc20be6a168ab00cc159a6b7af5bc30e35eb77f01592703283",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:dbe4096aa7fc",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1154",
+   "title": "New content requiring author approval",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "dbe4096aa7fccfb4c0f3a8497f775176db7b334d3da2bb06c21c35e67588a50c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:closed",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1200",
+   "title": "Closed shapes",
+   "disposition": "proved",
+   "lean": [
+    "theorem_closed",
+    "rst_balanced",
+    "rst_off"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "b787f03b5fca3956d3c32a7ccaa6f0787b10ff4ffe293f4e36e5d0615ca0fe0a",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 5: Lean `theorem_closed` (ClosedLedger.lean:253); items (5),(6) also `rst_balanced` (ProseClaims2.lean:130), `rst_off` (ProseClaims2.lean:138)"
+  },
+  {
+   "id": "thm:rigid",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1217",
+   "title": "Rigidity equations",
+   "disposition": "proved",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "4450f70c7919026691c39590ad82dfc7a2e709d1c3d78cfe00db12ce002b4e2b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "conj:vanish",
+   "kind": "conjecture",
+   "where": "paper/p2q-jumps-v1.4.tex:1255",
+   "title": "Vanishing of \\(p^2q\\)",
+   "disposition": "open",
+   "lean": [
+    "Conjecture3"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "db5707d015e66981e2ac306ad744f81dabcdf99bfffb0713b9d40ce35d73edd7",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 4: in progress — blocker: it is the open problem (not asserted; Lean `Conjecture3`, Statement.lean:33, is a definition, unproved)"
+  },
+  {
+   "id": "lem:equiv",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1268",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "jumps_iff_AB",
+    "jumps_delta"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "a4489b514aa541423362e4669d6592929961f127ebb2bfad0b25544c045bfb3d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 6: Lean `jumps_iff_AB`, `jumps_delta` (ProseClaims.lean:23, :41)"
+  },
+  {
+   "id": "lem:AB",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1281",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "AB_p2q"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "91f4c8ead214c37724d7b677d35fbe00cc8c43a7e336b86850cdb32631a2b885",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 7: Lean `AB_p2q` (ProseClaims.lean:48)"
+  },
+  {
+   "id": "lem:cot",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1304",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "cot_le",
+    "cot_eq_iff"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "7b439ce4e565bee706701e3eb9ef52a2eff3742ab283b367f3178ac53a093d05",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 8: Lean `cot_le`, `cot_eq_iff` (ProseClaims.lean:68, :75)"
+  },
+  {
+   "id": "lem:Ark",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1315",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "A_prime_pow"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "590fe8aa9f7e8375639aa4bfdfb1731c3df2e61c31a3ae62301bde1065d61517",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 9: Lean `A_prime_pow` (ProseClaims.lean:59)"
+  },
+  {
+   "id": "prop:23",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1329",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_23"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "54d738827c8e1ef9adeb595641af3e9428a1f851a2e33ad34ec3b4061f4424cd",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 10: Lean `prop_23` (ClosedLedger.lean:194)"
+  },
+  {
+   "id": "cor:gcd",
+   "kind": "corollary",
+   "where": "paper/p2q-jumps-v1.4.tex:1356",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "cor_gcd"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "94835769dd40d48d4c9c7206749ffdab725ff2a7c7868154aff9d7c5701fb6eb",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 11: Lean `cor_gcd` (ClosedLedger.lean:187)"
+  },
+  {
+   "id": "prop:square",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1367",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_square"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "010c5d636efadbe33a6a536152076d23cd41008e133bce12252549e9e3f424e4",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 12: Lean `prop_square` (ClosedLedger.lean:216)"
+  },
+  {
+   "id": "prop:primepower",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1378",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_primepower"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "801988831c2f07f04678f4947ff5e537358f1fa83650c06b7cbae639d6c3bf78",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 13: Lean `prop_primepower` (ClosedLedger.lean:222)"
+  },
+  {
+   "id": "prop:rs",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1389",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_rs"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "51a444ef2742ee69b394bbb6ec9cb002a7e4847a9b42221acac04bc59f109905",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 14: Lean `prop_rs` (ClosedLedger.lean:228)"
+  },
+  {
+   "id": "prop:r2s",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1398",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_r2s"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "548e0bfa06bdf2d32abe4c635e5761c967feb94c4bba75b963c443c2a9b61d9e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 15: Lean `prop_r2s` (ClosedLedger.lean:234)"
+  },
+  {
+   "id": "lem:e123",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1409",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "lem_e123"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "2b754e664ac3563877122c5613ac67b712b757d6235dee79720d6bc6263159c9",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 16: Lean, vacuous: `lem_e123` (ProseClaims2.lean:109)"
+  },
+  {
+   "id": "lem:qform",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1427",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "lem_qform_C_Phi",
+    "D_pos"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "d615a1f4b594f274852846c29e0c06319e5452b711c9ad68b7fddadc75bae5d3",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 17: Lean `lem_qform_C_Phi` (vacuous, ProseClaims2.lean:117); D > 0: `D_pos` (ProseClaims2.lean:266)"
+  },
+  {
+   "id": "lem:C",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1450",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "lem_qform_C_Phi",
+    "C_identity"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "bc0d9159843ea881cbebd76ccb006b0fb5f62ce55c91f4694b19feb224276b3f",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 18: Lean `lem_qform_C_Phi` (vacuous); identity `C_identity` (ProseClaims2.lean:270)"
+  },
+  {
+   "id": "lem:Phi",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:1467",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "lem_qform_C_Phi",
+    "Phi_neg"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "788187e62932cf68d6f1b2ece4679dc68f38e736fc246bc43bd6b56884a8b725",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 19: Lean `lem_qform_C_Phi` (vacuous, first two clauses); `Phi_neg` (ProseClaims2.lean:52)"
+  },
+  {
+   "id": "prop:balanced",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1486",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_balanced",
+    "rst_balanced"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "dd6672ceac9f5cf89834390db8d434b2ce7e7e8e5c82c68eea9c422c3f00f35d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 20: Lean `prop_balanced` (ClosedLedger.lean:284), `rst_balanced` (ProseClaims2.lean:130)"
+  },
+  {
+   "id": "prop:pm2",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:1495",
+   "title": "",
+   "disposition": "proved",
+   "lean": [
+    "prop_pm2",
+    "rst_off"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9e476da3381c59a689678b07bc218b6338793ca384da890eb79b1e5b21ecd921",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 21: Lean `prop_pm2` (ClosedLedger.lean:293), `rst_off` (ProseClaims2.lean:138)"
+  },
+  {
+   "id": "thm:r3sint",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1519",
+   "title": "Integrality criterion for \\(r^3s\\)",
+   "disposition": "proved",
+   "lean": [
+    "r3s_statements"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "b48c6fa83a571bf088c24c1ba0be929c45e63396512f57024343ff00fa0bd1ab",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 25: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+  },
+  {
+   "id": "thm:four",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1591",
+   "title": "Four-prime rigidity",
+   "disposition": "proved",
+   "lean": [
+    "four_statements",
+    "four_false",
+    "four_vacuous"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "214ad6357c663bdc9bf6b087bc8957ec311cc458c465db1fe80a4680dc249511",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 27: Lean, vacuous (squarefree ω = 4 excluded by Theorem D): `four_statements` (ProseClaims2.lean:218) via `four_false` (:168)"
+  },
+  {
+   "id": "thm:rst-off",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1678",
+   "title": "Nearby triple factors",
+   "disposition": "proved",
+   "lean": [
+    "rst_off"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "cb0aa4230e4b8bc21be7e0d38dc2c8df9640eb032bb380154306308d2d344ca8",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 32: Lean, vacuous: `rst_off` (ProseClaims2.lean:138)"
+  },
+  {
+   "id": "thm:rst-far",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1697",
+   "title": "Far triples",
+   "disposition": "proved",
+   "lean": [
+    "rst_far",
+    "Nfar_neg"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "ba85d28d098cf4246bb58a671ae073b397c83bb80e592206d52587e8c3a74d5d",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 33: Lean `rst_far` (vacuous, ProseClaims2.lean:146); N(p,k) < 0: `Nfar_neg` (ProseClaims2.lean:35) for all integers p ≥ 5"
+  },
+  {
+   "id": "thm:r2st-off",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1745",
+   "title": "Nearby square factors",
+   "disposition": "proved",
+   "lean": [
+    "r2st_statements"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "6a0784a3a738fd569b4d78973809ef691ea00aa1f64c0e52b140aaa6d6f26e7e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 34: Lean, vacuous: `r2st_statements` (ProseClaims2.lean:201)"
+  },
+  {
+   "id": "thm:rp4",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1772",
+   "title": "The line \\(r=p+4\\)",
+   "disposition": "proved",
+   "lean": [
+    "r2st_statements"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "0d9494f96d2868cc06d92bccbf19af226d0320a92179ad34a072e56578a10316",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 34: Lean, vacuous: `r2st_statements` (ProseClaims2.lean:201)"
+  },
+  {
+   "id": "nolabel:remark:5957e57bde4f",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1794",
+   "title": "Superseded in v1.4",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "5957e57bde4fc933ce73ebfe68acfbbc331213ddcd0e8f7b553744c7ecd90278",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:r3s-plarge",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1798",
+   "title": "No cube-times-prime with \\(p>r\\)",
+   "disposition": "proved",
+   "lean": [
+    "r3s_statements"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "ae3121fb9a23ebee97b1c3cf9926b45a873498bac016b79572c58e363c82efb0",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 35: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+  },
+  {
+   "id": "thm:r3s-strip",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1825",
+   "title": "Cube-times-prime strip",
+   "disposition": "proved",
+   "lean": [
+    "r3s_statements"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "b3b9248fa56026c323c1f3c2e44edf20cf8e06ab9e6e8509b045f4931df1bd20",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 35: Lean, vacuous: `r3s_statements` (ProseClaims2.lean:155)"
+  },
+  {
+   "id": "thm:R1",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:1901",
+   "title": "Unbalanced triples are empty",
+   "disposition": "proved",
+   "lean": [
+    "theorem28_holds"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "0968511c3b567392cdfb271a518324a9ba059b3c6ab877f40c5c20a5e4b0753a",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 36: Lean `theorem28_holds` (ClosedShapes.lean:139)"
+  },
+  {
+   "id": "hyp:R1",
+   "kind": "hypothesis",
+   "where": "paper/p2q-jumps-v1.4.tex:1975",
+   "title": "R1",
+   "disposition": "open",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "bbbadaa5a265fbf9ec9fc4eb57da407d1d9e8de17ed1aa1ed2d160afb5ff2bff",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "hyp:R2",
+   "kind": "hypothesis",
+   "where": "paper/p2q-jumps-v1.4.tex:1980",
+   "title": "R2",
+   "disposition": "open",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "ecbe696c2518941f6cb0e924eca5e24c92e6c80154154c8609db0da6218666cd",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "hyp:R3",
+   "kind": "hypothesis",
+   "where": "paper/p2q-jumps-v1.4.tex:1985",
+   "title": "R3",
+   "disposition": "open",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "ca6367a4620a63fdfaa22efb237b84cf6959924e86c2a74b01a6e8431bba93cd",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:implies",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1990",
+   "title": "Original Proposition~32 is superseded",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "ab958b53a3fd869fa49a7ec73135107f9923c9af7f2965bb6290f20f5d160b60",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:L1",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:2040",
+   "title": "M\\\"obius form of \\(\\delta\\); L1",
+   "disposition": "proved",
+   "lean": [
+    "lemmaL1",
+    "P2qExtensions.lemmaL1"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "526ea52c02b7d0157925713acf062db43ab9160e96cc6af7b4488a78e953a2be",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 42: Lean `lemmaL1` (ClosedLedger.lean:36); `P2qExtensions.lemmaL1` (Ext/Extensions/DeltaQ.lean:41)"
+  },
+  {
+   "id": "lem:L2",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:2053",
+   "title": "Radical scaling; L2",
+   "disposition": "proved",
+   "lean": [
+    "radical_scaling"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "038c4bf34d815e0243564f3724ff6250d435a314e5197abfb4f5d63036e9d192",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 43: Lean `radical_scaling` (ProseClaims.lean:150)"
+  },
+  {
+   "id": "lem:K",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:2062",
+   "title": "Lemma~K",
+   "disposition": "proved",
+   "lean": [
+    "lemmaK",
+    "pow_dvd_K"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "09d54f028401993a93497d8ad074b70e34f1230f38eb82da7a20ef2e1e4eb463",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 44: Lean `lemmaK` (TheoremsBE.lean:123), `pow_dvd_K` (TheoremsBE.lean:97)"
+  },
+  {
+   "id": "nolabel:remark:7331b32b1cd9",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2075",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "7331b32b1cd9345a0d07c38549d711cd1edbf06e9582688f33af04f82701dc68",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:B",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2079",
+   "title": "Theorem~B: powerful \\(N\\) impossible; kernel-checked in v1.4, Theorem~\\ref{thm:A-B}",
+   "disposition": "proved",
+   "lean": [
+    "theoremB",
+    "N_not_powerful"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "227f1226012d9c4b8b532ffd019e9c70d544d3de7082cfd36989d729ee215522",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 45: Lean `theoremB` (TheoremsBE.lean:46), `N_not_powerful` (:54)"
+  },
+  {
+   "id": "thm:A",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2096",
+   "title": "Theorem~A: mixed powers \\(r^as\\); kernel-checked in v1.4, Theorem~\\ref{thm:A-ras}",
+   "disposition": "proved",
+   "lean": [
+    "theoremA",
+    "N_ne_ras"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9250cafe09f2c9922cf1e782cc962d02947e63ea0545c04e3f9bffdc38add152",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 46: Lean `theoremA` (ClosedLedger.lean:244), `N_ne_ras` (TheoremA.lean:62)"
+  },
+  {
+   "id": "nolabel:remark:3af6a2935a61",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2125",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "3af6a2935a618b8d4233a6dfd515abf6d820e765664e684187328bad3c40d37b",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:C",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:2129",
+   "title": "Finite per \\(p\\) for \\(1\\le j\\le 2\\); Proposition~C",
+   "disposition": "proved",
+   "lean": [
+    "propC_K",
+    "propC_j1",
+    "propC_j2"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "64046c9d8f4a737594c6d213dbdb168fbd9ee4b01ede96b13b364dc41be1c3d3",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 47: structural clauses: Lean `propC_K` (K > 1, K ∣ L(p), gcd(K, 6p) = 1; PropC.lean:40), `propC_j1` (j = 1 system, determinant ≠ 0, unique solution; PropC.lean:64), `propC_j2` (j = 2 system, determinant ≠ 0, unique solution; PropC.lean:109); enumeration: cited external (computation)"
+  },
+  {
+   "id": "lem:Q",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:2141",
+   "title": "Lemma~Q",
+   "disposition": "proved",
+   "lean": [
+    "lemmaQ_formula",
+    "P2qExtensions.sigma_mul_totient_prod"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "333dce92a02beaff8cc53b02c944528a524a3b8ef8265a75fa23316deab82551",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 48: Lean `lemmaQ_formula` (TheoremsBE.lean:214); product formula `P2qExtensions.sigma_mul_totient_prod` (Ext/Extensions/DeltaQ.lean:72)"
+  },
+  {
+   "id": "thm:D",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2154",
+   "title": "Theorem~D",
+   "disposition": "proved",
+   "lean": [
+    "theoremD",
+    "theoremD_four"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9066f0e5cdf62b8ad21378d93afbfbfa85db6c49b04fa91fd5cb261efce112f8",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 49: Lean `theoremD` (TheoremsBE.lean:173), `theoremD_four` (:185)"
+  },
+  {
+   "id": "nolabel:remark:11c22fe20895",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2175",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "11c22fe20895d9a13b70de49c9ac3a999a7a52daea95871d0c19d614106f4111",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:E",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2182",
+   "title": "Theorem~E; kernel-checked in v1.4, Theorem~\\ref{thm:A-E}",
+   "disposition": "proved",
+   "lean": [
+    "theoremE_i",
+    "theoremE_iv_sqrt",
+    "theoremE_shapes"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "f620e300cd8f7037f5ffd8b5b3c297cfcc12051a8ba6e6a26ab33d8ad26ca03a",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 50: Lean `theoremE_i` … `theoremE_iv_sqrt` (TheoremsBE.lean:60–235); see the remark in Part A for the widened hypotheses"
+  },
+  {
+   "id": "nolabel:remark:4e4460c3c18b",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2209",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "4e4460c3c18b92d6a836467984a0eb70919d9a883dc979c7b481fc8a414e3c29",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "lem:G",
+   "kind": "lemma",
+   "where": "paper/p2q-jumps-v1.4.tex:2216",
+   "title": "Lemma~G",
+   "disposition": "proved",
+   "lean": [
+    "lemmaG",
+    "lemmaG_gcd",
+    "T_pos"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9b740b5a8e24bc0a6e9a6c32b63748f5c7f1b8fe2231e9da813d473880c380ef",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 52: Lean `lemmaG` (ClosedLedger.lean:83); `lemmaG_gcd`, `T_pos` (ProseClaims.lean:172, :182)"
+  },
+  {
+   "id": "thm:F",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2233",
+   "title": "Theorem~F",
+   "disposition": "proved",
+   "lean": [
+    "theoremF"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "773786940faff2a364cdec3e73370d8f41a71a65f2e3f201efb699b7e8414e9c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 53: Lean `theoremF` (ClosedLedger.lean:115)"
+  },
+  {
+   "id": "cor:F1",
+   "kind": "corollary",
+   "where": "paper/p2q-jumps-v1.4.tex:2242",
+   "title": "Squarefree residual after D+F",
+   "disposition": "proved",
+   "lean": [
+    "corollaryF1",
+    "T_explicit",
+    "T_values",
+    "F1_tail"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "a3ea7906fb4fdb542b30613bf2134e64b92beef613006afdabf0d7fcaaf14120",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 54: Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260)"
+  },
+  {
+   "id": "nolabel:remark:ef55cdf210a9",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2247",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "ef55cdf210a93c56ec9ac94dcc39727e356d6b54c7b29e70ef6bc2146f617976",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "prop:implies-corrected",
+   "kind": "proposition",
+   "where": "paper/p2q-jumps-v1.4.tex:2256",
+   "title": "Corrected residual equivalence",
+   "disposition": "proved",
+   "lean": [
+    "prop_implies_corrected",
+    "implies_corrected_of_H1"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "990037da4f8307dfbc48670676dd29f83585cf26a4fdbe832dea86155855a24e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 55: Lean `prop_implies_corrected`, `implies_corrected_of_H1` (ImpliesCorrected.lean:47, :114), with R, j, H1–H3 defined at ImpliesCorrected.lean:24–42; the equivalence only (H1–H3 are not proved). The trust statements (H1 by `thm:H1-comp`, H2 for p < 10^6 by Proposition C) are row 56 and row 47"
+  },
+  {
+   "id": "thm:H1-comp",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2271",
+   "title": "H1",
+   "disposition": "proved",
+   "lean": [
+    "no_squarefree",
+    "H1_holds",
+    "conjecture_iff_H2_H3"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "b8fe79d621e699f2b955a578678eeb32842618ce442be9176bc39e3f4ea2eb1c",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded; PROSE-CLAIMS.md row 56: Lean `no_squarefree` (H1.lean:140), `H1_holds` (H1.lean:134); with H1, `conjecture_iff_H2_H3` (H1.lean:168)"
+  },
+  {
+   "id": "nolabel:remark:ed00648fc5f5",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2280",
+   "title": "Status of Conjecture~\\ref{conj:vanish}",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "ed00648fc5f56cc06ddc530720ab679fc40dd26077e71acf317c8a6d79df49c9",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:3e0585123507",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2344",
+   "title": "Root numbers of the twists; not kernel-checked",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "3e0585123507fa6a23c144e7fbd40faea179e1ae4e51d7afde76105890a40e8e",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "nolabel:remark:b1ce1bab6622",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2352",
+   "title": "Finiteness per fibre; cited, not formalized",
+   "disposition": "commentary",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "b1ce1bab66229aa676d6c86969ee530de194476ff274593edab9105616930482",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  },
+  {
+   "id": "thm:main-p2q",
+   "kind": "theorem",
+   "where": "paper/p2q-jumps-v1.4.tex:2419",
+   "title": "Classification ledger, v1.4",
+   "disposition": "proved",
+   "lean": [],
+   "relation": "unjudged",
+   "paper_sha256": "daf0b9251db0a7e7826c128ed7438e5046cf190eb4e56961957beaaf88d50999",
+   "lean_expected": {},
+   "reviewed": "",
+   "note": "seeded automatically; review required"
+  }
+ ]
+}

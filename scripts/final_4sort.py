@@ -422,9 +422,9 @@ def classify(cfg, env, entry, lean, mentions):
                 return "OVERCLAIM", ["labeled open but its text says %s" % ", ".join(sorted(set(proof_words)))], det
             return "NOT-CLAIMED", [], det
         return "OVERCLAIM", ["recorded as open, but the %s environment carries no open/conjecture/data label" % env["kind"]], det
-    # commentary
-    if decls and all_ok and rel == "exact":
-        return "WRONGLY-RETRACTED", ["recorded as commentary, but %s is kernel-certified" % ", ".join(decls)], det
+    # commentary: a remark may cite Lean declarations for what it says is kernel-checked; those must be certified
+    if decls and not all_ok:
+        return "OVERCLAIM", ["the remark cites Lean declarations that are not kernel-certified: "] + [p for ok, p in statuses.values() if not ok], det
     if proof_words and not decls:
         return "OVERCLAIM", ["commentary whose text says %s with no Lean theorem in the claim map" % ", ".join(sorted(set(proof_words)))], det
     return "NOT-CLAIMED", [], det
@@ -527,11 +527,17 @@ def main():
     ap.add_argument("--sha", default=None)
     ap.add_argument("--seed", action="store_true")
     ap.add_argument("--no-lean", action="store_true")
+    ap.add_argument("--pin-missing", action="store_true",
+                    help="record the current Lean statement for mapped declarations that have no pin yet "
+                         "(never overwrites a pin); use while recording a review")
+    ap.add_argument("--lean-cmd", default=None, help="override config lean_cmd, e.g. 'lean' with LEAN_PATH set")
     a = ap.parse_args()
     root = git("rev-parse", "--show-toplevel") or os.getcwd()
     os.chdir(root)
     cmap = json.load(open(a.map, encoding="utf-8"))
     cfg = dict(DEFAULT_CONFIG); cfg.update(cmap.get("config", {}))
+    if a.lean_cmd:
+        cfg["lean_cmd"] = a.lean_cmd.split()
     lines = read_tex(cfg["paper"])
     envs_found, text_lines, _ = parse_paper(lines, cfg["envs"])
     ids = [e["id"] for e in envs_found]
@@ -546,6 +552,16 @@ def main():
     if not a.no_lean:
         lean = lean_query(cfg, decls, tmp)
 
+    if a.pin_missing:
+        k = 0
+        for ent in cmap.get("claims", []):
+            for d in ent.get("lean", []):
+                if d in lean and "type" in lean[d] and d not in ent.setdefault("lean_expected", {}):
+                    ent["lean_expected"][d] = norm_lean(lean[d]["type"]); k += 1
+        with open(a.map, "w", encoding="utf-8") as fh:
+            json.dump(cmap, fh, indent=1, ensure_ascii=False); fh.write("\n")
+        print("4-sort --pin-missing: %d Lean statements pinned (existing pins untouched)" % k)
+        return 0
     if a.seed:
         added = repinned = 0
         byid = {e["id"]: e for e in envs_found}

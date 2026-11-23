@@ -261,4 +261,17 @@ theorem cube_excludes_second_square {p q r s : ℕ} (hp : p.Prime) (hq : q.Prime
     · subst hℓr; exact (pow_dvd_pow ℓ (by norm_num)).trans h3
     · rw [ht ℓ hℓ hℓr]; exact h2
 
+/-- Paper Lemma `lem:A-K` (Lemma K) under the jumps alone: there is an integer `m ≥ 1` with
+`U - P = p m`, `K m = p + q - 1` and `K (p^2 m - U) = L(p)`, where `U = rad N`, `K = N / U`,
+`P = ∏_{ℓ ∣ N} (ℓ - 1)`. The hypothesis `5 ≤ p` of `P2qExclusions.setupK` is discharged by
+`preamble`. -/
+theorem lemmaK_param {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) :
+    ∃ m : ℤ, 1 ≤ m ∧
+      (P2qStructural.rad (p ^ 2 * q + 12) : ℤ) - P2qExclusions.Pm1 (p ^ 2 * q + 12) = p * m ∧
+      (((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) : ℕ) : ℤ) * m = p + q - 1 ∧
+      (((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) : ℕ) : ℤ) *
+          ((p : ℤ) ^ 2 * m - P2qStructural.rad (p ^ 2 * q + 12)) = P2qStructural.L p :=
+  P2qExclusions.setupK (jump_of_jumps hp hq hpq hJ) (preamble hp hq hpq hJ).1
+
 end P2qJumps

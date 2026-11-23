@@ -398,4 +398,12 @@ theorem classification_ledger (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     fun hω => omega4_size hp hq hpq hJ hω,
     fun hn => Cert.no_jumps_p2q_le_10000 hp hq hpq hn hJ⟩
 
+/-- Paper `lem:A-L1Q`(a), nonnegativity for every `x` (including `x = 1`, where the sum is
+empty): each term `(1 + μ(a)) b`, `ab = x`, `a ≠ 1`, is `≥ 0`. -/
+theorem lemmaL1_terms_nonneg (x : ℕ) :
+    ∀ e ∈ x.divisorsAntidiagonal.erase (1, x), 0 ≤ (1 + (μ e.1 : ℤ)) * (e.2 : ℤ) := by
+  intro e _
+  have h1 : -1 ≤ (μ e.1 : ℤ) := (abs_le.1 (abs_moebius_le_one (n := e.1))).1
+  exact mul_nonneg (by linarith) (by positivity)
+
 end P2qJumps

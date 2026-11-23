@@ -1,33 +1,29 @@
-# Lean Kernel Certificate for Theorem 28 and Associated Results
+# Lean kernel certificate
 
-**Record:** Zenodo 10.5281/zenodo.24024593 (concept 10.5281/zenodo.22713135)
+This file is not a certificate.
 
-**Date of independent audits:** 2026-11-06
+The only certificate of record for the current main-line v1.4.1 sources
+(PR #12, head `033e12d`, merge `086a484`) is the official GitHub Actions
+artifact from this repository's own `certify.yml` run, built with the
+committed `lean-toolchain`, lakefile, and `lake-manifest.json`:
 
-## Summary
+- commit: `033e12d2db946d625b409e726d358198a35ac8ff`
+- merge onto main: `086a484092ae6366bc0c0b130d26a826db6d221d`
+- Lean certificate run: https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/45262293009
+- artifact: `lean-certificate-033e12d2db946d625b409e726d358198a35ac8ff`
+  (committed `lake-manifest.json` and its sha256, toolchain, elan/lake/lean
+  versions, full build, sorry scan, and `#print axioms` logs)
 
-The Lean 4 formalizations of Theorem 28 (three distinct primes excluded for N = n + 12 when n = p²q and jumps hold), structural lemmas, and the squarefree H1 case (p=7 descent) have been independently audited.
+The matching kernel re-check of every module on the same commit is:
 
-- **Build:** `lake build` completed successfully (exit 0).
-- **Sorry:** Zero `sorry`, `admit`, or custom axioms in the sources.
-- **Axioms:** Only the standard Lean axioms: `propext`, `Classical.choice`, `Quot.sound`.
-- **Toolchain:** Lean 4.22.0 (for the full packages); base repository on 4.26.0.
+- Kernel certificate run: https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/45262293051
+- artifact: `kernel-certificate`
 
-## Evidence
+A typed status line in this file, a local `lake build` log, an audit zip,
+or the historical files under `paper/historical/` and `certificates/` is
+not a certificate.
 
-Extracted from independent audit logs (e.g., `p2q-theorem28-independent-audit-logs-2026-11-06.zip`):
-
-```
-'P2qTheorem28.theorem28' depends on axioms: [propext, Classical.choice, Quot.sound]
-Build completed successfully.
-```
-
-Similar for structural lemmas (G, phi_elim, K divisibility, common_prime_LT, R, 2-power, F/F′, radical_q_elim, cleared-product S) and H1 squarefree.
-
-The full sources and logs are archived in the Zenodo record. This repository integrates the statement and leading-form lemma; the complete proofs are in the accompanying ZIP packages and can be built against the pinned Mathlib of the respective toolchain.
-
-## Status
-
-Kernel-verified. Ready for inclusion in subsequent paper versions and repository updates.
+R2 and R3 remain open and are not proved. Conjecture 3 remains open.
 
 Author: Benjamin Stanley Frohman
+ORCID: 0009-0006-7068-3718

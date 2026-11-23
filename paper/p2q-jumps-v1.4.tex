@@ -142,7 +142,7 @@ If \(p=2\) then \(N=2(2q+6)\); if \(p=3\) then \(N=3(3q+4)\); \(p=4\) is not pri
 
 \begin{lemma}
 \label{lem:A-coprime6}
-A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).
+A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).\lean{P2qJumps.coprime6_r2st; P2qJumps.coprime6_r3s}{Arith.lean:133; Arith.lean:150}
 \end{lemma}
 
 \section{Preamble facts: \(p,q\ge 5\), \(N\) odd, not a square, coprime to \(6pq\)}
@@ -506,7 +506,7 @@ Lemma~\ref{lem:A-pair} for the pairs \((a,b)\) and \((c,d)\) gives \(4N^2\le\del
 
 \begin{theorem}[\(\omega(N)\ge 4\) constraints]
 \label{thm:A-omega4}
-Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints}{Omega4.lean:164}
+Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints; P2qJumps.omega4_N_gt_p4}{Omega4.lean:164; Omega4.lean:212}
 \end{theorem}
 
 \begin{proof}
@@ -714,7 +714,7 @@ Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lea
 
 \begin{lemma}[Lemma K]
 \label{lem:A-K}
-Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qExclusions.setupK; P2qJumps.lemmaK}{Ext/Exclusions/Setup.lean:56; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
+Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qJumps.lemmaK_param; P2qJumps.lemmaK}{TheoremsBE.lean:268; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
 \end{lemma}
 \begin{proof}
 \textit{Step 1.} \(N=UK\) and \(\ph(N)=KP\).\lean{P2qExclusions.totient_eq_KP}{Ext/Exclusions/Setup.lean:31} The totient jump and \(N=p^2q+12\) give \(K(U-P)=N-\ph(N)=p(p+q-1)\).
@@ -1102,7 +1102,7 @@ Theorem~\ref{thm:A-omega4} gives \(r>7\) for every prime \(r\mid N\). The intege
 \label{prop:A-p7-prefix}
 Let \(b,h,s,M,F_-,F_+\) be integers with \(b,h,s,M\ge 0\) and \(F_-F_+\le M^2\). If
 \(343(hF_-)(sF_+)=342(bM)^2+108bM-760554\) and \(342b^2-343hs\ge 1\), then \(M\le 872\).\lean{P2qJumps.p7_prefix_bound}{P7.lean:65}
-Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).
+Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).\lean{P2qJumps.p7_prefix_no_completion}{P7.lean:110}
 \end{proposition}
 
 \begin{proof}
@@ -2106,7 +2106,7 @@ By Corollary~\ref{cor:gcd}, \(p\nmid N\), so \(p\nmid K\). Lemma~\ref{lem:L2} an
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qExclusions.setupK}, \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
+Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qJumps.lemmaK\_param}, which discharges the hypothesis \(p\ge 5\) of \texttt{P2qExclusions.setupK} by Proposition~\ref{prop:A-preamble}, and \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
 \end{remark}
 
 \begin{theorem}[Theorem~B: powerful \(N\) impossible; kernel-checked in v1.4, Theorem~\ref{thm:A-B}]

@@ -700,7 +700,7 @@ Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lea
 
 \begin{lemma}[L1, Lemma Q and \(\delta(N)\)]
 \label{lem:A-L1Q}
-\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1}{Ext/Extensions/DeltaQ.lean:41}
+\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1; P2qJumps.lemmaL1_terms_nonneg}{Ext/Extensions/DeltaQ.lean:41; ClosedLedger.lean:403}
 \textup{(b)} \(\delta(p^2q)=q+2p+1\) and \(Q(p^2q)=p^4+pq^2-p\), where \(Q(x)=x^2-\sig(x)\ph(x)\).\lean{P2qExtensions.delta_Q_p2q}{Ext/Extensions/DeltaQ.lean:91}
 \textup{(c)} Under~\eqref{eq:jumps}, \(\delta(N)=\delta(n)=q+2p+1\) and \(Q(N)=Q(n)-12\delta(n)=p^4+pq^2-p-12(2p+q+1)>0\).\lean{P2qExtensions.lemmaQ; P2qJumps.lemmaQ_formula}{Ext/Extensions/DeltaQ.lean:100; TheoremsBE.lean:214}
 \textup{(d)} If \(r\) is prime and \(r^2\mid N\), then \(N\le r^2(q+2p+1)\).\lean{P2qExtensions.repeated_prime_bound}{Ext/Extensions/RepeatedSize.lean:44}
@@ -887,7 +887,7 @@ The statements below are kernel-checked in \path{P2qJumps/ProseClaims2.lean} (st
 \textup{(d)} \(N(p,k)<0\) for all integers \(p\ge 5\) and \(k\in[5-p,p-1]\setminus\{0\}\).\lean{P2qJumps.Nfar_neg}{ProseClaims2.lean:35}
 \textup{(e)} The values \(T(5),\dots,T(19)\) and their \(2\)-adic valuations listed in Corollary~\ref{cor:F1};\lean{P2qJumps.T_values}{ProseClaims2.lean:236} and \(T(m)<m^4<2^{m-1}\) for every integer \(m\ge 23\).\lean{P2qJumps.F1_tail; P2qJumps.pow_gt_T}{ProseClaims2.lean:260; ProseClaims2.lean:62}
 \textup{(f)} For the model \([0,-1,0,0,-12]\) of \(E\): \(\Delta=-62976=-2^9\cdot 3\cdot 41\), \(c_4^3/\Delta=-8/123\), \(3936=2^5\cdot 3\cdot 41\), and \((4,6)\), \((12388,1378746)\) lie on \(y^2=x^3-x^2-12\).\lean{P2qJumps.curve_disc; P2qJumps.curve_j; P2qJumps.curve_factorizations; P2qJumps.curve_points}{ProseClaims2.lean:92; ProseClaims2.lean:95; ProseClaims2.lean:99; ProseClaims2.lean:98}
-\textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\).\lean{P2qJumps.F_mod16; P2qJumps.sq_mod16; P2qJumps.F_even}{ProseClaims2.lean:276; ProseClaims2.lean:282; ProseClaims2.lean:283}
+\textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\).\lean{P2qJumps.F_mod16; P2qJumps.sq_mod16; P2qJumps.sq_mod16_exact; P2qJumps.F_even}{ProseClaims2.lean:276; ProseClaims2.lean:282; ProseClaims2.lean:291; ProseClaims2.lean:283}
 \textup{(h)} \(4t^4+4t^3+11t^2+6t+7>6\) for every real \(t\).\lean{P2qJumps.quartic_gt_six}{ProseClaims2.lean:286}
 \end{proposition}
 \begin{proof}

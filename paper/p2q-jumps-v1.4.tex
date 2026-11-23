@@ -46,16 +46,16 @@ Roy Choudhury and Wei formulate Conjecture~1.1 (attributed there to McCranie via
 \(\ph(n+12)=\ph(n)+12\) and \(\sig(n+12)=\sig(n)+12\)---with \(\ph\) Euler's totient and \(\sig\) the ordinary sum-of-divisors function---is of the form \(n=p(p+8)\) arising from a prime quadruplet
 \((p,p+2,p+6,p+8)\). They proved the claim when both \(n\) and \(n+12\) are squarefree semiprimes, excluded prime-power
 \(n\), and found no counterexample with \(n\le 10^{12}\). This note treats the next family \(n=p^2q\).
-This version keeps the v0.10 technical development as historical record, but the original Proposition~32 implication is \textbf{superseded and not currently valid}: its factor-pattern reduction was incomplete. The corrected exhaustive classification (Proposition~\ref{prop:implies-corrected}) and Theorems~A,~B,~D,~E,~F with Lemmas~K,~G are the current statements. Theorem~28, Theorem~D, and structural Lean declarations for Lemmas~G,~K,~R,~S and Theorem~F are Lean-formalized and independently audited. Extensions (Corollary~F1, Lemmas~L1,~Q, repeated-prime size; 15 results + 2 defs) are Lean-formalized and independently audited. Theorems~A,~B,~E in full, the classification, and the \(p=7\) descent are not Lean-formalized. Hypothesis~H1 (squarefree \(\omega(N)\ge 4\)) is closed under ordinary computer-assisted trust via Theorems~D,~F and an independently audited exact \(p=7\) descent (not Lean). The only remaining residuals for Conjecture~\ref{conj:vanish} are Hypotheses~H2 (with \(p\ge 10^6\) still open) and~H3. No true \(n=p^2q\) solution of both jumps is known; parametrizations are necessary conditions, not existence.
+This version keeps the v0.10 technical development as historical record, but the original Proposition~32 implication is \textbf{superseded and not currently valid}: its factor-pattern reduction was incomplete. The corrected exhaustive classification (Proposition~\ref{prop:implies-corrected}) and Theorems~A,~B,~D,~E,~F with Lemmas~K,~G are the current statements. The following are kernel-checked in Lean~4 with the axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only (Lean sources at commit \texttt{0b82cdd}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}): Theorem~28 (\texttt{theorem28\_holds}); Theorem~A (\texttt{theoremA}, \texttt{N\_ne\_ras}, \texttt{N\_ne\_prime\_pow}); Theorem~B (\texttt{theoremB}, \texttt{N\_not\_powerful}); Theorem~D; Theorem~E, clauses (i)--(v) (\texttt{theoremE\_i}--\texttt{theoremE\_v}); Theorem~F, Lemmas~G,~K, Corollary~F1 and Lemmas~L1,~Q; the exclusion of \(N=r^3s\) (\texttt{r3s\_empty}); the \(\omega(N)\ge 4\) constraints \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (\texttt{omega4\_constraints}, \texttt{omega4\_size}); the corrected classification \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H1}\wedge\text{H2}\wedge\text{H3}\) (\texttt{prop\_implies\_corrected}); the \(p=7\) descent (\texttt{p7\_squarefree\_empty}) and Hypothesis~H1 (\texttt{H1\_holds}), hence \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H2}\wedge\text{H3}\) (\texttt{conjecture\_iff\_H2\_H3}); and H3 for \(p\equiv 1\pmod 4\) (\texttt{H3\_of\_mod4}). Open: Hypothesis~H2 (in Lean it is reduced to the emptiness of the shapes \(r^2s^2t\) and \(r^2s^2tu\), \texttt{H2\_of\_shapes}; an external SymPy computation, not kernel-checked, finds no H2 solution with \(p<10^6\)); Hypothesis~H3 for \(p\equiv 3\pmod 4\); and Conjecture~\ref{conj:vanish}. No true \(n=p^2q\) solution of both jumps is known; parametrizations are necessary conditions, not existence.
 
-\emph{Version 1.4.} The leading result is Theorem~\ref{thm:L} (Section~\ref{sec:v14-lean}), proved in Lean~4: under both jumps, \(N\) is not prime, not a product of two or of three distinct primes, and not of the form \(r^2st\); in the shape \(r^3s\) one has \(p<r\), \(r^2\mid p^3-p^2-12\) and \(p>10^4\); and \(n>10^4\). The paper is in three parts: (A) Lean-proved statements, each with a step-by-step proof in ordinary mathematics that follows the Lean proof; (B) paper-only arguments, not kernel-checked; (C) computational certificates with exact ranges, separating kernel-checked certificates (no \texttt{native\_decide}) from external computations. The Lean axioms are \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. Part~B records the verified data of the curve \(y^2=x^3-x^2-12\) (LMFDB \texttt{3936.b1}, rank~1, trivial torsion) and its twists. Conjecture~\ref{conj:vanish} remains open.
+\emph{Version 1.4.} The leading result is Theorem~\ref{thm:L} (Section~\ref{sec:v14-lean}), proved in Lean~4: under both jumps, \(N\) is not prime, not a product of two or of three distinct primes, and not of the form \(r^2st\); in the shape \(r^3s\) one has \(p<r\), \(r^2\mid p^3-p^2-12\) and \(p>10^4\); and \(n>10^4\). The separately locked Theorem~\ref{thm:L2}, also proved in Lean, strengthens the \(r^3s\) clause to \(N\ne r^3s\) with no bound, excludes \(N=r^k\) and \(N=r^as\) (\(a\ge 2\)), and gives \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) when \(\omega(N)\ge 4\). The paper is in three parts: (A) Lean-proved statements, each with a step-by-step proof in ordinary mathematics that follows the Lean proof; (B) paper-only arguments, not kernel-checked; (C) computational certificates with exact ranges, separating kernel-checked certificates (no \texttt{native\_decide}) from external computations. The Lean axioms are \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. Part~B records the verified data of the curve \(y^2=x^3-x^2-12\) (LMFDB \texttt{3936.b1}, rank~1, trivial torsion) and its twists. Conjecture~\ref{conj:vanish} remains open.
 \end{abstract}
 
 \maketitle
 
 \vspace{-0.7em}
 {\small\noindent
-\textbf{Version 1.4.1} (23~November~2026). Version~1.4.1 replaces the Zenodo record of version~1.4, whose certificate was taken from commit \texttt{4fcb9aa}. Relative to that commit it adds the kernel-checked \(p=7\) descent and Theorem~\ref{thm:H1-comp} (Section~\ref{sec:A-H1}), the H2 reduction and H3 two-adic condition, and the kernel-checked Hensel bound \(5\le r\le 10^6\), and it corrects the licence lines and the Truth Gate and Zenodo status lines. Its certificate is the GitHub Actions artifact named in its Zenodo record. Version~1.4 is based on the v1.3 text (version 0.11-review2, 6~November~2026), restructured into Theorem~\ref{thm:L} and Parts~\ref{part:A}--\ref{part:C}. Frohman, Benjamin Stanley; ORCID 0009-0006-7068-3718; Independent Researcher, Texas, United States; \texttt{frohmanbenjamin@gmail.com}.\\
+\textbf{Version 1.4.1} (23~November~2026). Version~1.4.1 replaces the Zenodo record of version~1.4, whose certificate was taken from commit \texttt{4fcb9aa}. Relative to that commit it adds the kernel-checked \(p=7\) descent and Theorem~\ref{thm:H1-comp} (Section~\ref{sec:A-H1}), the H2 reduction and H3 two-adic condition, and the kernel-checked Hensel bound \(5\le r\le 10^6\), and it corrects the licence lines and the Truth Gate and Zenodo status lines. It also corrects status lines of the v1.4 record that called kernel-checked results unproved or ``not Lean'': Theorems~A, B and E, the classification, H1 and the \(p=7\) descent, the exclusion of \(r^3s\), and the \(\omega(N)\ge 4\) constraints are kernel-checked (Part~\ref{part:A}; Lean sources at commit \texttt{0b82cdd}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}). Both Truth Gate locks were approved by the author on 21~November~2026. Its certificate is the GitHub Actions artifact named in its Zenodo record. Version~1.4 is based on the v1.3 text (version 0.11-review2, 6~November~2026), restructured into Theorem~\ref{thm:L} and Parts~\ref{part:A}--\ref{part:C}. Frohman, Benjamin Stanley; ORCID 0009-0006-7068-3718; Independent Researcher, Texas, United States; \texttt{frohmanbenjamin@gmail.com}.\\
 Concept DOI \texttt{10.5281/zenodo.22713135}; public v0.10 record~22727814.
 The v0.11 files and the 6~November~2026 audit packages are in the published Zenodo record \texttt{10.5281/zenodo.24024593}.
 Prepared with computational assistance from Grok; the author is responsible for every theorem, computation, and error.
@@ -73,19 +73,19 @@ for \(n=p^2q\) with distinct primes \(p,q\). The leading result of this version 
 
 \input{theorem-L}
 
-\noindent\textbf{Status.} Every clause of Theorem~\ref{thm:L} is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim} is locked in \path{truth-gate.lock.json} and checked by the \texttt{truth-gate} CI job (Section~\ref{sec:A-lock}). Theorem~\ref{thm:L} does not prove Conjecture~\ref{conj:vanish}, which remains open.
+\noindent\textbf{Status.} Every clause of Theorem~\ref{thm:L} is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim} is locked in \path{truth-gate.lock.json}, approved by the author on 21~November~2026, and checked by the \texttt{truth-gate} CI job (Section~\ref{sec:A-lock}). Theorem~\ref{thm:L} does not prove Conjecture~\ref{conj:vanish}, which remains open.
 
 \medskip
 \noindent\textbf{Strengthened statement.} Theorem~\ref{thm:L} is kept unchanged (its lock is unchanged). The following strengthening is input verbatim from the separately locked file \path{paper/theorem-L2.tex} (sha256 \texttt{0014494d52\allowbreak{}f73f89e1a3\allowbreak{}6b1287f92f\allowbreak{}5bcac3b84f\allowbreak{}f7dc2bdd2c\allowbreak{}ec79c22cd8\allowbreak{}6dba}); its Lean transcription is \texttt{paper\_claim2}, and the Lean theorem \texttt{theorem\_L2} proves it (both in the namespace \texttt{P2qJumps.Semantics2}) (Section~\ref{sec:A-L2}). Clause (iv) is the unbounded exclusion of \(r^3s\), which makes clause (iv) of Theorem~\ref{thm:L} vacuous; clauses (vi) and (vii) are new.
 
 \input{theorem-L2}
 
-\noindent\textbf{Status of Theorem~\ref{thm:L2}.} Every clause is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim2} is locked in \path{truth-gate-L2.lock.json} and checked by the \texttt{truth-gate} CI job. Theorem~\ref{thm:L2} does not prove Conjecture~\ref{conj:vanish}.
+\noindent\textbf{Status of Theorem~\ref{thm:L2}.} Every clause is proved in Lean~4 (v4.26.0, Mathlib v4.26.0) with axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only, and without \texttt{sorry} or \texttt{native\_decide}. The transcription \texttt{paper\_claim2} is locked in \path{truth-gate-L2.lock.json}, approved by the author on 21~November~2026, and checked by the \texttt{truth-gate} CI job. Theorem~\ref{thm:L2} does not prove Conjecture~\ref{conj:vanish}.
 
 \medskip
 \noindent\textbf{How this paper is organized.}
 \begin{itemize}
-\item \textbf{Part~\ref{part:A}: Lean-proved statements.} A step-by-step proof of each clause of Theorem~\ref{thm:L}, written in ordinary mathematics and following the Lean proof: the same lemmas, case splits, identities, inequalities and bounds. Each step names the Lean declaration and its location \texttt{file:line} in a footnote (paths are relative to \path{P2qJumps/} in the repository, at the Lean sources commit \texttt{4ae3e47}).
+\item \textbf{Part~\ref{part:A}: Lean-proved statements.} A step-by-step proof of each clause of Theorem~\ref{thm:L}, written in ordinary mathematics and following the Lean proof: the same lemmas, case splits, identities, inequalities and bounds. Each step names the Lean declaration and its location \texttt{file:line} in a footnote (paths are relative to \path{P2qJumps/} in the repository; line numbers refer to the Lean sources at commit \texttt{0b82cdd}, certified by GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}; later commits up to this paper's commit change no Lean statement and no line number).
 \item \textbf{Part~\ref{part:B}: paper-only arguments.} The written v1.3 development (Theorems~A, B, E, the classification, the \(p=7\) descent, the twist link and the root-number formula). The written arguments are \textbf{not kernel-checked}; their statements are kernel-checked separately in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
 \item \textbf{Part~\ref{part:C}: computational certificates.} The kernel certificates used in Part~\ref{part:A}, with their exact ranges, and the external (not kernel-checked) SymPy, PARI and Python runs.
 \end{itemize}
@@ -772,7 +772,7 @@ By Proposition~\ref{prop:A-preamble}, \(p,q\ge 5\) and every prime factor of \(N
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:A-E}(iii) needs no prime of exponent~\(1\), so it is stronger than Theorem~\ref{thm:E}(iii) of Part~\ref{part:B}; (ii) and (iv) need a third prime factor \(t\) of any exponent, which is weaker than the hypothesis \(j\ge 1\) of Theorem~\ref{thm:E}. Combining (iv) with Theorem~\ref{thm:A-B}: if \(r^3\mid N\), then no prime \(s\ne r\) has \(s^2\mid N\).\lean{P2qJumps.cube_excludes_second_square}{TheoremsBE.lean:250} Indeed, if \(N\) has a prime factor \(t\ne r,s\), (iv) applies; otherwise \(r\) and \(s\) are the only primes of \(N\), both with square dividing \(N\), so \(N\) is powerful with \(\omega(N)=2\), which Theorem~\ref{thm:A-B} excludes.
+Theorem~\ref{thm:A-E}(iii) needs no prime of exponent~\(1\), and (ii) and (iv) need only a third prime factor \(t\) of any exponent, which is weaker than the hypothesis \(j\ge 1\). Since v1.4.1, clauses (ii) and (iii) of Theorem~\ref{thm:E} in Part~\ref{part:B} are stated in exactly this form; clause (iv) there keeps \(j\ge 1\), a special case. Combining (iv) with Theorem~\ref{thm:A-B}: if \(r^3\mid N\), then no prime \(s\ne r\) has \(s^2\mid N\).\lean{P2qJumps.cube_excludes_second_square}{TheoremsBE.lean:250} Indeed, if \(N\) has a prime factor \(t\ne r,s\), (iv) applies; otherwise \(r\) and \(s\) are the only primes of \(N\), both with square dividing \(N\), so \(N\) is powerful with \(\omega(N)=2\), which Theorem~\ref{thm:A-B} excludes.
 \end{remark}
 
 \subsection{Theorem D and Corollary F1 (squarefree \(N\))}
@@ -1142,6 +1142,40 @@ If \(N\) is squarefree with \(\omega(N)\ge 4\), Corollary~\ref{cor:A-F1} gives \
 
 H2 and H3 are not proved; Conjecture~\ref{conj:vanish} remains open.
 
+\section{H2 and H3: kernel-checked reductions}
+\label{sec:A-H2H3}
+
+This section is kernel-checked (standard axioms only) in \path{P2qJumps/R2S2T.lean}, \path{P2qJumps/H2Reduction.lean} and \path{P2qJumps/H3TwoAdic.lean}. It is not part of the locked statements \path{theorem-L.tex} and \path{theorem-L2.tex}. It does not prove H2 or H3. Notation: \(R(N)\), \(j(N)\) as in Section~\ref{sec:A-implies}; \(T(p)=p^4-13p-6\).
+
+\begin{theorem}[\(r^2s^2t\) forces \(rs\mid L(p)\)]
+\label{thm:A-r2s2t-dvd}
+Assume~\eqref{eq:jumps}. If \(N=r^2s^2t\) with pairwise distinct primes \(r,s,t\), then \(rs\mid L(p)\) and \(rs\le L(p)\).\lean{P2qJumps.r2s2t_rs_dvd_L}{R2S2T.lean:74}
+\end{theorem}
+\begin{proof}
+\textit{Step 1.} \(\ph(N)=r(r-1)s(s-1)(t-1)\) by multiplicativity.\lean{P2qJumps.totient_sigma_r2s2t}{R2S2T.lean:35} Let \(E_0\) be \((rs)^2t-p^2q-12=0\) and \(E_1\) the totient jump \(r(r-1)s(s-1)(t-1)-p(p-1)(q-1)-12=0\) (Lemma~\ref{lem:A-jumps}). The \(\sig\)-jump is not used.
+\textit{Step 2.} The polynomial identity \((p-1)E_0-pE_1=rs\,\bigl(p(r+s-1)-rs\bigr)t-\bigl(L(p)-p\,rs\,(r-1)(s-1)\bigr)\)\lean{P2qJumps.r2s2t_combo}{R2S2T.lean:57} gives \(L(p)=rs\bigl((p(r+s-1)-rs)t+p(r-1)(s-1)\bigr)\), so \(rs\mid L(p)\).
+\textit{Step 3.} \(p\ge 5\) (Proposition~\ref{prop:A-preamble}), so \(L(p)>0\)\lean{P2qJumps.Lpoly_pos}{R2S2T.lean:66} and \(rs\le L(p)\).
+\end{proof}
+
+\begin{theorem}[Reduction of H2]
+\label{thm:A-H2-shapes}
+If no solution of~\eqref{eq:jumps} has \(N=r^2s^2t\) with pairwise distinct primes (\texttt{R2S2TEmpty}) and no solution has \(N=r^2s^2tu\) with pairwise distinct primes (\texttt{R2S2TUEmpty}), then H2 holds.\lean{P2qJumps.H2_of_shapes}{H2Reduction.lean:70}
+\end{theorem}
+\begin{proof}
+Let a solution have \(R(N)\ne\emptyset\) and \(j(N)\le 2\). By Theorem~\ref{thm:A-E-shapes}, either (a) \(N=r^eV\) with \(e\in\{2,3\}\), \(V\) squarefree, \(\gcd(r,V)=1\), \(\omega(V)\ge 2\), or (b) \(N=r_1^2r_2^2V\) with \(V\) squarefree, prime to \(r_1r_2\), \(\omega(V)\ge 1\). Every prime of \(V\) has exponent~\(1\) in \(N\), so \(\omega(V)\le j(N)\le 2\).\lean{P2qJumps.card_le_simpleCount}{H2Reduction.lean:46} In case (a), \(V=st\) and \(N=r^2st\) or \(r^3st\), excluded by Theorems~\ref{thm:A-r2st-empty} and~\ref{thm:A-r3st-empty}. In case (b), \(V=t\) or \(V=tu\), and \(N=r_1^2r_2^2t\) or \(r_1^2r_2^2tu\), excluded by the two hypotheses.
+\end{proof}
+
+\begin{theorem}[Two-adic condition for H3]
+\label{thm:A-H3}
+Assume~\eqref{eq:jumps}. If \(j(N)\ge 3\), then \(2^{j(N)-1}\mid T(p)\) and \(p\equiv 3\pmod 4\).\lean{P2qJumps.H3_twoAdic}{H3TwoAdic.lean:24} Consequently H3 holds for every \(p\equiv 1\pmod 4\): there is no solution with \(p\equiv 1\pmod 4\), \(R(N)\ne\emptyset\) and \(j(N)\ge 3\).\lean{P2qJumps.H3_of_mod4}{H3TwoAdic.lean:63}
+\end{theorem}
+\begin{proof}
+\textit{Step 1.} \(N\) is odd (Proposition~\ref{prop:A-preamble}), so every prime of exponent~\(1\) is odd and has odd exponent; hence \(j(N)\) is at most the number of odd primes of \(N\) and at most the number of odd primes of \(N\) with odd exponent. Theorem~F (\texttt{theoremF'}) gives \(2^{m-1}\mid T(p)\) with \(m\) the smaller of these two counts,\lean{P2qStructural.theoremF'}{Ext/Structural/TwoAdic.lean:85} so \(2^{j(N)-1}\mid T(p)\).
+\textit{Step 2.} \(j(N)\ge 3\) gives \(4\mid T(p)\). If \(p\equiv 1\pmod 4\) (\(p\) is odd), then \(T(p)\equiv 1-13-6\equiv 2\pmod 4\), a contradiction. So \(p\equiv 3\pmod 4\), and the second sentence follows.
+\end{proof}
+
+H2 and H3 for \(p\equiv 3\pmod 4\) are not proved; Conjecture~\ref{conj:vanish} remains open.
+
 \section{From the Lean proofs to Theorem~\ref{thm:L}: the semantics lock}
 \label{sec:A-lock}
 
@@ -1211,7 +1245,7 @@ Suppose~\eqref{eq:jumps} holds. Then \(p,q\ge 5\), the integer \(N\) is odd, cop
 In particular there is no solution with \(\{p,q\}\cap\{2,3\}\ne\emptyset\).
 \end{theorem}
 
-After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the closure of H1 (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 (with \(p\ge 10^6\)) and H3.
+After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the closure of H1 (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 (not proved; an external computation, not kernel-checked, covers \(p<10^6\)) and H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
 
 \begin{theorem}[Rigidity equations]
 \label{thm:rigid}
@@ -2183,8 +2217,8 @@ Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D
 Assume~\eqref{eq:jumps} with \(n=p^2q\). Write \(\delta=\delta(N)=q+2p+1\).
 \begin{enumerate}
 \item Every prime of \(N\) has exponent at most~3.
-\item If \(j\ge 1\) and \(|R|\ge 2\), then \(q>5p^2-4p-3\).
-\item If \(j\ge 1\), then \(|R|\le 2\).
+\item If \(r_1\ne r_2\) lie in \(R\) and \(N\) has a prime factor \(t\notin\{r_1,r_2\}\) (for instance if \(j\ge 1\)), then \(q>5p^2-4p-3\).
+\item \(|R|\le 2\).
 \item If \(j\ge 1\) and \(R=\{r_1,r_2\}\), then both exponents equal~2, \(r_1r_2\mid L(p)\), and each \(r_i\) satisfies \(r_i^2\ge N/\delta>\sqrt{L(p)}\).
 \item Any prime of exponent~3 satisfies \(r^2\mid L(p)\) (hence \(r<p^{3/2}\)); after excluding \(j=0\) via Theorems~\ref{thm:closed} and~\ref{thm:B}, this occurs only for \(|R|=1\).
 \end{enumerate}
@@ -2196,9 +2230,9 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 
 (i)~If \(r^e\mid N\) with \(e\ge 4\) then \(r^3\mid K\mid L(p)\), so \(r<p\) and \(r\le p-2\). Then \((p-2)^2\ge N/\delta\) forces \(q\le q_a:=((p-2)^2(2p+1)-12)/(4p-4)\). Also \(N\ge 5r^4\ge 5(N/\delta)^2\), i.e.\ \(\delta^2\ge 5N\). The concave function \(f(q)=5N-\delta^2\) is positive at the endpoints \(q=5\) and \(q=q_a\) for every real \(p\ge 5\) (exact polynomial certificates), contradicting \(\delta^2\ge 5N\).
 
-(ii)~With \(|R|\ge 2\) one has \(N\ge 5(N/\delta)^2\), so \(\delta^2\ge 5N\). The convex function \(g(q)=\delta^2-5N\) is negative on \([5,5p^2-4p-3]\), forcing \(q>5p^2-4p-3\).
+(ii)~Since \(r_1^2r_2^2t\mid N\) and \(t\ge 5\), one has \(N\ge 5r_1^2r_2^2\ge 5(N/\delta)^2\), so \(\delta^2\ge 5N\). The convex function \(g(q)=\delta^2-5N\) is negative on \([5,5p^2-4p-3]\), forcing \(q>5p^2-4p-3\).
 
-(iii)~If \(|R|=t\ge 3\) then AM--GM and \(\prod_R r\le K<L(p)<p^3\) give \(\delta>3N/p^2>3q\), contradicting (ii).
+(iii)~If \(|R|\ge 3\), take three elements of \(R\); the third is a prime factor outside the first two, so (ii) applies. AM--GM and \(\prod_R r\le K<L(p)<p^3\) give \(\delta>3N/p^2>3q\), contradicting (ii).
 
 (iv)~An exponent~3 would force \(K\ge(N/\delta)^{3/2}\). On the region of (ii) one has the exact positivity \(N^3>L(p)^2\delta^3\) (36 positive monomials), whence \(K>L(p)\), a contradiction. Thus \(K=r_1r_2\mid L(p)\). The companion inequality \(N^2>L(p)\delta^2\) gives \(N/\delta>\sqrt{L(p)}\).
 
@@ -2206,7 +2240,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is kernel-checked in v1.4 as Theorem~\ref{thm:A-E}, clause by clause, with the hypothesis \(j\ge 1\) replaced by the weaker ``a third prime factor'' in (ii) and (iv) and dropped in (iii). The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
+Theorem~\ref{thm:E} is kernel-checked as Theorem~\ref{thm:A-E}, clause by clause: (i) is \texttt{theoremE\_i}; (ii) and (iii), as stated here since v1.4.1, are exactly \texttt{theoremE\_ii} and \texttt{theoremE\_iii}; (iv) is \texttt{theoremE\_iv}, \texttt{theoremE\_iv\_dvd}, \texttt{theoremE\_iv\_size} and \texttt{theoremE\_iv\_sqrt}, which assume only a third prime factor of any exponent instead of \(j\ge 1\); (v) is \texttt{theoremE\_v}, with \(r<p^{3/2}\) from \texttt{twist\_r\_bound} and the last sentence from \texttt{cube\_excludes\_second\_square}. The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}
@@ -2257,7 +2291,7 @@ The original Proposition~32 is superseded (Remark~\ref{rem:prop32-gap}; Appendix
 Conjecture~\ref{conj:vanish} holds if and only if H1, H2 and H3 all hold, where these quantify over distinct primes \(p,q\) with both jumps~\eqref{eq:jumps}:
 \begin{itemize}
 \item[\textbf{H1.}] There is no solution with \(N\) squarefree and \(\omega(N)\ge 4\).
-\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, the case \(p<10^6\) is empty under the stated computational trust \DATAHTWO; only \(p\ge 10^6\) remains open.
+\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, an external computation finds the case \(p<10^6\) empty \DATAHTWO. H2 is not proved, in Lean or otherwise.
 \item[\textbf{H3.}] There is no solution with \(R\neq\emptyset\) and \(j\ge 3\).
 \end{itemize}
 H1 is established by Theorem~\ref{thm:H1-comp}, kernel-checked in Lean as Theorem~\ref{thm:A-H1}. Consequently Conjecture~\ref{conj:vanish} is equivalent to the conjunction of H2 and H3 (kernel-checked, \path{conjecture_iff_H2_H3}).
@@ -2277,17 +2311,17 @@ Squarefree \(k\le 2\) contradict \(\delta(n)\ge 16\); \(k=3\) is Theorem~\ref{th
 \end{proof}
 
 \begin{remark}[Status of Conjecture~\ref{conj:vanish}]
-H1 is closed by Theorem~\ref{thm:H1-comp} (kernel-checked, Theorem~\ref{thm:A-H1}). H2 for \(p\ge 10^6\) and H3 remain open. Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
+H1 is closed by Theorem~\ref{thm:H1-comp} (kernel-checked, Theorem~\ref{thm:A-H1}). H2 is open (external data only for \(p<10^6\), not kernel-checked). H3 is kernel-checked for \(p\equiv 1\pmod 4\) (Theorem~\ref{thm:A-H3}) and open for \(p\equiv 3\pmod 4\). Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
 \end{remark}
 
 \section{Formalization status}
 \label{sec:formalization}
 
-Snapshot as of 6~November~2026, 18:25 America/Chicago (CST) (v0.11-review2; extensions audit PASS). Lean toolchain: v4.22.0 with Mathlib v4.22.0. ``Independently audited'' means a separate adversarial Lean review with fresh isolated build, exact-statement harness, and transitive axiom check reporting only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}.
+Snapshot as of 6~November~2026, 18:25 America/Chicago (CST) (v0.11-review2; extensions audit PASS). For v1.4.1 the ``Lean'' column is updated to the kernel-checked state (Lean sources at commit \texttt{0b82cdd}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}); the ``Independent audit'' column is the 6~November record. Lean toolchain: v4.22.0 with Mathlib v4.22.0. ``Independently audited'' means a separate adversarial Lean review with fresh isolated build, exact-statement harness, and transitive axiom check reporting only \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}.
 
 \begin{table}[ht]
 \centering
-\caption{Formalization and audit status (honest snapshot, 6~November~2026, 18:25 America/Chicago; v0.11-review2; extensions PASS). Certificate hooks: Section~\ref{sec:manifest}.}
+\caption{Formalization and audit status. ``Lean'': kernel-checked state for v1.4.1 (commit \texttt{0b82cdd}, run 44893346388). ``Independent audit'': snapshot of 6~November~2026, 18:25 America/Chicago (v0.11-review2). Certificate hooks: Section~\ref{sec:manifest}.}
 \label{tab:formalization}
 {\footnotesize
 \begin{tabular}{@{}p{4.1cm}p{1.6cm}p{5.6cm}@{}}
@@ -2305,18 +2339,21 @@ Cor.~\ref{cor:F1} (\texttt{corollaryF1}) & yes & PASS (extensions Lean) \\
 Lem.~\ref{lem:L1} (\texttt{lemmaL1}) & yes & PASS (extensions Lean) \\
 Lem.~\ref{lem:Q} (\texttt{lemmaQ}) & yes & PASS (extensions Lean) \\
 Repeated-prime size (E ingredient) & yes & PASS (extensions Lean) \\
-Thms~\ref{thm:A},~\ref{thm:B},~\ref{thm:E} (full) & no & analytic packages PASS \\
-Classification / Prop.~\ref{prop:implies-corrected} & no & analytic package PASS \\
-H1 / \(p=7\) descent & no & PASS computer-assisted (not Lean) \\
-Thm~\ref{thm:L} (v1.4) & yes (v1.4) & kernel certificates; Truth Gate lock checked by CI \\
-H2 (\(p\ge 10^6\)), H3 & open & open \\
+Thms~\ref{thm:A},~\ref{thm:B},~\ref{thm:E} (full) & yes (v1.4) & analytic packages PASS; Lean: \texttt{theoremA}, \texttt{N\_ne\_ras}, \texttt{theoremB}, \texttt{theoremE\_i}--\texttt{v} \\
+Classification / Prop.~\ref{prop:implies-corrected} & yes (v1.4) & analytic package PASS; Lean: \texttt{prop\_implies\_corrected} \\
+H1 / \(p=7\) descent & yes (v1.4) & PASS computer-assisted (6 Nov); Lean: \texttt{H1\_holds}, \texttt{p7\_squarefree\_empty} \\
+\(N\ne r^3s\); \(\omega(N)\ge 4\) constraints & yes (v1.4) & Lean: \texttt{r3s\_empty}, \texttt{omega4\_constraints} \\
+Hensel bound \(5\le p<r\le 10^6\) & yes (v1.4.1) & Lean: \texttt{hensel\_r\_le\_1e6} \\
+Thm~\ref{thm:L} (v1.4), Thm~\ref{thm:L2} & yes (v1.4) & kernel certificates; Truth Gate locks approved 21 Nov, checked by CI \\
+H2 & open & reduction \texttt{H2\_of\_shapes} in Lean; \(p<10^6\): external data, not kernel-checked \\
+H3 & \(p\equiv 1\ (4)\): yes; \(p\equiv 3\ (4)\): open & Lean: \texttt{H3\_of\_mod4}, \texttt{H3\_twoAdic} \\
 Conjecture~\ref{conj:vanish} & open & open \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-\noindent\textit{Extensions snapshot.} The extensions package (15 results + 2 defs) is independently audited PASS for Corollary~F1, Lemmas~L1,~Q, and the repeated-prime size ingredient of~E (audit report in the matching \texttt{*-independent-audit-*} directory). Full Theorems~A,~B,~E, the classification, and the \(p=7\) descent remain unformalized.
+\noindent\textit{Extensions snapshot.} The extensions package (15 results + 2 defs) is independently audited PASS for Corollary~F1, Lemmas~L1,~Q, and the repeated-prime size ingredient of~E (audit report in the matching \texttt{*-independent-audit-*} directory). (On 6~November, full Theorems~A,~B,~E, the classification and the \(p=7\) descent were unformalized; since v1.4 they are kernel-checked, Part~\ref{part:A}.)
 
 \sloppy
 \section{The curve \(E\colon y^2=x^3-x^2-12\) and its quadratic twists (v1.4)}
@@ -2420,7 +2457,7 @@ The author supplied a classification theorem for v1.4. The version below keeps i
 Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover:
 \begin{enumerate}
 \item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the bound \(5\le r\le 10^6\), \DATAHENSEL) remain true and are now superseded.
-\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked) \DATAOMEGAFOUR; the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from the squarefree part H1, closed under computer-assisted trust in Theorem~\ref{thm:H1-comp}.
+\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked) \DATAOMEGAFOUR; the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from squarefree \(N\), which H1 excludes (Theorem~\ref{thm:A-H1}, kernel-checked, \texttt{H1\_holds}).
 \item \textbf{\(N=r^3st\).} Excluded with no bound (Theorem~\ref{thm:A-r3st-empty}, kernel-checked, v1.4).
 \item \textbf{Other shapes.} Every solution has \(\omega(N)\ge 4\) or \(N=r^2s^2t\) with pairwise distinct primes (Theorem~\ref{thm:A-three}(a), kernel-checked). The shape \(r^2s^2t\) lies in H2 of Proposition~\ref{prop:implies-corrected} and remains open.
 \end{enumerate}
@@ -2455,15 +2492,15 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \begin{itemize}
 \item Conjecture~\ref{conj:vanish} (no \(n=p^2q\) satisfies both jumps) is open.
 \item \(r^3s\): empty (Theorem~\ref{thm:A-r3s-empty}, kernel-checked; Theorem~\ref{thm:L2}(iv)). The shape \(r^2s^2t\) is open (Section~\ref{sec:A-three}).
-\item \(\omega(N)\ge 4\) beyond the ranges above; H2 for \(p\ge 10^6\); H3.
+\item \(\omega(N)\ge 4\) with \(N\) not squarefree, beyond the ranges above (external data, not kernel-checked); H2 (reduced in Lean to \(r^2s^2t\) and \(r^2s^2tu\), Theorem~\ref{thm:A-H2-shapes}; external data, not kernel-checked, for \(p<10^6\)); H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
 \item Uniform analytic bounds: David's theorem across all twist fibres; effective genus-one bounds.
-\item Not kernel-checked: the enumeration of Proposition~\ref{prop:C} and the other external computations of Section~\ref{sec:v14-external}, and the LMFDB/PARI data of Section~\ref{sec:v14-curve}. The statements of Theorems~\ref{thm:closed}, \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification and the \(p=7\) descent are kernel-checked in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
+\item Not kernel-checked: the enumeration of Proposition~\ref{prop:C} and the other external computations of Section~\ref{sec:v14-external}, and the LMFDB/PARI data of Section~\ref{sec:v14-curve}. The statements of Theorems~\ref{thm:closed}, \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification, the \(p=7\) descent and H1 are kernel-checked in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
 \end{itemize}
 
 \section{Reproducibility (v1.4)}
 \label{sec:v14-repro}
 \begin{itemize}
-\item Repository \texttt{BenFrohman/p2q-jumps-lean}, branch \texttt{feat/v1.4-full-formalization}; Lean sources at commit \texttt{4ae3e47f8e\allowbreak{}13edf22625\allowbreak{}28f0a8cc73\allowbreak{}657ccfc3cc} (later commits change only documentation, paper and CI files; the commit is also recorded in \texttt{truth-gate.lock.json}).
+\item Repository \texttt{BenFrohman/p2q-jumps-lean}, branch \texttt{main}; Lean sources at commit \texttt{0b82cddd\allowbreak{}cfb5ee8edf\allowbreak{}517b3634ad\allowbreak{}74d68bf759\allowbreak{}79}, certificate of record: the \texttt{lean-certificate} artifact of GitHub Actions run \url{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388} (\texttt{lake build} exit~0; no \texttt{sorry}, \texttt{admit} or \texttt{native\_decide}; every \texttt{\#print axioms} line within \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}). Later commits change no Lean statement. The lock files record the commits at which the locked statements were fixed: \texttt{4ae3e47} (Theorem~\ref{thm:L}) and \texttt{53c1ca2} (Theorem~\ref{thm:L2}).
 \item Lean \texttt{v4.26.0}; Mathlib \texttt{v4.26.0} (manifest rev \texttt{2df2f0150c\allowbreak{}275ad53cb3\allowbreak{}c90f7c98ec\allowbreak{}15a56a1a67}).
 \item Axioms: \texttt{\#print axioms P2qJumps.Semantics.theorem\_L} prints \texttt{[propext, Classical.choice, Quot.sound]}; every theorem in \texttt{AxiomAudit.lean} depends only on a subset of these.
 \item Rebuild: \texttt{lake exe cache get \&\& lake build}. Full check: \texttt{scripts/verify-lock.sh}.
@@ -2471,6 +2508,9 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 
 \section*{Change log (v1.4)}
 Restructured the paper: Theorem~\ref{thm:L} (input verbatim from the locked \path{paper/theorem-L.tex}, unchanged) now leads; Part~\ref{part:A} gives step-by-step proofs of clauses (i)--(v) that follow the Lean proofs, with declaration names and \texttt{file:line} references; Part~\ref{part:B} collects the paper-only arguments with explicit not-kernel-checked labels; Part~\ref{part:C} describes each kernel certificate (what it computes, its soundness theorem, its range) and the external computations. Corrected the description of the pair certificates: they evaluate only \(\sig\) (the \(\sig\)-jump already fails), not \(\ph\) and \(\sig\). Added Sections~\ref{sec:v14-curve}--\ref{sec:v14-repro}: verified data for LMFDB \texttt{3936.b1} with the Sage snippet, the root-number formula with its hypotheses, the per-fibre finiteness remark, the deferral of the \(10^6\) search for \(\omega(N)\ge 4\), Theorem~\ref{thm:L} with kernel certificates, the aligned classification ledger with its deviations, external computations, open items and reproducibility data. Updated Tables~\ref{tab:classify} and~\ref{tab:formalization} for \(r^2st\) and Theorem~\ref{thm:L}. Added the author's metadata. The rest of the v1.3 text is unchanged.
+
+\section*{Change log (v1.4.1)}
+Corrected status lines that called kernel-checked results unproved, ``not Lean'' or computer-assisted only: Theorems~A, B, E, the classification, H1 and the \(p=7\) descent (abstract, Table~\ref{tab:formalization}, Section~\ref{sec:manifest}, the scope statement, and the \(\omega(N)\ge 4\) item of the classification ledger). Stated clauses (ii) and (iii) of Theorem~\ref{thm:E} in the form of \texttt{theoremE\_ii} and \texttt{theoremE\_iii} (clause (iii) no longer assumes \(j\ge 1\)). Added Section~\ref{sec:A-H2H3} (\texttt{r2s2t\_rs\_dvd\_L}, \texttt{H2\_of\_shapes}, \texttt{H3\_twoAdic}, \texttt{H3\_of\_mod4}). Stated H2, H3 for \(p\equiv 3\pmod 4\) and Conjecture~\ref{conj:vanish} as open, and kept H2 for \(p<10^6\) and \(\omega(N)\ge 4\) with \(q\le 10^6\) as external data. Recorded the approval of both Truth Gate locks (21~November~2026) and cited the Lean commit \texttt{0b82cdd} and its certificate run 44893346388. Replaced the blank hit-count placeholder of v1.4 by the status of that run. Paper licence CC~BY~4.0. No theorem statement was weakened.
 
 \fussy
 \section{Certificate and log manifest hooks}
@@ -2486,7 +2526,7 @@ The audit packages dated 2026-11-06 are deposited in the published Zenodo record
 \item Theorem~28 Lean + indep.\ audit --- \texttt{*lean-theorem28*}
 \item Structural Lean G/K/F/R/S + indep.\ audit --- \texttt{*lean-structural*}, \texttt{*structural-independent-audit*}
 \item Extensions F1/L1/Q/size + indep.\ audit PASS --- \texttt{*lean-extensions*}, \texttt{*extensions-independent-audit*}
-\item \(p=7\) descent (computer-assisted PASS; not Lean) --- \texttt{*p7-descent-audited*}
+\item \(p=7\) descent (computer-assisted PASS, 6~November package; since v1.4 kernel-checked as \texttt{p7\_squarefree\_empty}, Section~\ref{sec:A-H1}) --- \texttt{*p7-descent-audited*}
 \item Local hooks --- manuscript \texttt{certificates/}
 \end{itemize}
 }
@@ -2494,7 +2534,7 @@ The audit packages dated 2026-11-06 are deposited in the published Zenodo record
 \section*{What this note does not claim (updated)}
 \label{sec:noclaim-v011}
 
-This paper does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed, and since v1.4 kernel-checked in Lean (Theorem~\ref{thm:A-H1}); this does not prove the conjecture. H2 for \(p\ge 10^6\) and H3 remain open. Theorems~A,~B,~E in full, the exhaustive classification, and the \(p=7\) descent are not Lean-formalized (F1/L1/Q/repeated-size extensions are Lean+independently audited). (This sentence is the v0.11 status; since v1.4 the \(p=7\) descent is kernel-checked, Section~\ref{sec:A-H1}.) No claim is made that the Lean portfolio settles the conjecture. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
+This paper does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed, and since v1.4 kernel-checked in Lean (Theorem~\ref{thm:A-H1}); this does not prove the conjecture. H2 is open (external data, not kernel-checked, for \(p<10^6\)); H3 is open for \(p\equiv 3\pmod 4\) (kernel-checked for \(p\equiv 1\pmod 4\), Theorem~\ref{thm:A-H3}); Conjecture~\ref{conj:vanish} is open. Theorems~A,~B,~E, the exhaustive classification and the \(p=7\) descent are kernel-checked (Part~\ref{part:A}); their written v1.3 arguments in Part~\ref{part:B} are not. No claim is made that the Lean portfolio settles the conjecture. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
 
 
 \appendix
@@ -2563,7 +2603,7 @@ The following is the v0.10 wording, reproduced solely as a historical record. It
 \section{Change log (v0.11-review2)}
 \label{app:changelog}
 
-Relative to the staged v0.11 files (byte-preserved in the Zenodo record \texttt{10.5281/zenodo.24024593}):
+Relative to the staged v0.11 files (byte-preserved in the Zenodo record \texttt{10.5281/zenodo.24024593}). The statuses in this list are those of 6~November~2026; the current kernel-checked statuses are in Part~\ref{part:A} and the v1.4.1 change log:
 \begin{itemize}
 \item Marked original Proposition~32 as superseded; moved historical quotation to Appendix~\ref{app:hist-prop32}; removed it as a live numbered implication.
 \item Replaced ``only two/three leftover cases'' style claims in the introduction and in Section~\ref{sec:empty} by the current H1/H2/H3 status (H1 computer-assisted closed; H2/H3 open).

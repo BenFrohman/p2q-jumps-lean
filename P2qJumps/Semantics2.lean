@@ -14,8 +14,8 @@ import P2qJumps.TheoremA
 /-!
 # Truth Gate: semantics lock for Theorem L2 (v1.4, strengthened statement)
 
-**STATUS: PENDING AUTHOR APPROVAL.** `paper_claim2` below is a draft transcription prepared
-for review. It is not approved until the author signs off in `truth-gate-L2.lock.json`.
+**STATUS: APPROVED.** `paper_claim2` below was approved by the author (Benjamin Stanley Frohman)
+on 2026-11-21 at 03:45 CST (`approval` in `truth-gate-L2.lock.json`).
 
 * `paper_claim2` is an independent transcription of `paper/theorem-L2.tex`. It is written with
   `φ`, `σ`, `ω`, explicit prime factorizations and `10 ^ 4`, and does not mention `Jumps`,
@@ -71,7 +71,7 @@ lemma omega_ge_four_of_primes {N a b c d : ℕ} (hN : N ≠ 0) (ha : a.Prime) (h
       Finset.card_insert_of_notMem (by simp [hbc, hbd]), Finset.card_pair hcd]
   rw [← h4]; exact Finset.card_le_card hsub
 
-/-- **Paper claim 2 (PENDING AUTHOR APPROVAL).**
+/-- **Paper claim 2 (approved 2026-11-21, `truth-gate-L2.lock.json`).**
 
 Source: `paper/theorem-L2.tex`
 (sha256 `0014494d52f73f89e1a36b1287f92f5bcac3b84ff7dc2bdd2cec79c22cd86dba`),

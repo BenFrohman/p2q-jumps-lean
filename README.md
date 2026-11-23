@@ -14,8 +14,8 @@ Copyright (c) 2026 **Benjamin Stanley Frohman**. License: [Apache-2.0](LICENSE).
 ## What is proved (v1.4)
 
 Assume `φ(N) = φ(n) + 12` and `σ(N) = σ(n) + 12` with `n = p^2 q`, `p ≠ q` primes, `N = n + 12`.
-The locked public theorem is `P2qJumps.Semantics.theorem_L` (paper Theorem L; transcription **pending author
-approval**, see [TRUTH_GATE.md](TRUTH_GATE.md)):
+The locked public theorem is `P2qJumps.Semantics.theorem_L` (paper Theorem L; transcription
+approved by the author on 2026-11-21, see [TRUTH_GATE.md](TRUTH_GATE.md)):
 
 | Item | Lean theorem | Status |
 |---|---|---|

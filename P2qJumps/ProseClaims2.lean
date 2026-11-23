@@ -286,4 +286,36 @@ theorem F_even : ∀ x : ZMod 2, x = 1 →
 theorem quartic_gt_six (t : ℝ) : 6 < 4*t^4+4*t^3+11*t^2+6*t+7 := by
   nlinarith [sq_nonneg (t*(2*t+1)), sq_nonneg (t + 3/10)]
 
+/-- Paper `prop:A-pure`(g), second clause, as a set equality: the squares modulo `16` are exactly
+`0, 1, 4, 9`. -/
+theorem sq_mod16_exact :
+    ∀ y : ZMod 16, (∃ x : ZMod 16, x ^ 2 = y) ↔ (y = 0 ∨ y = 1 ∨ y = 4 ∨ y = 9) := by
+  decide
+
+/-- Paper `thm:rigid`(a), last sentence: for each `ρ ≥ 5` only finitely many integers `p ≥ 5`
+satisfy `D(p, ρ) ∣ C(ρ)`, with `D(p, ρ) = 2p^2 - 2pρ + ρ^2 - ρ` and
+`C(ρ) = (ρ - 3)(ρ^2 + 3ρ + 8)`. -/
+theorem rigid_finite_candidates (ρ : ℤ) (hρ : 5 ≤ ρ) :
+    {p : ℤ | 5 ≤ p ∧ (2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ) ∣ (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8)}.Finite := by
+  apply (Set.finite_Icc (5 : ℤ) ((ρ - 3) * (ρ ^ 2 + 3 * ρ + 8) + ρ)).subset
+  rintro p ⟨hp, hd⟩
+  have hD : 0 < 2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ := D_pos hp hρ
+  have hC : 0 < (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8) :=
+    mul_pos (by linarith) (by nlinarith)
+  have hle := Int.le_of_dvd hC hd
+  refine ⟨hp, ?_⟩
+  nlinarith [sq_nonneg (p - ρ), mul_nonneg (by linarith : (0 : ℤ) ≤ p) (by linarith : (0 : ℤ) ≤ p - 1)]
+
+/-- Paper `thm:rigid`(c), last sentence: on the offset families `r = p ± 2` (`p ≥ 5`) the
+expression for `σ = s + t` is negative. -/
+theorem r2st_offset_sigma_neg (p r : ℤ) (hp : 5 ≤ p) (hr : r = p + 2 ∨ r = p - 2) :
+    -((p : ℚ) ^ 3 - p ^ 2 * r - p ^ 2 + 2 * p * r ^ 3 + p * r ^ 2 - 2 * p * r + r ^ 3 - r ^ 2 - 12)
+      / ((r : ℚ) * (p * r + 2 * p - r ^ 2 + r)) < 0 := by
+  obtain ⟨a, rfl⟩ : ∃ a : ℕ, p = 5 + a := ⟨(p - 5).toNat, by omega⟩
+  have ha : (0 : ℚ) ≤ a := by positivity
+  have ha2 : (0 : ℚ) ≤ (a : ℚ) ^ 2 := by positivity
+  have ha3 : (0 : ℚ) ≤ (a : ℚ) ^ 3 := by positivity
+  have ha4 : (0 : ℚ) ≤ (a : ℚ) ^ 4 := by positivity
+  rcases hr with rfl | rfl <;> push_cast <;> apply div_neg_of_neg_of_pos <;> nlinarith
+
 end P2qJumps

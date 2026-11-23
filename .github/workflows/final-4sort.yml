@@ -50,7 +50,9 @@ jobs:
             --out "4sort-out/4sort-report-${{ github.sha }}" 2>&1 | tee 4sort-out/4sort-console.log
       - name: Job summary
         if: always()
-        run: cat 4sort-out/4sort-report-*/4sort-report.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+        run: |
+          f="4sort-out/4sort-report-${{ github.sha }}/4sort-report.md"
+          if [ -f "$f" ]; then cat "$f" >> "$GITHUB_STEP_SUMMARY"; else echo "No 4-sort report was written (see the previous step's log)." >> "$GITHUB_STEP_SUMMARY"; fi
       - name: Upload 4-sort report
         if: always()
         uses: actions/upload-artifact@v4

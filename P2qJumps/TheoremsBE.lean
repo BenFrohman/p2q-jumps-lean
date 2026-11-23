@@ -303,4 +303,36 @@ theorem theoremE_v_lt {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q
     linarith
   exact_mod_cast hlt
 
+/-- Lemma Q, second sentence (`lem:Q`): for every `m = ∏ rᵢ^{eᵢ}`,
+`Q(m)/m² = 1 - ∏ (1 - rᵢ^{-eᵢ-1})`, where `Q(m) = m² - φ(m) σ(m)`. -/
+theorem lemmaQ_ratio (m : ℕ) (hm : m ≠ 0) :
+    ((m : ℚ) ^ 2 - (Nat.totient m : ℚ) * (σ 1 m : ℚ)) / (m : ℚ) ^ 2 =
+      1 - ∏ ℓ ∈ m.primeFactors, (1 - ((ℓ : ℚ) ^ (m.factorization ℓ + 1))⁻¹) := by
+  have hm' : (m : ℚ) ≠ 0 := by exact_mod_cast hm
+  have hself : (m : ℚ) = ∏ ℓ ∈ m.primeFactors, (ℓ : ℚ) ^ (m.factorization ℓ) := by
+    have h := Nat.factorization_prod_pow_eq_self hm
+    rw [Finsupp.prod] at h
+    exact_mod_cast h.symm
+  have hST : (Nat.totient m : ℚ) * (σ 1 m : ℚ) = ∏ ℓ ∈ m.primeFactors,
+      (ℓ : ℚ) ^ (m.factorization ℓ - 1) * ((ℓ : ℚ) ^ (m.factorization ℓ + 1) - 1) := by
+    have h := congrArg (fun z : ℤ => (z : ℚ)) (P2qExtensions.sigma_mul_totient_prod m hm)
+    push_cast at h
+    linear_combination h
+  have hterm : ∀ ℓ ∈ m.primeFactors,
+      (ℓ : ℚ) ^ (m.factorization ℓ - 1) * ((ℓ : ℚ) ^ (m.factorization ℓ + 1) - 1) =
+        ((ℓ : ℚ) ^ (m.factorization ℓ)) ^ 2 * (1 - ((ℓ : ℚ) ^ (m.factorization ℓ + 1))⁻¹) := by
+    intro ℓ hℓ
+    have hl : (ℓ : ℚ) ≠ 0 := by exact_mod_cast (Nat.prime_of_mem_primeFactors hℓ).ne_zero
+    have he : 0 < m.factorization ℓ :=
+      (Nat.prime_of_mem_primeFactors hℓ).factorization_pos_of_dvd hm
+        (Nat.dvd_of_mem_primeFactors hℓ)
+    obtain ⟨k, hk⟩ : ∃ k, m.factorization ℓ = k + 1 := ⟨_, (Nat.succ_pred_eq_of_pos he).symm⟩
+    rw [hk, Nat.add_sub_cancel]
+    have hx : (ℓ : ℚ) ^ (k + 1 + 1) * ((ℓ : ℚ) ^ (k + 1 + 1))⁻¹ = 1 :=
+      mul_inv_cancel₀ (pow_ne_zero _ hl)
+    linear_combination (ℓ : ℚ) ^ k * hx
+  rw [hST, Finset.prod_congr rfl hterm, Finset.prod_mul_distrib, Finset.prod_pow, ← hself,
+    div_eq_iff (pow_ne_zero 2 hm')]
+  ring
+
 end P2qJumps

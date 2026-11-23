@@ -1281,7 +1281,7 @@ If \(N=r^2st\) with distinct primes \(r,s,t\ge 5\), write \(\sigma=s+t\) and \(\
 \label{eq:r2st-q}
 q&=\frac{2p^2r^2+p^2r-2pr^3-pr+2r^5-r^3-r^2-12r-24}{(p-r)\bigl(pr+2p-r^2+r\bigr)}.
 \end{align}
-In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not occur at all, by Theorem~\ref{thm:L}(iii); part~(c) is kept as the v1.3 record.)
+In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not occur at all, by Theorem~\ref{thm:L}(iii); part~(c) is kept as the v1.3 record.)\lean{P2qJumps.rigid_finite_candidates; P2qJumps.r2st_offset_sigma_neg}{ProseClaims2.lean:298,311}
 \end{enumerate}
 \end{theorem}
 
@@ -2106,7 +2106,7 @@ By Corollary~\ref{cor:gcd}, \(p\nmid N\), so \(p\nmid K\). Lemma~\ref{lem:L2} an
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qJumps.lemmaK\_param}, which discharges the hypothesis \(p\ge 5\) of \texttt{P2qExclusions.setupK} by Proposition~\ref{prop:A-preamble}, and \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
+Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qJumps.lemmaK\_param}, which discharges the hypothesis \(p\ge 5\) of \texttt{P2qExclusions.setupK} by Proposition~\ref{prop:A-preamble}, and \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).\lean{P2qJumps.lemmaK_param; P2qJumps.p_not_dvd_K}{TheoremsBE.lean:268,278}
 \end{remark}
 
 \begin{theorem}[Theorem~B: powerful \(N\) impossible; kernel-checked in v1.4, Theorem~\ref{thm:A-B}]
@@ -2206,7 +2206,7 @@ The polynomial \(H(p,q)=A(N)^2(N^2-Q)-(p-1)QN^2\) expands, on the region \(p=5+v
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}.
+Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}, and the identity \(Q(m)/m^2=1-\prod(1-r_i^{-e_i-1})\) is \texttt{P2qJumps.lemmaQ\_ratio}.\lean{P2qJumps.lemmaQ_ratio}{TheoremsBE.lean:308}
 \end{remark}
 
 \section{Limits on repeated primes (Theorem~E)}
@@ -2240,7 +2240,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is kernel-checked as Theorem~\ref{thm:A-E}, clause by clause: (i) is \texttt{theoremE\_i}; (ii) and (iii), as stated here since v1.4.1, are exactly \texttt{theoremE\_ii} and \texttt{theoremE\_iii}; (iv) is \texttt{theoremE\_iv}, \texttt{theoremE\_iv\_dvd}, \texttt{theoremE\_iv\_size} and \texttt{theoremE\_iv\_sqrt}, which assume only a third prime factor of any exponent instead of \(j\ge 1\); (v) is \texttt{theoremE\_v}, with \(r<p^{3/2}\) from \texttt{twist\_r\_bound} and the last sentence from \texttt{cube\_excludes\_second\_square}. The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
+Theorem~\ref{thm:E} is kernel-checked as Theorem~\ref{thm:A-E}, clause by clause: (i) is \texttt{theoremE\_i}; (ii) and (iii), as stated here since v1.4.1, are exactly \texttt{theoremE\_ii} and \texttt{theoremE\_iii}; (iv) is \texttt{theoremE\_iv}, \texttt{theoremE\_iv\_dvd}, \texttt{theoremE\_iv\_size} and \texttt{theoremE\_iv\_sqrt}, which assume only a third prime factor of any exponent instead of \(j\ge 1\); (v) is \texttt{theoremE\_v}, with \(r<p^{3/2}\) from \texttt{twist\_r\_bound} and \texttt{theoremE\_v\_lt}\lean{P2qJumps.theoremE_v_lt}{TheoremsBE.lean:293} and the last sentence from \texttt{cube\_excludes\_second\_square}. The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}
@@ -2278,7 +2278,7 @@ If~\eqref{eq:jumps} holds and \(N\) is squarefree with \(k=\omega(N)\ge 4\), the
 \end{corollary}
 
 \begin{remark}
-Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
+Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}, with the equivalent form \(o\le 1+v_2(T(p))\) as \texttt{P2qJumps.theoremF\_v2}\lean{P2qJumps.theoremF_v2}{ClosedLedger.lean:416}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
 \end{remark}
 
 \section{Corrected residual analysis}

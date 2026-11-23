@@ -215,3 +215,14 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Local runs** go to `local-dev-logs/` with `NOT-THE-OFFICIAL-CERTIFICATE.txt`; the two locally produced bundles formerly under `certificates/passed/` were moved there.
 - **truth-gate.yml:** the `author-approval` job is removed (author decision); the `truth-gate` job is unchanged.
 - **Mathematics:** none changed.
+
+## C24. Paper aligned with the kernel-checked statements (v1.4.1, 23 Nov 2026)
+
+- **Source of truth:** Lean sources at `0b82cdd` (unchanged in Lean statements through this commit), certificate GitHub Actions run 44893346388 (`lake build` exit 0, 0 sorry/admit/native_decide, `#print axioms` within propext, Classical.choice, Quot.sound).
+- **Status corrections (results proved in Lean but called unproved, "not Lean" or computer-assisted only):** Theorems A (`theoremA`, `N_ne_ras`), B (`theoremB`), E (`theoremE_i`..`theoremE_v`), the classification (`prop_implies_corrected`), H1 (`H1_holds`), the p = 7 descent (`p7_squarefree_empty`), `r3s_empty`, `omega4_constraints`/`omega4_size`, `hensel_r_le_1e6`: abstract, formalization table, extensions snapshot, classification ledger item (2), open items, manifest hooks, scope statement, Section `sec:empty`.
+- **Theorem E (Part B):** clause (ii) stated with "a prime factor t ∉ {r1, r2}" (`theoremE_ii`), clause (iii) without `j ≥ 1` (`theoremE_iii`); both are the Lean statements and are stronger than the v1.3 wording. Written proofs of (ii), (iii) adjusted accordingly.
+- **New Part A section `sec:A-H2H3`:** `r2s2t_rs_dvd_L`, `H2_of_shapes`, `H3_twoAdic`, `H3_of_mod4`, with step-by-step proofs following Lean.
+- **Open, stated plainly:** H2, H3 for p ≡ 3 (mod 4), Conjecture 3. H2 for p < 10^6 and ω(N) ≥ 4 with q ≤ 10^6 remain labeled external data (PR #11 not certified).
+- **Locks:** approval of both locks (2026-11-21 03:45 CST) recorded in the paper; footnote and reproducibility commit updated from `4ae3e47` to `0b82cdd`.
+- **Lean docstrings only (no statement changed, line numbers unchanged):** `Semantics.lean`, `Semantics2.lean` (status APPROVED), `Statement.lean` (`Theorem28` is proved as `theorem28_holds`), `ImpliesCorrected.lean` (H1 is proved as `H1_holds`). README lock status.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex`, both lock files. No statement weakened. PDF rebuilt (tectonic).

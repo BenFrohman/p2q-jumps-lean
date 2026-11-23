@@ -9,8 +9,8 @@ import P2qJumps.Main
 /-!
 # Truth Gate: semantics lock for Theorem L (v1.4)
 
-**STATUS: PENDING AUTHOR APPROVAL.** `paper_claim` below is a draft transcription prepared
-for review. It is not approved until the author signs off in `truth-gate.lock.json`.
+**STATUS: APPROVED.** `paper_claim` below was approved by the author (Benjamin Stanley Frohman)
+on 2026-11-21 at 03:45 CST (`approval` in `truth-gate.lock.json`).
 
 * `paper_claim` is an independent transcription of the paper statement. It does not mention
   `Jumps`, `Theorem28`, `Lpoly`, or any other definition used by the formal proof.
@@ -26,7 +26,7 @@ namespace P2qJumps.Semantics
 open Nat ArithmeticFunction
 open scoped ArithmeticFunction.sigma
 
-/-- **Paper claim (PENDING AUTHOR APPROVAL).**
+/-- **Paper claim (approved 2026-11-21, `truth-gate.lock.json`).**
 
 Source: `paper/theorem-L.tex`
 (sha256 `8172e9beaa7d88aae2f595396bb4cdfa226f22926f67c9e7944de3a53ed634d1`),

@@ -52,7 +52,7 @@ finish() {  # $1 = PASS or FAILED, $2 = reason
       echo "Verbatim record of a CI attempt that did not pass: $2"
     } > "$out/FAILED-NOT-A-CERTIFICATE.txt"
   fi
-  (cd "$out" && sha256sum $(ls | grep -v '^SHA256SUMS$') > SHA256SUMS)
+  (cd "$out" && find . -maxdepth 1 -type f ! -name SHA256SUMS -printf '%f\n' | LC_ALL=C sort | xargs -d '\n' sha256sum > SHA256SUMS)
   echo "$out"
   [ "$1" = PASS ] && exit 0 || exit 1
 }
@@ -86,8 +86,22 @@ echo "finished: $(TZ=America/Chicago date '+%Y-%m-%d %H:%M:%S %Z')" >> "$out/env
 [ "$s" -eq 0 ] || finish FAILED "scripts/check_no_sorry.py exited $s"
 [ "$a" -eq 0 ] || finish FAILED "#print axioms (lake env lean AxiomAudit.lean) exited $a"
 [ -s "$out/print-axioms.log" ] || finish FAILED "#print axioms output is empty"
-std='depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$'
-if grep -vE "$std" "$out/print-axioms.log" | grep -q .; then
+# Every line of the #print axioms output must be a standard-axiom report. Lean wraps long
+# axiom lists onto continuation lines that start with a space; those are joined first.
+if ! python3 - "$out/print-axioms.log" <<'PY'
+import re, sys
+std = re.compile(r"depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$")
+rows = []
+for line in open(sys.argv[1], encoding="utf-8").read().splitlines():
+    if line.startswith(" ") and rows:
+        rows[-1] += " " + line.strip()
+    else:
+        rows.append(line)
+bad = [r for r in rows if r.strip() and not std.search(r.replace("[ ", "[").replace(",  ", ", "))]
+print("\n".join(bad))
+sys.exit(1 if bad else 0)
+PY
+then
   finish FAILED "#print axioms output contains a non-standard axiom or other output"
 fi
 finish PASS "all checks passed"

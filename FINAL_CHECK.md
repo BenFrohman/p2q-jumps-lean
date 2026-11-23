@@ -54,7 +54,8 @@ decision on the wording, never silently.
   claim map as UNJUDGED entries (it never changes a reviewed entry); `--no-lean` runs the paper-side checks
   only.
   `--pin-missing` records the current Lean statement for mapped declarations that have none yet (never
-  overwrites a pin; use it while recording a review). `--axioms-log <cert>/print-axioms.log` is a
+  overwrites a pin; use it while recording a review). `--pin-from-report 4sort-report.json` does the same
+  from the report of a CI run (its live Lean query), for a machine that cannot load Mathlib. `--axioms-log <cert>/print-axioms.log` is a
   preview mode for an overloaded machine: kernel status comes from a CI certificate's `#print axioms`
   log and Lean statements are not compared; the report says so in its first line. Only the CI run with a
   live Lean query is the record.

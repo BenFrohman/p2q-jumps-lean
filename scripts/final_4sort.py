@@ -618,6 +618,9 @@ def main():
     ap.add_argument("--axioms-log", default=None,
                     help="PREVIEW ONLY: take kernel status from a CI certificate's print-axioms.log instead of "
                          "querying Lean; Lean statements are then not compared")
+    ap.add_argument("--pin-from-report", default=None,
+                    help="like --pin-missing, but take the Lean statements from a CI 4sort-report.json "
+                         "(the live Lean query of the official run); never overwrites a pin")
     ap.add_argument("--pin-missing", action="store_true",
                     help="record the current Lean statement for mapped declarations that have no pin yet "
                          "(never overwrites a pin); use while recording a review")
@@ -640,7 +643,17 @@ def main():
                    ({d for e in envs_found for d in e["lean_refs"]} if a.seed else set()))
     lean = {}
     tmp = tempfile.mkdtemp(prefix="4sort-")
-    if a.axioms_log:
+    if a.pin_from_report:
+        rep = json.load(open(a.pin_from_report, encoding="utf-8"))
+        if not rep.get("meta", {}).get("lean_queried"):
+            raise SystemExit("4-sort: %s was not produced by a live Lean query" % a.pin_from_report)
+        lean = {}
+        for c in rep.get("claims", []):
+            for d, v in c.get("details", {}).get("lean", {}).items():
+                if v.get("type"):
+                    lean[d] = {"type": v["type"]}
+        a.pin_missing = True
+    elif a.axioms_log:
         lean = axioms_log_query(a.axioms_log, decls)
     elif not a.no_lean:
         lean = lean_query(cfg, decls, tmp)

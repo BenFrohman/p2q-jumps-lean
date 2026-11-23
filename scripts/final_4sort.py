@@ -322,6 +322,24 @@ def lean_query(cfg, decls, workdir):
         res.setdefault(d, {"query": d, "error": "no output from Lean for this name"})
     return res
 
+def axioms_log_query(path, decls):
+    """Lean status from a CI certificate's `#print axioms` log (no statement types).  Used only when a
+    local Lean run is impossible; the CI run with a live Lean query is the record."""
+    txt = re.sub(r"\n\s+", " ", open(path, encoding="utf-8").read())
+    known = {}
+    for m in re.finditer(r"'([^']+)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", txt):
+        known[m.group(1)] = [x.strip() for x in (m.group(2) or "").split(",") if x.strip()]
+    res = {}
+    for d in decls:
+        hits = [n for n in known if n == d or n.endswith("." + d)]
+        if len(hits) == 1:
+            res[d] = {"query": d, "name": hits[0], "kind": "theorem", "is_proof": True,
+                      "axioms": known[hits[0]], "source": "axioms-log"}
+        else:
+            res[d] = {"query": d, "error": ("not in the certificate's #print axioms log %s" % path) if not hits
+                      else "ambiguous in the #print axioms log: %s" % hits}
+    return res
+
 def norm_lean(s):
     return re.sub(r"\s+", " ", s or "").strip()
 
@@ -383,9 +401,12 @@ def classify(cfg, env, entry, lean, mentions):
     if entry.get("paper_sha256") != env["sha256"]:
         drift.append("paper statement changed since the alignment was recorded (pinned sha256 %s, now %s)"
                      % (str(entry.get("paper_sha256"))[:12], env["sha256"][:12]))
+    unpinned = []
     for d in decls:
         info = infos.get(d)
         if info and "type" in info:
+            if d not in entry.get("lean_expected", {}):
+                unpinned.append(d); continue
             exp = norm_lean(entry.get("lean_expected", {}).get(d))
             if exp != norm_lean(info["type"]):
                 drift.append("Lean statement of %s changed: pinned `%s`, now `%s`" % (d, exp[:600], norm_lean(info["type"])[:600]))
@@ -397,6 +418,8 @@ def classify(cfg, env, entry, lean, mentions):
             return "OVERCLAIM", [p for ok, p in statuses.values() if not ok], det
         if drift:
             return "WORDING-DRIFT", drift, det
+        if unpinned:
+            return "UNJUDGED", ["Lean statement of %s is not pinned in the claim map (the report shows it; pin it after comparing)" % ", ".join(unpinned)], det
         if rel == "unjudged":
             return "UNJUDGED", ["relation between paper and Lean statement not judged"], det
         if rel in ("lean-narrower", "conditional", "different"):
@@ -469,7 +492,7 @@ def write_reports(outdir, meta, results):
     with open(os.path.join(outdir, "4sort-report.json"), "w", encoding="utf-8") as fh:
         json.dump({"meta": meta, "claims": results}, fh, indent=1, ensure_ascii=False)
     L = ["# Final 4-sort check: %s" % verdict, ""]
-    for k in ["repo", "commit", "paper", "paper_sha256", "claim_map", "claim_map_sha256", "lean_toolchain", "lake_manifest_sha256", "generated"]:
+    for k in ["lean_status_source", "repo", "commit", "paper", "paper_sha256", "claim_map", "claim_map_sha256", "lean_toolchain", "lake_manifest_sha256", "generated"]:
         L.append("- %s: `%s`" % (k, meta.get(k)))
     L += ["", "| class | count |", "|---|---|"] + ["| %s | %d |" % (c, counts[c]) for c in ORDER] + [""]
     if verdict == "HALT":
@@ -527,6 +550,9 @@ def main():
     ap.add_argument("--sha", default=None)
     ap.add_argument("--seed", action="store_true")
     ap.add_argument("--no-lean", action="store_true")
+    ap.add_argument("--axioms-log", default=None,
+                    help="PREVIEW ONLY: take kernel status from a CI certificate's print-axioms.log instead of "
+                         "querying Lean; Lean statements are then not compared")
     ap.add_argument("--pin-missing", action="store_true",
                     help="record the current Lean statement for mapped declarations that have no pin yet "
                          "(never overwrites a pin); use while recording a review")
@@ -549,7 +575,9 @@ def main():
                    ({d for e in envs_found for d in e["lean_refs"]} if a.seed else set()))
     lean = {}
     tmp = tempfile.mkdtemp(prefix="4sort-")
-    if not a.no_lean:
+    if a.axioms_log:
+        lean = axioms_log_query(a.axioms_log, decls)
+    elif not a.no_lean:
         lean = lean_query(cfg, decls, tmp)
 
     if a.pin_missing:
@@ -615,7 +643,10 @@ def main():
     meta = {"repo": os.environ.get("GITHUB_REPOSITORY") or os.path.basename(root), "commit": sha,
             "paper": cfg["paper"], "paper_sha256": sha_file(cfg["paper"]), "claim_map": a.map,
             "claim_map_sha256": sha_file(a.map), "lean_toolchain": (open("lean-toolchain").read().strip() if os.path.exists("lean-toolchain") else None),
-            "lake_manifest_sha256": sha_file("lake-manifest.json"), "lean_queried": not a.no_lean,
+            "lake_manifest_sha256": sha_file("lake-manifest.json"),
+            "lean_queried": not a.no_lean and not a.axioms_log,
+            "lean_status_source": ("PREVIEW: #print axioms log %s; Lean statements NOT compared" % a.axioms_log) if a.axioms_log
+                                  else ("none (--no-lean)" if a.no_lean else "live Lean query on the built oleans"),
             "generated": datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")}
     out = a.out or os.path.join(tmp, "4sort-report-%s" % sha)
     verdict, counts = write_reports(out, meta, results)

@@ -274,4 +274,33 @@ theorem lemmaK_param {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
           ((p : ℤ) ^ 2 * m - P2qStructural.rad (p ^ 2 * q + 12)) = P2qStructural.L p :=
   P2qExclusions.setupK (jump_of_jumps hp hq hpq hJ) (preamble hp hq hpq hJ).1
 
+/-- Paper `lem:K` (Part B), first clause: under the jumps, `p ∤ K` where `K = N / rad N`. -/
+theorem p_not_dvd_K {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) :
+    ¬ p ∣ (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) := by
+  intro h
+  obtain ⟨-, -, -, -, hcop⟩ := preamble hp hq hpq hJ
+  have hKN : (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) ∣ p ^ 2 * q + 12 :=
+    Nat.div_dvd_of_dvd (Nat.prod_primeFactors_dvd _)
+  have hpN : p ∣ p ^ 2 * q + 12 := h.trans hKN
+  have hp6 : p ∣ 6 * p * q := ⟨6 * q, by ring⟩
+  have h1 : p ∣ Nat.gcd (p ^ 2 * q + 12) (6 * p * q) := Nat.dvd_gcd hpN hp6
+  rw [hcop.gcd_eq_one] at h1
+  exact hp.one_lt.ne' (Nat.dvd_one.1 h1)
+
+/-- Paper `thm:E`(v), parenthetical: a prime `r` with `r^3 ∣ N` satisfies `r^2 < p^3`
+(that is, `r < p^{3/2}`). -/
+theorem theoremE_v_lt {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) (hr : r.Prime) (h3 : r ^ 3 ∣ p ^ 2 * q + 12) : r ^ 2 < p ^ 3 := by
+  have hd := theoremE_v hp hq hpq hJ hr h3
+  have zp : (5 : ℤ) ≤ p := by exact_mod_cast (preamble hp hq hpq hJ).1
+  have h25 : (25 : ℤ) ≤ (p : ℤ) ^ 2 := by nlinarith
+  have hL : 0 < (p : ℤ) ^ 3 - p ^ 2 - 12 := by
+    nlinarith [mul_le_mul_of_nonneg_right h25 (by linarith : (0 : ℤ) ≤ (p : ℤ) - 1)]
+  have hle := Int.le_of_dvd hL hd
+  have hlt : ((r ^ 2 : ℕ) : ℤ) < ((p ^ 3 : ℕ) : ℤ) := by
+    push_cast
+    linarith
+  exact_mod_cast hlt
+
 end P2qJumps

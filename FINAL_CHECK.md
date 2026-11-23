@@ -53,6 +53,11 @@ decision on the wording, never silently.
 - `scripts/final_4sort.py`: the checker (Python 3 stdlib). `--seed` appends new environments to the
   claim map as UNJUDGED entries (it never changes a reviewed entry); `--no-lean` runs the paper-side checks
   only.
+  `--pin-missing` records the current Lean statement for mapped declarations that have none yet (never
+  overwrites a pin; use it while recording a review). `--axioms-log <cert>/print-axioms.log` is a
+  preview mode for an overloaded machine: kernel status comes from a CI certificate's `#print axioms`
+  log and Lean statements are not compared; the report says so in its first line. Only the CI run with a
+  live Lean query is the record.
 - `final-check/claim-map.json`: configuration and one entry per paper environment.
 - `.github/workflows/final-4sort.yml`: reusable workflow (`workflow_call`).
 - `.github/workflows/certify.yml`: uploads `.lake/build/lib` as `lake-build-<sha>` after a passed certify
@@ -81,8 +86,16 @@ of the statement. `\input`/`\include` files are expanded, so a locked statement 
 `paper/theorem-L.tex` is checked in place.
 
 Status wording is searched in the statement itself, in the `\textbf{Status...}` paragraph right after it,
-and in every clause elsewhere in the paper that `\ref`s its label (the name before `\ref`, e.g.
-"Conjecture~", is removed first, so a reference to a conjecture is not itself a retraction word).
+and in every sentence (or table cell) elsewhere in the paper that `\ref`s its label. References become
+tokens first (`Conjecture~\ref{conj:vanish}` becomes `<REF>`, the claim's own label `<SELF>`; `\path` and
+`\texttt` identifiers are dropped), so a reference to a conjecture or a Lean name such as
+`conjecture_iff_H2_H3` is not itself a status word. Each status word is attributed to the nearest
+reference before it in the same parenthesis group, so "`<SELF>` (not kernel-checked)" counts against the
+claim and "the conjecture remains open (`<SELF>`, kernel-checked)" does not.
+
+When a flagged sentence is correct (its status words are about another object), a reviewer may record it
+under the claim's `reviewed_status_sentences` with the sha256 of the tokenized sentence and a reason. The
+report still lists it as "acknowledged (reviewed, not hidden)", and any edit to the sentence re-flags it.
 
 ## Porting to another repository
 

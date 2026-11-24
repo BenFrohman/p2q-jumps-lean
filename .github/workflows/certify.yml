@@ -53,9 +53,5 @@ jobs:
           path: cert-out/
           if-no-files-found: ignore
 
-  # Last-mile check: runs only after certify passed, on the same commit and the same built oleans.
-  final-4sort:
-    needs: certify
-    uses: ./.github/workflows/final-4sort.yml
-    with:
-      build-artifact: lake-build-${{ github.sha }}
+  # The final-4sort paper-vs-Lean alignment job (pending human judgments) was removed at the
+  # author's request. .github/workflows/final-4sort.yml remains as an uncalled reusable workflow.

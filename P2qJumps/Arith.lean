@@ -122,4 +122,43 @@ lemma prime_ge_five_not_dvd {r : ℕ} (hr : r.Prime) (h5 : 5 ≤ r) (d : ℕ) (h
   · have := (Nat.prime_dvd_prime_iff_eq Nat.prime_two hr).1 h; omega
   · have := (Nat.prime_dvd_prime_iff_eq Nat.prime_three hr).1 h; omega
 
+/-- A prime `r ≥ 5` is coprime to `2` and to `3`. -/
+lemma coprime_of_prime_ge_five {d r : ℕ} (hd : d = 2 ∨ d = 3) (hr : r.Prime) (h5 : 5 ≤ r) :
+    Nat.Coprime d r := by
+  have hdp : d.Prime := by rcases hd with rfl | rfl <;> norm_num
+  exact (Nat.Prime.coprime_iff_not_dvd hdp).2 (prime_ge_five_not_dvd hr h5 d hd)
+
+/-- Paper Lemma `lem:A-coprime6`, second sentence, shape `r^2 s t`: if `N = p^2 q + 12 = r^2 s t`
+with primes `r, s, t ≥ 5`, then `2 ∤ N`, `3 ∤ N`, `p ≥ 5` and `p ∤ N`. -/
+theorem coprime6_r2st {p q r s t : ℕ} (hp : p.Prime) (hr : r.Prime) (hs : s.Prime)
+    (ht : t.Prime) (hr5 : 5 ≤ r) (hs5 : 5 ≤ s) (ht5 : 5 ≤ t)
+    (hN : p ^ 2 * q + 12 = r ^ 2 * s * t) :
+    ¬ 2 ∣ p ^ 2 * q + 12 ∧ ¬ 3 ∣ p ^ 2 * q + 12 ∧ 5 ≤ p ∧ ¬ p ∣ p ^ 2 * q + 12 := by
+  have hnd : ∀ d, (d = 2 ∨ d = 3) → ¬ d ∣ p ^ 2 * q + 12 := by
+    intro d hd
+    have hdp : d.Prime := by rcases hd with rfl | rfl <;> norm_num
+    rw [hN]
+    exact (Nat.Prime.coprime_iff_not_dvd hdp).1
+      ((((coprime_of_prime_ge_five hd hr hr5).pow_right 2).mul_right
+        (coprime_of_prime_ge_five hd hs hs5)).mul_right (coprime_of_prime_ge_five hd ht ht5))
+  have h2 := hnd 2 (Or.inl rfl)
+  have h3 := hnd 3 (Or.inr rfl)
+  exact ⟨h2, h3, p_ge_five_of_dvd hp rfl h2 h3⟩
+
+/-- Paper Lemma `lem:A-coprime6`, second sentence, shape `r^3 s`: if `N = p^2 q + 12 = r^3 s`
+with primes `r, s ≥ 5`, then `2 ∤ N`, `3 ∤ N`, `p ≥ 5` and `p ∤ N`. -/
+theorem coprime6_r3s {p q r s : ℕ} (hp : p.Prime) (hr : r.Prime) (hs : s.Prime)
+    (hr5 : 5 ≤ r) (hs5 : 5 ≤ s) (hN : p ^ 2 * q + 12 = r ^ 3 * s) :
+    ¬ 2 ∣ p ^ 2 * q + 12 ∧ ¬ 3 ∣ p ^ 2 * q + 12 ∧ 5 ≤ p ∧ ¬ p ∣ p ^ 2 * q + 12 := by
+  have hnd : ∀ d, (d = 2 ∨ d = 3) → ¬ d ∣ p ^ 2 * q + 12 := by
+    intro d hd
+    have hdp : d.Prime := by rcases hd with rfl | rfl <;> norm_num
+    rw [hN]
+    exact (Nat.Prime.coprime_iff_not_dvd hdp).1
+      (((coprime_of_prime_ge_five hd hr hr5).pow_right 3).mul_right
+        (coprime_of_prime_ge_five hd hs hs5))
+  have h2 := hnd 2 (Or.inl rfl)
+  have h3 := hnd 3 (Or.inr rfl)
+  exact ⟨h2, h3, p_ge_five_of_dvd hp rfl h2 h3⟩
+
 end P2qJumps

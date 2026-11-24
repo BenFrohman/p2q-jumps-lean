@@ -24,6 +24,9 @@ by the Nagell–Lutz step. Everything is checked by the Lean kernel (`ring`, `no
   has `y = 0` or `y ∣ 3936`" is FALSE, since `(4, ±6)` lies on `E` and `6 ∣ 3936`. The correct
   finite Nagell–Lutz condition is `y = 0 ∨ y^2 ∣ D` with `D = 3936` (or `y^2 ∣ Δ = 62976`).
 * `no_point_y_zero_or_sq_dvd`: no integer point has `y = 0` or `y^2 ∣ 3936`.
+* `deltaYSet`, `sq_dvd_delta_iff`: `y = 0 ∨ y^2 ∣ 62976 ↔ y ∈ {0, ±1, ±2, ±4, ±8, ±16}`.
+* `no_point_delta_table` (`decide +kernel`), `no_point_y_zero_or_sq_dvd_delta`: no integer point
+  has `y = 0` or `y^2 ∣ 62976` (the full Nagell–Lutz set for `Δ = -62976`).
 
 Not proved here: that a torsion point of `E(ℚ)` is integral and satisfies `y = 0 ∨ y^2 ∣ D`.
 -/
@@ -95,5 +98,56 @@ theorem no_point_y_zero_or_sq_dvd (x y : ℤ) (h : y ^ 2 = x ^ 3 - x ^ 2 - 12) :
         exact dvd_trans hd ⟨16, by norm_num⟩
       exact_mod_cast h3
     exact no_point_sq_dvd_disc x y h2 h
+
+/-- The full Nagell–Lutz candidate set for `Δ = -62976 = -2^9 * 3 * 41`:
+`y = 0` or `y^2 ∣ 62976`, i.e. `y ∈ {0, ±1, ±2, ±4, ±8, ±16}`. -/
+def deltaYSet : Finset ℤ := {0, 1, -1, 2, -2, 4, -4, 8, -8, 16, -16}
+
+/-- `y = 0 ∨ y^2 ∣ 62976` iff `y ∈ deltaYSet`. The hard direction goes through `y.natAbs` and the
+kernel-decided `sq_dvd_disc` (a search over `y < 251` in `ℕ`). -/
+theorem sq_dvd_delta_iff (y : ℤ) : (y = 0 ∨ y ^ 2 ∣ 62976) ↔ y ∈ deltaYSet := by
+  constructor
+  · rintro (rfl | h)
+    · simp [deltaYSet]
+    · have hn : y.natAbs ^ 2 ∣ 62976 := by
+        have h3 : ((y.natAbs : ℤ)) ^ 2 ∣ 62976 := by
+          rw [Int.natAbs_sq]
+          exact h
+        exact_mod_cast h3
+      have hk := sq_dvd_disc y.natAbs hn
+      have hv : y = 0 ∨ y = 1 ∨ y = -1 ∨ y = 2 ∨ y = -2 ∨ y = 4 ∨ y = -4 ∨ y = 8 ∨ y = -8 ∨
+          y = 16 ∨ y = -16 := by
+        omega
+      rcases hv with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+        simp [deltaYSet]
+  · intro h
+    simp only [deltaYSet, Finset.mem_insert, Finset.mem_singleton] at h
+    rcases h with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> norm_num
+
+/-- Kernel table: no `y ∈ deltaYSet` and `0 ≤ x < 8` give a point of `E`. -/
+theorem no_point_delta_table :
+    ∀ y ∈ deltaYSet, ∀ n < 8, y ^ 2 ≠ (n : ℤ) ^ 3 - (n : ℤ) ^ 2 - 12 := by
+  decide +kernel
+
+/-- No integer point of `E` has `y = 0` or `y^2 ∣ 62976` (the full Nagell–Lutz set for `Δ`). -/
+theorem no_point_y_zero_or_sq_dvd_delta (x y : ℤ) (h : y ^ 2 = x ^ 3 - x ^ 2 - 12) :
+    ¬ (y = 0 ∨ y ^ 2 ∣ 62976) := by
+  intro hy
+  have hmem : y ∈ deltaYSet := (sq_dvd_delta_iff y).1 hy
+  have hy2 : y ^ 2 ≤ 256 := by
+    simp only [deltaYSet, Finset.mem_insert, Finset.mem_singleton] at hmem
+    rcases hmem with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> norm_num
+  have hlo : 2 ≤ x := by
+    by_contra hx
+    push_neg at hx
+    nlinarith [sq_nonneg y, mul_nonneg (sq_nonneg x) (show (0 : ℤ) ≤ 1 - x by linarith)]
+  have hhi : x ≤ 7 := by
+    by_contra hx
+    push_neg at hx
+    nlinarith [mul_nonneg (sq_nonneg x) (show (0 : ℤ) ≤ x - 8 by linarith),
+      mul_nonneg (show (0 : ℤ) ≤ x - 8 by linarith) (show (0 : ℤ) ≤ x + 8 by linarith)]
+  obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le (show (0 : ℤ) ≤ x by omega)
+  have hn : n < 8 := by omega
+  exact no_point_delta_table y hmem n hn h
 
 end P2qJumps.Curve3936

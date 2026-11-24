@@ -328,3 +328,6 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Curve3936.point_4_6_in_validYList
 #print axioms P2qJumps.Curve3936.noIntegralPointsWithDivisorY_false
 #print axioms P2qJumps.Curve3936.no_point_y_zero_or_sq_dvd
+#print axioms P2qJumps.Curve3936.sq_dvd_delta_iff
+#print axioms P2qJumps.Curve3936.no_point_delta_table
+#print axioms P2qJumps.Curve3936.no_point_y_zero_or_sq_dvd_delta

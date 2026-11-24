@@ -7,9 +7,9 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{hyperref}
-\newcommand{\DATAHTWO}{\textbf{[External computational data (SymPy); not kernel-checked.]}}
-\newcommand{\DATAOMEGAFOUR}{\textbf{[External computational data (PARI/GP); not kernel-checked.]}}
-\newcommand{\DATAHENSEL}{\textbf{[Kernel-checked in Lean: \texttt{hensel\_r\_le\_1e6} and \texttt{r3s\_r\_le\_1e6}, \texttt{P2qJumps/Hensel.lean}.]}}
+\newcommand{\DATAHTWO}{\textbf{[External computational data (SymPy); not kernel-checked; Lean kernel proof in progress.]}}
+\newcommand{\DATAOMEGAFOUR}{\textbf{[External computational data (PARI/GP); not kernel-checked; Lean kernel proof in progress.]}}
+\newcommand{\DATAHENSEL}{\textbf{[Kernel-checked in Lean: \texttt{hensel\_r\_le\_1e6} and \texttt{r3s\_r\_le\_1e6}, \texttt{P2qJumps/Hensel.lean}, standard axioms only; certificate of record: GitHub CI artifact \path{lean-certificate-0b82cdddcfb5ee8edf517b3634ad74d68bf75979} of the \path{certify.yml} run \url{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388} on main.]}}
 \newcommand{\OMEGAFOURSTATUS}{no result. The v1.4 run (\texttt{python3 search\_omega4\_1e6.py} under a 3-hour \texttt{timeout}, started 16 Nov 2026 17:42:14 CST) was stopped by the timeout at 20:42:14 CST (exit code 124, wall time 10800 s) before printing any output, so it reports no hit count and certifies nothing. Its range is the \(Q=10^6\) range of the second PARI run above, which found 0 hits with no filter; that run is the computational evidence for this range (computationally verified, not kernel-checked).}
 
 \newcommand{\ph}{\varphi}
@@ -2478,7 +2478,7 @@ Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. T
 
 These runs are ordinary computer-assisted checks. They are not used by any Lean theorem.
 \begin{itemize}
-\item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none. \DATAHENSEL
+\item \texttt{scripts/r2/r2\_rbound.py 1000000} (SymPy~1.14.0, Python~3.13.5, 36\,s): for every prime \(5\le r\le 10^6\) it lists the roots of \(L\) modulo \(r\) and tests \(r^2\mid L(a)\) and primality for each root \(5\le a<r\). Root-count histogram \(\{0{:}\,26154,\ 1{:}\,39269,\ 2{:}\,1\ (r=41),\ 3{:}\,13072\}\); hits: none. This external run is superseded by the kernel proof \DATAHENSEL.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py A 10000} (PARI via cypari2, 13\,s): all \(1{,}509{,}212\) ordered pairs of distinct primes \(2\le p,q\le 10^4\); \(\ph(N)\), \(\sig(N)\) from the full factorization of \(N\); hits: none.
 \item \texttt{scripts/omega4/jumps\_pq\_check.py B 997 1000000} (71\,s): all \(8{,}912{,}452\) pairs with primes \(5\le p\le 997\), \(p^2<q\le 10^6\) (the range of the author's script below), no filter; hits: none. \DATAOMEGAFOUR
 \item \texttt{scripts/omega4/search\_omega4\_1e6.py} (author's script, sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}): searches only primes \(5\le p\le 997\) with \(p^2<q\le 10^6\), not all \(p,q\le 10^6\). Its pre-sieve and its factorization routine discard every \(N\) with a prime factor \(\le p\); for \(\omega(N)\ge 4\) this step is sound by Theorem~\ref{thm:A-omega4}. Status: \OMEGAFOURSTATUS

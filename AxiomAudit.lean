@@ -318,3 +318,4 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.lemmaQ_ratio
 #print axioms P2qJumps.two_pow_dvd_two_mul_iff
 #print axioms P2qJumps.theoremF_v2
+#print axioms P2qJumps.delta_eq_not_jumps_63

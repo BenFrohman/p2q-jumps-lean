@@ -12,6 +12,7 @@ import P2qJumps.ThmEShapes
 import P2qJumps.PropC
 import P2qJumps.ThreeRegimes
 import P2qJumps.ClosedLedger
+import P2qJumps.R2S2T
 
 /-!
 # Truth Gate: semantics locks for the remaining kernel-proved Part A statements (v1.4.1)
@@ -703,7 +704,7 @@ private lemma nonempty_repPrimes_iff {N : ℕ} (hN : N ≠ 0) :
     exact ⟨r, Nat.prime_of_mem_primeFactors hr'.1,
       (Nat.prime_of_mem_primeFactors hr'.1).pow_dvd_iff_le_factorization hN |>.2 hr'.2⟩
   · intro ⟨r, hr, hr2⟩
-    refine ⟨r, Finset.mem_filter.2 ⟨Nat.mem_primeFactors.2 ⟨hr, hr2.trans (dvd_pow_self r (by omega)),
+    refine ⟨r, Finset.mem_filter.2 ⟨Nat.mem_primeFactors.2 ⟨hr, (dvd_pow_self r two_ne_zero).trans hr2,
       hN⟩, ?_⟩⟩
     exact (hr.pow_dvd_iff_le_factorization hN).1 hr2
 

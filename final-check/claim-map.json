@@ -2125,7 +2125,7 @@
     "H1_holds"
    ],
    "relation": "exact",
-   "paper_sha256": "be80685c7b51517cabd9c5116e8b84982ddabea6018acf65ce0b7b142d5002de",
+   "paper_sha256": "77dcea196e432b2aea65e3acf5823b595652c8307699a8f42684e2b285e8a661",
    "lean_expected": {
     "theorem_closed": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 ≤ p ∧ 5 ≤ q ∧ Odd (p ^ 2 * q + 12) ∧ (p ^ 2 * q + 12).Coprime (6 * p * q) ∧ ¬IsSquare (p ^ 2 * q + 12) ∧ ¬Nat.Prime (p ^ 2 * q + 12) ∧ (∀ (r k : ℕ), Nat.Prime r → 2 ≤ k → p ^ 2 * q + 12 ≠ r ^ k) ∧ (∀ (r s : ℕ), Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r * s) ∧ (∀ (r s : ℕ), Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r ^ 2 * s ∧ p ^ 2 * q + 12 ≠ r * s ^ 2) ∧ (∀ (r s t : ℕ), Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → 2 * p ≤ r → 2 * p ≤ s → 2 * p ≤ t → p ^ 2 * q + 12 ≠ r * s * t) ∧ (∀ (r s t : ℕ), Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → p - 2 ∈ {r, s, t} → p ^ 2 * q + 12 ≠ r * s * t) ∧ p ≠ 2 ∧ p ≠ 3 ∧ q ≠ 2 ∧ q ≠ 3",
     "theorem28_holds": "P2qJumps.Theorem28",
@@ -2140,7 +2140,13 @@
     "H1_holds": "P2qJumps.H1"
    },
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
-   "note": "'hence N > p^4' is omega4_N_gt_p4; omega(N)>=4 with q<=10^6 is omega4_q_le_1e6; the PARI/Python runs are labeled external"
+   "note": "'hence N > p^4' is omega4_N_gt_p4; omega(N)>=4 with q<=10^6 is omega4_q_le_1e6; the PARI/Python runs are labeled external; stale 'keeps the kernel-checked bound n<=10^4' replaced by the kernel-checked q<=10^6 bound (2026-11-24)",
+   "reviewed_status_sentences": [
+    {
+     "sha256": "c65c9f460c9e76ae458892e745786c51ff3dad2cb6de5e3ad0ec4d42aa22f261",
+     "reason": "'not kernel-checked' is said of the external PARI search and the unfinished Python run, not of this theorem; their conclusion (omega(N)>=4 impossible for q<=10^6) is omega4_q_le_1e6"
+    }
+   ]
   },
   {
    "id": "nolabel:remark:768e45b1cc54",

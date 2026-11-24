@@ -286,6 +286,21 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.hensel_r_le_1e6
 #print axioms P2qJumps.r3s_r_le_1e6
 
+-- ω(N) ≥ 4 with q ≤ 10^6 (kernel certificates, P2qJumps/Omega4Q)
+#print axioms P2qJumps.Omega4Q.chkQ_sound
+#print axioms P2qJumps.Omega4Q.chkP_sound
+#print axioms P2qJumps.Omega4Q.chkQ_all
+#print axioms P2qJumps.omega4_q_le_1e6
+
+-- H2 for p < 10^6 (kernel certificates, P2qJumps/H2K)
+#print axioms P2qJumps.H2K.run_sound
+#print axioms P2qJumps.H2K.ref_sound_j1
+#print axioms P2qJumps.H2K.ref_sound_j2
+#print axioms P2qJumps.H2K.scan_sound
+#print axioms P2qJumps.H2K.good_upto
+#print axioms P2qJumps.h2_p_lt_1e6
+#print axioms P2qJumps.propC_p_lt_1e6
+
 -- 4-sort drift formalization (2026-11-23)
 #print axioms P2qJumps.coprime_of_prime_ge_five
 #print axioms P2qJumps.coprime6_r2st

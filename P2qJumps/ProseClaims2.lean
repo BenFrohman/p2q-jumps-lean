@@ -286,4 +286,100 @@ theorem F_even : ∀ x : ZMod 2, x = 1 →
 theorem quartic_gt_six (t : ℝ) : 6 < 4*t^4+4*t^3+11*t^2+6*t+7 := by
   nlinarith [sq_nonneg (t*(2*t+1)), sq_nonneg (t + 3/10)]
 
+/-- Paper `prop:A-pure`(g), second clause, as a set equality: the squares modulo `16` are exactly
+`0, 1, 4, 9`. -/
+theorem sq_mod16_exact :
+    ∀ y : ZMod 16, (∃ x : ZMod 16, x ^ 2 = y) ↔ (y = 0 ∨ y = 1 ∨ y = 4 ∨ y = 9) := by
+  decide
+
+/-- Paper `thm:rigid`(a), last sentence: for each `ρ ≥ 5` only finitely many integers `p ≥ 5`
+satisfy `D(p, ρ) ∣ C(ρ)`, with `D(p, ρ) = 2p^2 - 2pρ + ρ^2 - ρ` and
+`C(ρ) = (ρ - 3)(ρ^2 + 3ρ + 8)`. -/
+theorem rigid_finite_candidates (ρ : ℤ) (hρ : 5 ≤ ρ) :
+    {p : ℤ | 5 ≤ p ∧ (2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ) ∣ (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8)}.Finite := by
+  apply (Set.finite_Icc (5 : ℤ) ((ρ - 3) * (ρ ^ 2 + 3 * ρ + 8) + ρ)).subset
+  rintro p ⟨hp, hd⟩
+  have hD : 0 < 2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ := D_pos hp hρ
+  have hC : 0 < (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8) :=
+    mul_pos (by linarith) (by nlinarith)
+  have hle := Int.le_of_dvd hC hd
+  refine ⟨hp, ?_⟩
+  nlinarith [sq_nonneg (p - ρ), mul_nonneg (by linarith : (0 : ℤ) ≤ p) (by linarith : (0 : ℤ) ≤ p - 1)]
+
+/-- Paper `thm:rigid`(c), last sentence: on the offset families `r = p ± 2` (`p ≥ 5`) the
+expression for `σ = s + t` is negative. -/
+theorem r2st_offset_sigma_neg (p r : ℤ) (hp : 5 ≤ p) (hr : r = p + 2 ∨ r = p - 2) :
+    -((p : ℚ) ^ 3 - p ^ 2 * r - p ^ 2 + 2 * p * r ^ 3 + p * r ^ 2 - 2 * p * r + r ^ 3 - r ^ 2 - 12)
+      / ((r : ℚ) * (p * r + 2 * p - r ^ 2 + r)) < 0 := by
+  obtain ⟨a, rfl⟩ : ∃ a : ℕ, p = 5 + a := ⟨(p - 5).toNat, by omega⟩
+  have ha : (0 : ℚ) ≤ a := by positivity
+  have ha2 : (0 : ℚ) ≤ (a : ℚ) ^ 2 := by positivity
+  have ha3 : (0 : ℚ) ≤ (a : ℚ) ^ 3 := by positivity
+  have ha4 : (0 : ℚ) ≤ (a : ℚ) ^ 4 := by positivity
+  rcases hr with rfl | rfl <;> push_cast <;> apply div_neg_of_neg_of_pos <;> nlinarith
+
+/-- `hyp:R1`, converse direction: data of the shape in Hypothesis R1 give an actual `rst`
+solution of the jumps. Let `p ≠ q` be primes and `ρ, s, t` pairwise distinct primes with
+`(q - ρ) D(p, ρ) = C(ρ)` (that is, `q = ρ + C(ρ)/D(p, ρ)`, eq. `qCD`), `s + t = V - ρ` with
+`V = p + (q + 1)/2`, and `ρ s t = N = p^2 q + 12` (so `s, t` are the roots of
+`X^2 - (V - ρ) X + N/ρ`). Then `N = ρ s t` and both jumps hold at `n = p^2 q`. -/
+theorem hypR1_data_gives_jumps {p q ρ s t : ℕ} (hp : p.Prime) (hq : q.Prime) (hρ : ρ.Prime)
+    (hs : s.Prime) (ht : t.Prime) (hpq : p ≠ q) (hρs : ρ ≠ s) (hρt : ρ ≠ t) (hst : s ≠ t)
+    (hC : ((q : ℤ) - ρ) * (2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ) = (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8))
+    (hsum : 2 * ((s : ℤ) + t) = 2 * p + q + 1 - 2 * ρ)
+    (hprod : (ρ : ℤ) * (s * t) = p ^ 2 * q + 12) :
+    p ^ 2 * q + 12 = ρ * s * t ∧ Jumps (p ^ 2 * q) := by
+  have hN : p ^ 2 * q + 12 = ρ * s * t := by
+    have h : ((p ^ 2 * q + 12 : ℕ) : ℤ) = ((ρ * s * t : ℕ) : ℤ) := by
+      push_cast
+      linear_combination -hprod
+    exact_mod_cast h
+  have hE : 2 * (ρ : ℤ) * (ρ * (s + t) + s * t) = ρ * (2 * p ^ 2 + 2 * p * q + q - 1) := by
+    linear_combination (ρ : ℤ) ^ 2 * hsum + 2 * hprod + hC
+  have hρ0 : (ρ : ℤ) ≠ 0 := by exact_mod_cast hρ.ne_zero
+  have hE2 : 2 * ((ρ : ℤ) * (s + t) + s * t) = 2 * p ^ 2 + 2 * p * q + q - 1 :=
+    mul_left_cancel₀ hρ0 (by linear_combination hE)
+  have c1 : ρ.Coprime s := (Nat.coprime_primes hρ hs).2 hρs
+  have c2 : (ρ * s).Coprime t :=
+    Nat.coprime_mul_iff_left.2 ⟨(Nat.coprime_primes hρ ht).2 hρt, (Nat.coprime_primes hs ht).2 hst⟩
+  have hφN : (φ (ρ * s * t) : ℤ) = (ρ - 1) * (s - 1) * (t - 1) := by
+    rw [Nat.totient_mul c2, Nat.totient_mul c1, Nat.totient_prime hρ, Nat.totient_prime hs,
+      Nat.totient_prime ht]
+    push_cast [hρ.one_le, hs.one_le, ht.one_le]
+    ring
+  have hσN : (σ 1 (ρ * s * t) : ℤ) = (ρ + 1) * (s + 1) * (t + 1) := by
+    rw [isMultiplicative_sigma.map_mul_of_coprime c2, isMultiplicative_sigma.map_mul_of_coprime c1,
+      sigma_one_prime' hρ, sigma_one_prime' hs, sigma_one_prime' ht]
+    push_cast
+    ring
+  obtain ⟨hφn, hσn⟩ := totient_sigma_p2q hp hq hpq
+  refine ⟨hN, ?_⟩
+  unfold Jumps
+  constructor
+  · have h : (φ (p ^ 2 * q + 12) : ℤ) = (φ (p ^ 2 * q) : ℤ) + 12 := by
+      rw [hN, hφN, hφn]
+      have h2 : 2 * (((ρ : ℤ) - 1) * (s - 1) * (t - 1)) =
+          2 * ((p : ℤ) * (p - 1) * (q - 1) + 12) := by
+        linear_combination 2 * hprod - hE2 + hsum
+      linarith
+    exact_mod_cast h
+  · have h : (σ 1 (p ^ 2 * q + 12) : ℤ) = (σ 1 (p ^ 2 * q) : ℤ) + 12 := by
+      rw [hN, hσN, hσn]
+      have h2 : 2 * (((ρ : ℤ) + 1) * (s + 1) * (t + 1)) =
+          2 * (((p : ℤ) ^ 2 + p + 1) * (q + 1) + 12) := by
+        linear_combination 2 * hprod + hE2 + hsum
+      linarith
+    exact_mod_cast h
+
+/-- `hyp:R1` (discharged by `thm:R1`): there are no such data. With `V = p + (q + 1)/2` and
+`N = p^2 q + 12`, there are no primes `p ≠ q` and pairwise distinct primes `ρ, s, t` with
+`q = ρ + C(ρ)/D(p, ρ)` and `X^2 - (V - ρ) X + N/ρ = (X - s)(X - t)`. -/
+theorem hypR1_holds {p q ρ s t : ℕ} (hp : p.Prime) (hq : q.Prime) (hρ : ρ.Prime)
+    (hs : s.Prime) (ht : t.Prime) (hpq : p ≠ q) (hρs : ρ ≠ s) (hρt : ρ ≠ t) (hst : s ≠ t)
+    (hC : ((q : ℤ) - ρ) * (2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ) = (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8))
+    (hsum : 2 * ((s : ℤ) + t) = 2 * p + q + 1 - 2 * ρ)
+    (hprod : (ρ : ℤ) * (s * t) = p ^ 2 * q + 12) : False := by
+  obtain ⟨hN, hJ⟩ := hypR1_data_gives_jumps hp hq hρ hs ht hpq hρs hρt hst hC hsum hprod
+  exact rst_false hp hq hρ hs ht hpq hρs hρt hst hJ hN
+
 end P2qJumps

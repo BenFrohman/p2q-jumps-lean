@@ -48,7 +48,7 @@
    "lean_expected": {
     "P2qJumps.Semantics.theorem_L": "P2qJumps.Semantics.paper_claim"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "theorem_L : paper_claim; paper_claim is the locked transcription of paper/theorem-L.tex (Truth Gate, verify-lock.sh)"
   },
   {
@@ -65,7 +65,7 @@
    "lean_expected": {
     "P2qJumps.Semantics2.theorem_L2": "P2qJumps.Semantics2.paper_claim2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "theorem_L2 : paper_claim2; locked transcription of paper/theorem-L2.tex"
   },
   {
@@ -86,7 +86,7 @@
     "totient_sigma_r2st": "∀ {r s t : ℕ}, Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → ↑(r ^ 2 * s * t).totient = ↑r * (↑r - 1) * (↑s - 1) * (↑t - 1) ∧ ↑((ArithmeticFunction.sigma 1) (r ^ 2 * s * t)) = (↑r ^ 2 + ↑r + 1) * (↑s + 1) * (↑t + 1)",
     "totient_sigma_r3s": "∀ {r s : ℕ}, Nat.Prime r → Nat.Prime s → r ≠ s → ↑(r ^ 3 * s).totient = ↑r ^ 2 * (↑r - 1) * (↑s - 1) ∧ ↑((ArithmeticFunction.sigma 1) (r ^ 3 * s)) = (↑r ^ 3 + ↑r ^ 2 + ↑r + 1) * (↑s + 1)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "three lemmas, same hypotheses (distinct primes), integer identities"
   },
   {
@@ -103,7 +103,7 @@
    "lean_expected": {
     "jumps_p2q_int": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ↑(p ^ 2 * q + 12).totient = ↑p * (↑p - 1) * (↑q - 1) + 12 ∧ ↑((ArithmeticFunction.sigma 1) (p ^ 2 * q + 12)) = (↑p ^ 2 + ↑p + 1) * (↑q + 1) + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -120,7 +120,7 @@
    "lean_expected": {
     "p_ge_five_of_dvd": "∀ {p q N : ℕ}, Nat.Prime p → p ^ 2 * q + 12 = N → ¬2 ∣ N → ¬3 ∣ N → 5 ≤ p ∧ ¬p ∣ N"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "p prime from the Part A setting"
   },
   {
@@ -141,7 +141,7 @@
     "P2qJumps.coprime6_r2st": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime r → Nat.Prime s → Nat.Prime t → 5 ≤ r → 5 ≤ s → 5 ≤ t → p ^ 2 * q + 12 = r ^ 2 * s * t → ¬2 ∣ p ^ 2 * q + 12 ∧ ¬3 ∣ p ^ 2 * q + 12 ∧ 5 ≤ p ∧ ¬p ∣ p ^ 2 * q + 12",
     "P2qJumps.coprime6_r3s": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime r → Nat.Prime s → 5 ≤ r → 5 ≤ s → p ^ 2 * q + 12 = r ^ 3 * s → ¬2 ∣ p ^ 2 * q + 12 ∧ ¬3 ∣ p ^ 2 * q + 12 ∧ 5 ≤ p ∧ ¬p ∣ p ^ 2 * q + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "the 'Consequently' sentence is coprime6_r2st / coprime6_r3s"
   },
   {
@@ -158,7 +158,7 @@
    "lean_expected": {
     "P2qJumps.totient_add_div_le": "∀ {m r : ℕ}, Nat.Prime r → r ∣ m → m.totient + m / r ≤ m"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "m/r is natural division in both"
   },
   {
@@ -175,7 +175,7 @@
    "lean_expected": {
     "P2qJumps.composite_small_A": "∀ {m d : ℕ}, 1 < m → ¬Nat.Prime m → m ≤ m.totient + d → m.minFac * m.minFac ≤ m ∧ m < m.minFac * (d + 1)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "least prime factor = Nat.minFac"
   },
   {
@@ -192,7 +192,7 @@
    "lean_expected": {
     "P2qJumps.preamble": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 ≤ p ∧ 5 ≤ q ∧ Odd (p ^ 2 * q + 12) ∧ ¬IsSquare (p ^ 2 * q + 12) ∧ (p ^ 2 * q + 12).Coprime (6 * p * q)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -209,7 +209,7 @@
    "lean_expected": {
     "P2qJumps.N_not_prime": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬Nat.Prime (p ^ 2 * q + 12)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -226,7 +226,7 @@
    "lean_expected": {
     "P2qJumps.N_ne_rs": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -245,7 +245,7 @@
     "theorem28_discriminant": "∀ (p q r s t : ℕ), Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r * s * t",
     "theorem28_holds": "P2qJumps.Theorem28"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "theorem28_discriminant states N != rst with no lower bound on r,s,t"
   },
   {
@@ -262,7 +262,7 @@
    "lean_expected": {
     "r2st_reduction": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → 5 ≤ r → 5 ≤ s → 5 ≤ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 2 * s * t → r = p + 4 ∧ (↑p + 4) ^ 2 * (↑p + 12) ^ 2 * (↑s - ↑t) ^ 2 = 2 * P2qJumps.F8 ↑p"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "F(p) displayed = def F8 (R2ST.lean:48) term by term; F8 itself is a definition and is not listed as a proof"
   },
   {
@@ -279,7 +279,7 @@
    "lean_expected": {
     "P2qJumps.r2st_bound": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → 5 ≤ r → 5 ≤ s → 5 ≤ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 2 * s * t → r = p + 4 ∧ 10000 < p"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -296,7 +296,7 @@
    "lean_expected": {
     "P2qJumps.r2st_empty": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → 5 ≤ r → 5 ≤ s → 5 ≤ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ 2 * s * t"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -326,7 +326,7 @@
    "lean_expected": {
     "r3s_reduction": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → 5 ≤ r → 5 ≤ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 3 * s → p < r ∧ ↑r ^ 2 ∣ P2qJumps.Lpoly ↑p"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "L(p) = Lpoly p = p^3-p^2-12"
   },
   {
@@ -343,7 +343,7 @@
    "lean_expected": {
     "P2qJumps.r3s_bound": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → 5 ≤ r → 5 ≤ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 3 * s → p < r ∧ ↑r ^ 2 ∣ P2qJumps.Lpoly ↑p ∧ 10000 < p"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -360,7 +360,7 @@
    "lean_expected": {
     "no_jumps_p2q_le_10000": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → p ^ 2 * q ≤ 10000 → ¬P2qJumps.Jumps (p ^ 2 * q)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -377,7 +377,7 @@
    "lean_expected": {
     "P2qJumps.two_mul_le_sigma_add_totient": "∀ {M : ℕ}, M ≠ 0 → 2 * M ≤ (ArithmeticFunction.sigma 1) M + M.totient"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "M>=1 vs M != 0 over N"
   },
   {
@@ -394,7 +394,7 @@
    "lean_expected": {
     "P2qJumps.delta_pair": "∀ {N a b : ℕ}, N ≠ 0 → Nat.Prime a → Nat.Prime b → a ≠ b → a ∣ N → b ∣ N → 2 * ↑N ≤ (↑((ArithmeticFunction.sigma 1) N) + ↑N.totient - 2 * ↑N) * (↑a * ↑b)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "delta(N) = sigma(N)+phi(N)-2N (paper line 474)"
   },
   {
@@ -411,7 +411,7 @@
    "lean_expected": {
     "P2qJumps.four_primes_delta_sq": "∀ {N a b c d : ℕ}, N ≠ 0 → Nat.Prime a → Nat.Prime b → Nat.Prime c → Nat.Prime d → a ≠ b → a ≠ c → a ≠ d → b ≠ c → b ≠ d → c ≠ d → a ∣ N → b ∣ N → c ∣ N → d ∣ N → 4 * ↑N ≤ (↑((ArithmeticFunction.sigma 1) N) + ↑N.totient - 2 * ↑N) ^ 2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -430,7 +430,7 @@
     "P2qJumps.omega4_constraints": "∀ {p q a b c d : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime a → Nat.Prime b → Nat.Prime c → Nat.Prime d → a ≠ b → a ≠ c → a ≠ d → b ≠ c → b ≠ d → c ≠ d → a ∣ p ^ 2 * q + 12 → b ∣ p ^ 2 * q + 12 → c ∣ p ^ 2 * q + 12 → d ∣ p ^ 2 * q + 12 → 3 * p ^ 2 ≤ q ∧ ∀ (r : ℕ), Nat.Prime r → r ∣ p ^ 2 * q + 12 → p < r",
     "P2qJumps.omega4_N_gt_p4": "∀ {p q a b c d : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime a → Nat.Prime b → Nat.Prime c → Nat.Prime d → a ≠ b → a ≠ c → a ≠ d → b ≠ c → b ≠ d → c ≠ d → a ∣ p ^ 2 * q + 12 → b ∣ p ^ 2 * q + 12 → c ∣ p ^ 2 * q + 12 → d ∣ p ^ 2 * q + 12 → p ^ 4 < p ^ 2 * q + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "'In particular N > p^4' is omega4_N_gt_p4"
   },
   {
@@ -460,7 +460,7 @@
    "lean_expected": {
     "P2qJumps.r3s_empty": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ 3 * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -490,7 +490,7 @@
    "lean_expected": {
     "P2qJumps.N_ne_prime_pow": "∀ {p q r k : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → p ≠ q → 1 ≤ k → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ k"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -507,7 +507,7 @@
    "lean_expected": {
     "P2qJumps.N_ne_ras": "∀ {p q r s a : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → 2 ≤ a → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ a * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -537,7 +537,7 @@
    "lean_expected": {
     "P2qJumps.r3st_empty": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ 3 * s * t"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -554,7 +554,7 @@
    "lean_expected": {
     "P2qJumps.two_le_omega": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 2 ≤ (p ^ 2 * q + 12).primeFactors.card"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "omega(N) = card of primeFactors"
   },
   {
@@ -581,7 +581,7 @@
     "P2qExtensions.repeated_prime_bound": "∀ {p q r : ℕ}, P2qStructural.Jump p q → Nat.Prime r → r ^ 2 ∣ p ^ 2 * q + 12 → ↑(p ^ 2 * q + 12) ≤ ↑r ^ 2 * (↑q + 2 * ↑p + 1)",
     "P2qJumps.lemmaL1_terms_nonneg": "∀ (x : ℕ), ∀ e ∈ x.divisorsAntidiagonal.erase (1, x), 0 ≤ (1 + ArithmeticFunction.moebius e.1) * ↑e.2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "(a) every term >= 0 for every x is lemmaL1_terms_nonneg"
   },
   {
@@ -602,7 +602,7 @@
     "P2qJumps.lemmaK": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ↑((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12)) ∣ ↑p ^ 3 - ↑p ^ 2 - 12",
     "P2qJumps.pow_dvd_K": "∀ {N r e : ℕ}, N ≠ 0 → Nat.Prime r → r ^ (e + 1) ∣ N → r ^ e ∣ N / P2qStructural.rad N"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "lemmaK_param states it under the jumps alone (5 <= p from preamble)"
   },
   {
@@ -621,7 +621,7 @@
     "P2qJumps.theoremB": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → (∀ ℓ ∈ (p ^ 2 * q + 12).primeFactors, ℓ ^ 2 ∣ p ^ 2 * q + 12) → 2 ≤ (p ^ 2 * q + 12).primeFactors.card → False",
     "P2qJumps.N_not_powerful": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬∀ ℓ ∈ (p ^ 2 * q + 12).primeFactors, ℓ ^ 2 ∣ p ^ 2 * q + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "powerful = every prime factor squared divides N"
   },
   {
@@ -652,7 +652,7 @@
     "P2qJumps.theoremE_iv_sqrt": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 * ↑p ^ 2 - 4 * ↑p - 3 < ↑q → √(↑p ^ 3 - ↑p ^ 2 - 12) < ↑(p ^ 2 * q + 12) / (↑q + 2 * ↑p + 1)",
     "P2qJumps.theoremE_v": "∀ {p q r : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime r → r ^ 3 ∣ p ^ 2 * q + 12 → ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "(i)-(v) clause by clause; the N/delta > sqrt(L(p)) clause of (iv) is theoremE_iv_sqrt under q > 5p^2-4p-3, which (ii) supplies under the hypotheses of (ii)"
   },
   {
@@ -671,7 +671,7 @@
     "P2qJumps.theoremD": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Squarefree (p ^ 2 * q + 12) → 4 ≤ (p ^ 2 * q + 12).primeFactors.card → p ^ 2 * ((p ^ 2 * q + 12).primeFactors.card ^ 2 - (p ^ 2 * q + 12).primeFactors.card - 1) ^ 2 ≤ q ∧ 121 * p ^ 2 ≤ p ^ 2 * ((p ^ 2 * q + 12).primeFactors.card ^ 2 - (p ^ 2 * q + 12).primeFactors.card - 1) ^ 2 ∧ p ≤ (p ^ 2 * q + 12).primeFactors.card",
     "P2qJumps.theoremD_four": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Squarefree (p ^ 2 * q + 12) → (p ^ 2 * q + 12).primeFactors.card = 4 → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -688,7 +688,7 @@
    "lean_expected": {
     "P2qJumps.corollaryF1": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Squarefree (p ^ 2 * q + 12) → 4 ≤ (p ^ 2 * q + 12).primeFactors.card → p = 7 ∧ 7 ≤ (p ^ 2 * q + 12).primeFactors.card ∧ (p ^ 2 * q + 12).primeFactors.card ≤ 9"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -705,7 +705,7 @@
    "lean_expected": {
     "P2qJumps.omega4_five_not_dvd": "∀ {p q a b c d : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime a → Nat.Prime b → Nat.Prime c → Nat.Prime d → a ≠ b → a ≠ c → a ≠ d → b ≠ c → b ≠ d → c ≠ d → a ∣ p ^ 2 * q + 12 → b ∣ p ^ 2 * q + 12 → c ∣ p ^ 2 * q + 12 → d ∣ p ^ 2 * q + 12 → ¬5 ∣ p ^ 2 * q + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -724,7 +724,7 @@
     "P2qJumps.jumps_iff_AB": "∀ (n : ℕ), P2qJumps.Jumps n ↔ ↑(n + 12) - ↑(n + 12).totient = ↑n - ↑n.totient ∧ ↑((ArithmeticFunction.sigma 1) (n + 12)) - ↑(n + 12) = ↑((ArithmeticFunction.sigma 1) n) - ↑n",
     "P2qJumps.jumps_delta": "∀ (n : ℕ), P2qJumps.Jumps n → ↑((ArithmeticFunction.sigma 1) (n + 12)) + ↑(n + 12).totient - 2 * ↑(n + 12) = ↑((ArithmeticFunction.sigma 1) n) + ↑n.totient - 2 * ↑n"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "A(m)=m-phi(m), B(m)=sigma(m)-m"
   },
   {
@@ -741,7 +741,7 @@
    "lean_expected": {
     "P2qJumps.AB_p2q": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → ↑(p ^ 2 * q) - ↑(p ^ 2 * q).totient = ↑p * (↑p + ↑q - 1) ∧ ↑((ArithmeticFunction.sigma 1) (p ^ 2 * q)) - ↑(p ^ 2 * q) = (1 + ↑p) * (1 + ↑q) + ↑p ^ 2 ∧ ↑((ArithmeticFunction.sigma 1) (p ^ 2 * q)) + ↑(p ^ 2 * q).totient - 2 * ↑(p ^ 2 * q) = 2 * ↑p + ↑q + 1"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -762,7 +762,7 @@
     "P2qJumps.cot_le": "∀ {m : ℕ}, 1 < m → m / m.minFac ≤ m - m.totient",
     "P2qJumps.cot_eq_iff": "∀ {m : ℕ}, 1 < m → (m - m.totient = m / m.minFac ↔ ∃ k, m = m.minFac ^ k)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -779,7 +779,7 @@
    "lean_expected": {
     "P2qJumps.radical_scaling": "∀ (N : ℕ), N.totient = N / P2qStructural.rad N * (P2qStructural.rad N).totient ∧ N - N.totient = N / P2qStructural.rad N * (P2qStructural.rad N - (P2qStructural.rad N).totient)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "A(N)=N-phi(N); K=N/rad N"
   },
   {
@@ -798,7 +798,7 @@
     "P2qJumps.lemmaG_gcd": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ↑((p ^ 2 * q + 12).totient.gcd ((ArithmeticFunction.sigma 1) (p ^ 2 * q + 12))) ∣ 2 * (↑p ^ 4 - 13 * ↑p - 6)",
     "P2qJumps.T_pos": "∀ {p : ℤ}, 5 ≤ p → 0 < p ^ 4 - 13 * p - 6"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "T(p)=p^4-13p-6"
   },
   {
@@ -819,7 +819,7 @@
     "P2qJumps.twist_r_bound": "∀ {p r : ℤ}, 5 ≤ p → r ^ 2 ∣ p ^ 3 - p ^ 2 - 12 → r ^ 2 < p ^ 3",
     "P2qJumps.twist_link_congr": "∀ {p r s : ℤ}, Prime p → ¬p ∣ r → p ∣ r ^ 2 * (r + s - 1) → p ∣ r ^ 3 * s - 12 → p ∣ r + s - 1 ∧ p ∣ r ^ 4 - r ^ 3 + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -838,7 +838,7 @@
     "P2qJumps.div_gcd_totient_dvd_rad": "∀ {N : ℕ}, N ≠ 0 → N / N.gcd N.totient ∣ P2qStructural.rad N",
     "P2qJumps.rad_ne_div_gcd_totient": "P2qStructural.rad 12 = 6 ∧ 12 / Nat.gcd 12 (Nat.totient 12) = 3"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -887,7 +887,7 @@
     "P2qJumps.quartic_gt_six": "∀ (t : ℝ), 6 < 4 * t ^ 4 + 4 * t ^ 3 + 11 * t ^ 2 + 6 * t + 7",
     "P2qJumps.sq_mod16_exact": "∀ (y : ZMod 16), (∃ x, x ^ 2 = y) ↔ y = 0 ∨ y = 1 ∨ y = 4 ∨ y = 9"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "(g) the squares modulo 16 are exactly 0,1,4,9: sq_mod16_exact"
   },
   {
@@ -930,7 +930,7 @@
     "P2qJumps.rigid_finite_candidates": "∀ (ρ : ℤ), 5 ≤ ρ → {p | 5 ≤ p ∧ 2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ ∣ (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8)}.Finite",
     "P2qJumps.r2st_offset_sigma_neg": "∀ (p r : ℤ), 5 ≤ p → r = p + 2 ∨ r = p - 2 → -(↑p ^ 3 - ↑p ^ 2 * ↑r - ↑p ^ 2 + 2 * ↑p * ↑r ^ 3 + ↑p * ↑r ^ 2 - 2 * ↑p * ↑r + ↑r ^ 3 - ↑r ^ 2 - 12) / (↑r * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) < 0"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "non-vacuous sentences of thm:rigid(a),(c): rigid_finite_candidates, r2st_offset_sigma_neg"
   },
   {
@@ -947,7 +947,7 @@
    "lean_expected": {
     "P2qJumps.theoremE_shapes": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → (∃ r, Nat.Prime r ∧ r ^ 2 ∣ p ^ 2 * q + 12) → (∃ r V, Nat.Prime r ∧ Squarefree V ∧ r.Coprime V ∧ 2 ≤ V.primeFactors.card ∧ (p ^ 2 * q + 12 = r ^ 2 * V ∨ p ^ 2 * q + 12 = r ^ 3 * V)) ∨ ∃ r₁ r₂ V, Nat.Prime r₁ ∧ Nat.Prime r₂ ∧ r₁ ≠ r₂ ∧ Squarefree V ∧ (r₁ * r₂).Coprime V ∧ 1 ≤ V.primeFactors.card ∧ p ^ 2 * q + 12 = r₁ ^ 2 * r₂ ^ 2 * V ∧ ↑(r₁ * r₂) ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ 5 * ↑p ^ 2 - 4 * ↑p - 3 < ↑q"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -977,7 +977,7 @@
    "lean_expected": {
     "P2qJumps.propC_K": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → (∃ r, Nat.Prime r ∧ r ^ 2 ∣ p ^ 2 * q + 12) → 1 < (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) ∧ ↑((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12)) ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ ((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12)).Coprime (6 * p)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1"
   },
   {
@@ -994,7 +994,7 @@
    "lean_expected": {
     "P2qJumps.propC_j1": "∀ {p q M s : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime s → M.Coprime s → p ^ 2 * q + 12 = M * s → (↑M * ↑s - ↑p ^ 2 * ↑q = 12 ∧ ↑M.totient * ↑s - ↑p * (↑p - 1) * ↑q = ↑M.totient - ↑p * (↑p - 1) + 12 ∧ ↑((ArithmeticFunction.sigma 1) M) * ↑s - (↑p ^ 2 + ↑p + 1) * ↑q = ↑p ^ 2 + ↑p + 1 + 12 - ↑((ArithmeticFunction.sigma 1) M)) ∧ ↑p ^ 2 * ↑M.totient - ↑p * (↑p - 1) * ↑M ≠ 0 ∧ ∀ (x y : ℚ), ↑M * x - ↑p ^ 2 * y = 12 → ↑M.totient * x - ↑p * (↑p - 1) * y = ↑M.totient - ↑p * (↑p - 1) + 12 → x = ↑s ∧ y = ↑q"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1; determinant and unique rational solution clause by clause"
   },
   {
@@ -1011,7 +1011,7 @@
    "lean_expected": {
     "P2qJumps.propC_j2": "∀ {p q M s t : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime s → Nat.Prime t → s ≠ t → M.Coprime (s * t) → p ^ 2 * q + 12 = M * s * t → (↑M * (↑s * ↑t) - ↑p ^ 2 * ↑q = 12 ∧ ↑M.totient * (↑s * ↑t) - ↑M.totient * (↑s + ↑t) - ↑p * (↑p - 1) * ↑q = 12 - ↑p * (↑p - 1) - ↑M.totient ∧ ↑((ArithmeticFunction.sigma 1) M) * (↑s * ↑t) + ↑((ArithmeticFunction.sigma 1) M) * (↑s + ↑t) - (↑p ^ 2 + ↑p + 1) * ↑q = ↑p ^ 2 + ↑p + 1 + 12 - ↑((ArithmeticFunction.sigma 1) M)) ∧ ↑M * (↑p * (↑p - 1) * ↑((ArithmeticFunction.sigma 1) M) + (↑p ^ 2 + ↑p + 1) * ↑M.totient) - 2 * ↑p ^ 2 * ↑M.totient * ↑((ArithmeticFunction.sigma 1) M) ≠ 0 ∧ ∀ (x S P : ℚ), ↑M * P - ↑p ^ 2 * x = 12 → ↑M.totient * P - ↑M.totient * S - ↑p * (↑p - 1) * x = 12 - ↑p * (↑p - 1) - ↑M.totient → ↑((ArithmeticFunction.sigma 1) M) * P + ↑((ArithmeticFunction.sigma 1) M) * S - (↑p ^ 2 + ↑p + 1) * x = ↑p ^ 2 + ↑p + 1 + 12 - ↑((ArithmeticFunction.sigma 1) M) → x = ↑q ∧ S = ↑s + ↑t ∧ P = ↑s * ↑t"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Delta = M(ag+bf)-2p^2 fg with the same f,a,g,b; unknowns (q,S,Pi)"
   },
   {
@@ -1030,7 +1030,7 @@
     "P2qJumps.prop_implies_corrected": "P2qJumps.Conjecture3 ↔ P2qJumps.H1 ∧ P2qJumps.H2 ∧ P2qJumps.H3",
     "P2qJumps.implies_corrected_of_H1": "P2qJumps.H1 → (P2qJumps.Conjecture3 ↔ P2qJumps.H2 ∧ P2qJumps.H3)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1049,7 +1049,7 @@
     "P2qJumps.omega4_or_r2s2t": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 4 ≤ (p ^ 2 * q + 12).primeFactors.card ∨ ∃ r s t, Nat.Prime r ∧ Nat.Prime s ∧ Nat.Prime t ∧ r ≠ s ∧ r ≠ t ∧ s ≠ t ∧ p ^ 2 * q + 12 = r ^ 2 * s ^ 2 * t",
     "P2qJumps.threeRegimes_iff_r2s2t": "P2qJumps.ThreeRegimes ↔ P2qJumps.R2S2TEmpty"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "ThreeRegimes and R2S2TEmpty as defined in ThreeRegimes.lean",
    "reviewed_status_sentences": [
     {
@@ -1087,7 +1087,7 @@
     "P2qJumps.p7_identities": "∀ {q : ℕ}, Nat.Prime q → q ≠ 7 → P2qJumps.Jumps (7 ^ 2 * q) → ↑(7 ^ 2 * q + 12).totient = 42 * ↑q - 30 ∧ ↑((ArithmeticFunction.sigma 1) (7 ^ 2 * q + 12)) = 57 * ↑q + 69 ∧ 7 * ↑(7 ^ 2 * q + 12).totient = 6 * ↑(7 ^ 2 * q + 12) - 282 ∧ 49 * ↑((ArithmeticFunction.sigma 1) (7 ^ 2 * q + 12)) = 57 * ↑(7 ^ 2 * q + 12) + 2697 ∧ 42 * ↑((ArithmeticFunction.sigma 1) (7 ^ 2 * q + 12)) - 57 * ↑(7 ^ 2 * q + 12).totient = 4608 ∧ 343 * ↑(7 ^ 2 * q + 12).totient * ↑((ArithmeticFunction.sigma 1) (7 ^ 2 * q + 12)) = 342 * ↑(7 ^ 2 * q + 12) ^ 2 + 108 * ↑(7 ^ 2 * q + 12) - 760554",
     "P2qJumps.p7_mod": "∀ {q : ℕ}, Nat.Prime q → q ≠ 7 → P2qJumps.Jumps (7 ^ 2 * q) → (7 ^ 2 * q + 12) % 7 = 5 ∧ (7 ^ 2 * q + 12).totient % 7 = 5 ∧ ¬7 ∣ (7 ^ 2 * q + 12).totient"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1104,7 +1104,7 @@
    "lean_expected": {
     "P2qJumps.p7_omega4_ge11": "∀ {q a b c d : ℕ}, Nat.Prime q → q ≠ 7 → P2qJumps.Jumps (7 ^ 2 * q) → Nat.Prime a → Nat.Prime b → Nat.Prime c → Nat.Prime d → a ≠ b → a ≠ c → a ≠ d → b ≠ c → b ≠ d → c ≠ d → a ∣ 7 ^ 2 * q + 12 → b ∣ 7 ^ 2 * q + 12 → c ∣ 7 ^ 2 * q + 12 → d ∣ 7 ^ 2 * q + 12 → (∀ (r : ℕ), Nat.Prime r → r ∣ 7 ^ 2 * q + 12 → 11 ≤ r) ∧ ¬5 ∣ 7 ^ 2 * q + 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1125,7 +1125,7 @@
     "P2qJumps.p7_prune_threshold": "872 < 11 * 13 * 17",
     "P2qJumps.p7_prefix_no_completion": "∀ {q b : ℕ} (S : Finset ℕ), Nat.Prime q → q ≠ 7 → P2qJumps.Jumps (7 ^ 2 * q) → (∀ r ∈ S, Nat.Prime r ∧ 11 ≤ r ∧ ¬r ∣ b) → 3 ≤ S.card → 7 ^ 2 * q + 12 = b * ∏ r ∈ S, r → 342 * ↑b ^ 2 - 343 * ↑b.totient * ↑((ArithmeticFunction.sigma 1) b) < 1"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "the concluding sentence is p7_prefix_no_completion"
   },
   {
@@ -1144,7 +1144,7 @@
     "p7_squarefree_empty": "∀ {q : ℕ}, Nat.Prime q → q ≠ 7 → P2qJumps.Jumps (7 ^ 2 * q) → Squarefree (7 ^ 2 * q + 12) → 7 ≤ (7 ^ 2 * q + 12).primeFactors.card → (7 ^ 2 * q + 12).primeFactors.card ≤ 9 → False",
     "p7_squarefree_7_8_9": "∀ (q : ℕ), Nat.Prime q → q ≠ 7 → 5 ≤ q → (49 * q + 12).totient = (49 * q).totient + 12 → (ArithmeticFunction.sigma 1) (49 * q + 12) = (ArithmeticFunction.sigma 1) (49 * q) + 12 → Squarefree (49 * q + 12) → (49 * q + 12).primeFactors.card = 7 ∨ (49 * q + 12).primeFactors.card = 8 ∨ (49 * q + 12).primeFactors.card = 9 → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "p7_squarefree_empty: 7 <= omega <= 9 -> False"
   },
   {
@@ -1165,7 +1165,7 @@
     "H1_holds": "P2qJumps.H1",
     "P2qJumps.conjecture_iff_H2_H3": "P2qJumps.Conjecture3 ↔ P2qJumps.H2 ∧ P2qJumps.H3"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1186,7 +1186,7 @@
     "rst_balanced": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → r < 2 * p ∨ s < 2 * p ∨ t < 2 * p",
     "rst_off": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → ∀ (d : ℤ), d = 2 ∨ d = 4 ∨ d = 6 ∨ d = 8 → ↑ρ ≠ ↑p + d ∧ ↑ρ ≠ ↑p - d"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "items 1-6 and the closing sentence are conjuncts of theorem_closed"
   },
   {
@@ -1217,7 +1217,7 @@
     "P2qJumps.rigid_finite_candidates": "∀ (ρ : ℤ), 5 ≤ ρ → {p | 5 ≤ p ∧ 2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ ∣ (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8)}.Finite",
     "P2qJumps.r2st_offset_sigma_neg": "∀ (p r : ℤ), 5 ≤ p → r = p + 2 ∨ r = p - 2 → -(↑p ^ 3 - ↑p ^ 2 * ↑r - ↑p ^ 2 + 2 * ↑p * ↑r ^ 3 + ↑p * ↑r ^ 2 - 2 * ↑p * ↑r + ↑r ^ 3 - ↑r ^ 2 - 12) / (↑r * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) < 0"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1249,7 +1249,7 @@
     "jumps_iff_AB": "∀ (n : ℕ), P2qJumps.Jumps n ↔ ↑(n + 12) - ↑(n + 12).totient = ↑n - ↑n.totient ∧ ↑((ArithmeticFunction.sigma 1) (n + 12)) - ↑(n + 12) = ↑((ArithmeticFunction.sigma 1) n) - ↑n",
     "jumps_delta": "∀ (n : ℕ), P2qJumps.Jumps n → ↑((ArithmeticFunction.sigma 1) (n + 12)) + ↑(n + 12).totient - 2 * ↑(n + 12) = ↑((ArithmeticFunction.sigma 1) n) + ↑n.totient - 2 * ↑n"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "corrected: jumps <-> (A,B equal) and jumps -> delta equal; the converse fails (remark, delta_eq_not_jumps_63)"
   },
   {
@@ -1266,7 +1266,7 @@
    "lean_expected": {
     "AB_p2q": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → ↑(p ^ 2 * q) - ↑(p ^ 2 * q).totient = ↑p * (↑p + ↑q - 1) ∧ ↑((ArithmeticFunction.sigma 1) (p ^ 2 * q)) - ↑(p ^ 2 * q) = (1 + ↑p) * (1 + ↑q) + ↑p ^ 2 ∧ ↑((ArithmeticFunction.sigma 1) (p ^ 2 * q)) + ↑(p ^ 2 * q).totient - 2 * ↑(p ^ 2 * q) = 2 * ↑p + ↑q + 1"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1285,7 +1285,7 @@
     "cot_le": "∀ {m : ℕ}, 1 < m → m / m.minFac ≤ m - m.totient",
     "cot_eq_iff": "∀ {m : ℕ}, 1 < m → (m - m.totient = m / m.minFac ↔ ∃ k, m = m.minFac ^ k)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1302,7 +1302,7 @@
    "lean_expected": {
     "A_prime_pow": "∀ {r k : ℕ}, Nat.Prime r → 1 ≤ k → ↑(r ^ k) - ↑(r ^ k).totient = ↑r ^ (k - 1)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1319,7 +1319,7 @@
    "lean_expected": {
     "prop_23": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬2 ∣ p ^ 2 * q ∧ ¬3 ∣ p ^ 2 * q"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1336,7 +1336,7 @@
    "lean_expected": {
     "cor_gcd": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 ≤ p ∧ 5 ≤ q ∧ Odd (p ^ 2 * q + 12) ∧ (p ^ 2 * q + 12).Coprime (6 * p * q)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1353,7 +1353,7 @@
    "lean_expected": {
     "prop_square": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬IsSquare (p ^ 2 * q + 12)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1370,7 +1370,7 @@
    "lean_expected": {
     "prop_primepower": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬Nat.Prime (p ^ 2 * q + 12) ∧ ∀ (r k : ℕ), Nat.Prime r → 2 ≤ k → p ^ 2 * q + 12 ≠ r ^ k"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1387,7 +1387,7 @@
    "lean_expected": {
     "prop_rs": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ∀ {r s : ℕ}, Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1404,7 +1404,7 @@
    "lean_expected": {
     "prop_r2s": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ∀ {r s : ℕ}, Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r ^ 2 * s ∧ p ^ 2 * q + 12 ≠ r * s ^ 2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1423,7 +1423,7 @@
     "lem_e123": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ↑r + ↑s + ↑t = ↑p + (↑q + 1) / 2 ∧ ↑r * ↑s + ↑r * ↑t + ↑s * ↑t = ↑p ^ 2 + ↑p * ↑q + (↑q - 1) / 2 ∧ Odd q",
     "P2qJumps.rst_false": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "shape rst does not occur (rst_false); conclusion stated in Lean (prop:A-vacuous)"
   },
   {
@@ -1442,7 +1442,7 @@
     "lem_qform_C_Phi": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → have D := 2 * ↑p ^ 2 - 2 * ↑p * ↑ρ + ↑ρ ^ 2 - ↑ρ; have C := (↑ρ - 3) * (↑ρ ^ 2 + 3 * ↑ρ + 8); have Φ := -↑ρ ^ 4 + (2 * ↑p + 1) * ↑ρ ^ 3 - (2 * ↑p ^ 3 + ↑p ^ 2 - 12) * ↑ρ + 2 * ↑p ^ 4 - ↑p ^ 2 - 24 * ↑p - 12; ↑q = ↑(2 * ↑ρ ^ 3 - 2 * ↑p * ↑ρ ^ 2 + 2 * ↑p ^ 2 * ↑ρ - ↑ρ ^ 2 - ↑ρ - 24) / ↑D ∧ ↑q - ↑ρ = ↑C / ↑D ∧ D ∣ C ∧ ↑(p ^ 2 * q + 12) - ↑ρ ^ 3 = ↑ρ * ↑Φ / ↑D ∧ (ρ ^ 3 ≤ p ^ 2 * q + 12 ↔ 0 ≤ Φ)",
     "D_pos": "∀ {p ρ : ℤ}, 5 ≤ p → 5 ≤ ρ → 0 < 2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1461,7 +1461,7 @@
     "lem_qform_C_Phi": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → have D := 2 * ↑p ^ 2 - 2 * ↑p * ↑ρ + ↑ρ ^ 2 - ↑ρ; have C := (↑ρ - 3) * (↑ρ ^ 2 + 3 * ↑ρ + 8); have Φ := -↑ρ ^ 4 + (2 * ↑p + 1) * ↑ρ ^ 3 - (2 * ↑p ^ 3 + ↑p ^ 2 - 12) * ↑ρ + 2 * ↑p ^ 4 - ↑p ^ 2 - 24 * ↑p - 12; ↑q = ↑(2 * ↑ρ ^ 3 - 2 * ↑p * ↑ρ ^ 2 + 2 * ↑p ^ 2 * ↑ρ - ↑ρ ^ 2 - ↑ρ - 24) / ↑D ∧ ↑q - ↑ρ = ↑C / ↑D ∧ D ∣ C ∧ ↑(p ^ 2 * q + 12) - ↑ρ ^ 3 = ↑ρ * ↑Φ / ↑D ∧ (ρ ^ 3 ≤ p ^ 2 * q + 12 ↔ 0 ≤ Φ)",
     "C_identity": "∀ (p ρ : ℤ), 2 * ρ ^ 3 - 2 * p * ρ ^ 2 + 2 * p ^ 2 * ρ - ρ ^ 2 - ρ - 24 - ρ * (2 * p ^ 2 - 2 * p * ρ + ρ ^ 2 - ρ) = (ρ - 3) * (ρ ^ 2 + 3 * ρ + 8)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1480,7 +1480,7 @@
     "lem_qform_C_Phi": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → have D := 2 * ↑p ^ 2 - 2 * ↑p * ↑ρ + ↑ρ ^ 2 - ↑ρ; have C := (↑ρ - 3) * (↑ρ ^ 2 + 3 * ↑ρ + 8); have Φ := -↑ρ ^ 4 + (2 * ↑p + 1) * ↑ρ ^ 3 - (2 * ↑p ^ 3 + ↑p ^ 2 - 12) * ↑ρ + 2 * ↑p ^ 4 - ↑p ^ 2 - 24 * ↑p - 12; ↑q = ↑(2 * ↑ρ ^ 3 - 2 * ↑p * ↑ρ ^ 2 + 2 * ↑p ^ 2 * ↑ρ - ↑ρ ^ 2 - ↑ρ - 24) / ↑D ∧ ↑q - ↑ρ = ↑C / ↑D ∧ D ∣ C ∧ ↑(p ^ 2 * q + 12) - ↑ρ ^ 3 = ↑ρ * ↑Φ / ↑D ∧ (ρ ^ 3 ≤ p ^ 2 * q + 12 ↔ 0 ≤ Φ)",
     "Phi_neg": "∀ {p ρ : ℤ}, 5 ≤ p → 2 * p ≤ ρ → -ρ ^ 4 + (2 * p + 1) * ρ ^ 3 - (2 * p ^ 3 + p ^ 2 - 12) * ρ + 2 * p ^ 4 - p ^ 2 - 24 * p - 12 < 0"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1501,7 +1501,7 @@
     "rst_balanced": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → r < 2 * p ∨ s < 2 * p ∨ t < 2 * p",
     "theorem_closed": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 ≤ p ∧ 5 ≤ q ∧ Odd (p ^ 2 * q + 12) ∧ (p ^ 2 * q + 12).Coprime (6 * p * q) ∧ ¬IsSquare (p ^ 2 * q + 12) ∧ ¬Nat.Prime (p ^ 2 * q + 12) ∧ (∀ (r k : ℕ), Nat.Prime r → 2 ≤ k → p ^ 2 * q + 12 ≠ r ^ k) ∧ (∀ (r s : ℕ), Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r * s) ∧ (∀ (r s : ℕ), Nat.Prime r → Nat.Prime s → r ≠ s → p ^ 2 * q + 12 ≠ r ^ 2 * s ∧ p ^ 2 * q + 12 ≠ r * s ^ 2) ∧ (∀ (r s t : ℕ), Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → 2 * p ≤ r → 2 * p ≤ s → 2 * p ≤ t → p ^ 2 * q + 12 ≠ r * s * t) ∧ (∀ (r s t : ℕ), Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → p - 2 ∈ {r, s, t} → p ^ 2 * q + 12 ≠ r * s * t) ∧ p ≠ 2 ∧ p ≠ 3 ∧ q ≠ 2 ∧ q ≠ 3"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1520,7 +1520,7 @@
     "prop_pm2": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ∀ {r s t : ℕ}, Nat.Prime r → Nat.Prime s → Nat.Prime t → r ≠ s → r ≠ t → s ≠ t → p ^ 2 * q + 12 = r * s * t → r ≠ p - 2 ∧ s ≠ p - 2 ∧ t ≠ p - 2",
     "rst_off": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → ∀ (d : ℤ), d = 2 ∨ d = 4 ∨ d = 6 ∨ d = 8 → ↑ρ ≠ ↑p + d ∧ ↑ρ ≠ ↑p - d"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1539,7 +1539,7 @@
     "r3s_statements": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 3 * s → r ^ 2 ∣ p + q - 1 ∧ (∀ (m : ℕ), p + q - 1 = r ^ 2 * m → 1 ≤ m ∧ ↑s = ↑p * ↑m - ↑r + 1 ∧ ↑q = ↑r ^ 2 * ↑m - ↑p + 1 ∧ ↑p * ↑m * ↑r ^ 2 * (↑r - ↑p) = ↑r ^ 3 * (↑r - 1) - ↑p ^ 2 * (↑p - 1) + 12) ∧ ↑p ∣ ↑r ^ 4 - ↑r ^ 3 + 12 ∧ ↑r ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ p < r ∧ r ^ 2 < p ^ 3 ∧ ↑r ≠ ↑p - 4 ∧ ↑r ≠ ↑p - 2 ∧ ↑r ≠ ↑p + 2 ∧ ↑r ≠ ↑p + 4",
     "P2qJumps.r3s_empty": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ 3 * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Lean needs no integrality hypothesis; r3s does not occur"
   },
   {
@@ -1560,7 +1560,7 @@
     "four_false": "∀ {p q r s t u : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → Nat.Prime u → p ≠ q → r ≠ s → r ≠ t → r ≠ u → s ≠ t → s ≠ u → t ≠ u → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t * u → False",
     "four_vacuous": "∀ {p q r s t u : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → Nat.Prime u → p ≠ q → r ≠ s → r ≠ t → r ≠ u → s ≠ t → s ≠ u → t ≠ u → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t * u → ∀ (P : Prop), P"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "squarefree omega=4 does not occur (four_false); the conclusions are stated in Lean"
   },
   {
@@ -1577,7 +1577,7 @@
    "lean_expected": {
     "rst_off": "∀ {p q r s t ρ : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → ρ = r ∨ ρ = s ∨ ρ = t → ∀ (d : ℤ), d = 2 ∨ d = 4 ∨ d = 6 ∨ d = 8 → ↑ρ ≠ ↑p + d ∧ ↑ρ ≠ ↑p - d"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1596,7 +1596,7 @@
     "rst_far": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → r < s ∧ r < t → have k := ↑r - ↑p; 5 - ↑p ≤ k ∧ k < ↑p ∧ k ≠ 0 ∧ (↑s - ↑t) ^ 2 = ↑(P2qJumps.Nfar (↑p) k) / (↑p ^ 2 - ↑p + ↑k * (↑k - 1)) ^ 2 ∧ False",
     "Nfar_neg": "∀ {p k : ℤ}, 5 ≤ p → 5 - p ≤ k → k ≤ p - 1 → k ≠ 0 → P2qJumps.Nfar p k < 0"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Nfar is the paper polynomial term by term"
   },
   {
@@ -1613,7 +1613,7 @@
    "lean_expected": {
     "r2st_statements": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 2 * s * t → ↑s + ↑t = -(↑p ^ 3 - ↑p ^ 2 * ↑r - ↑p ^ 2 + 2 * ↑p * ↑r ^ 3 + ↑p * ↑r ^ 2 - 2 * ↑p * ↑r + ↑r ^ 3 - ↑r ^ 2 - 12) / (↑r * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑s * ↑t = (2 * ↑p ^ 4 * ↑r + ↑p ^ 4 - 2 * ↑p ^ 3 * ↑r ^ 2 - ↑p ^ 3 + 2 * ↑p ^ 2 * ↑r ^ 4 - ↑p ^ 2 * ↑r ^ 2 - ↑p ^ 2 * ↑r - 24 * ↑p * ↑r - 12 * ↑p + 12 * ↑r ^ 2 - 12 * ↑r) / (↑r * (↑p - ↑r) * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑q = (2 * ↑p ^ 2 * ↑r ^ 2 + ↑p ^ 2 * ↑r - 2 * ↑p * ↑r ^ 3 - ↑p * ↑r + 2 * ↑r ^ 5 - ↑r ^ 3 - ↑r ^ 2 - 12 * ↑r - 24) / ((↑p - ↑r) * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑r ≠ ↑p + 2 ∧ ↑r ≠ ↑p - 2 ∧ ↑r ≠ ↑p - 6 ∧ ↑r ≠ ↑p - 4 ∧ ↑r ≠ ↑p + 6 ∧ ↑r ≠ ↑p + 8 ∧ (r = p + 4 → p % 16 ≠ 1 ∧ p % 16 ≠ 3 ∧ p % 16 ≠ 9 ∧ p % 16 ≠ 11)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1630,7 +1630,7 @@
    "lean_expected": {
     "r2st_statements": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 2 * s * t → ↑s + ↑t = -(↑p ^ 3 - ↑p ^ 2 * ↑r - ↑p ^ 2 + 2 * ↑p * ↑r ^ 3 + ↑p * ↑r ^ 2 - 2 * ↑p * ↑r + ↑r ^ 3 - ↑r ^ 2 - 12) / (↑r * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑s * ↑t = (2 * ↑p ^ 4 * ↑r + ↑p ^ 4 - 2 * ↑p ^ 3 * ↑r ^ 2 - ↑p ^ 3 + 2 * ↑p ^ 2 * ↑r ^ 4 - ↑p ^ 2 * ↑r ^ 2 - ↑p ^ 2 * ↑r - 24 * ↑p * ↑r - 12 * ↑p + 12 * ↑r ^ 2 - 12 * ↑r) / (↑r * (↑p - ↑r) * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑q = (2 * ↑p ^ 2 * ↑r ^ 2 + ↑p ^ 2 * ↑r - 2 * ↑p * ↑r ^ 3 - ↑p * ↑r + 2 * ↑r ^ 5 - ↑r ^ 3 - ↑r ^ 2 - 12 * ↑r - 24) / ((↑p - ↑r) * (↑p * ↑r + 2 * ↑p - ↑r ^ 2 + ↑r)) ∧ ↑r ≠ ↑p + 2 ∧ ↑r ≠ ↑p - 2 ∧ ↑r ≠ ↑p - 6 ∧ ↑r ≠ ↑p - 4 ∧ ↑r ≠ ↑p + 6 ∧ ↑r ≠ ↑p + 8 ∧ (r = p + 4 → p % 16 ≠ 1 ∧ p % 16 ≠ 3 ∧ p % 16 ≠ 9 ∧ p % 16 ≠ 11)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1660,7 +1660,7 @@
    "lean_expected": {
     "r3s_statements": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 3 * s → r ^ 2 ∣ p + q - 1 ∧ (∀ (m : ℕ), p + q - 1 = r ^ 2 * m → 1 ≤ m ∧ ↑s = ↑p * ↑m - ↑r + 1 ∧ ↑q = ↑r ^ 2 * ↑m - ↑p + 1 ∧ ↑p * ↑m * ↑r ^ 2 * (↑r - ↑p) = ↑r ^ 3 * (↑r - 1) - ↑p ^ 2 * (↑p - 1) + 12) ∧ ↑p ∣ ↑r ^ 4 - ↑r ^ 3 + 12 ∧ ↑r ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ p < r ∧ r ^ 2 < p ^ 3 ∧ ↑r ≠ ↑p - 4 ∧ ↑r ≠ ↑p - 2 ∧ ↑r ≠ ↑p + 2 ∧ ↑r ≠ ↑p + 4"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1677,7 +1677,7 @@
    "lean_expected": {
     "r3s_statements": "∀ {p q r s : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 3 * s → r ^ 2 ∣ p + q - 1 ∧ (∀ (m : ℕ), p + q - 1 = r ^ 2 * m → 1 ≤ m ∧ ↑s = ↑p * ↑m - ↑r + 1 ∧ ↑q = ↑r ^ 2 * ↑m - ↑p + 1 ∧ ↑p * ↑m * ↑r ^ 2 * (↑r - ↑p) = ↑r ^ 3 * (↑r - 1) - ↑p ^ 2 * (↑p - 1) + 12) ∧ ↑p ∣ ↑r ^ 4 - ↑r ^ 3 + 12 ∧ ↑r ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12 ∧ p < r ∧ r ^ 2 < p ^ 3 ∧ ↑r ≠ ↑p - 4 ∧ ↑r ≠ ↑p - 2 ∧ ↑r ≠ ↑p + 2 ∧ ↑r ≠ ↑p + 4"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1696,7 +1696,7 @@
     "theorem28_holds": "P2qJumps.Theorem28",
     "P2qJumps.rst_false": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r * s * t → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Theorem28 = no rst solution of the jumps"
   },
   {
@@ -1715,7 +1715,7 @@
     "P2qJumps.hypR1_holds": "∀ {p q ρ s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime ρ → Nat.Prime s → Nat.Prime t → p ≠ q → ρ ≠ s → ρ ≠ t → s ≠ t → (↑q - ↑ρ) * (2 * ↑p ^ 2 - 2 * ↑p * ↑ρ + ↑ρ ^ 2 - ↑ρ) = (↑ρ - 3) * (↑ρ ^ 2 + 3 * ↑ρ + 8) → 2 * (↑s + ↑t) = 2 * ↑p + ↑q + 1 - 2 * ↑ρ → ↑ρ * (↑s * ↑t) = ↑p ^ 2 * ↑q + 12 → False",
     "P2qJumps.hypR1_data_gives_jumps": "∀ {p q ρ s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime ρ → Nat.Prime s → Nat.Prime t → p ≠ q → ρ ≠ s → ρ ≠ t → s ≠ t → (↑q - ↑ρ) * (2 * ↑p ^ 2 - 2 * ↑p * ↑ρ + ↑ρ ^ 2 - ↑ρ) = (↑ρ - 3) * (↑ρ ^ 2 + 3 * ↑ρ + 8) → 2 * (↑s + ↑t) = 2 * ↑p + ↑q + 1 - 2 * ↑ρ → ↑ρ * (↑s * ↑t) = ↑p ^ 2 * ↑q + 12 → p ^ 2 * q + 12 = ρ * s * t ∧ P2qJumps.Jumps (p ^ 2 * q)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "V = p+(q+1)/2, N = p^2q+12; (q-rho)D = C, 2(s+t) = 2p+q+1-2rho, rho st = N; Lean needs no p,rho >= 5 and no newness beyond pairwise distinct primes; hypR1_data_gives_jumps gives an rst solution, rst_false refutes it"
   },
   {
@@ -1773,7 +1773,7 @@
     "P2qJumps.lemmaL1": "∀ {x : ℕ}, 1 < x → P2qExtensions.delta x = ∑ e ∈ x.divisors.erase 1, (1 + ArithmeticFunction.moebius e) * ↑(x / e) ∧ ∀ e ∈ x.divisors.erase 1, 0 ≤ (1 + ArithmeticFunction.moebius e) * ↑(x / e)",
     "P2qExtensions.lemmaL1": "∀ (N : ℕ), 0 < N → P2qExtensions.delta N = ∑ x ∈ N.divisorsAntidiagonal.erase (1, N), (1 + ArithmeticFunction.moebius x.1) * ↑x.2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1790,7 +1790,7 @@
    "lean_expected": {
     "radical_scaling": "∀ (N : ℕ), N.totient = N / P2qStructural.rad N * (P2qStructural.rad N).totient ∧ N - N.totient = N / P2qStructural.rad N * (P2qStructural.rad N - (P2qStructural.rad N).totient)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "phi(N)=K phi(U), A(N)=K A(U)"
   },
   {
@@ -1813,7 +1813,7 @@
     "pow_dvd_K": "∀ {N r e : ℕ}, N ≠ 0 → Nat.Prime r → r ^ (e + 1) ∣ N → r ^ e ∣ N / P2qStructural.rad N",
     "P2qJumps.p_not_dvd_K": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬p ∣ (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "lemmaK_param is under the jumps alone"
   },
   {
@@ -1830,7 +1830,7 @@
    "lean_expected": {
     "P2qJumps.theoremB": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → (∀ ℓ ∈ (p ^ 2 * q + 12).primeFactors, ℓ ^ 2 ∣ p ^ 2 * q + 12) → 2 ≤ (p ^ 2 * q + 12).primeFactors.card → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1847,7 +1847,7 @@
    "lean_expected": {
     "P2qJumps.N_ne_ras": "∀ {p q r s a : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → p ≠ q → r ≠ s → 2 ≤ a → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 ≠ r ^ a * s"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1883,7 +1883,7 @@
     "P2qJumps.propC_j2": "∀ {p q M s t : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime s → Nat.Prime t → s ≠ t → M.Coprime (s * t) → p ^ 2 * q + 12 = M * s * t → (↑M * (↑s * ↑t) - ↑p ^ 2 * ↑q = 12 ∧ ↑M.totient * (↑s * ↑t) - ↑M.totient * (↑s + ↑t) - ↑p * (↑p - 1) * ↑q = 12 - ↑p * (↑p - 1) - ↑M.totient ∧ ↑((ArithmeticFunction.sigma 1) M) * (↑s * ↑t) + ↑((ArithmeticFunction.sigma 1) M) * (↑s + ↑t) - (↑p ^ 2 + ↑p + 1) * ↑q = ↑p ^ 2 + ↑p + 1 + 12 - ↑((ArithmeticFunction.sigma 1) M)) ∧ ↑M * (↑p * (↑p - 1) * ↑((ArithmeticFunction.sigma 1) M) + (↑p ^ 2 + ↑p + 1) * ↑M.totient) - 2 * ↑p ^ 2 * ↑M.totient * ↑((ArithmeticFunction.sigma 1) M) ≠ 0 ∧ ∀ (x S P : ℚ), ↑M * P - ↑p ^ 2 * x = 12 → ↑M.totient * P - ↑M.totient * S - ↑p * (↑p - 1) * x = 12 - ↑p * (↑p - 1) - ↑M.totient → ↑((ArithmeticFunction.sigma 1) M) * P + ↑((ArithmeticFunction.sigma 1) M) * S - (↑p ^ 2 + ↑p + 1) * x = ↑p ^ 2 + ↑p + 1 + 12 - ↑((ArithmeticFunction.sigma 1) M) → x = ↑q ∧ S = ↑s + ↑t ∧ P = ↑s * ↑t",
     "P2qJumps.propC_p_lt_1e6": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → p < 10 ^ 6 → ¬((P2qJumps.repPrimes (p ^ 2 * q + 12)).Nonempty ∧ (P2qJumps.simpleCount (p ^ 2 * q + 12) = 1 ∨ P2qJumps.simpleCount (p ^ 2 * q + 12) = 2))"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "the enumeration clause p < 10^6 is propC_p_lt_1e6 (kernel-checked since PR #11)"
   },
   {
@@ -1904,7 +1904,7 @@
     "P2qExtensions.sigma_mul_totient_prod": "∀ (N : ℕ), N ≠ 0 → ↑((ArithmeticFunction.sigma 1) N * N.totient) = ∏ ℓ ∈ N.primeFactors, ↑ℓ ^ (N.factorization ℓ - 1) * (↑ℓ ^ (N.factorization ℓ + 1) - 1)",
     "P2qJumps.lemmaQ_ratio": "∀ (m : ℕ), m ≠ 0 → (↑m ^ 2 - ↑m.totient * ↑((ArithmeticFunction.sigma 1) m)) / ↑m ^ 2 = 1 - ∏ ℓ ∈ m.primeFactors, (1 - (↑ℓ ^ (m.factorization ℓ + 1))⁻¹)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Q(m)/m^2 = 1 - prod(1-r^(-e-1)) is lemmaQ_ratio"
   },
   {
@@ -1923,7 +1923,7 @@
     "P2qJumps.theoremD": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Squarefree (p ^ 2 * q + 12) → 4 ≤ (p ^ 2 * q + 12).primeFactors.card → p ^ 2 * ((p ^ 2 * q + 12).primeFactors.card ^ 2 - (p ^ 2 * q + 12).primeFactors.card - 1) ^ 2 ≤ q ∧ 121 * p ^ 2 ≤ p ^ 2 * ((p ^ 2 * q + 12).primeFactors.card ^ 2 - (p ^ 2 * q + 12).primeFactors.card - 1) ^ 2 ∧ p ≤ (p ^ 2 * q + 12).primeFactors.card",
     "P2qJumps.theoremD_four": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Squarefree (p ^ 2 * q + 12) → (p ^ 2 * q + 12).primeFactors.card = 4 → False"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": ""
   },
   {
@@ -1962,7 +1962,7 @@
     "P2qJumps.theoremE_iv_sqrt": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 5 * ↑p ^ 2 - 4 * ↑p - 3 < ↑q → √(↑p ^ 3 - ↑p ^ 2 - 12) < ↑(p ^ 2 * q + 12) / (↑q + 2 * ↑p + 1)",
     "P2qJumps.theoremE_v": "∀ {p q r : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → Nat.Prime r → r ^ 3 ∣ p ^ 2 * q + 12 → ↑r ^ 2 ∣ ↑p ^ 3 - ↑p ^ 2 - 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "clause list as thm:A-E; r < p^(3/2) is theoremE_v_lt"
   },
   {
@@ -1983,7 +1983,7 @@
     "lemmaG_gcd": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ↑((p ^ 2 * q + 12).totient.gcd ((ArithmeticFunction.sigma 1) (p ^ 2 * q + 12))) ∣ 2 * (↑p ^ 4 - 13 * ↑p - 6)",
     "T_pos": "∀ {p : ℤ}, 5 ≤ p → 0 < p ^ 4 - 13 * p - 6"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "T(p)=p^4-13p-6"
   },
   {
@@ -2002,7 +2002,7 @@
     "P2qJumps.theoremF": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → have N := p ^ 2 * q + 12; have o := P2qStructural.oddExpCount N; 2 ^ o ∣ 2 * P2qStructural.T ↑p ∧ (1 ≤ o → 2 ^ (o - 1) ∣ P2qStructural.T ↑p) ∧ (Squarefree N → o = N.primeFactors.card)",
     "P2qJumps.theoremF_v2": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → P2qStructural.oddExpCount (p ^ 2 * q + 12) ≤ 1 + padicValNat 2 (P2qStructural.T ↑p).toNat ∧ (2 ^ P2qStructural.oddExpCount (p ^ 2 * q + 12) ∣ 2 * P2qStructural.T ↑p ↔ P2qStructural.oddExpCount (p ^ 2 * q + 12) ≤ 1 + padicValNat 2 (P2qStructural.T ↑p).toNat)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "'equivalently o <= 1 + v2(T(p))' is theoremF_v2"
   },
   {
@@ -2025,7 +2025,7 @@
     "T_values": "5 ^ 4 - 13 * 5 - 6 = 554 ∧ 7 ^ 4 - 13 * 7 - 6 = 2304 ∧ 11 ^ 4 - 13 * 11 - 6 = 14492 ∧ 13 ^ 4 - 13 * 13 - 6 = 28386 ∧ 17 ^ 4 - 13 * 17 - 6 = 83294 ∧ 19 ^ 4 - 13 * 19 - 6 = 130068 ∧ padicValNat 2 554 = 1 ∧ padicValNat 2 2304 = 8 ∧ padicValNat 2 14492 = 2 ∧ padicValNat 2 28386 = 1 ∧ padicValNat 2 83294 = 1 ∧ padicValNat 2 130068 = 2",
     "F1_tail": "∀ (m : ℕ), 23 ≤ m → ↑m ^ 4 - 13 * ↑m - 6 < ↑m ^ 4 ∧ m ^ 4 < 2 ^ (m - 1)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -2044,7 +2044,7 @@
     "prop_implies_corrected": "P2qJumps.Conjecture3 ↔ P2qJumps.H1 ∧ P2qJumps.H2 ∧ P2qJumps.H3",
     "implies_corrected_of_H1": "P2qJumps.H1 → (P2qJumps.Conjecture3 ↔ P2qJumps.H2 ∧ P2qJumps.H3)"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "",
    "reviewed_status_sentences": [
     {
@@ -2069,7 +2069,7 @@
     "no_squarefree": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → ¬Squarefree (p ^ 2 * q + 12)",
     "H1_holds": "P2qJumps.H1"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "statement: no solution with N squarefree; thus H1",
    "reviewed_status_sentences": [
     {
@@ -2139,7 +2139,7 @@
     "omega4_or_r2s2t": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 4 ≤ (p ^ 2 * q + 12).primeFactors.card ∨ ∃ r s t, Nat.Prime r ∧ Nat.Prime s ∧ Nat.Prime t ∧ r ≠ s ∧ r ≠ t ∧ s ≠ t ∧ p ^ 2 * q + 12 = r ^ 2 * s ^ 2 * t",
     "H1_holds": "P2qJumps.H1"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "'hence N > p^4' is omega4_N_gt_p4; omega(N)>=4 with q<=10^6 is omega4_q_le_1e6; the PARI/Python runs are labeled external; stale 'keeps the kernel-checked bound n<=10^4' replaced by the kernel-checked q<=10^6 bound (2026-11-24)",
    "reviewed_status_sentences": [
     {
@@ -2192,7 +2192,7 @@
    "lean_expected": {
     "P2qJumps.r2s2t_rs_dvd_L": "∀ {p q r s t : ℕ}, Nat.Prime p → Nat.Prime q → Nat.Prime r → Nat.Prime s → Nat.Prime t → p ≠ q → r ≠ s → r ≠ t → s ≠ t → P2qJumps.Jumps (p ^ 2 * q) → p ^ 2 * q + 12 = r ^ 2 * s ^ 2 * t → ↑(r * s) ∣ P2qJumps.Lpoly ↑p ∧ r * s ≤ p ^ 3 - p ^ 2 - 12"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "rs <= L(p) is stated with natural subtraction in Lean; equal to the integer L(p) since p >= 5"
   },
   {
@@ -2209,7 +2209,7 @@
    "lean_expected": {
     "P2qJumps.H2_of_shapes": "P2qJumps.R2S2TEmpty → P2qJumps.R2S2TUEmpty → P2qJumps.H2"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "H2, R2S2TEmpty, R2S2TUEmpty as defined in ImpliesCorrected.lean / H2Reduction.lean"
   },
   {
@@ -2228,7 +2228,7 @@
     "P2qJumps.H3_twoAdic": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → 3 ≤ P2qJumps.simpleCount (p ^ 2 * q + 12) → 2 ^ (P2qJumps.simpleCount (p ^ 2 * q + 12) - 1) ∣ P2qStructural.T ↑p ∧ p % 4 = 3",
     "P2qJumps.H3_of_mod4": "∀ {p q : ℕ}, Nat.Prime p → Nat.Prime q → p ≠ q → P2qJumps.Jumps (p ^ 2 * q) → p % 4 = 1 → ¬((P2qJumps.repPrimes (p ^ 2 * q + 12)).Nonempty ∧ 3 ≤ P2qJumps.simpleCount (p ^ 2 * q + 12))"
    },
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Approved by Benjamin Stanley Frohman, 2026-11-24 3:31 AM CT standing rule: statement matches and kernel-checked (\"if the statements match and the matching statement typechecked/machine checked through the lean kernel as passing then i approve\"; \"the final call is leans kernel\"). Applied 2026-11-24 America/Chicago by Grok Bot: paper statement compared with the Lean type printed by the CI 4-sort live query of run 45323701582 (bdfda1b = tree of main 1c046f1); every cited declaration is a theorem, no sorryAx, axioms only propext, Classical.choice, Quot.sound. Earlier: Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "j(N) = simpleCount N; second sentence = H3_of_mod4"
   },
   {

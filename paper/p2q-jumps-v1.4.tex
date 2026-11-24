@@ -1300,7 +1300,7 @@ Write \(A(m):=m-\ph(m)\), \(B(m):=\sig(m)-m\), and \(\delta(m):=B(m)-A(m)=\sig(m
 
 \begin{lemma}
 \label{lem:equiv}
-The identities~\eqref{eq:jumps} are equivalent to \(A(N)=A(n)\) and \(B(N)=B(n)\), hence also to \(\delta(N)=\delta(n)\).
+The identities~\eqref{eq:jumps} are equivalent to \(A(N)=A(n)\) and \(B(N)=B(n)\), and they imply \(\delta(N)=\delta(n)\).\lean{P2qJumps.jumps_iff_AB; P2qJumps.jumps_delta}{ProseClaims.lean:23; ProseClaims.lean:41}
 \end{lemma}
 
 \begin{proof}
@@ -1310,6 +1310,10 @@ Since \(N=n+12\),
 \]
 and likewise for \(B\). Subtracting yields \(\delta(N)=\delta(n)\).
 \end{proof}
+
+\begin{remark}
+The converse of the last implication is false: for \(n=63=3^2\cdot 7\) one has \(\delta(75)=\delta(63)=14\), but \(A(75)=35\ne 27=A(63)\), so~\eqref{eq:jumps} fails at \(n=63\).\lean{P2qJumps.delta_eq_not_jumps_63}{ProseClaims.lean:261}
+\end{remark}
 
 \begin{lemma}
 \label{lem:AB}

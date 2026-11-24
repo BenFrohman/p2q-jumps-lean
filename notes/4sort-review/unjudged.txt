@@ -1,0 +1,138 @@
+## lem:A-L1Q paper/p2q-jumps-v1.4.tex:701 | map lean: ['P2qExtensions.lemmaL1', 'P2qExtensions.delta_Q_p2q', 'P2qExtensions.lemmaQ', 'P2qJumps.lemmaQ_formula', 'P2qExtensions.repeated_prime_bound'] | disp: proved
+[L1, Lemma Q and \(\delta(N)\)] \textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\). \textup{(b)} \(\delta(p^2q)=q+2p+1\) and \(Q(p^2q)=p^4+pq^2-p\), where \(Q(x)=x^2-\sig(x)\ph(x)\). \textup{(c)} Under~\eqref{eq:jumps}, \(\delta(N)=\delta(n)=q+2p+1\) and \(Q(N)=Q(n)-12\delta(n)=p^4+pq^2-p-12(2p+q+1)>0\). \textup{(d)} If \(r\) is prime and \(r^2\mid N\), then \(N\le r^2(q+2p+1)\).
+
+## prop:A-pure paper/p2q-jumps-v1.4.tex:882 | map lean: ['P2qJumps.quadruplet_jumps', 'P2qJumps.D_pos', 'P2qJumps.C_identity', 'P2qJumps.Phi_neg', 'P2qJumps.Nfar_neg', 'P2qJumps.T_values', 'P2qJumps.F1_tail', 'P2qJumps.pow_gt_T', 'P2qJumps.curve_disc', 'P2qJumps.curve_j', 'P2qJumps.curve_factorizations', 'P2qJumps.curve_points', 'P2qJumps.F_mod16', 'P2qJumps.sq_mod16', 'P2qJumps.F_even', 'P2qJumps.quartic_gt_six'] | disp: proved
+[Pure statements] \textup{(a)} If \(p,p+2,p+6,p+8\) are prime, then \(n=p(p+8)\) satisfies~\eqref{eq:jumps}. \textup{(b)} \(D(p,\rho)>0\) for all integers \(p,\rho\ge 5\); and \((2\rho^3-2p\rho^2+2p^2\rho-\rho^2-\rho-24)-\rho D(p,\rho)=C(\rho)\). \textup{(c)} \(\Phi(p,\rho)<0\) for all integers \(p\ge 5\), \(\rho\ge 2p\). \textup{(d)} \(N(p,k)<0\) for all integers \(p\ge 5\) and \(k\in[5-p,p-1]\setminus\{0\}\). \textup{(e)} The values \(T(5),\dots,T(19)\) and their \(2\)-adic valuations listed in Corollary~\ref{cor:F1}; and \(T(m)<m^4<2^{m-1}\) for every integer \(m\ge 23\). \textup{(f)} For the model \([0,-1,0,0,-12]\) of \(E\): \(\Delta=-62976=-2^9\cdot 3\cdot 41\), \(c_4^3/\Delta=-8/123\), \(3936=2^5\cdot 3\cdot 41\), and \((4,6)\), \((12388,1378746)\) lie on \(y^2=x^3-x^2-12\). \textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\). \textup{(h)} \(4t^4+4t^3+11t^2+6t+7>6\) for every real \(t\).
+
+## prop:A-vacuous paper/p2q-jumps-v1.4.tex:903 | map lean: ['P2qJumps.rst_false', 'P2qJumps.lem_e123', 'P2qJumps.lem_qform_C_Phi', 'P2qJumps.rst_balanced', 'P2qJumps.rst_off', 'P2qJumps.rst_far', 'P2qJumps.r3s_statements', 'P2qJumps.r2st_false', 'P2qJumps.r2st_statements', 'P2qJumps.four_false', 'P2qJumps.four_statements', 'P2qJumps.four_vacuous'] | disp: proved
+[Statements about shapes that do not occur] Assume~\eqref{eq:jumps}. The statements of Part~\ref{part:B} listed below concern shapes of \(N\) that are proved impossible, and each is kernel-checked, with the paper's conclusion stated in Lean, as a consequence of that impossibility (so it holds vacuously). \textup{(a)} \(N=rst\) (excluded by Theorem~\ref{thm:L}(ii)): Lemma~\ref{lem:e123}; Lemmas~\ref{lem:qform}, \ref{lem:C}, the first two clauses of Lemma~\ref{lem:Phi} and Theorem~\ref{thm:rigid}(a); Proposition~\ref{prop:balanced} and Theorem~\ref{thm:closed}(5); Proposition~\ref{prop:pm2}, Theorem~\ref{thm:closed}(6) and Theorem~\ref{thm:rst-off}; the clauses \(5-p\le k<p\), \(k\ne0\), the discriminant formula and the conclusion of Theorem~\ref{thm:rst-far}. \textup{(b)} \(N=r^3s\) (Theorem~\ref{thm:A-r3s-empty}): Theorem~\ref{thm:rigid}(b), Theorems~\ref{thm:r3sint}, \ref{thm:r3s-plarge}, \ref{thm:r3s-strip}. \textup{(c)} \(N=r^2st\) with any primes (Theorem~\ref{thm:L}(iii); \(r,s,t\ge5\) is derived from Proposition~\ref{prop:A-preamble}): Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}. \textup{(d)} \(N\) squarefree with four prime factors (Theorem~\ref{thm:A-D}, \(k=4\)): Theorem~\ref{thm:four}(1),(4); clauses (2),(3) through the generic form.
+
+## prop:A-C-K paper/p2q-jumps-v1.4.tex:947 | map lean: ['P2qJumps.propC_K'] | disp: proved
+[the divisor \(K\)] Assume~\eqref{eq:jumps} and \(r^2\mid N\) for some prime \(r\). Then \(K=N/\mathrm{rad}(N)\) satisfies \(K>1\), \(K\mid L(p)\) and \(\gcd(K,6p)=1\).
+
+## prop:A-C-j1 paper/p2q-jumps-v1.4.tex:960 | map lean: ['P2qJumps.propC_j1'] | disp: proved
+[the system for \(j=1\)] Assume~\eqref{eq:jumps} and \(N=Ms\) with \(s\) prime and \(\gcd(M,s)=1\). Then \[ Ms-p^2q=12,\qquad fs-aq=f-a+12,\qquad gs-bq=b+12-g, \] the determinant \(p^2f-aM\) of the first two equations in the unknowns \((s,q)\) is nonzero, and \((s,q)\) is the only rational solution \((x,y)\) of \(Mx-p^2y=12\), \(fx-ay=f-a+12\).
+
+## prop:A-C-j2 paper/p2q-jumps-v1.4.tex:979 | map lean: ['P2qJumps.propC_j2'] | disp: proved
+[the system for \(j=2\)] Assume~\eqref{eq:jumps} and \(N=Mst\) with \(s\ne t\) prime and \(\gcd(M,st)=1\). Put \(S=s+t\), \(\Pi=st\). Then \[ M\Pi-p^2q=12,\qquad f\Pi-fS-aq=12-a-f,\qquad g\Pi+gS-bq=b+12-g, \] the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S,\Pi)\) is nonzero, and \((q,S,\Pi)\) is its only rational solution.
+
+## thm:A-implies paper/p2q-jumps-v1.4.tex:1012 | map lean: ['P2qJumps.prop_implies_corrected', 'P2qJumps.implies_corrected_of_H1'] | disp: proved
+[Proposition~\ref{prop:implies-corrected}] Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 and H3 hold. Consequently, if H1 holds, Conjecture~\ref{conj:vanish} holds if and only if H2 and H3 hold.
+
+## thm:A-three paper/p2q-jumps-v1.4.tex:1040 | map lean: ['P2qJumps.omega4_or_r2s2t', 'P2qJumps.threeRegimes_iff_r2s2t'] | disp: proved
+[reduction to \(\omega(N)\ge 4\) or \(r^2s^2t\)] \begin{enumerate} \item[\textup{(a)}] Assume~\eqref{eq:jumps}. Then \(\omega(N)\ge 4\), or \(N=r^2s^2t\) for pairwise distinct primes \(r,s,t\). \item[\textup{(b)}] The claim ``every solution has \(N=r^3s\), \(N=r^2st\) or \(\omega(N)\ge 4\)'' (\texttt{ThreeRegimes}) holds if and only if no solution has \(N=r^2s^2t\) with pairwise distinct primes \(r,s,t\) (\texttt{R2S2TEmpty}). \end{enumerate} Neither \texttt{ThreeRegimes} nor \texttt{R2S2TEmpty} is proved.
+
+## thm:closed paper/p2q-jumps-v1.4.tex:1233 | map lean: ['theorem_closed', 'rst_balanced', 'rst_off'] | disp: proved
+[Closed shapes] Let \(p\) and \(q\) be distinct primes, \(n=p^2q\), and \(N=n+12\). Suppose~\eqref{eq:jumps} holds. Then \(p,q\ge 5\), the integer \(N\) is odd, coprime to \(6pq\), and not a square, and \(N\) is of none of the following forms: \begin{enumerate} \item a prime; \item a prime power \(r^k\) with \(k\ge 2\); \item a product of two distinct primes; \item \(r^2s\) or \(rs^2\) with distinct primes \(r,s\); \item a product of three distinct primes each at least \(2p\); \item a product of three distinct primes of which one equals \(p-2\). \end{enumerate} In particular there is no solution with \(\{p,q\}\cap\{2,3\}\ne\emptyset\).
+
+## thm:rigid paper/p2q-jumps-v1.4.tex:1250 | map lean: [] | disp: proved
+[Rigidity equations] Assume the hypotheses of Theorem~\ref{thm:closed}. \begin{enumerate} \item[\textup{(a)}] If \(N=rst\) with distinct primes \(r,s,t\ge 5\) and \(\rho\) denotes any one of them, then \begin{equation} q=\rho+\frac{C(\rho)}{D(p,\rho)},\qquad C(\rho)=(\rho-3)(\rho^2+3\rho+8),\qquad D(p,\rho)=2p^2-2p\rho+\rho^2-\rho. \end{equation} In particular \(D(p,\rho)\) divides the \(p\)-free integer \(C(\rho)\). For each prime \(\rho\) there are only finitely many candidate values of \(p\). \item[\textup{(b)}] If \(N=r^3s\) with distinct primes \(r,s\ge 5\), then \(r^2\) divides \(p+q-1\). Writing \(p+q-1=r^2m\) with an integer \(m\ge 1\), one has \(s=pm-r+1\), \(q=r^2m-p+1\), and \begin{equation} pmr^2(r-p)=r^3(r-1)-p^2(p-1)+12. \end{equation} A necessary condition that \(m\) be a positive integer is \begin{equation} p\mid\bigl(r^4-r^3+12\bigr),\qquad r\mid\bigl(p^3-p^2-12\bigr). \end{equation} \item[\textup{(c)}] If \(N=r^2st\) with distinct primes \(r,s,t\ge 5\), write \(\sigma=s+t\) and \(\pi=st\). Then \begin{align} \sigma&=\frac{-(p^3-p^2r-p^2+2pr^3+pr^2-2pr+r^3-r^2-12)}{r\bigl(pr+2p-r^2+r\bigr)},\\ \pi&=\frac{2p^4r+p^4-2p^3r^2-p^3+2p^2r^4-p^2r^2-p^2r-24pr-12p+12r^2-12r}{r(p-r)\bigl(pr+2p-r^2+r\bigr)},\\ q&=\frac{2p^2r^2+p^2r-2pr^3-pr+2r^5-r^3-r^2-12r-24}{(p-r)\bigl(pr+2p-r^2+r\bigr)}. \end{align} In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not
+
+## lem:equiv paper/p2q-jumps-v1.4.tex:1301 | map lean: ['jumps_iff_AB', 'jumps_delta'] | disp: proved
+The identities~\eqref{eq:jumps} are equivalent to \(A(N)=A(n)\) and \(B(N)=B(n)\), hence also to \(\delta(N)=\delta(n)\).
+
+## lem:AB paper/p2q-jumps-v1.4.tex:1314 | map lean: ['AB_p2q'] | disp: proved
+If \(n=p^2q\) with distinct primes \(p,q\), then \begin{equation} A(n)=p(p+q-1),\qquad B(n)=(1+p)(1+q)+p^2,\qquad \delta(n)=2p+q+1. \end{equation}
+
+## lem:cot paper/p2q-jumps-v1.4.tex:1337 | map lean: ['cot_le', 'cot_eq_iff'] | disp: proved
+If \(m>1\) and \(r\) is the least prime factor of \(m\), then \(A(m)\ge m/r\), with equality if and only if \(m\) is a power of \(r\).
+
+## lem:Ark paper/p2q-jumps-v1.4.tex:1348 | map lean: ['A_prime_pow'] | disp: proved
+If \(r\) is prime and \(k\ge 1\), then \(A(r^k)=r^{k-1}\).
+
+## prop:23 paper/p2q-jumps-v1.4.tex:1362 | map lean: ['prop_23'] | disp: proved
+No solution of~\eqref{eq:jumps} exists if \(2\mid n\) or \(3\mid n\).
+
+## cor:gcd paper/p2q-jumps-v1.4.tex:1389 | map lean: ['cor_gcd'] | disp: proved
+If~\eqref{eq:jumps} holds then \(p,q\ge 5\), \(N\) is odd, and \(\gcd(N,6pq)=1\).
+
+## prop:square paper/p2q-jumps-v1.4.tex:1400 | map lean: ['prop_square'] | disp: proved
+If~\eqref{eq:jumps} holds then \(N\) is not a square.
+
+## prop:primepower paper/p2q-jumps-v1.4.tex:1411 | map lean: ['prop_primepower'] | disp: proved
+If~\eqref{eq:jumps} holds then \(N\) is neither prime nor a prime power \(r^k\) with \(k\ge 2\).
+
+## prop:rs paper/p2q-jumps-v1.4.tex:1422 | map lean: ['prop_rs'] | disp: proved
+If~\eqref{eq:jumps} holds then \(N\) is not a product of two distinct primes.
+
+## prop:r2s paper/p2q-jumps-v1.4.tex:1431 | map lean: ['prop_r2s'] | disp: proved
+If~\eqref{eq:jumps} holds then \(N\) is neither \(r^2s\) nor \(rs^2\).
+
+## lem:e123 paper/p2q-jumps-v1.4.tex:1442 | map lean: ['lem_e123'] | disp: proved
+If~\eqref{eq:jumps} holds and \(N=rst\) with distinct primes \(r,s,t\), then \begin{align} r+s+t&=V:=p+\frac{q+1}{2},\\ rs+rt+st&=p^2+pq+\frac{q-1}{2},\\ rst&=p^2q+12. \end{align} In particular \(q\) is odd, and \(r,s,t\) are the roots of \(X^3-VX^2+\bigl(p^2+pq+(q-1)/2\bigr)X-(p^2q+12)=0\).
+
+## lem:qform paper/p2q-jumps-v1.4.tex:1460 | map lean: ['lem_qform_C_Phi', 'D_pos'] | disp: proved
+In the setting of Lemma~\ref{lem:e123}, if \(\rho\in\{r,s,t\}\) then \begin{equation} q=\frac{2\rho^3-2p\rho^2+2p^2\rho-\rho^2-\rho-24}{D(p,\rho)}, \end{equation} where \(D(p,\rho)=2p^2-2p\rho+\rho^2-\rho>0\) for all primes \(p,\rho\ge 5\).
+
+## lem:C paper/p2q-jumps-v1.4.tex:1483 | map lean: ['lem_qform_C_Phi', 'C_identity'] | disp: proved
+With the notation of Lemma~\ref{lem:qform}, \[ q-\rho=\frac{C(\rho)}{D(p,\rho)},\qquad C(\rho)=(\rho-3)(\rho^2+3\rho+8). \]
+
+## lem:Phi paper/p2q-jumps-v1.4.tex:1500 | map lean: ['lem_qform_C_Phi', 'Phi_neg'] | disp: proved
+Write \[ \Phi(p,\rho)=-\rho^4+(2p+1)\rho^3-(2p^3+p^2-12)\rho+2p^4-p^2-24p-12. \] Then \(N-\rho^3=\rho\,\Phi(p,\rho)/D(p,\rho)\). Consequently \(\rho^3\le N\) if and only if \(\Phi(p,\rho)\ge 0\). Moreover \(\Phi(p,\rho)<0\) whenever \(p\ge 5\) and \(\rho\ge 2p\).
+
+## prop:balanced paper/p2q-jumps-v1.4.tex:1519 | map lean: ['prop_balanced', 'rst_balanced'] | disp: proved
+If~\eqref{eq:jumps} holds and \(N=rst\), then \(\min(r,s,t)<2p\). In particular \(N\) cannot be a product of three primes each at least \(2p\).
+
+## prop:pm2 paper/p2q-jumps-v1.4.tex:1528 | map lean: ['prop_pm2', 'rst_off'] | disp: proved
+If~\eqref{eq:jumps} holds and \(N=rst\), then none of \(r,s,t\) equals \(p-2\).
+
+## thm:r3sint paper/p2q-jumps-v1.4.tex:1552 | map lean: ['r3s_statements'] | disp: proved
+[Integrality criterion for \(r^3s\)] Assume the hypotheses of Theorem~\ref{thm:closed} and \(N=r^3s\). Write \(\lambda=(r^4-r^3+12)/p\) and \[ m=\frac{\lambda+p-p^2}{r^2(r-p)} \] as in Theorem~\ref{thm:rigid}(b). If \(m\) is an integer, then \[ r^2\mid(p^3-p^2-12). \] In particular there is no solution with \(r\in\{p-4,p-2,p+2,p+4\}\).
+
+## thm:four paper/p2q-jumps-v1.4.tex:1624 | map lean: ['four_statements', 'four_false', 'four_vacuous'] | disp: proved
+[Four-prime rigidity] Assume the hypotheses of Theorem~\ref{thm:closed} and suppose \(N\) is squarefree with four distinct prime factors. Write \(N=rstu\). Then: \begin{enumerate} \item \(\TT(N)=2(e_2+1)\), so \[ e_2=rs+rt+ru+st+su+tu=p+\frac{q-1}{2}. \] AM--GM gives \(e_2\ge 6\sqrt{N}\). Consequently there is no solution with \(q=O(p)\). Comparable-factor quadruples are compatible with this bound only if \(q\asymp 144p^2\). \item For any two of the prime factors, say \(r\) and \(s\), write \(\sigma=t+u\) and \(\pi=tu\). Then \[ \sigma=\frac{N_{\sigma}(p,r,s)}{D_{\sigma}(p,r,s)}, \] where \begin{align*} N_{\sigma}&=-(2p^4-2p^3(r+s)+2p^2rs(r+s)+p^2(rs-r-s+1)\\ &\qquad-2prs(rs)-24p-rs(rs-r-s)+12(r+s-1)),\\ D_{\sigma}&=2p^2(r^2+rs+s^2-1)-2prs(r+s)+rs(rs-r-s+1). \end{align*} The complementary product \(\pi\) is likewise rational in \(p,r,s\). In particular each pair \(\{r,s\}\) determines a curve in \(p\). \item If \(2p^2>rs\), the inequality \(e_2\ge \pi=N/(rs)\) forces the explicit bound \[ q\le\frac{rs(2p-1)-24}{2p^2-rs}. \] \item \(35\nmid N\). Indeed, if \(\{5,7\}\subset\{r,s,t,u\}\) then \(rs=35<2p^2\) for every prime \(p\ge 5\), and the bound of (3) gives \(q<5\) except at \(p=5\) and \(p=7\), both forbidden because \(p\nmid N\). \end{enumerate}
+
+## thm:rst-off paper/p2q-jumps-v1.4.tex:1711 | map lean: ['rst_off'] | disp: proved
+[Nearby triple factors] If~\eqref{eq:jumps} holds and \(N=rst\), then none of \(r,s,t\) equals \(p\pm 2\), \(p\pm 4\), \(p\pm 6\), or \(p\pm 8\).
+
+## thm:rst-far paper/p2q-jumps-v1.4.tex:1730 | map lean: ['rst_far', 'Nfar_neg'] | disp: proved
+[Far triples] Assume~\eqref{eq:jumps} and \(N=rst\) with distinct primes \(r,s,t\ge 5\). Write \(\rho\) for the least prime factor of \(N\) and \(k=\rho-p\). Then \(5-p\le k<p\), \(k\neq 0\), and the complementary discriminant is \[ \Delta=\frac{N(p,k)}{\bigl(p^2-p+k(k-1)\bigr)^2}, \] where \begin{align*} N(p,k)&= -7p^6-6kp^5-11k^2p^4-4k^3p^3-4k^4p^2\\ &\quad+4k^4p+k^4+14k^3p^2-4k^3p-50k^3+22k^2p^3-6k^2p^2-2k^2p+73k^2\\ &\quad+20kp^4-12kp^3-76kp^2+2kp-24k+12p^5-2p^4+20p^3+p^2-24p+144. \end{align*} The polynomial \(N(p,k)\) is strictly negative for every prime \(p\ge 5\) and every integer \(k\) in \([5-p,p-1]\setminus\{0\}\). Hence \(\Delta<0\), and no such triple exists.
+
+## thm:r2st-off paper/p2q-jumps-v1.4.tex:1778 | map lean: ['r2st_statements'] | disp: proved
+[Nearby square factors] If~\eqref{eq:jumps} holds and \(N=r^2st\), then \(r\notin\{p-6,p-4,p-2,p+2,p+6,p+8\}\).
+
+## thm:rp4 paper/p2q-jumps-v1.4.tex:1805 | map lean: ['r2st_statements'] | disp: proved
+[The line \(r=p+4\)] If~\eqref{eq:jumps} holds and \(N=r^2st\) with \(r=p+4\), then \(p\not\equiv 1,3,9,11\pmod{16}\).
+
+## thm:r3s-plarge paper/p2q-jumps-v1.4.tex:1831 | map lean: ['r3s_statements'] | disp: proved
+[No cube-times-prime with \(p>r\)] If~\eqref{eq:jumps} holds and \(N=r^3s\), then \(p<r\).
+
+## thm:r3s-strip paper/p2q-jumps-v1.4.tex:1858 | map lean: ['r3s_statements'] | disp: proved
+[Cube-times-prime strip] If~\eqref{eq:jumps} holds and \(N=r^3s\) with \(p<r\), then \[ p<r<p^{3/2}\qquad\text{and}\qquad r^2\mid(p^3-p^2-12). \] In particular, for each prime \(p\ge 5\) only finitely many primes \(r\) can occur, and each must be a prime whose square divides the single integer \(p^3-p^2-12\).
+
+## thm:R1 paper/p2q-jumps-v1.4.tex:1934 | map lean: ['theorem28_holds'] | disp: proved
+[Unbalanced triples are empty] If~\eqref{eq:jumps} holds and \(n=p^2q\), then \(N\) is not a product of three distinct primes.
+
+## hyp:R1 paper/p2q-jumps-v1.4.tex:2008 | map lean: [] | disp: open
+[R1] \itshape (Discharged by Theorem~\ref{thm:R1}.) There are no primes \(p,\rho\ge 5\) for which \(D(p,\rho)\) divides \(C(\rho)\), the resulting \(q\) in~\eqref{eq:qCD} is a new prime, and \(X^2-(V-\rho)X+N/\rho\) splits into two further new primes.
+
+## lem:L1 paper/p2q-jumps-v1.4.tex:2073 | map lean: ['lemmaL1', 'P2qExtensions.lemmaL1'] | disp: proved
+[M\"obius form of \(\delta\); L1] For every integer \(x>1\), \[ \delta(x)=\sum_{\substack{e\mid x\\ e>1}}(1+\mu(e))\,\frac{x}{e}. \] Every summand is nonnegative.
+
+## lem:L2 paper/p2q-jumps-v1.4.tex:2086 | map lean: ['radical_scaling'] | disp: proved
+[Radical scaling; L2] If \(N=KU\) with \(U=\mathrm{rad}(N)\), then \(\ph(N)=K\,\ph(U)\) and \(A(N)=K\,A(U)\).
+
+## lem:K paper/p2q-jumps-v1.4.tex:2095 | map lean: ['lemmaK', 'pow_dvd_K'] | disp: proved
+[Lemma~K] Assume~\eqref{eq:jumps} with \(n=p^2q\) and \(K>1\). Then \(p\nmid K\), \(p\) divides \(A(U)\), and writing \(A(U)=pm\) one has \(p+q-1=Km\) and \[ K\,(p^2m-U)=L(p). \] In particular \(K\mid L(p)\). Consequently every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\).
+
+## lem:Q paper/p2q-jumps-v1.4.tex:2174 | map lean: ['lemmaQ_formula', 'P2qExtensions.sigma_mul_totient_prod'] | disp: proved
+[Lemma~Q] Under~\eqref{eq:jumps}, writing \(Q(m)=m^2-\ph(m)\sig(m)\), \[ Q(N)=p^4+pq^2-p-12(2p+q+1)>0. \] For every \(m=\prod r_i^{e_i}\) one has \(Q(m)/m^2=1-\prod(1-r_i^{-e_i-1})\).
+
+## thm:E paper/p2q-jumps-v1.4.tex:2215 | map lean: ['theoremE_i', 'theoremE_iv_sqrt', 'theoremE_shapes'] | disp: proved
+[Theorem~E; kernel-checked in v1.4, Theorem~\ref{thm:A-E}] Assume~\eqref{eq:jumps} with \(n=p^2q\). Write \(\delta=\delta(N)=q+2p+1\). \begin{enumerate} \item Every prime of \(N\) has exponent at most~3. \item If \(r_1\ne r_2\) lie in \(R\) and \(N\) has a prime factor \(t\notin\{r_1,r_2\}\) (for instance if \(j\ge 1\)), then \(q>5p^2-4p-3\). \item \(|R|\le 2\). \item If \(j\ge 1\) and \(R=\{r_1,r_2\}\), then both exponents equal~2, \(r_1r_2\mid L(p)\), and each \(r_i\) satisfies \(r_i^2\ge N/\delta>\sqrt{L(p)}\). \item Any prime of exponent~3 satisfies \(r^2\mid L(p)\) (hence \(r<p^{3/2}\)); after excluding \(j=0\) via Theorems~\ref{thm:closed} and~\ref{thm:B}, this occurs only for \(|R|=1\). \end{enumerate} Consequently every remaining repeated-prime solution has shape \(r^2V\) or \(r^3V\) with \(V\) squarefree of \(\omega(V)=j\ge 2\), or shape \(r_1^2r_2^2V\) with \(r_1r_2\mid L(p)\) and \(q>5p^2-4p-3\).
+
+## lem:G paper/p2q-jumps-v1.4.tex:2249 | map lean: ['lemmaG', 'lemmaG_gcd', 'T_pos'] | disp: proved
+[Lemma~G] Under~\eqref{eq:jumps}, writing \(T(p)=p^4-13p-6\), \[ p(p-1)\sig(N)-(p^2+p+1)\ph(N)=2T(p). \] In particular \(\gcd(\ph(N),\sig(N))\mid 2T(p)\). Moreover \(T(p)>0\) for every prime \(p\ge 5\).
+
+## thm:F paper/p2q-jumps-v1.4.tex:2266 | map lean: ['theoremF'] | disp: proved
+[Theorem~F] Assume~\eqref{eq:jumps}. Let \(o\) be the number of odd exponents in the prime factorization of \(N\). Then \(2^o\mid 2T(p)\), equivalently \(o\le 1+v_2(T(p))\). When \(o\ge 1\) one has \(2^{o-1}\mid T(p)\). For squarefree \(N\) one has \(o=\omega(N)=k\), so \(2^{k-1}\mid T(p)\).
+
+## cor:F1 paper/p2q-jumps-v1.4.tex:2275 | map lean: ['corollaryF1', 'T_explicit', 'T_values', 'F1_tail'] | disp: proved
+[Squarefree residual after D+F] If~\eqref{eq:jumps} holds and \(N\) is squarefree with \(k=\omega(N)\ge 4\), then Theorems~\ref{thm:D} and~\ref{thm:F} force \(k\ge p\ge 5\) and \(k-1\le v_2(T(p))\). The only surviving possibility is \(p=7\) with \(v_2(T(7))=8\), hence \(7\le k\le 9\). Explicitly: \(T(5)=554\) (\(v_2=1\)); \(T(7)=2304\) (\(v_2=8\)); \(T(11)=14492\) (\(v_2=2\)); \(T(13)=28386\) (\(v_2=1\)); \(T(17)=83294\) (\(v_2=1\)); \(T(19)=130068\) (\(v_2=2\)); and for every integer \(m\ge 23\) one has \(2^{m-1}>m^4>T(m)\) by induction from \(2^{22}>23^4\).
+
+## prop:implies-corrected paper/p2q-jumps-v1.4.tex:2289 | map lean: ['prop_implies_corrected', 'implies_corrected_of_H1'] | disp: proved
+[Corrected residual equivalence] Conjecture~\ref{conj:vanish} holds if and only if H1, H2 and H3 all hold, where these quantify over distinct primes \(p,q\) with both jumps~\eqref{eq:jumps}: \begin{itemize} \item[\textbf{H1.}] There is no solution with \(N\) squarefree and \(\omega(N)\ge 4\). \item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, an external computation finds the case \(p<10^6\) empty \DATAHTWO. H2 is not proved, in Lean or otherwise. \item[\textbf{H3.}] There is no solution with \(R\neq\emptyset\) and \(j\ge 3\). \end{itemize} H1 is established by Theorem~\ref{thm:H1-comp}, kernel-checked in Lean as Theorem~\ref{thm:A-H1}. Consequently Conjecture~\ref{conj:vanish} is equivalent to the conjunction of H2 and H3 (kernel-checked, \path{conjecture_iff_H2_H3}).
+
+## thm:main-p2q paper/p2q-jumps-v1.4.tex:2455 | map lean: [] | disp: proved
+[Classification ledger, v1.4] Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover: \begin{enumerate} \item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the bound \(5\le r\le 10^6\), \DATAHENSEL) remain true and are now superseded. \item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally 
+

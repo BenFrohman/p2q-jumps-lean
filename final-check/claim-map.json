@@ -30,9 +30,6 @@
    "Computational survey"
   ],
   "retraction_macros": [
-   "\\DATAHTWO",
-   "\\DATAOMEGAFOUR",
-   "\\DATAHENSEL",
    "\\OMEGAFOURSTATUS"
   ]
  },
@@ -121,13 +118,15 @@
    "title": "",
    "disposition": "proved",
    "lean": [
-    "prime_ge_five_not_dvd"
+    "prime_ge_five_not_dvd",
+    "P2qJumps.coprime6_r2st",
+    "P2qJumps.coprime6_r3s"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "94f722eecfd226aa8c0b3122397f76df91ac8070e77707c8b9fe2f6a52d2724d",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "Lean proves only the first sentence (prime r>=5 is not divisible by 2 or 3); the 'Consequently ... N=r^2st or r^3s ...' sentence has no Lean declaration"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "the 'Consequently' sentence is coprime6_r2st / coprime6_r3s"
   },
   {
    "id": "lem:A-totdiv",
@@ -375,13 +374,14 @@
    "title": "\\(\\omega(N)\\ge 4\\) constraints",
    "disposition": "proved",
    "lean": [
-    "P2qJumps.omega4_constraints"
+    "P2qJumps.omega4_constraints",
+    "P2qJumps.omega4_N_gt_p4"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "c85943c1d53bd559e7a539665a983916a2c8de096971d62fedca58d5451fef9b",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "Lean omega4_constraints gives q >= 3p^2 and every prime factor > p; the closing 'In particular N > p^4' has no Lean declaration"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "'In particular N > p^4' is omega4_N_gt_p4"
   },
   {
    "id": "nolabel:remark:21eb4d25d6a0",
@@ -508,13 +508,14 @@
     "P2qExtensions.delta_Q_p2q",
     "P2qExtensions.lemmaQ",
     "P2qJumps.lemmaQ_formula",
-    "P2qExtensions.repeated_prime_bound"
+    "P2qExtensions.repeated_prime_bound",
+    "P2qJumps.lemmaL1_terms_nonneg"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "189db664579a75df5dc427b4a602250af7c65756ca72a4980be17d9833e4f56b",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
-   "note": "PENDING15: (a) 'every term is >= 0' for every x is lemmaL1_terms_nonneg (PR #15)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "(a) every term >= 0 for every x is lemmaL1_terms_nonneg"
   },
   {
    "id": "lem:A-K",
@@ -523,15 +524,15 @@
    "title": "Lemma K",
    "disposition": "proved",
    "lean": [
-    "P2qExclusions.setupK",
+    "P2qJumps.lemmaK_param",
     "P2qJumps.lemmaK",
     "P2qJumps.pow_dvd_K"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "252c638553f31cdc4cb7b2524bceba823d738c1df442e2d3743c8d117054a340",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "P2qExclusions.setupK assumes 5 <= p (true under the jumps by P2qJumps.preamble, but the cited declaration carries it as a hypothesis); paper states it under the jumps alone"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "lemmaK_param states it under the jumps alone (5 <= p from preamble)"
   },
   {
    "id": "thm:A-B",
@@ -751,13 +752,14 @@
     "P2qJumps.F_mod16",
     "P2qJumps.sq_mod16",
     "P2qJumps.F_even",
-    "P2qJumps.quartic_gt_six"
+    "P2qJumps.quartic_gt_six",
+    "P2qJumps.sq_mod16_exact"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "9d9ec82fed2e4c15500f7637d957938d270820ba7bd60bc56b277e081b03109d",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
-   "note": "PENDING15: (g) 'the squares modulo 16 are 0,1,4,9' (exact set) is sq_mod16_exact (PR #15)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "(g) the squares modulo 16 are exactly 0,1,4,9: sq_mod16_exact"
   },
   {
    "id": "prop:A-vacuous",
@@ -777,13 +779,20 @@
     "P2qJumps.r2st_statements",
     "P2qJumps.four_false",
     "P2qJumps.four_statements",
-    "P2qJumps.four_vacuous"
+    "P2qJumps.four_vacuous",
+    "P2qJumps.rigid_finite_candidates",
+    "P2qJumps.r2st_offset_sigma_neg"
    ],
    "relation": "lean-narrower",
    "paper_sha256": "7dc7ec1f3eb1b6b1d91afbbbd072ec4127dc8e9f64cf84c2d29b8e9d0ad50b2e",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: the finite-candidates sentence of thm:rigid(a) and the offset sentence of thm:rigid(c) are not vacuous; rigid_finite_candidates, r2st_offset_sigma_neg (PR #15)"
+   "relation": "exact",
+   "paper_sha256": "7dc7ec1f3eb1b6b1d91afbbbd072ec4127dc8e9f64cf84c2d29b8e9d0ad50b2e",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "non-vacuous sentences of thm:rigid(a),(c): rigid_finite_candidates, r2st_offset_sigma_neg"
   },
   {
    "id": "thm:A-E-shapes",
@@ -826,6 +835,7 @@
    "paper_sha256": "129fa4484b1c4260e2d0bce43b92d8030e9978f83ecf7f23700b991690d76171",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1"
   },
   {
@@ -841,6 +851,7 @@
    "paper_sha256": "dfbed5977da81178e237e8e0d3172cb332c540faeff2b1686470c359558a9106",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "f=phi(M), a=p(p-1), g=sigma(M), b=p^2+p+1; determinant and unique rational solution clause by clause"
   },
   {
@@ -870,6 +881,8 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "remark on external/cited material, labeled as such"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "Delta = M(ag+bf)-2p^2 fg with the same f,a,g,b; unknowns (q,S,Pi)"
   },
   {
    "id": "thm:A-implies",
@@ -902,6 +915,8 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "remark asserting kernel-checked status; cites these declarations"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": ""
   },
   {
    "id": "thm:A-three",
@@ -918,6 +933,14 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "ThreeRegimes and R2S2TEmpty as defined in ThreeRegimes.lean; 'neither is proved' is a status sentence"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "ThreeRegimes and R2S2TEmpty as defined in ThreeRegimes.lean",
+   "reviewed_status_sentences": [
+    {
+     "sha256": "a1bf805bbc0f660bd977b1cbe9445d36a2a662416e31d20277cb19d8ebc89480",
+     "reason": "'is open' is said of the emptiness of r^2s^2t, not of Theorem A-three, which is proved"
+    }
+   ]
   },
   {
    "id": "nolabel:remark:6c8769e94602",
@@ -971,13 +994,14 @@
    "disposition": "proved",
    "lean": [
     "P2qJumps.p7_prefix_bound",
-    "P2qJumps.p7_prune_threshold"
+    "P2qJumps.p7_prune_threshold",
+    "P2qJumps.p7_prefix_no_completion"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "60f3beebe4d2d5b1ce712f077f92389790aec08f8834debad2688b1ce4fd2c0f",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "Lean proves M <= 872 and 872 < 11*13*17; the concluding 'no prefix ... can be completed by three or more further distinct primes >= 11' has no Lean declaration"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "the concluding sentence is p7_prefix_no_completion"
   },
   {
    "id": "thm:A-p7-descent",
@@ -1027,6 +1051,7 @@
    "paper_sha256": "b787f03b5fca3956d3c32a7ccaa6f0787b10ff4ffe293f4e36e5d0615ca0fe0a",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "items 1-6 and the closing sentence are conjuncts of theorem_closed"
   },
   {
@@ -1048,6 +1073,15 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: rigid_finite_candidates, r2st_offset_sigma_neg (PR #15)"
+    "P2qJumps.r2st_false",
+    "P2qJumps.rigid_finite_candidates",
+    "P2qJumps.r2st_offset_sigma_neg"
+   ],
+   "relation": "exact",
+   "paper_sha256": "4450f70c7919026691c39590ad82dfc7a2e709d1c3d78cfe00db12ce002b4e2b",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": ""
   },
   {
    "id": "conj:vanish",
@@ -1077,6 +1111,11 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "HUMAN: Lean proves jumps <-> (A(N)=A(n) and B(N)=B(n)) and jumps -> delta(N)=delta(n). The paper's 'hence also [equivalent] to delta(N)=delta(n)' is false as an equivalence: n=63=3^2*7 has delta(75)=delta(63)=14 but A(75)=35 != A(63)=27 (also n=7^2*17). Rewording to 'imply' changes the stated claim; author decision"
+   "relation": "exact",
+   "paper_sha256": "7b73d1842282c992f720b615851474fa6c089cc5166b77ad5a3ad7b8975b0094",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "corrected: jumps <-> (A,B equal) and jumps -> delta equal; the converse fails (remark, delta_eq_not_jumps_63)"
   },
   {
    "id": "lem:AB",
@@ -1091,6 +1130,7 @@
    "paper_sha256": "91f4c8ead214c37724d7b677d35fbe00cc8c43a7e336b86850cdb32631a2b885",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1107,6 +1147,7 @@
    "paper_sha256": "7b439ce4e565bee706701e3eb9ef52a2eff3742ab283b367f3178ac53a093d05",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1122,6 +1163,7 @@
    "paper_sha256": "590fe8aa9f7e8375639aa4bfdfb1731c3df2e61c31a3ae62301bde1065d61517",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1137,6 +1179,7 @@
    "paper_sha256": "54d738827c8e1ef9adeb595641af3e9428a1f851a2e33ad34ec3b4061f4424cd",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1152,6 +1195,7 @@
    "paper_sha256": "94835769dd40d48d4c9c7206749ffdab725ff2a7c7868154aff9d7c5701fb6eb",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1167,6 +1211,7 @@
    "paper_sha256": "010c5d636efadbe33a6a536152076d23cd41008e133bce12252549e9e3f424e4",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1182,6 +1227,7 @@
    "paper_sha256": "801988831c2f07f04678f4947ff5e537358f1fa83650c06b7cbae639d6c3bf78",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1197,6 +1243,7 @@
    "paper_sha256": "51a444ef2742ee69b394bbb6ec9cb002a7e4847a9b42221acac04bc59f109905",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1212,6 +1259,7 @@
    "paper_sha256": "548e0bfa06bdf2d32abe4c635e5761c967feb94c4bba75b963c443c2a9b61d9e",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1229,6 +1277,8 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "shape rst does not occur (rst_false); the conclusion is stated in Lean (prop:A-vacuous)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "shape rst does not occur (rst_false); conclusion stated in Lean (prop:A-vacuous)"
   },
   {
    "id": "lem:qform",
@@ -1244,6 +1294,7 @@
    "paper_sha256": "d615a1f4b594f274852846c29e0c06319e5452b711c9ad68b7fddadc75bae5d3",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1260,6 +1311,7 @@
    "paper_sha256": "bc0d9159843ea881cbebd76ccb006b0fb5f62ce55c91f4694b19feb224276b3f",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1276,6 +1328,7 @@
    "paper_sha256": "788187e62932cf68d6f1b2ece4679dc68f38e736fc246bc43bd6b56884a8b725",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1293,6 +1346,7 @@
    "paper_sha256": "dd6672ceac9f5cf89834390db8d434b2ce7e7e8e5c82c68eea9c422c3f00f35d",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1309,6 +1363,7 @@
    "paper_sha256": "9e476da3381c59a689678b07bc218b6338793ca384da890eb79b1e5b21ecd921",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1326,6 +1381,8 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "Lean needs no integrality hypothesis; r3s does not occur (r3s_empty)"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "Lean needs no integrality hypothesis; r3s does not occur"
   },
   {
    "id": "thm:four",
@@ -1342,6 +1399,7 @@
    "paper_sha256": "214ad6357c663bdc9bf6b087bc8957ec311cc458c465db1fe80a4680dc249511",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "squarefree omega=4 does not occur (four_false); the conclusions are stated in Lean"
   },
   {
@@ -1357,6 +1415,7 @@
    "paper_sha256": "cb0aa4230e4b8bc21be7e0d38dc2c8df9640eb032bb380154306308d2d344ca8",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1373,6 +1432,7 @@
    "paper_sha256": "ba85d28d098cf4246bb58a671ae073b397c83bb80e592206d52587e8c3a74d5d",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Nfar is the paper polynomial term by term"
   },
   {
@@ -1388,6 +1448,7 @@
    "paper_sha256": "6a0784a3a738fd569b4d78973809ef691ea00aa1f64c0e52b140aaa6d6f26e7e",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1403,6 +1464,7 @@
    "paper_sha256": "0d9494f96d2868cc06d92bccbf19af226d0320a92179ad34a072e56578a10316",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1431,6 +1493,7 @@
    "paper_sha256": "ae3121fb9a23ebee97b1c3cf9926b45a873498bac016b79572c58e363c82efb0",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1446,6 +1509,7 @@
    "paper_sha256": "b3b9248fa56026c323c1f3c2e44edf20cf8e06ab9e6e8509b045f4931df1bd20",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1462,6 +1526,7 @@
    "paper_sha256": "0968511c3b567392cdfb271a518324a9ba059b3c6ab877f40c5c20a5e4b0753a",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "Theorem28 = no rst solution of the jumps"
   },
   {
@@ -1476,6 +1541,16 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "HUMAN: '(Discharged by Theorem thm:R1)' needs that the data (p, rho, q from eq:qCD, the quadratic splitting) gives an rst solution of the jumps; that sufficiency is not in Lean, and V is not defined in the hypothesis's statement"
+   "disposition": "proved",
+   "lean": [
+    "P2qJumps.hypR1_holds",
+    "P2qJumps.hypR1_data_gives_jumps"
+   ],
+   "relation": "exact",
+   "paper_sha256": "b5790559323ccdc552d16d750262f73de27d0bd3dc26efcf8f8d223ec78d2eed",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "V = p+(q+1)/2, N = p^2q+12; (q-rho)D = C, 2(s+t) = 2p+q+1-2rho, rho st = N; Lean needs no p,rho >= 5 and no newness beyond pairwise distinct primes; hypR1_data_gives_jumps gives an rst solution, rst_false refutes it"
   },
   {
    "id": "hyp:R2",
@@ -1523,13 +1598,14 @@
    "title": "M\\\"obius form of \\(\\delta\\); L1",
    "disposition": "proved",
    "lean": [
-    "lemmaL1",
+    "P2qJumps.lemmaL1",
     "P2qExtensions.lemmaL1"
    ],
    "relation": "exact",
    "paper_sha256": "526ea52c02b7d0157925713acf062db43ab9160e96cc6af7b4488a78e953a2be",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": ""
   },
   {
@@ -1545,6 +1621,7 @@
    "paper_sha256": "038c4bf34d815e0243564f3724ff6250d435a314e5197abfb4f5d63036e9d192",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "phi(N)=K phi(U), A(N)=K A(U)"
   },
   {
@@ -1554,8 +1631,10 @@
    "title": "Lemma~K",
    "disposition": "proved",
    "lean": [
+    "P2qJumps.lemmaK_param",
     "lemmaK",
-    "pow_dvd_K"
+    "pow_dvd_K",
+    "P2qJumps.p_not_dvd_K"
    ],
    "relation": "lean-narrower",
    "paper_sha256": "09d54f028401993a93497d8ad074b70e34f1230f38eb82da7a20ef2e1e4eb463",
@@ -1579,6 +1658,11 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "remark asserting kernel-checked status; cites these declarations"
+   "relation": "exact",
+   "paper_sha256": "09d54f028401993a93497d8ad074b70e34f1230f38eb82da7a20ef2e1e4eb463",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "lemmaK_param is under the jumps alone"
   },
   {
    "id": "thm:B",
@@ -1628,17 +1712,18 @@
    "kind": "proposition",
    "where": "paper/p2q-jumps-v1.4.tex:2129",
    "title": "Finite per \\(p\\) for \\(1\\le j\\le 2\\); Proposition~C",
-   "disposition": "external",
+   "disposition": "proved",
    "lean": [
-    "propC_K",
-    "propC_j1",
-    "propC_j2"
+    "P2qJumps.propC_K",
+    "P2qJumps.propC_j1",
+    "P2qJumps.propC_j2",
+    "P2qJumps.propC_p_lt_1e6"
    ],
-   "relation": "lean-narrower",
+   "relation": "exact",
    "paper_sha256": "64046c9d8f4a737594c6d213dbdb168fbd9ee4b01ede96b13b364dc41be1c3d3",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "mixed: structural clauses are Lean propC_K/propC_j1/propC_j2; the enumeration p < 10^6 is external data (\\DATAHTWO) until kernel-proved, so the claim as a whole is EXTERNAL"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "the enumeration clause p < 10^6 is propC_p_lt_1e6 (kernel-checked since PR #11)"
   },
   {
    "id": "lem:Q",
@@ -1648,13 +1733,19 @@
    "disposition": "proved",
    "lean": [
     "lemmaQ_formula",
-    "P2qExtensions.sigma_mul_totient_prod"
+    "P2qExtensions.sigma_mul_totient_prod",
+    "P2qJumps.lemmaQ_ratio"
    ],
    "relation": "lean-narrower",
    "paper_sha256": "333dce92a02beaff8cc53b02c944528a524a3b8ef8265a75fa23316deab82551",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: Q(m)/m^2 = 1 - prod(1-r^(-e-1)) is lemmaQ_ratio (PR #15)"
+   "relation": "exact",
+   "paper_sha256": "333dce92a02beaff8cc53b02c944528a524a3b8ef8265a75fa23316deab82551",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "Q(m)/m^2 = 1 - prod(1-r^(-e-1)) is lemmaQ_ratio"
   },
   {
    "id": "thm:D",
@@ -1673,23 +1764,6 @@
    "note": ""
   },
   {
-   "id": "nolabel:remark:11c22fe20895",
-   "kind": "remark",
-   "where": "paper/p2q-jumps-v1.4.tex:2175",
-   "title": "",
-   "disposition": "commentary",
-   "lean": [
-    "P2qJumps.theoremD",
-    "P2qJumps.lemmaQ_formula",
-    "P2qExtensions.sigma_mul_totient_prod"
-   ],
-   "relation": "unjudged",
-   "paper_sha256": "11c22fe20895d9a13b70de49c9ac3a999a7a52daea95871d0c19d614106f4111",
-   "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
-   "note": "remark asserting kernel-checked status; cites these declarations"
-  },
-  {
    "id": "thm:E",
    "kind": "theorem",
    "where": "paper/p2q-jumps-v1.4.tex:2182",
@@ -1706,13 +1780,27 @@
     "P2qJumps.theoremE_v",
     "theoremE_i",
     "theoremE_iv_sqrt",
-    "theoremE_shapes"
+    "theoremE_shapes",
+    "P2qJumps.theoremE_v_lt",
+    "P2qJumps.theoremE_i",
+    "P2qJumps.theoremE_ii",
+    "P2qJumps.theoremE_iii",
+    "P2qJumps.theoremE_iv",
+    "P2qJumps.theoremE_iv_dvd",
+    "P2qJumps.theoremE_iv_size",
+    "P2qJumps.theoremE_iv_sqrt",
+    "P2qJumps.theoremE_v"
    ],
    "relation": "lean-narrower",
    "paper_sha256": "fdd1373b008111a60c9e686d655ee7a9d0f4b85221d7003e3ad52494990d96a2",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: theoremE_v_lt for r < p^(3/2) (PR #15); clause list as thm:A-E"
+   "relation": "exact",
+   "paper_sha256": "fdd1373b008111a60c9e686d655ee7a9d0f4b85221d7003e3ad52494990d96a2",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "clause list as thm:A-E; r < p^(3/2) is theoremE_v_lt"
   },
   {
    "id": "lem:G",
@@ -1721,7 +1809,7 @@
    "title": "Lemma~G",
    "disposition": "proved",
    "lean": [
-    "lemmaG",
+    "P2qJumps.lemmaG",
     "lemmaG_gcd",
     "T_pos"
    ],
@@ -1729,6 +1817,7 @@
    "paper_sha256": "9b740b5a8e24bc0a6e9a6c32b63748f5c7f1b8fe2231e9da813d473880c380ef",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "T(p)=p^4-13p-6"
   },
   {
@@ -1738,13 +1827,19 @@
    "title": "Theorem~F",
    "disposition": "proved",
    "lean": [
-    "theoremF"
+    "P2qJumps.theoremF",
+    "P2qJumps.theoremF_v2"
    ],
    "relation": "lean-narrower",
    "paper_sha256": "773786940faff2a364cdec3e73370d8f41a71a65f2e3f201efb699b7e8414e9c",
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: 'equivalently o <= 1 + v2(T(p))' is theoremF_v2 (PR #15)"
+   "relation": "exact",
+   "paper_sha256": "773786940faff2a364cdec3e73370d8f41a71a65f2e3f201efb699b7e8414e9c",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "'equivalently o <= 1 + v2(T(p))' is theoremF_v2"
   },
   {
    "id": "cor:F1",
@@ -1780,6 +1875,8 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
    "note": "remark asserting kernel-checked status; cites these declarations"
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": ""
   },
   {
    "id": "prop:implies-corrected",
@@ -1796,6 +1893,16 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "the 10^6 computation is labeled external (DATAHTWO)"
+   "paper_sha256": "130f3666ecabbceb62b9895b9c161c2ceeda84138d07520346b294181cb9bfd8",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "",
+   "reviewed_status_sentences": [
+    {
+     "sha256": "841fae8a7613c13c215d73795709550f8037e988e30f56c0d561ba36ae6d13ba",
+     "reason": "'remains open' is said of the shape r^2s^2t (H2), not of this proposition, which is proved"
+    }
+   ]
   },
   {
    "id": "thm:H1-comp",
@@ -1859,6 +1966,8 @@
     "r2st_empty",
     "r3s_empty",
     "omega4_constraints",
+    "P2qJumps.omega4_N_gt_p4",
+    "P2qJumps.omega4_q_le_1e6",
     "r3st_empty",
     "omega4_or_r2s2t",
     "H1_holds"
@@ -1868,6 +1977,11 @@
    "lean_expected": {},
    "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, second pass, paper on main 086a484 vs Lean source",
    "note": "PENDING15: 'hence N > p^4' is omega4_N_gt_p4 (PR #15); search ranges are labeled external (DATAOMEGAFOUR)"
+   "relation": "exact",
+   "paper_sha256": "be80685c7b51517cabd9c5116e8b84982ddabea6018acf65ce0b7b142d5002de",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "'hence N > p^4' is omega4_N_gt_p4; omega(N)>=4 with q<=10^6 is omega4_q_le_1e6; the PARI/Python runs are labeled external"
   },
   {
    "id": "nolabel:remark:768e45b1cc54",
@@ -1959,9 +2073,95 @@
    "note": "remark asserting kernel-checked status; cites these declarations"
   },
   {
-   "id": "nolabel:remark:5735d72be262",
+   "id": "nolabel:remark:9e58b6b7b11b",
    "kind": "remark",
-   "where": "paper/p2q-jumps-v1.4.tex:2242",
+   "where": "paper/p2q-jumps-v1.4.tex:1000",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.propC_K",
+    "P2qJumps.propC_j1",
+    "P2qJumps.propC_j2",
+    "P2qJumps.propC_p_lt_1e6"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "9e58b6b7b11b4c3dbe11c9e5625ffb91d91b4fc2f1c75b83d77d31e93532dbea",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:1a223bd52ee9",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1033",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.prop_implies_corrected",
+    "H1_holds",
+    "P2qJumps.h2_p_lt_1e6"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "1a223bd52ee914b6d594aab67449bb03b2c8ba8d71428164d10a3a6e65ee45a1",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:22f44f588b26",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:1314",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.delta_eq_not_jumps_63"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "22f44f588b26468d47bc435f81f3a4377b7164722855fa45ffd626db7fad9378",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:91f2f8108574",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2112",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.lemmaK_param",
+    "P2qExclusions.setupK",
+    "P2qJumps.lemmaK",
+    "P2qJumps.pow_dvd_K"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "91f2f8108574bb3fbf934f1de43b69ec48bee9ba0b46e8fc947bebf9ee3d278a",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:d86477dfd370",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2212",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qJumps.theoremD",
+    "P2qJumps.lemmaQ_formula",
+    "P2qExtensions.sigma_mul_totient_prod",
+    "P2qJumps.lemmaQ_ratio"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "d86477dfd3707d85fbbf1b729227478fff94599388ed98c5e80cfa48197ffaf0",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:06948d12a0f6",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2246",
    "title": "",
    "disposition": "commentary",
    "lean": [
@@ -1970,27 +2170,48 @@
     "P2qJumps.theoremE_ii",
     "P2qJumps.theoremE_iii",
     "P2qJumps.theoremE_iv",
-    "P2qJumps.theoremE_v"
+    "P2qJumps.theoremE_v",
+    "P2qJumps.theoremE_v_lt"
    ],
    "relation": "unjudged",
-   "paper_sha256": "5735d72be262fc873f82c7dde257a68464fd7d5ee863b573f957ef5d70232e6e",
+   "paper_sha256": "06948d12a0f66af8712cbab753fa2a479efdbce81f7df8ea8e9a89766297981f",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "remark asserting kernel-checked status; cites these declarations"
   },
   {
-   "id": "nolabel:remark:8948373e5dae",
+   "id": "nolabel:remark:85c8da56cb93",
    "kind": "remark",
-   "where": "paper/p2q-jumps-v1.4.tex:2313",
+   "where": "paper/p2q-jumps-v1.4.tex:2284",
+   "title": "",
+   "disposition": "commentary",
+   "lean": [
+    "P2qStructural.lemmaG",
+    "P2qStructural.theoremF",
+    "P2qJumps.corollaryF1",
+    "P2qJumps.theoremF_v2"
+   ],
+   "relation": "unjudged",
+   "paper_sha256": "85c8da56cb9340126d51e936ad6864885a1fd5147376c30322e53551e1fe3882",
+   "lean_expected": {},
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
+   "note": "remark asserting kernel-checked status; cites these declarations"
+  },
+  {
+   "id": "nolabel:remark:cf31ea3c514a",
+   "kind": "remark",
+   "where": "paper/p2q-jumps-v1.4.tex:2317",
    "title": "Status of Conjecture~\\ref{conj:vanish}",
    "disposition": "commentary",
    "lean": [
-    "H1_holds"
+    "H1_holds",
+    "P2qJumps.h2_p_lt_1e6",
+    "P2qJumps.H3_of_mod4"
    ],
    "relation": "unjudged",
-   "paper_sha256": "8948373e5daec6ea45bad882163c8a4147b8bf7395f98e8abceb953bad28908b",
+   "paper_sha256": "cf31ea3c514a65248389fdb6b995818524aaecfb7afb3359e1028b9a694a0ade",
    "lean_expected": {},
-   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, paper on main 1f2b324 vs Lean source",
+   "reviewed": "Grok Bot agent review (not the author), 2026-11-23 America/Chicago, third pass, paper on feat/4sort-drift-formalization",
    "note": "remark asserting kernel-checked status; cites these declarations"
   }
  ]

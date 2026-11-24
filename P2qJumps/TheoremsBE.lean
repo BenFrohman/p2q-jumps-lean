@@ -261,4 +261,78 @@ theorem cube_excludes_second_square {p q r s : ℕ} (hp : p.Prime) (hq : q.Prime
     · subst hℓr; exact (pow_dvd_pow ℓ (by norm_num)).trans h3
     · rw [ht ℓ hℓ hℓr]; exact h2
 
+/-- Paper Lemma `lem:A-K` (Lemma K) under the jumps alone: there is an integer `m ≥ 1` with
+`U - P = p m`, `K m = p + q - 1` and `K (p^2 m - U) = L(p)`, where `U = rad N`, `K = N / U`,
+`P = ∏_{ℓ ∣ N} (ℓ - 1)`. The hypothesis `5 ≤ p` of `P2qExclusions.setupK` is discharged by
+`preamble`. -/
+theorem lemmaK_param {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) :
+    ∃ m : ℤ, 1 ≤ m ∧
+      (P2qStructural.rad (p ^ 2 * q + 12) : ℤ) - P2qExclusions.Pm1 (p ^ 2 * q + 12) = p * m ∧
+      (((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) : ℕ) : ℤ) * m = p + q - 1 ∧
+      (((p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) : ℕ) : ℤ) *
+          ((p : ℤ) ^ 2 * m - P2qStructural.rad (p ^ 2 * q + 12)) = P2qStructural.L p :=
+  P2qExclusions.setupK (jump_of_jumps hp hq hpq hJ) (preamble hp hq hpq hJ).1
+
+/-- Paper `lem:K` (Part B), first clause: under the jumps, `p ∤ K` where `K = N / rad N`. -/
+theorem p_not_dvd_K {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) :
+    ¬ p ∣ (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) := by
+  intro h
+  obtain ⟨-, -, -, -, hcop⟩ := preamble hp hq hpq hJ
+  have hKN : (p ^ 2 * q + 12) / P2qStructural.rad (p ^ 2 * q + 12) ∣ p ^ 2 * q + 12 :=
+    Nat.div_dvd_of_dvd (Nat.prod_primeFactors_dvd _)
+  have hpN : p ∣ p ^ 2 * q + 12 := h.trans hKN
+  have hp6 : p ∣ 6 * p * q := ⟨6 * q, by ring⟩
+  have h1 : p ∣ Nat.gcd (p ^ 2 * q + 12) (6 * p * q) := Nat.dvd_gcd hpN hp6
+  rw [hcop.gcd_eq_one] at h1
+  exact hp.one_lt.ne' (Nat.dvd_one.1 h1)
+
+/-- Paper `thm:E`(v), parenthetical: a prime `r` with `r^3 ∣ N` satisfies `r^2 < p^3`
+(that is, `r < p^{3/2}`). -/
+theorem theoremE_v_lt {p q r : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) (hr : r.Prime) (h3 : r ^ 3 ∣ p ^ 2 * q + 12) : r ^ 2 < p ^ 3 := by
+  have hd := theoremE_v hp hq hpq hJ hr h3
+  have zp : (5 : ℤ) ≤ p := by exact_mod_cast (preamble hp hq hpq hJ).1
+  have h25 : (25 : ℤ) ≤ (p : ℤ) ^ 2 := by nlinarith
+  have hL : 0 < (p : ℤ) ^ 3 - p ^ 2 - 12 := by
+    nlinarith [mul_le_mul_of_nonneg_right h25 (by linarith : (0 : ℤ) ≤ (p : ℤ) - 1)]
+  have hle := Int.le_of_dvd hL hd
+  have hlt : ((r ^ 2 : ℕ) : ℤ) < ((p ^ 3 : ℕ) : ℤ) := by
+    push_cast
+    linarith
+  exact_mod_cast hlt
+
+/-- Lemma Q, second sentence (`lem:Q`): for every `m = ∏ rᵢ^{eᵢ}`,
+`Q(m)/m² = 1 - ∏ (1 - rᵢ^{-eᵢ-1})`, where `Q(m) = m² - φ(m) σ(m)`. -/
+theorem lemmaQ_ratio (m : ℕ) (hm : m ≠ 0) :
+    ((m : ℚ) ^ 2 - (Nat.totient m : ℚ) * (σ 1 m : ℚ)) / (m : ℚ) ^ 2 =
+      1 - ∏ ℓ ∈ m.primeFactors, (1 - ((ℓ : ℚ) ^ (m.factorization ℓ + 1))⁻¹) := by
+  have hm' : (m : ℚ) ≠ 0 := by exact_mod_cast hm
+  have hself : (m : ℚ) = ∏ ℓ ∈ m.primeFactors, (ℓ : ℚ) ^ (m.factorization ℓ) := by
+    have h := Nat.factorization_prod_pow_eq_self hm
+    rw [Finsupp.prod] at h
+    exact_mod_cast h.symm
+  have hST : (Nat.totient m : ℚ) * (σ 1 m : ℚ) = ∏ ℓ ∈ m.primeFactors,
+      (ℓ : ℚ) ^ (m.factorization ℓ - 1) * ((ℓ : ℚ) ^ (m.factorization ℓ + 1) - 1) := by
+    have h := congrArg (fun z : ℤ => (z : ℚ)) (P2qExtensions.sigma_mul_totient_prod m hm)
+    push_cast at h
+    linear_combination h
+  have hterm : ∀ ℓ ∈ m.primeFactors,
+      (ℓ : ℚ) ^ (m.factorization ℓ - 1) * ((ℓ : ℚ) ^ (m.factorization ℓ + 1) - 1) =
+        ((ℓ : ℚ) ^ (m.factorization ℓ)) ^ 2 * (1 - ((ℓ : ℚ) ^ (m.factorization ℓ + 1))⁻¹) := by
+    intro ℓ hℓ
+    have hl : (ℓ : ℚ) ≠ 0 := by exact_mod_cast (Nat.prime_of_mem_primeFactors hℓ).ne_zero
+    have he : 0 < m.factorization ℓ :=
+      (Nat.prime_of_mem_primeFactors hℓ).factorization_pos_of_dvd hm
+        (Nat.dvd_of_mem_primeFactors hℓ)
+    obtain ⟨k, hk⟩ : ∃ k, m.factorization ℓ = k + 1 := ⟨_, (Nat.succ_pred_eq_of_pos he).symm⟩
+    rw [hk, Nat.add_sub_cancel]
+    have hx : (ℓ : ℚ) ^ (k + 1 + 1) * ((ℓ : ℚ) ^ (k + 1 + 1))⁻¹ = 1 :=
+      mul_inv_cancel₀ (pow_ne_zero _ hl)
+    linear_combination (ℓ : ℚ) ^ k * hx
+  rw [hST, Finset.prod_congr rfl hterm, Finset.prod_mul_distrib, Finset.prod_pow, ← hself,
+    div_eq_iff (pow_ne_zero 2 hm')]
+  ring
+
 end P2qJumps

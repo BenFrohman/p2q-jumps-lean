@@ -16,7 +16,7 @@
 **Key Files & Artifacts**
 - Lean sources: P2qJumps/ (ClosedShapes.lean, LeadingForm.lean, Cert/, Ext/, etc.)
 - CI: .github/workflows/certify.yml, kernel-certificate.yml, truth-gate.yml
-- Certificates: CERTIFICATE.md, audit/, local-dev-logs/ (historical)
+- Certificates: the only certificate of record is the official CI artifact named in root `CERTIFICATE.md`. `CERTIFICATE.md` itself is a pointer, not a certificate. `audit/` and `local-dev-logs/` are historical and not certificates.
 - Paper notes: paper/, NOTES/
 - Provenance: PROVENANCE_MERKLE_ROOT.json, .zenodo.json
 

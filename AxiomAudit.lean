@@ -285,3 +285,39 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Hensel.good_upto
 #print axioms P2qJumps.hensel_r_le_1e6
 #print axioms P2qJumps.r3s_r_le_1e6
+
+-- ω(N) ≥ 4 with q ≤ 10^6 (kernel certificates, P2qJumps/Omega4Q)
+#print axioms P2qJumps.Omega4Q.chkQ_sound
+#print axioms P2qJumps.Omega4Q.chkP_sound
+#print axioms P2qJumps.Omega4Q.chkQ_all
+#print axioms P2qJumps.omega4_q_le_1e6
+
+-- H2 for p < 10^6 (kernel certificates, P2qJumps/H2K)
+#print axioms P2qJumps.H2K.run_sound
+#print axioms P2qJumps.H2K.ref_sound_j1
+#print axioms P2qJumps.H2K.ref_sound_j2
+#print axioms P2qJumps.H2K.scan_sound
+#print axioms P2qJumps.H2K.good_upto
+#print axioms P2qJumps.h2_p_lt_1e6
+#print axioms P2qJumps.propC_p_lt_1e6
+
+-- 4-sort drift formalization (2026-11-23)
+#print axioms P2qJumps.coprime_of_prime_ge_five
+#print axioms P2qJumps.coprime6_r2st
+#print axioms P2qJumps.coprime6_r3s
+#print axioms P2qJumps.omega4_N_gt_p4
+#print axioms P2qJumps.lemmaK_param
+#print axioms P2qJumps.totient_mul_sigma_prod_primes_le
+#print axioms P2qJumps.p7_prefix_no_completion
+#print axioms P2qJumps.lemmaL1_terms_nonneg
+#print axioms P2qJumps.sq_mod16_exact
+#print axioms P2qJumps.rigid_finite_candidates
+#print axioms P2qJumps.r2st_offset_sigma_neg
+#print axioms P2qJumps.p_not_dvd_K
+#print axioms P2qJumps.theoremE_v_lt
+#print axioms P2qJumps.lemmaQ_ratio
+#print axioms P2qJumps.two_pow_dvd_two_mul_iff
+#print axioms P2qJumps.theoremF_v2
+#print axioms P2qJumps.delta_eq_not_jumps_63
+#print axioms P2qJumps.hypR1_data_gives_jumps
+#print axioms P2qJumps.hypR1_holds

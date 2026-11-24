@@ -319,3 +319,5 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.two_pow_dvd_two_mul_iff
 #print axioms P2qJumps.theoremF_v2
 #print axioms P2qJumps.delta_eq_not_jumps_63
+#print axioms P2qJumps.hypR1_data_gives_jumps
+#print axioms P2qJumps.hypR1_holds

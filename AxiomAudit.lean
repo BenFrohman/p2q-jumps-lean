@@ -319,3 +319,12 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Curve3936.affineCount_13
 #print axioms P2qJumps.Curve3936.good_primes
 #print axioms P2qJumps.Curve3936.count_gcds
+
+-- Curve 3936.b1, Nagell-Lutz finite step (P2qJumps/Curve3936Finite)
+#print axioms P2qJumps.Curve3936.bezout_identity
+#print axioms P2qJumps.Curve3936.sketch_identity_false
+#print axioms P2qJumps.Curve3936.dvd_1968_of_dvd_deriv
+#print axioms P2qJumps.Curve3936.validYList_eq
+#print axioms P2qJumps.Curve3936.point_4_6_in_validYList
+#print axioms P2qJumps.Curve3936.noIntegralPointsWithDivisorY_false
+#print axioms P2qJumps.Curve3936.no_point_y_zero_or_sq_dvd

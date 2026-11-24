@@ -1,3 +1,5 @@
+> **Status correction (23 Nov 2026):** Hypotheses R2 and R3 are both **open**. R2 is a φ-only statement; `P2qJumps.r3s_empty` (which uses both jumps) excludes the shape N = r^3 s but does not prove R2. R3's r^2 s t clause is kernel-checked (`P2qJumps.r2st_empty`), but its clause "no solution with ω(N) ≥ 4" is open beyond the bounded ranges. Anything below that calls R2 or R3 closed, a theorem, or empty refers only to these shape results and does not close either hypothesis.
+
 # R3 Update: Unconditional Emptiness of the Q < 0 Half-Plane
 
 ## Lemma (Q < 0 empty for r²st)

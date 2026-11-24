@@ -90,7 +90,6 @@ Cite the paper as Frohman, *Further constraints on simultaneous totient and divi
 - **License:** Apache License, Version 2.0 (`Copyright (c) 2026 Benjamin Stanley Frohman`)
 - **Earliest Commit Provenance:** `83def85f7812df25e4f503c8176942b725fa1bf3` (2026-06-21 02:11:16 PM CDT (UTC-5))
 - **SealGuard SHA-256 Merkle Root:** `cafa6a2101b1393a290fd004373460ecdff2c71561ca18d7424aa9d3d0bcb385` (`PROVENANCE_MERKLE_ROOT.json`)
-- **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
 - **Scope & Scientific Boundary:** Formalizes closed shapes, residual reductions and bounded kernel certificates for simultaneous +12 jumps of φ and σ at n = p^2 q. It does not prove Conjecture 3.
 
 ## Zenodo archive

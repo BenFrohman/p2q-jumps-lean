@@ -1,3 +1,5 @@
+> **Status correction (23 Nov 2026):** Hypotheses R2 and R3 are both **open**. R2 is a φ-only statement; `P2qJumps.r3s_empty` (which uses both jumps) excludes the shape N = r^3 s but does not prove R2. R3's r^2 s t clause is kernel-checked (`P2qJumps.r2st_empty`), but its clause "no solution with ω(N) ≥ 4" is open beyond the bounded ranges. Anything below that calls R2 or R3 closed, a theorem, or empty refers only to these shape results and does not close either hypothesis.
+
 > **Status (v1.4, 16 Nov 2026):** the conclusion of this note is now a Lean theorem, `P2qJumps.r2st_empty`.
 > The argument below is incomplete as written: it says the line `p = r - 4` is excluded by "the offset arguments
 > already in the draft", but the draft's offset theorems cover only `r = p ± 2`, `p - 4`, `p - 6`. The Lean proof
@@ -27,7 +29,7 @@ Hence no solutions of shape N = r^{2}st exist.
 ## Updated residual ledger for Conjecture 3
 
 - R1 (N = rst): theorem (Theorem 28).
-- R3 (N = r^{2}st): **theorem** (both half-planes empty).
+- R3: **open**. Its N = r^{2}st clause is a theorem (both half-planes empty; Lean `r2st_empty`); its ω(N) ≥ 4 clause is open.
 - R2 (N = r^{3}s): multiple-root case empty; simple-root Hensel lifts open elementarily, computationally empty for all primes p ≤ 10^{5}.
 - ω(N) ≥ 4: open residual.
 

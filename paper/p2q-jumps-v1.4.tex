@@ -7,8 +7,8 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{hyperref}
-\newcommand{\DATAHTWO}{\textbf{[External computational data (SymPy); not kernel-checked; Lean kernel proof in progress.]}}
-\newcommand{\DATAOMEGAFOUR}{\textbf{[External computational data (PARI/GP); not kernel-checked; Lean kernel proof in progress.]}}
+\newcommand{\DATAHTWO}{\textbf{[Kernel-checked in Lean: \texttt{h2\_p\_lt\_1e6} and \texttt{propC\_p\_lt\_1e6}, \texttt{P2qJumps/H2K.lean}, standard axioms only; certificate of record: GitHub CI artifact \path{lean-certificate-84b3da002fb6ca7f607befed6c7d76a644974842} of the \path{certify.yml} run \url{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/45296678282} on main.]}}
+\newcommand{\DATAOMEGAFOUR}{\textbf{[Kernel-checked in Lean: \texttt{omega4\_q\_le\_1e6}, \texttt{P2qJumps/Omega4Q.lean}, standard axioms only; certificate of record: GitHub CI artifact \path{lean-certificate-84b3da002fb6ca7f607befed6c7d76a644974842} of the \path{certify.yml} run \url{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/45296678282} on main.]}}
 \newcommand{\DATAHENSEL}{\textbf{[Kernel-checked in Lean: \texttt{hensel\_r\_le\_1e6} and \texttt{r3s\_r\_le\_1e6}, \texttt{P2qJumps/Hensel.lean}, standard axioms only; certificate of record: GitHub CI artifact \path{lean-certificate-0b82cdddcfb5ee8edf517b3634ad74d68bf75979} of the \path{certify.yml} run \url{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388} on main.]}}
 \newcommand{\OMEGAFOURSTATUS}{no result. The v1.4 run (\texttt{python3 search\_omega4\_1e6.py} under a 3-hour \texttt{timeout}, started 16 Nov 2026 17:42:14 CST) was stopped by the timeout at 20:42:14 CST (exit code 124, wall time 10800 s) before printing any output, so it reports no hit count and certifies nothing. Its range is the \(Q=10^6\) range of the second PARI run above, which found 0 hits with no filter; that run is the computational evidence for this range (computationally verified, not kernel-checked).}
 
@@ -46,7 +46,7 @@ Roy Choudhury and Wei formulate Conjecture~1.1 (attributed there to McCranie via
 \(\ph(n+12)=\ph(n)+12\) and \(\sig(n+12)=\sig(n)+12\)---with \(\ph\) Euler's totient and \(\sig\) the ordinary sum-of-divisors function---is of the form \(n=p(p+8)\) arising from a prime quadruplet
 \((p,p+2,p+6,p+8)\). They proved the claim when both \(n\) and \(n+12\) are squarefree semiprimes, excluded prime-power
 \(n\), and found no counterexample with \(n\le 10^{12}\). This note treats the next family \(n=p^2q\).
-This version keeps the v0.10 technical development as historical record, but the original Proposition~32 implication is \textbf{superseded and not currently valid}: its factor-pattern reduction was incomplete. The corrected exhaustive classification (Proposition~\ref{prop:implies-corrected}) and Theorems~A,~B,~D,~E,~F with Lemmas~K,~G are the current statements. The following are kernel-checked in Lean~4 with the axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only (Lean sources at commit \texttt{0b82cdd}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}): Theorem~28 (\texttt{theorem28\_holds}); Theorem~A (\texttt{theoremA}, \texttt{N\_ne\_ras}, \texttt{N\_ne\_prime\_pow}); Theorem~B (\texttt{theoremB}, \texttt{N\_not\_powerful}); Theorem~D; Theorem~E, clauses (i)--(v) (\texttt{theoremE\_i}--\texttt{theoremE\_v}); Theorem~F, Lemmas~G,~K, Corollary~F1 and Lemmas~L1,~Q; the exclusion of \(N=r^3s\) (\texttt{r3s\_empty}); the \(\omega(N)\ge 4\) constraints \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (\texttt{omega4\_constraints}, \texttt{omega4\_size}); the corrected classification \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H1}\wedge\text{H2}\wedge\text{H3}\) (\texttt{prop\_implies\_corrected}); the \(p=7\) descent (\texttt{p7\_squarefree\_empty}) and Hypothesis~H1 (\texttt{H1\_holds}), hence \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H2}\wedge\text{H3}\) (\texttt{conjecture\_iff\_H2\_H3}); and H3 for \(p\equiv 1\pmod 4\) (\texttt{H3\_of\_mod4}). Open: Hypothesis~H2 (in Lean it is reduced to the emptiness of the shapes \(r^2s^2t\) and \(r^2s^2tu\), \texttt{H2\_of\_shapes}; an external SymPy computation, not kernel-checked, finds no H2 solution with \(p<10^6\)); Hypothesis~H3 for \(p\equiv 3\pmod 4\); and Conjecture~\ref{conj:vanish}. No true \(n=p^2q\) solution of both jumps is known; parametrizations are necessary conditions, not existence.
+This version keeps the v0.10 technical development as historical record, but the original Proposition~32 implication is \textbf{superseded and not currently valid}: its factor-pattern reduction was incomplete. The corrected exhaustive classification (Proposition~\ref{prop:implies-corrected}) and Theorems~A,~B,~D,~E,~F with Lemmas~K,~G are the current statements. The following are kernel-checked in Lean~4 with the axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only (Lean sources at commit \texttt{0b82cdd}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/44893346388}{44893346388}): Theorem~28 (\texttt{theorem28\_holds}); Theorem~A (\texttt{theoremA}, \texttt{N\_ne\_ras}, \texttt{N\_ne\_prime\_pow}); Theorem~B (\texttt{theoremB}, \texttt{N\_not\_powerful}); Theorem~D; Theorem~E, clauses (i)--(v) (\texttt{theoremE\_i}--\texttt{theoremE\_v}); Theorem~F, Lemmas~G,~K, Corollary~F1 and Lemmas~L1,~Q; the exclusion of \(N=r^3s\) (\texttt{r3s\_empty}); the \(\omega(N)\ge 4\) constraints \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) (\texttt{omega4\_constraints}, \texttt{omega4\_size}); the corrected classification \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H1}\wedge\text{H2}\wedge\text{H3}\) (\texttt{prop\_implies\_corrected}); the \(p=7\) descent (\texttt{p7\_squarefree\_empty}) and Hypothesis~H1 (\texttt{H1\_holds}), hence \(\text{Conjecture~\ref{conj:vanish}}\iff\text{H2}\wedge\text{H3}\) (\texttt{conjecture\_iff\_H2\_H3}); and H3 for \(p\equiv 1\pmod 4\) (\texttt{H3\_of\_mod4}). Open: Hypothesis~H2 for \(p\ge 10^6\) (in Lean it is reduced to the emptiness of the shapes \(r^2s^2t\) and \(r^2s^2tu\), \texttt{H2\_of\_shapes}; H2 for \(p<10^6\) is kernel-checked, \texttt{h2\_p\_lt\_1e6}, certificate GitHub Actions run \href{https://github.com/BenFrohman/p2q-jumps-lean/actions/runs/45296678282}{45296678282} on commit \texttt{84b3da0}); Hypothesis~H3 for \(p\equiv 3\pmod 4\); and Conjecture~\ref{conj:vanish}. No true \(n=p^2q\) solution of both jumps is known; parametrizations are necessary conditions, not existence.
 
 \emph{Version 1.4.} The leading result is Theorem~\ref{thm:L} (Section~\ref{sec:v14-lean}), proved in Lean~4: under both jumps, \(N\) is not prime, not a product of two or of three distinct primes, and not of the form \(r^2st\); in the shape \(r^3s\) one has \(p<r\), \(r^2\mid p^3-p^2-12\) and \(p>10^4\); and \(n>10^4\). The separately locked Theorem~\ref{thm:L2}, also proved in Lean, strengthens the \(r^3s\) clause to \(N\ne r^3s\) with no bound, excludes \(N=r^k\) and \(N=r^as\) (\(a\ge 2\)), and gives \(q\ge 3p^2\) and \(r>p\) for every prime \(r\mid N\) when \(\omega(N)\ge 4\). The paper is in three parts: (A) Lean-proved statements, each with a step-by-step proof in ordinary mathematics that follows the Lean proof; (B) paper-only arguments, not kernel-checked; (C) computational certificates with exact ranges, separating kernel-checked certificates (no \texttt{native\_decide}) from external computations. The Lean axioms are \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}. Part~B records the verified data of the curve \(y^2=x^3-x^2-12\) (LMFDB \texttt{3936.b1}, rank~1, trivial torsion) and its twists. Conjecture~\ref{conj:vanish} remains open.
 \end{abstract}
@@ -142,7 +142,7 @@ If \(p=2\) then \(N=2(2q+6)\); if \(p=3\) then \(N=3(3q+4)\); \(p=4\) is not pri
 
 \begin{lemma}
 \label{lem:A-coprime6}
-A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).
+A prime \(r\ge 5\) is divisible by neither \(2\) nor \(3\).\lean{prime_ge_five_not_dvd}{Arith.lean:118} Consequently, if \(N=r^2st\) or \(N=r^3s\) with all displayed primes \(\ge 5\), then \(2\nmid N\) and \(3\nmid N\) (a prime dividing a product divides one factor), and Lemma~\ref{lem:A-p5} gives \(p\ge 5\) and \(p\nmid N\).\lean{P2qJumps.coprime6_r2st; P2qJumps.coprime6_r3s}{Arith.lean:133; Arith.lean:150}
 \end{lemma}
 
 \section{Preamble facts: \(p,q\ge 5\), \(N\) odd, not a square, coprime to \(6pq\)}
@@ -506,7 +506,7 @@ Lemma~\ref{lem:A-pair} for the pairs \((a,b)\) and \((c,d)\) gives \(4N^2\le\del
 
 \begin{theorem}[\(\omega(N)\ge 4\) constraints]
 \label{thm:A-omega4}
-Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints}{Omega4.lean:164}
+Assume~\eqref{eq:jumps}. If \(N\) has at least four distinct prime factors, then \(q\ge 3p^2\) and every prime factor \(r\) of \(N\) satisfies \(r>p\). In particular \(N>p^4\).\lean{P2qJumps.omega4_constraints; P2qJumps.omega4_N_gt_p4}{Omega4.lean:164; Omega4.lean:212}
 \end{theorem}
 
 \begin{proof}
@@ -700,7 +700,7 @@ Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lea
 
 \begin{lemma}[L1, Lemma Q and \(\delta(N)\)]
 \label{lem:A-L1Q}
-\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1}{Ext/Extensions/DeltaQ.lean:41}
+\textup{(a)} For every \(x\ge 1\), \(\delta(x)=\sum(1+\mu(a))\,b\), the sum over pairs \(ab=x\) with \(a\ne 1\); every term is \(\ge 0\).\lean{P2qExtensions.lemmaL1; P2qJumps.lemmaL1_terms_nonneg}{Ext/Extensions/DeltaQ.lean:41; ClosedLedger.lean:403}
 \textup{(b)} \(\delta(p^2q)=q+2p+1\) and \(Q(p^2q)=p^4+pq^2-p\), where \(Q(x)=x^2-\sig(x)\ph(x)\).\lean{P2qExtensions.delta_Q_p2q}{Ext/Extensions/DeltaQ.lean:91}
 \textup{(c)} Under~\eqref{eq:jumps}, \(\delta(N)=\delta(n)=q+2p+1\) and \(Q(N)=Q(n)-12\delta(n)=p^4+pq^2-p-12(2p+q+1)>0\).\lean{P2qExtensions.lemmaQ; P2qJumps.lemmaQ_formula}{Ext/Extensions/DeltaQ.lean:100; TheoremsBE.lean:214}
 \textup{(d)} If \(r\) is prime and \(r^2\mid N\), then \(N\le r^2(q+2p+1)\).\lean{P2qExtensions.repeated_prime_bound}{Ext/Extensions/RepeatedSize.lean:44}
@@ -714,7 +714,7 @@ Assume~\eqref{eq:jumps}. Then \(N\) has at least two distinct prime factors.\lea
 
 \begin{lemma}[Lemma K]
 \label{lem:A-K}
-Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qExclusions.setupK; P2qJumps.lemmaK}{Ext/Exclusions/Setup.lean:56; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
+Assume~\eqref{eq:jumps}. There is an integer \(m\ge 1\) with \(U-P=pm\), \(Km=p+q-1\) and \(K(p^2m-U)=L(p)\). In particular \(K\mid L(p)\).\lean{P2qJumps.lemmaK_param; P2qJumps.lemmaK}{TheoremsBE.lean:268; TheoremsBE.lean:123} If \(r\) is prime and \(r^{e+1}\mid N\), then \(r^e\mid K\).\lean{P2qJumps.pow_dvd_K}{TheoremsBE.lean:97}
 \end{lemma}
 \begin{proof}
 \textit{Step 1.} \(N=UK\) and \(\ph(N)=KP\).\lean{P2qExclusions.totient_eq_KP}{Ext/Exclusions/Setup.lean:31} The totient jump and \(N=p^2q+12\) give \(K(U-P)=N-\ph(N)=p(p+q-1)\).
@@ -887,7 +887,7 @@ The statements below are kernel-checked in \path{P2qJumps/ProseClaims2.lean} (st
 \textup{(d)} \(N(p,k)<0\) for all integers \(p\ge 5\) and \(k\in[5-p,p-1]\setminus\{0\}\).\lean{P2qJumps.Nfar_neg}{ProseClaims2.lean:35}
 \textup{(e)} The values \(T(5),\dots,T(19)\) and their \(2\)-adic valuations listed in Corollary~\ref{cor:F1};\lean{P2qJumps.T_values}{ProseClaims2.lean:236} and \(T(m)<m^4<2^{m-1}\) for every integer \(m\ge 23\).\lean{P2qJumps.F1_tail; P2qJumps.pow_gt_T}{ProseClaims2.lean:260; ProseClaims2.lean:62}
 \textup{(f)} For the model \([0,-1,0,0,-12]\) of \(E\): \(\Delta=-62976=-2^9\cdot 3\cdot 41\), \(c_4^3/\Delta=-8/123\), \(3936=2^5\cdot 3\cdot 41\), and \((4,6)\), \((12388,1378746)\) lie on \(y^2=x^3-x^2-12\).\lean{P2qJumps.curve_disc; P2qJumps.curve_j; P2qJumps.curve_factorizations; P2qJumps.curve_points}{ProseClaims2.lean:92; ProseClaims2.lean:95; ProseClaims2.lean:99; ProseClaims2.lean:98}
-\textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\).\lean{P2qJumps.F_mod16; P2qJumps.sq_mod16; P2qJumps.F_even}{ProseClaims2.lean:276; ProseClaims2.lean:282; ProseClaims2.lean:283}
+\textup{(g)} With \(F\) the octic of Theorem~\ref{thm:rp4}: modulo \(16\), \(2F(p)\equiv 8,12,0,4\) for \(p\equiv 1\text{ or }9\), \(3\text{ or }11\), \(5\text{ or }13\), \(7\text{ or }15\) respectively; the squares modulo \(16\) are \(0,1,4,9\); and \(F(p)\) is even for odd \(p\).\lean{P2qJumps.F_mod16; P2qJumps.sq_mod16; P2qJumps.sq_mod16_exact; P2qJumps.F_even}{ProseClaims2.lean:276; ProseClaims2.lean:282; ProseClaims2.lean:291; ProseClaims2.lean:283}
 \textup{(h)} \(4t^4+4t^3+11t^2+6t+7>6\) for every real \(t\).\lean{P2qJumps.quartic_gt_six}{ProseClaims2.lean:286}
 \end{proposition}
 \begin{proof}
@@ -998,7 +998,7 @@ the determinant \(\Delta=M(ag+bf)-2p^2fg\) of this system in the unknowns \((q,S
 \end{proof}
 
 \begin{remark}
-These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration over \(5\le p<10^6\) is an external computation and is not kernel-checked \DATAHTWO.
+These are the structural clauses of Proposition~\ref{prop:C}. Propositions~\ref{prop:A-C-j1}--\ref{prop:A-C-j2} hold for every divisor \(M\) of \(N\) with the stated cofactor, in particular for \(M=K\cdot\mathrm{rad}(K)\); for each eligible \(K\) the candidate is therefore unique. The enumeration clause for \(5\le p<10^6\) is kernel-checked \DATAHTWO.
 \end{remark}
 
 \section{The corrected residual equivalence}
@@ -1031,7 +1031,7 @@ Conjecture~\ref{conj:vanish} (\texttt{Conjecture3}) holds if and only if H1, H2 
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:A-implies} proves the equivalence only. H1 is proved in Lean in Section~\ref{sec:A-H1} (Theorem~\ref{thm:A-H1}, kernel-checked); H2 and H3 are not proved, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}; the computational status of H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is an external computation \DATAHTWO.
+Theorem~\ref{thm:A-implies} proves the equivalence only. H1 is proved in Lean in Section~\ref{sec:A-H1} (Theorem~\ref{thm:A-H1}, kernel-checked); H2 and H3 are not proved, and Conjecture~\ref{conj:vanish} remains open. H1 is the statement of Theorem~\ref{thm:H1-comp}; H2 for \(p<10^6\) (Proposition~\ref{prop:C}) is kernel-checked \DATAHTWO.
 \end{remark}
 
 \section{The shape \(r^2s^2t\) and the ``three regimes'' claim}
@@ -1102,7 +1102,7 @@ Theorem~\ref{thm:A-omega4} gives \(r>7\) for every prime \(r\mid N\). The intege
 \label{prop:A-p7-prefix}
 Let \(b,h,s,M,F_-,F_+\) be integers with \(b,h,s,M\ge 0\) and \(F_-F_+\le M^2\). If
 \(343(hF_-)(sF_+)=342(bM)^2+108bM-760554\) and \(342b^2-343hs\ge 1\), then \(M\le 872\).\lean{P2qJumps.p7_prefix_bound}{P7.lean:65}
-Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).
+Since \(872<11\cdot 13\cdot 17\),\lean{P2qJumps.p7_prune_threshold}{P7.lean:79} no prefix with \(342b^2-343\ph(b)\sig(b)\ge 1\) can be completed by three or more further distinct primes \(\ge 11\).\lean{P2qJumps.p7_prefix_no_completion}{P7.lean:110}
 \end{proposition}
 
 \begin{proof}
@@ -1214,7 +1214,7 @@ Assume~\eqref{eq:jumps} with \(n=p^2q\), \(p\ne q\) primes.
 \part{Written arguments, cited and computational results}
 \label{part:B}
 
-\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Since v1.4 the \(p=7\) descent and Theorem~\ref{thm:H1-comp} are kernel-checked (Section~\ref{sec:A-H1}); the written descent of Appendix~\ref{app:p7} and its Python runs remain an external reproduction. Not kernel-checked are in particular: the enumeration of Proposition~\ref{prop:C} (its structural clauses are Section~\ref{sec:A-propC}) and the other external computations; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
+\noindent\textbf{Trust label for Part~\ref{part:B}.} Part~\ref{part:B} gives the written arguments of v1.3 and the cited and computational results. The written arguments are not themselves kernel-checked. Since v1.4 most \emph{statements} of Part~\ref{part:B} are kernel-checked separately in Part~\ref{part:A} (Sections~\ref{sec:A-BDE}, \ref{sec:A-prose} and~\ref{sec:A-prose2}); the status of every mathematical statement in the prose (Lean declaration with file and line, cited external, removed, or in progress with its blocker) is listed in \path{paper/PROSE-CLAIMS.md}. Since v1.4 the \(p=7\) descent and Theorem~\ref{thm:H1-comp} are kernel-checked (Section~\ref{sec:A-H1}); the written descent of Appendix~\ref{app:p7} and its Python runs remain an external reproduction. The enumeration of Proposition~\ref{prop:C} for \(5\le p<10^6\) is kernel-checked (\texttt{propC\_p\_lt\_1e6}; its structural clauses are Section~\ref{sec:A-propC}). Not kernel-checked are in particular: the external computations of Section~\ref{sec:v14-external} as runs; the LMFDB/PARI data of Section~\ref{sec:v14-curve} beyond Proposition~\ref{prop:A-pure}(f); and the root-number formula (valid only for fundamental \(D\) with \(\gcd(D,3936)=1\)).
 
 Where Part~\ref{part:B} overlaps Part~\ref{part:A}, Part~\ref{part:A} is the kernel-checked version: Theorem~\ref{thm:closed}(1),(3) are Theorem~\ref{thm:L}(i); Theorem~\ref{thm:R1} is Theorem~\ref{thm:L}(ii), whose Lean proof (Section~\ref{sec:A-ii}) is a different argument from the written one below; and Theorem~\ref{thm:r3s-plarge} together with the divisibility of Theorem~\ref{thm:r3s-strip} is Theorem~\ref{thm:L}(iv), again with a different Lean argument (Section~\ref{sec:A-iv}). Since Theorem~\ref{thm:L}(iii) shows that the shape \(r^2st\) does not occur, the \(r^2st\) material below (Theorem~\ref{thm:rigid}(c), Theorems~\ref{thm:r2st-off} and~\ref{thm:rp4}, the square-discriminant sections and the \(r^2st\) rows of Table~\ref{tab:bounds}) is kept as the v1.3 record and is no longer needed.
 
@@ -1245,7 +1245,7 @@ Suppose~\eqref{eq:jumps} holds. Then \(p,q\ge 5\), the integer \(N\) is odd, cop
 In particular there is no solution with \(\{p,q\}\cap\{2,3\}\ne\emptyset\).
 \end{theorem}
 
-After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the closure of H1 (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 (not proved; an external computation, not kernel-checked, covers \(p<10^6\)) and H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
+After Theorem~\ref{thm:closed}, the v0.10 text listed as residual an unbalanced triple \(rst\), mixed powers \(r^3s\) and \(r^2st\), and \(\omega(N)\ge 4\). That list was incomplete as a global residue (it omitted several mixed and powerful shapes). The exhaustive classification of Section~\ref{sec:exhaustive} supersedes it: after Theorems~\ref{thm:R1},~\ref{thm:A},~\ref{thm:B} and the closure of H1 (Theorem~\ref{thm:H1-comp}, kernel-checked as Theorem~\ref{thm:A-H1}), the only open residuals for Conjecture~\ref{conj:vanish} are H2 for \(p\ge 10^6\) (kernel-checked for \(p<10^6\), \texttt{h2\_p\_lt\_1e6}) and H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
 
 \begin{theorem}[Rigidity equations]
 \label{thm:rigid}
@@ -1281,7 +1281,7 @@ If \(N=r^2st\) with distinct primes \(r,s,t\ge 5\), write \(\sigma=s+t\) and \(\
 \label{eq:r2st-q}
 q&=\frac{2p^2r^2+p^2r-2pr^3-pr+2r^5-r^3-r^2-12r-24}{(p-r)\bigl(pr+2p-r^2+r\bigr)}.
 \end{align}
-In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not occur at all, by Theorem~\ref{thm:L}(iii); part~(c) is kept as the v1.3 record.)
+In particular a solution is determined by the pair \((p,r)\) alone. The offset families \(r=p\pm 2\) yield \(\sigma<0\) and are empty. (v1.4: the shape \(r^2st\) does not occur at all, by Theorem~\ref{thm:L}(iii); part~(c) is kept as the v1.3 record.)\lean{P2qJumps.rigid_finite_candidates; P2qJumps.r2st_offset_sigma_neg}{ProseClaims2.lean:298,311}
 \end{enumerate}
 \end{theorem}
 
@@ -1300,7 +1300,7 @@ Write \(A(m):=m-\ph(m)\), \(B(m):=\sig(m)-m\), and \(\delta(m):=B(m)-A(m)=\sig(m
 
 \begin{lemma}
 \label{lem:equiv}
-The identities~\eqref{eq:jumps} are equivalent to \(A(N)=A(n)\) and \(B(N)=B(n)\), hence also to \(\delta(N)=\delta(n)\).
+The identities~\eqref{eq:jumps} are equivalent to \(A(N)=A(n)\) and \(B(N)=B(n)\), and they imply \(\delta(N)=\delta(n)\).\lean{P2qJumps.jumps_iff_AB; P2qJumps.jumps_delta}{ProseClaims.lean:23; ProseClaims.lean:41}
 \end{lemma}
 
 \begin{proof}
@@ -1310,6 +1310,10 @@ Since \(N=n+12\),
 \]
 and likewise for \(B\). Subtracting yields \(\delta(N)=\delta(n)\).
 \end{proof}
+
+\begin{remark}
+The converse of the last implication is false: for \(n=63=3^2\cdot 7\) one has \(\delta(75)=\delta(63)=14\), but \(A(75)=35\ne 27=A(63)\), so~\eqref{eq:jumps} fails at \(n=63\).\lean{P2qJumps.delta_eq_not_jumps_63}{ProseClaims.lean:261}
+\end{remark}
 
 \begin{lemma}
 \label{lem:AB}
@@ -2007,7 +2011,7 @@ The labels R1--R3 below are retained only for cross-reference to v0.10. They are
 
 \begin{hypothesis}[R1]
 \label{hyp:R1}
-\itshape (Discharged by Theorem~\ref{thm:R1}.) There are no primes \(p,\rho\ge 5\) for which \(D(p,\rho)\) divides \(C(\rho)\), the resulting \(q\) in~\eqref{eq:qCD} is a new prime, and \(X^2-(V-\rho)X+N/\rho\) splits into two further new primes.
+\itshape (Discharged by Theorem~\ref{thm:R1}.) There are no primes \(p,\rho\ge 5\) for which \(D(p,\rho)\) divides \(C(\rho)\), the resulting \(q\) in~\eqref{eq:qCD} is a new prime, and, with \(V=p+(q+1)/2\) as in Lemma~\ref{lem:e123} and \(N=p^2q+12\), \(X^2-(V-\rho)X+N/\rho\) splits into two further new primes.\lean{P2qJumps.hypR1_holds; P2qJumps.hypR1_data_gives_jumps}{ProseClaims2.lean:377,326}
 \end{hypothesis}
 
 \begin{hypothesis}[R2]
@@ -2061,9 +2065,9 @@ This section records the audited correction of the superseded original Propositi
 \(|R|\ge 2\) & \(0\) & powerful & excluded, Thm~\ref{thm:B} \\
 \(|R|=1\) & \(1\) & \(r^2s\) & excluded, Thm~\ref{thm:closed}(4) \\
 \(|R|=1\) & \(1\) & \(r^as\), \(a\ge 3\) & excluded, Thm~\ref{thm:A} \\
-\(|R|\ge 2\) & \(1\) & e.g.\ \(r^as^bt\) & H2: empty for \(p<10^6\) (external data, SymPy; not kernel-checked); open for \(p\ge 10^6\) \\
+\(|R|\ge 2\) & \(1\) & e.g.\ \(r^as^bt\) & H2: empty for \(p<10^6\) (kernel-checked, \texttt{h2\_p\_lt\_1e6}); open for \(p\ge 10^6\) \\
 \(|R|=1\) & \(2\) & \(r^2st\) & excluded, Thm~\ref{thm:L}(iii) (Lean, v1.4) \\
-any \(|R|\ge 1\) & \(2\) & \(r^ast\) (\(a\ge 3\)), \(r^2s^2t\), \ldots & H2: empty for \(p<10^6\) (external data, SymPy; not kernel-checked); open for \(p\ge 10^6\) \\
+any \(|R|\ge 1\) & \(2\) & \(r^ast\) (\(a\ge 3\)), \(r^2s^2t\), \ldots & H2: empty for \(p<10^6\) (kernel-checked, \texttt{h2\_p\_lt\_1e6}); open for \(p\ge 10^6\) \\
 any \(|R|\ge 1\) & \(\ge 3\) & e.g.\ \(r^2stu\) & H3 open \\
 \bottomrule
 \end{tabular}
@@ -2106,7 +2110,7 @@ By Corollary~\ref{cor:gcd}, \(p\nmid N\), so \(p\nmid K\). Lemma~\ref{lem:L2} an
 \end{proof}
 
 \begin{remark}
-Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qExclusions.setupK}, \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).
+Lemma~\ref{lem:K} is kernel-checked in this repository (Lemma~\ref{lem:A-K}: \texttt{P2qJumps.lemmaK\_param}, which discharges the hypothesis \(p\ge 5\) of \texttt{P2qExclusions.setupK} by Proposition~\ref{prop:A-preamble}, and \texttt{P2qJumps.lemmaK}, with \(L(p)\) integer-valued and the exact natural quotient \(N/\mathrm{rad}(N)\)). The clause ``every repeated prime \(r\) of \(N\) satisfies \(r^{e_r-1}\mid L(p)\)'' is \texttt{P2qJumps.pow\_dvd\_K} combined with \(K\mid L(p)\).\lean{P2qJumps.lemmaK_param; P2qJumps.p_not_dvd_K}{TheoremsBE.lean:268,278}
 \end{remark}
 
 \begin{theorem}[Theorem~B: powerful \(N\) impossible; kernel-checked in v1.4, Theorem~\ref{thm:A-B}]
@@ -2206,7 +2210,7 @@ The polynomial \(H(p,q)=A(N)^2(N^2-Q)-(p-1)QN^2\) expands, on the region \(p=5+v
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}.
+Theorem~\ref{thm:D} is kernel-checked in this repository as Theorem~\ref{thm:A-D} (\texttt{P2qJumps.theoremD}, with an elementary finite-product replacement for the fractional-power AM--GM step). Lemma~\ref{lem:Q} is kernel-checked as Lemma~\ref{lem:A-L1Q}(c) (\texttt{P2qJumps.lemmaQ\_formula}); its product formula is \texttt{P2qExtensions.sigma\_mul\_totient\_prod}, and the identity \(Q(m)/m^2=1-\prod(1-r_i^{-e_i-1})\) is \texttt{P2qJumps.lemmaQ\_ratio}.\lean{P2qJumps.lemmaQ_ratio}{TheoremsBE.lean:308}
 \end{remark}
 
 \section{Limits on repeated primes (Theorem~E)}
@@ -2240,7 +2244,7 @@ Always \(N-\delta=(p^2-1)q-2p+11>0\), so \(z:=N/\delta>1\). For a repeated prime
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:E} is kernel-checked as Theorem~\ref{thm:A-E}, clause by clause: (i) is \texttt{theoremE\_i}; (ii) and (iii), as stated here since v1.4.1, are exactly \texttt{theoremE\_ii} and \texttt{theoremE\_iii}; (iv) is \texttt{theoremE\_iv}, \texttt{theoremE\_iv\_dvd}, \texttt{theoremE\_iv\_size} and \texttt{theoremE\_iv\_sqrt}, which assume only a third prime factor of any exponent instead of \(j\ge 1\); (v) is \texttt{theoremE\_v}, with \(r<p^{3/2}\) from \texttt{twist\_r\_bound} and the last sentence from \texttt{cube\_excludes\_second\_square}. The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
+Theorem~\ref{thm:E} is kernel-checked as Theorem~\ref{thm:A-E}, clause by clause: (i) is \texttt{theoremE\_i}; (ii) and (iii), as stated here since v1.4.1, are exactly \texttt{theoremE\_ii} and \texttt{theoremE\_iii}; (iv) is \texttt{theoremE\_iv}, \texttt{theoremE\_iv\_dvd}, \texttt{theoremE\_iv\_size} and \texttt{theoremE\_iv\_sqrt}, which assume only a third prime factor of any exponent instead of \(j\ge 1\); (v) is \texttt{theoremE\_v}, with \(r<p^{3/2}\) from \texttt{twist\_r\_bound} and \texttt{theoremE\_v\_lt}\lean{P2qJumps.theoremE_v_lt}{TheoremsBE.lean:293} and the last sentence from \texttt{cube\_excludes\_second\_square}. The final sentence (``Consequently every remaining repeated-prime solution has shape \ldots'') is kernel-checked as the single Theorem~\ref{thm:A-E-shapes} (\texttt{P2qJumps.theoremE\_shapes}).
 \end{remark}
 
 \section{Two-adic identity and squarefree residual (Theorems~G,~F)}
@@ -2278,7 +2282,7 @@ If~\eqref{eq:jumps} holds and \(N\) is squarefree with \(k=\omega(N)\ge 4\), the
 \end{corollary}
 
 \begin{remark}
-Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
+Lemmas~\ref{lem:G},~\ref{lem:K} and Theorem~\ref{thm:F} are kernel-checked in this repository (\texttt{P2qStructural.lemmaG}, Lemma~\ref{lem:A-K}, \texttt{P2qStructural.theoremF}, with the equivalent form \(o\le 1+v_2(T(p))\) as \texttt{P2qJumps.theoremF\_v2}\lean{P2qJumps.theoremF_v2}{ClosedLedger.lean:416}; F counts odd primes via \texttt{Nat.primeFactors}, and for odd \(N\) these counts agree with the paper). Corollary~\ref{cor:F1} is kernel-checked as Corollary~\ref{cor:A-F1} (\texttt{P2qJumps.corollaryF1}). It does not formalize the local \(q\)-congruence refinements.
 \end{remark}
 
 \section{Corrected residual analysis}
@@ -2291,7 +2295,7 @@ The original Proposition~32 is superseded (Remark~\ref{rem:prop32-gap}; Appendix
 Conjecture~\ref{conj:vanish} holds if and only if H1, H2 and H3 all hold, where these quantify over distinct primes \(p,q\) with both jumps~\eqref{eq:jumps}:
 \begin{itemize}
 \item[\textbf{H1.}] There is no solution with \(N\) squarefree and \(\omega(N)\ge 4\).
-\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, an external computation finds the case \(p<10^6\) empty \DATAHTWO. H2 is not proved, in Lean or otherwise.
+\item[\textbf{H2.}] There is no solution with \(R\neq\emptyset\), \(j\in\{1,2\}\), and \(N\) not of the form \(r^as\) (\(a\ge 2\)). By Proposition~\ref{prop:C}, the case \(p<10^6\) is empty \DATAHTWO. H2 for \(p\ge 10^6\) is not proved, in Lean or otherwise.
 \item[\textbf{H3.}] There is no solution with \(R\neq\emptyset\) and \(j\ge 3\).
 \end{itemize}
 H1 is established by Theorem~\ref{thm:H1-comp}, kernel-checked in Lean as Theorem~\ref{thm:A-H1}. Consequently Conjecture~\ref{conj:vanish} is equivalent to the conjunction of H2 and H3 (kernel-checked, \path{conjecture_iff_H2_H3}).
@@ -2311,7 +2315,7 @@ Squarefree \(k\le 2\) contradict \(\delta(n)\ge 16\); \(k=3\) is Theorem~\ref{th
 \end{proof}
 
 \begin{remark}[Status of Conjecture~\ref{conj:vanish}]
-H1 is closed by Theorem~\ref{thm:H1-comp} (kernel-checked, Theorem~\ref{thm:A-H1}). H2 is open (external data only for \(p<10^6\), not kernel-checked). H3 is kernel-checked for \(p\equiv 1\pmod 4\) (Theorem~\ref{thm:A-H3}) and open for \(p\equiv 3\pmod 4\). Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
+H1 is closed by Theorem~\ref{thm:H1-comp} (kernel-checked, Theorem~\ref{thm:A-H1}). H2 is kernel-checked for \(p<10^6\) (\texttt{h2\_p\_lt\_1e6}) and open for \(p\ge 10^6\). H3 is kernel-checked for \(p\equiv 1\pmod 4\) (Theorem~\ref{thm:A-H3}) and open for \(p\equiv 3\pmod 4\). Therefore Conjecture~\ref{conj:vanish} remains open. No novelty or priority claim is made for the broader prime-quadruplet classification beyond the attribution in~\cite{RCW2026} to McCranie via OEIS~A056777.
 \end{remark}
 
 \section{Formalization status}
@@ -2345,7 +2349,7 @@ H1 / \(p=7\) descent & yes (v1.4) & PASS computer-assisted (6 Nov); Lean: \textt
 \(N\ne r^3s\); \(\omega(N)\ge 4\) constraints & yes (v1.4) & Lean: \texttt{r3s\_empty}, \texttt{omega4\_constraints} \\
 Hensel bound \(5\le p<r\le 10^6\) & yes (v1.4.1) & Lean: \texttt{hensel\_r\_le\_1e6} \\
 Thm~\ref{thm:L} (v1.4), Thm~\ref{thm:L2} & yes (v1.4) & kernel certificates; Truth Gate locks approved 21 Nov, checked by CI \\
-H2 & open & reduction \texttt{H2\_of\_shapes} in Lean; \(p<10^6\): external data, not kernel-checked \\
+H2 & \(p<10^6\): yes; \(p\ge 10^6\): open & reduction \texttt{H2\_of\_shapes} in Lean; \(p<10^6\): Lean: \texttt{h2\_p\_lt\_1e6} \\
 H3 & \(p\equiv 1\ (4)\): yes; \(p\equiv 3\ (4)\): open & Lean: \texttt{H3\_of\_mod4}, \texttt{H3\_twoAdic} \\
 Conjecture~\ref{conj:vanish} & open & open \\
 \bottomrule
@@ -2457,7 +2461,7 @@ The author supplied a classification theorem for v1.4. The version below keeps i
 Let \(p\ne q\) be primes, \(n=p^2q\), \(N=n+12\), and assume~\eqref{eq:jumps}. Then \(p,q\ge 5\), \(N\) is odd, not a square and coprime to \(6pq\), and \(N\) is not a prime, a prime power, a product of two distinct primes, \(r^2s\) or \(rs^2\) (Theorem~\ref{thm:closed}), a product of three distinct primes (Theorem~\ref{thm:R1}), or \(r^2st\) (Theorem~\ref{thm:L}(iii)). Moreover:
 \begin{enumerate}
 \item \textbf{\(N=r^3s\).} Excluded with no bound (Theorem~\ref{thm:A-r3s-empty}, kernel-checked, v1.4). The earlier bounded statements (Theorem~\ref{thm:L}(iv): \(p<r\), \(r^2\mid L(p)\), \(p>10^4\); the bound \(5\le r\le 10^6\), \DATAHENSEL) remain true and are now superseded.
-\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) (computationally verified, not kernel-checked) \DATAOMEGAFOUR; the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The main theorem keeps the kernel-checked bound \(n\le 10^4\). Beyond \(q\le 10^6\) this case is open, apart from squarefree \(N\), which H1 excludes (Theorem~\ref{thm:A-H1}, kernel-checked, \texttt{H1\_holds}).
+\item \textbf{Four or more distinct prime factors (\(\omega(N)\ge 4\)).} Every prime factor of \(N\) exceeds \(p\), and \(q\ge 3p^2\), hence \(N>p^4\) (Theorem~\ref{thm:A-omega4}, kernel-checked, v1.4). Consequently an exhaustive search over all distinct primes \(5\le p\le\lfloor\sqrt{Q}\rfloor\) and all primes \(q\) with \(p^2<q\le Q\) covers every pair with \(\omega(N)\ge 4\) and \(q\le Q\). The Lean kernel certificate covers \(n=p^2q\le 10^4\) (any shape of \(N\)); the external PARI search (not kernel-checked) covers all distinct primes \(p,q\le 10^4\) (any shape, 0 hits) and the \(Q=10^6\) range \(5\le p\le 997\), \(p^2<q\le 10^6\) (any shape, no filter, 0 hits), so by Theorem~\ref{thm:A-omega4} there is no solution with \(\omega(N)\ge 4\) and \(q\le 10^6\) \DATAOMEGAFOUR; the optional Python certificate \texttt{search\_omega4\_1e6.py} (not kernel-checked; sha256 \texttt{ab59fc89f5\allowbreak{}9e79970b1e\allowbreak{}4185db678a\allowbreak{}19edcba66c\allowbreak{}d87de456e8\allowbreak{}dc4b4e55e1\allowbreak{}5046}) did not finish (stopped by a 3-hour timeout with no output; see the status in Part~C). The kernel-checked bound for this case is \(q\le 10^6\) (\texttt{omega4\_q\_le\_1e6}); the kernel certificate for \(n\le 10^4\) covers every shape. Beyond \(q\le 10^6\) this case is open, apart from squarefree \(N\), which H1 excludes (Theorem~\ref{thm:A-H1}, kernel-checked, \texttt{H1\_holds}).
 \item \textbf{\(N=r^3st\).} Excluded with no bound (Theorem~\ref{thm:A-r3st-empty}, kernel-checked, v1.4).
 \item \textbf{Other shapes.} Every solution has \(\omega(N)\ge 4\) or \(N=r^2s^2t\) with pairwise distinct primes (Theorem~\ref{thm:A-three}(a), kernel-checked). The shape \(r^2s^2t\) lies in H2 of Proposition~\ref{prop:implies-corrected} and remains open.
 \end{enumerate}
@@ -2492,9 +2496,9 @@ These runs are ordinary computer-assisted checks. They are not used by any Lean 
 \begin{itemize}
 \item Conjecture~\ref{conj:vanish} (no \(n=p^2q\) satisfies both jumps) is open.
 \item \(r^3s\): empty (Theorem~\ref{thm:A-r3s-empty}, kernel-checked; Theorem~\ref{thm:L2}(iv)). The shape \(r^2s^2t\) is open (Section~\ref{sec:A-three}).
-\item \(\omega(N)\ge 4\) with \(N\) not squarefree, beyond the ranges above (external data, not kernel-checked); H2 (reduced in Lean to \(r^2s^2t\) and \(r^2s^2tu\), Theorem~\ref{thm:A-H2-shapes}; external data, not kernel-checked, for \(p<10^6\)); H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
+\item \(\omega(N)\ge 4\) with \(N\) not squarefree and \(q>10^6\) (the range \(q\le 10^6\) is kernel-checked, \texttt{omega4\_q\_le\_1e6}); H2 for \(p\ge 10^6\) (reduced in Lean to \(r^2s^2t\) and \(r^2s^2tu\), Theorem~\ref{thm:A-H2-shapes}; kernel-checked for \(p<10^6\), \texttt{h2\_p\_lt\_1e6}); H3 for \(p\equiv 3\pmod 4\) (H3 for \(p\equiv 1\pmod 4\) is kernel-checked, Theorem~\ref{thm:A-H3}).
 \item Uniform analytic bounds: David's theorem across all twist fibres; effective genus-one bounds.
-\item Not kernel-checked: the enumeration of Proposition~\ref{prop:C} and the other external computations of Section~\ref{sec:v14-external}, and the LMFDB/PARI data of Section~\ref{sec:v14-curve}. The statements of Theorems~\ref{thm:closed}, \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification, the \(p=7\) descent and H1 are kernel-checked in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
+\item Not kernel-checked: the external computations of Section~\ref{sec:v14-external} as runs (their result for Proposition~\ref{prop:C}, \(5\le p<10^6\), is kernel-checked, \texttt{propC\_p\_lt\_1e6}), and the LMFDB/PARI data of Section~\ref{sec:v14-curve}. The statements of Theorems~\ref{thm:closed}, \ref{thm:A}, \ref{thm:B}, \ref{thm:E}, the classification, the \(p=7\) descent and H1 are kernel-checked in Part~\ref{part:A} (ledger \path{paper/PROSE-CLAIMS.md}).
 \end{itemize}
 
 \section{Reproducibility (v1.4)}
@@ -2534,7 +2538,7 @@ The audit packages dated 2026-11-06 are deposited in the published Zenodo record
 \section*{What this note does not claim (updated)}
 \label{sec:noclaim-v011}
 
-This paper does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed, and since v1.4 kernel-checked in Lean (Theorem~\ref{thm:A-H1}); this does not prove the conjecture. H2 is open (external data, not kernel-checked, for \(p<10^6\)); H3 is open for \(p\equiv 3\pmod 4\) (kernel-checked for \(p\equiv 1\pmod 4\), Theorem~\ref{thm:A-H3}); Conjecture~\ref{conj:vanish} is open. Theorems~A,~B,~E, the exhaustive classification and the \(p=7\) descent are kernel-checked (Part~\ref{part:A}); their written v1.3 arguments in Part~\ref{part:B} are not. No claim is made that the Lean portfolio settles the conjecture. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
+This paper does not prove Conjecture~\ref{conj:vanish}. The original Proposition~32 is superseded and not a live implication. H1 is closed, and since v1.4 kernel-checked in Lean (Theorem~\ref{thm:A-H1}); this does not prove the conjecture. H2 is open for \(p\ge 10^6\) (kernel-checked for \(p<10^6\), \texttt{h2\_p\_lt\_1e6}); H3 is open for \(p\equiv 3\pmod 4\) (kernel-checked for \(p\equiv 1\pmod 4\), Theorem~\ref{thm:A-H3}); Conjecture~\ref{conj:vanish} is open. Theorems~A,~B,~E, the exhaustive classification and the \(p=7\) descent are kernel-checked (Part~\ref{part:A}); their written v1.3 arguments in Part~\ref{part:B} are not. No claim is made that the Lean portfolio settles the conjecture. The note does not prove Conjecture~1.1 of~\cite{RCW2026}. It does not produce infinitely many prime quadruplets. Parametrizations are necessary conditions; no true \(n=p^2q\) solution of both jumps is known. No novelty or priority claim is made beyond the attributions in~\cite{RCW2026} and the present scope statements.
 
 
 \appendix

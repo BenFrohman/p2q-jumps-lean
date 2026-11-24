@@ -256,4 +256,20 @@ theorem twist_r_bound {p r : ℤ} (hp : 5 ≤ p) (h : r ^ 2 ∣ p ^ 3 - p ^ 2 - 
   have := Int.le_of_dvd hL h
   nlinarith
 
+/-- `lem:equiv`, remark: `δ(N) = δ(n)` does not imply the jumps. For `n = 63 = 3^2 * 7`,
+`δ(75) = δ(63) = 14`, but `A(75) = 35 ≠ 27 = A(63)`, so the jumps fail at `n = 63`. -/
+theorem delta_eq_not_jumps_63 :
+    (σ 1 75 : ℤ) + φ 75 - 2 * 75 = (σ 1 63 : ℤ) + φ 63 - 2 * 63 ∧
+      ((75 : ℕ) : ℤ) - φ 75 ≠ ((63 : ℕ) : ℤ) - φ 63 ∧ ¬ Jumps 63 := by
+  have h1 : φ 75 = 40 := by decide +kernel
+  have h2 : φ 63 = 36 := by decide +kernel
+  have h3 : σ 1 75 = 124 := by decide +kernel
+  have h4 : σ 1 63 = 104 := by decide +kernel
+  refine ⟨?_, ?_, ?_⟩
+  · rw [h1, h2, h3, h4]; norm_num
+  · rw [h1, h2]; norm_num
+  · rintro ⟨hφ, -⟩
+    rw [show (63 : ℕ) + 12 = 75 from rfl, h1, h2] at hφ
+    omega
+
 end P2qJumps

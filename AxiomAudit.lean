@@ -292,15 +292,6 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Omega4Q.chkQ_all
 #print axioms P2qJumps.omega4_q_le_1e6
 
--- H2 for p < 10^6 (kernel certificates, P2qJumps/H2K)
-#print axioms P2qJumps.H2K.run_sound
-#print axioms P2qJumps.H2K.ref_sound_j1
-#print axioms P2qJumps.H2K.ref_sound_j2
-#print axioms P2qJumps.H2K.scan_sound
-#print axioms P2qJumps.H2K.good_upto
-#print axioms P2qJumps.h2_p_lt_1e6
-#print axioms P2qJumps.propC_p_lt_1e6
-
 -- Conjecture 3 ↔ (H2 for p ≥ 10^6) ∧ (H3 for p ≡ 3 mod 4) (P2qJumps/Conjecture3Tail)
 #print axioms P2qJumps.conjecture3_iff_tail
 

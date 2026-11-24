@@ -53,7 +53,7 @@ Local logs ([`local-dev-logs/`](local-dev-logs/), historical [`certificates/`](c
 
 ## External computations (NOT kernel-checked; not used by any Lean theorem)
 
-- `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy).
+- `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy); now kernel-checked as `P2qJumps.hensel_r_le_1e6` (certify artifact `lean-certificate-0b82cdddcfb5ee8edf517b3634ad74d68bf75979` on main).
 - `scripts/omega4/jumps_pq_check.py`: no solution for distinct primes `p, q ≤ 10^4`, and none for
   `5 ≤ p ≤ 997`, `p^2 < q ≤ 10^6` (PARI factorization, no filter on ω(N) or on prime factors).
 - ω(N) ≥ 4 residual (every prime factor of N exceeds p and q ≥ 3p^2, kernel-checked as

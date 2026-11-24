@@ -293,6 +293,25 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Omega4Q.chkQ_all
 #print axioms P2qJumps.omega4_q_le_1e6
 
+-- Conjecture 3 ↔ (H2 for p ≥ 10^6) ∧ (H3 for p ≡ 3 mod 4) (P2qJumps/Conjecture3Tail)
+#print axioms P2qJumps.conjecture3_iff_tail
+
+-- Curve y^2 = x^3 - x^2 - 12, finite facts only (P2qJumps/Curve3936; no jump theorem uses it)
+#print axioms P2qJumps.Curve3936.E3936_disc
+#print axioms P2qJumps.Curve3936.disc_factor
+#print axioms P2qJumps.Curve3936.sq_dvd_disc_lt
+#print axioms P2qJumps.Curve3936.sq_dvd_disc
+#print axioms P2qJumps.Curve3936.no_point_of_small_sq
+#print axioms P2qJumps.Curve3936.no_point_sq_dvd_disc
+#print axioms P2qJumps.Curve3936.no_point_y_zero
+#print axioms P2qJumps.Curve3936.point_4_6
+#print axioms P2qJumps.Curve3936.point_4_6_not_sq_dvd
+#print axioms P2qJumps.Curve3936.affineCount_5
+#print axioms P2qJumps.Curve3936.affineCount_7
+#print axioms P2qJumps.Curve3936.affineCount_13
+#print axioms P2qJumps.Curve3936.good_primes
+#print axioms P2qJumps.Curve3936.count_gcds
+
 -- H2 for p < 10^6 (kernel certificates, P2qJumps/H2K)
 #print axioms P2qJumps.H2K.run_sound
 #print axioms P2qJumps.H2K.ref_sound_j1

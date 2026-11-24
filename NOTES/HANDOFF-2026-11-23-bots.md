@@ -8,8 +8,8 @@
 
 ### Proved in Lean (0 sorry, standard axioms only)
 - Theorem 28 / R1 (N ≠ r s t): `theorem28_holds` in `P2qJumps/ClosedShapes.lean` (full discriminant argument, builds on `g_ge_six`).
-- N ≠ r^{2} s t (R3): `r2st_empty`.
-- N ≠ r^{3} s (R2 empty, no bound): `r3s_empty`.
+- N ≠ r^{2} s t (the r^{2}st clause of R3; R3 itself stays open because of its ω(N) ≥ 4 clause): `r2st_empty`.
+- N ≠ r^{3} s under both jumps, no bound: `r3s_empty` (this does not prove the φ-only Hypothesis R2, which stays open).
 - N ≠ r^a s (a ≥ 2), N not prime, N ≠ r s, N ≠ prime power, preamble (p,q ≥ 5, N odd, etc.).
 - Kernel certificates: `Cert.no_jumps_p2q_le_10000`, line/strip/pair certificates up to 10^{4}.
 - Full axiom audit in `AxiomAudit.lean` lists every theorem; CI enforces standard axioms only.

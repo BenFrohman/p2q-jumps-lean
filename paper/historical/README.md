@@ -14,3 +14,5 @@ artifact.
 
 The certificate of record is the official `certify.yml` artifact named in
 the repository root `CERTIFICATE.md`.
+
+`updated_residual_section.tex` was previously at `paper/updated_residual_section.tex`. It is a superseded draft section and is not the deposited text; the deposited v1.4.1 paper is `paper/p2q-jumps-v1.4.tex` on branch `paper/v1.4.1-20261123`.

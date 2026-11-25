@@ -4,19 +4,19 @@
 
 We record Lean 4 formalizations of named algebraic spans for the Hodge conjecture in degree 2 on fourfolds, combinatorial computations of Hodge numbers for a smooth sextic fourfold via the Jacobian ring, and arithmetic exclusions for rational points on the elliptic curve y² = x³ - x² - 12. The general fourfold statement, the full torsion subgroup of the curve, and the Clemens conjecture for d ≥ 12 on a quintic threefold remain open.
 
-## 1. Named Spans
+## Unconditional Formalizations
 
-On named spans (projective fourspace, Klein quadric, product of planes, planeSpan on the special sextic) the cycle class map is the identity on a finite-dimensional rational vector space, so the Hodge inclusion holds by rfl.
+- Named spans (projective fourspace, Klein quadric, product of planes, planeSpan) with cl = id, so the Hodge inclusion holds by rfl.
+- Sextic Jacobian-ring dimensions: h^{4,0} = 1, h^{3,1} = 426, h^{2,2}_prim = 1751, b_4 = 2606 (verified by decide).
+- Curve3936b1: no rational roots of the cubic (no 2-torsion), denominator form x.den = d², y.den = d³, resultant identity equal to 1968, finite height-box exclusion for multiplicative height ≤ 204 when 1 ≤ d ≤ 14, and multiplicative height upper bound under duplication multHeight(x(2P)) ≤ 145 · multHeight(x)^4 (new finding).
 
-## 2. Sextic Fourfold Combinatorics
+## New Findings
 
-For a smooth sextic fourfold in ℙ⁵ the primitive Hodge numbers are h^{4,0} = 1, h^{3,1} = 426, h^{2,2}_prim = 1751, with b_4 = 2606. These are verified by decide on the Jacobian ring dimensions.
+The multiplicative height upper bound under the duplication map and the associated resultant identities for the duplication polynomials are new formalizations of classical estimates for this specific curve. The finite box covers d ≤ 14.
 
-## 3. Curve3936b1
+The tabulated Gromov–Witten and instanton numbers for the quintic threefold up to degree 13 (and the degree 14 data from the conversation) are recorded as computed data. They do not close the Clemens conjecture for d ≥ 12.
 
-The curve has no 2-torsion. Integral points with y² dividing the discriminant are excluded. The denominator form x.den = d², y.den = d³ holds for rational points. Multiplicative height bounds under doubling are recorded. The statement that the torsion subgroup is trivial remains open.
-
-## 4. Open Frontiers
+## Open Frontiers
 
 - general_fourfold for unspecified D with codim = 2
 - E(ℚ)_tors = {O} for the curve

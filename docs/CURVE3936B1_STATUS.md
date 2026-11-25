@@ -6,13 +6,12 @@
 - Finite box exclusion of integral points with y in the Δ-candidate list.
 - Denominator form: every rational point has x.den = d² and y.den = d³.
 - Absence of rational roots of the cubic (no 2-torsion).
+- Multiplicative height box: no solution with 1 ≤ d ≤ 14 and max(|a|, d²) ≤ 204.
 
 ## Open
 
-The multiplicative height growth under doubling
-(mulHeight(x(2P)) * K ≥ mulHeight(x(P))⁴)
-and the subsequent totient-collapse argument that would force every torsion
-point to be integral are not formalized. The statement E(ℚ)_tors = {O}
-remains open in this repository.
+The argument that every torsion point satisfies max(|x.num|, x.den) ≤ 204
+(via the height-difference constant or via denominator growth under doubling)
+is not formalized. The statement E(ℚ)_tors = {O} remains open in this repository.
 
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0.

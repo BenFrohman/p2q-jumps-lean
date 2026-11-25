@@ -2,11 +2,17 @@
 
 ## Proved
 
-- Resultant identity: (3x - 164)(x³ - x² - 12) + (-x² + 55x - 18)(3x² - 2x) = 1968.
-- Finite box exclusion: no integral point (x, y) satisfies y ∈ {-16, -8, -4, -2, -1, 0, 1, 2, 4, 8, 16}.
+- Resultant identity equal to 1968.
+- Finite box exclusion of integral points with y in the Δ-candidate list.
+- Denominator form: every rational point has x.den = d² and y.den = d³.
+- Absence of rational roots of the cubic (no 2-torsion).
 
 ## Open
 
-The group-law argument that would show every non-integral rational point has infinite order (by showing that the denominator of x(nP) remains > 1 for all n ≥ 1 whenever the denominator of x(P) is > 1) is not formalized. The full statement E(ℚ)_tors = {O} therefore remains open in this repository.
+The multiplicative height growth under doubling
+(mulHeight(x(2P)) * K ≥ mulHeight(x(P))⁴)
+and the subsequent totient-collapse argument that would force every torsion
+point to be integral are not formalized. The statement E(ℚ)_tors = {O}
+remains open in this repository.
 
 Copyright (c) 2026 Benjamin Stanley Frohman. Apache License 2.0.

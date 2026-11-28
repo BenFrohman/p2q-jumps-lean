@@ -286,6 +286,7 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.hensel_r_le_1e6
 #print axioms P2qJumps.r3s_r_le_1e6
 
+
 -- ω(N) ≥ 4 with q ≤ 10^6 (kernel certificates, P2qJumps/Omega4Q)
 #print axioms P2qJumps.Omega4Q.chkQ_sound
 #print axioms P2qJumps.Omega4Q.chkP_sound
@@ -311,6 +312,83 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.Curve3936.good_primes
 #print axioms P2qJumps.Curve3936.count_gcds
 
+-- H2 for p < 10^6 (kernel certificates, P2qJumps/H2K)
+#print axioms P2qJumps.H2K.run_sound
+#print axioms P2qJumps.H2K.ref_sound_j1
+#print axioms P2qJumps.H2K.ref_sound_j2
+#print axioms P2qJumps.H2K.scan_sound
+#print axioms P2qJumps.H2K.good_upto
+#print axioms P2qJumps.h2_p_lt_1e6
+#print axioms P2qJumps.propC_p_lt_1e6
+
+-- v1.4.1 Part A truth-gate locks (SemanticsPartA)
+#print axioms P2qJumps.SemanticsPartA.theorem_theorem28
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theorem28
+#print axioms P2qJumps.SemanticsPartA.theorem_preamble
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_preamble
+#print axioms P2qJumps.SemanticsPartA.theorem_r2st
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r2st
+#print axioms P2qJumps.SemanticsPartA.theorem_omega4
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_omega4
+#print axioms P2qJumps.SemanticsPartA.theorem_omega4_constraints
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_omega4_constraints
+#print axioms P2qJumps.SemanticsPartA.theorem_r3s
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r3s
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremA
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremA
+#print axioms P2qJumps.SemanticsPartA.theorem_prime_pow
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_prime_pow
+#print axioms P2qJumps.SemanticsPartA.theorem_r3st
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r3st
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremB
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremB
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremE
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremE
+#print axioms P2qJumps.SemanticsPartA.theorem_E_shapes
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_E_shapes
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremD
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremD
+#print axioms P2qJumps.SemanticsPartA.theorem_F1
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_F1
+#print axioms P2qJumps.SemanticsPartA.theorem_p7
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_p7
+#print axioms P2qJumps.SemanticsPartA.theorem_H1
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H1
+#print axioms P2qJumps.SemanticsPartA.theorem_implies
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_implies
+#print axioms P2qJumps.SemanticsPartA.theorem_classification
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_classification
+#print axioms P2qJumps.SemanticsPartA.theorem_r2s2t_dvd
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r2s2t_dvd
+#print axioms P2qJumps.SemanticsPartA.theorem_H2_shapes
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H2_shapes
+#print axioms P2qJumps.SemanticsPartA.theorem_H3
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H3
+#print axioms P2qJumps.SemanticsPartA.theorem_hensel
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_hensel
+#print axioms P2qJumps.SemanticsPartA.theorem_propC_K
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_propC_K
+
+-- 4-sort drift formalization (2026-11-23)
+#print axioms P2qJumps.coprime_of_prime_ge_five
+#print axioms P2qJumps.coprime6_r2st
+#print axioms P2qJumps.coprime6_r3s
+#print axioms P2qJumps.omega4_N_gt_p4
+#print axioms P2qJumps.lemmaK_param
+#print axioms P2qJumps.totient_mul_sigma_prod_primes_le
+#print axioms P2qJumps.p7_prefix_no_completion
+#print axioms P2qJumps.lemmaL1_terms_nonneg
+#print axioms P2qJumps.sq_mod16_exact
+#print axioms P2qJumps.rigid_finite_candidates
+#print axioms P2qJumps.r2st_offset_sigma_neg
+#print axioms P2qJumps.p_not_dvd_K
+#print axioms P2qJumps.theoremE_v_lt
+#print axioms P2qJumps.lemmaQ_ratio
+#print axioms P2qJumps.two_pow_dvd_two_mul_iff
+#print axioms P2qJumps.theoremF_v2
+#print axioms P2qJumps.delta_eq_not_jumps_63
+#print axioms P2qJumps.hypR1_data_gives_jumps
+#print axioms P2qJumps.hypR1_holds
 -- Curve 3936.b1, Nagell-Lutz finite step (P2qJumps/Curve3936Finite)
 #print axioms P2qJumps.Curve3936.bezout_identity
 #print axioms P2qJumps.Curve3936.sketch_identity_false

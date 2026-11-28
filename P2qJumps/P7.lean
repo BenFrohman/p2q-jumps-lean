@@ -78,4 +78,62 @@ theorem p7_prefix_bound (b h s M Fm Fp : ℤ) (hb : 0 ≤ b) (hh : 0 ≤ h) (hs 
 their product is at least `11 · 13 · 17 = 2431 > 872`. -/
 theorem p7_prune_threshold : (872 : ℕ) < 11 * 13 * 17 := by norm_num
 
+/-- For a product `M` of distinct primes, `φ(M) σ(M) = ∏ (r^2 - 1) ≤ M^2`. -/
+lemma totient_mul_sigma_prod_primes_le (S : Finset ℕ) (hS : ∀ r ∈ S, r.Prime) :
+    φ (∏ r ∈ S, r) * σ 1 (∏ r ∈ S, r) ≤ (∏ r ∈ S, r) ^ 2 := by
+  revert hS
+  induction S using Finset.induction_on with
+  | empty => intro _; simp [sigma_one_apply]
+  | @insert a S ha ih =>
+    intro hS
+    have haP : a.Prime := hS a (Finset.mem_insert_self a S)
+    have hS' : ∀ r ∈ S, r.Prime := fun r hr => hS r (Finset.mem_insert_of_mem hr)
+    have hcop : Nat.Coprime a (∏ r ∈ S, r) :=
+      Nat.Coprime.prod_right fun r hr =>
+        (Nat.coprime_primes haP (hS' r hr)).2 (fun h => ha (h ▸ hr))
+    rw [Finset.prod_insert ha, Nat.totient_mul hcop,
+      isMultiplicative_sigma.map_mul_of_coprime hcop, Nat.totient_prime haP,
+      sigma_one_prime' haP]
+    have h1 : (a - 1) * (a + 1) ≤ a * a := by
+      obtain ⟨k, rfl⟩ : ∃ k, a = k + 1 := ⟨a - 1, by have := haP.one_lt; omega⟩
+      rw [Nat.add_sub_cancel]
+      nlinarith
+    calc (a - 1) * φ (∏ r ∈ S, r) * ((a + 1) * σ 1 (∏ r ∈ S, r))
+        = ((a - 1) * (a + 1)) * (φ (∏ r ∈ S, r) * σ 1 (∏ r ∈ S, r)) := by ring
+      _ ≤ (a * a) * (∏ r ∈ S, r) ^ 2 := Nat.mul_le_mul h1 (ih hS')
+      _ = (a * ∏ r ∈ S, r) ^ 2 := by ring
+
+/-- Paper Proposition `prop:A-p7-prefix`, last sentence: for `p = 7`, a prefix `b` with
+`342 b^2 - 343 φ(b) σ(b) ≥ 1` cannot be completed by three or more further distinct primes
+`≥ 11`. Precisely: if `N = 7^2 q + 12 = b · ∏_{r ∈ S} r` where `S` is a set of at least three
+primes `r ≥ 11` with `r ∤ b`, then `342 b^2 - 343 φ(b) σ(b) < 1`. -/
+theorem p7_prefix_no_completion {q b : ℕ} (S : Finset ℕ) (hq : q.Prime) (hq7 : q ≠ 7)
+    (hJ : Jumps (7 ^ 2 * q))
+    (hS : ∀ r ∈ S, r.Prime ∧ 11 ≤ r ∧ ¬ r ∣ b) (hcard : 3 ≤ S.card)
+    (hN : 7 ^ 2 * q + 12 = b * ∏ r ∈ S, r) :
+    342 * (b : ℤ) ^ 2 - 343 * (φ b : ℤ) * (σ 1 b : ℤ) < 1 := by
+  have hcop : Nat.Coprime b (∏ r ∈ S, r) :=
+    Nat.Coprime.prod_right fun r hr =>
+      ((Nat.Prime.coprime_iff_not_dvd (hS r hr).1).2 (hS r hr).2.2).symm
+  have hF : φ (∏ r ∈ S, r) * σ 1 (∏ r ∈ S, r) ≤ (∏ r ∈ S, r) ^ 2 :=
+    totient_mul_sigma_prod_primes_le S (fun r hr => (hS r hr).1)
+  have hM11 : 11 ^ S.card ≤ ∏ r ∈ S, r :=
+    Finset.pow_card_le_prod S (fun r => r) 11 (fun r hr => (hS r hr).2.1)
+  have h3 : 11 ^ 3 ≤ 11 ^ S.card := Nat.pow_le_pow_right (by norm_num) hcard
+  have hM : 1331 ≤ ∏ r ∈ S, r := by
+    calc (1331 : ℕ) = 11 ^ 3 := by norm_num
+      _ ≤ 11 ^ S.card := h3
+      _ ≤ ∏ r ∈ S, r := hM11
+  have h6 := (p7_identities hq hq7 hJ).2.2.2.2.2
+  rw [hN, Nat.totient_mul hcop, isMultiplicative_sigma.map_mul_of_coprime hcop] at h6
+  push_cast at h6
+  by_contra hcon
+  push_neg at hcon
+  have hle := p7_prefix_bound (b : ℤ) (φ b : ℤ) (σ 1 b : ℤ) ((∏ r ∈ S, r : ℕ) : ℤ)
+    (φ (∏ r ∈ S, r) : ℤ) (σ 1 (∏ r ∈ S, r) : ℤ)
+    (by positivity) (by positivity) (by positivity) (by positivity)
+    (by exact_mod_cast hF) (by push_cast; linear_combination h6) hcon
+  have hM' : (1331 : ℤ) ≤ ((∏ r ∈ S, r : ℕ) : ℤ) := by exact_mod_cast hM
+  linarith
+
 end P2qJumps

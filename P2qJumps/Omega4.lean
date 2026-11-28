@@ -207,4 +207,22 @@ theorem omega4_constraints {p q a b c d : ℕ} (hp : p.Prime) (hq : q.Prime) (hp
   have zq3 : (3 : ℤ) * p ^ 2 ≤ q := by exact_mod_cast hq3
   nlinarith
 
+/-- Paper Theorem `thm:A-omega4`, last sentence: under the same hypotheses, `N > p^4`
+(from `q ≥ 3 p^2`). -/
+theorem omega4_N_gt_p4 {p q a b c d : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q))
+    (ha : a.Prime) (hb : b.Prime) (hc : c.Prime) (hd : d.Prime)
+    (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hbc : b ≠ c) (hbd : b ≠ d) (hcd : c ≠ d)
+    (haN : a ∣ p ^ 2 * q + 12) (hbN : b ∣ p ^ 2 * q + 12) (hcN : c ∣ p ^ 2 * q + 12)
+    (hdN : d ∣ p ^ 2 * q + 12) :
+    p ^ 4 < p ^ 2 * q + 12 := by
+  have hq3 := (omega4_constraints hp hq hpq hJ ha hb hc hd hab hac had hbc hbd hcd
+    haN hbN hcN hdN).1
+  have h1 : p ^ 2 ≤ q := by
+    have h0 := Nat.zero_le (p ^ 2)
+    linarith
+  calc p ^ 4 = p ^ 2 * p ^ 2 := by ring
+    _ ≤ p ^ 2 * q := Nat.mul_le_mul_left _ h1
+    _ < p ^ 2 * q + 12 := lt_add_of_pos_right _ (by norm_num)
+
 end P2qJumps

@@ -10,16 +10,16 @@
       "includedIn": "paper/p2q-jumps-v1.4.tex",
       "section": "Lean-certified reductions (v1.4), Theorem L2 (thm:L2)",
       "quote": [
-        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose φ(N)=φ(n)+12 and",
-        "σ(N)=σ(n)+12. Then:",
+        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose \u03c6(N)=\u03c6(n)+12 and",
+        "\u03c3(N)=\u03c3(n)+12. Then:",
         "(i) N is not prime, and N is not a product of two distinct primes;",
         "(ii) N is not a product of three distinct primes;",
-        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t ≥ 5;",
+        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t \u2265 5;",
         "(iv) N is not of the form r^3s with distinct primes r,s;",
         "(v) n>10^4;",
-        "(vi) N is not of the form r^k with r prime and k ≥ 1, and N is not of the form r^as with",
-        "distinct primes r,s and a ≥ 2;",
-        "(vii) if ω(N) ≥ 4, then q ≥ 3p^2 and every prime r dividing N satisfies r>p."
+        "(vi) N is not of the form r^k with r prime and k \u2265 1, and N is not of the form r^as with",
+        "distinct primes r,s and a \u2265 2;",
+        "(vii) if \u03c9(N) \u2265 4, then q \u2265 3p^2 and every prime r dividing N satisfies r>p."
       ]
     }
   },
@@ -45,8 +45,8 @@
   "mathlib": "v4.26.0",
   "leanSourcesCommit": "53c1ca2f59549378f156e195f33a6212a5e7cc2d",
   "approval": {
-    "approvedBy": "PENDING",
-    "approvedAt": null,
-    "note": "PENDING AUTHOR APPROVAL: Benjamin Stanley Frohman must confirm paper_claim2 transcribes Theorem L2 (paper/theorem-L2.tex) as meant."
+    "approvedBy": "Benjamin Stanley Frohman",
+    "approvedAt": "2026-11-21T09:45:20Z",
+    "note": "Approved by Benjamin Stanley Frohman on 2026-11-21. paper_claim2 transcribes Theorem L2 as the necessary conditions in paper/theorem-L2.tex. Conjecture 3 remains open."
   }
 }

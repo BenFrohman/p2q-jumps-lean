@@ -14,8 +14,8 @@ Copyright (c) 2026 **Benjamin Stanley Frohman**. License: [Apache-2.0](LICENSE).
 ## What is proved (v1.4)
 
 Assume `φ(N) = φ(n) + 12` and `σ(N) = σ(n) + 12` with `n = p^2 q`, `p ≠ q` primes, `N = n + 12`.
-The locked public theorem is `P2qJumps.Semantics.theorem_L` (paper Theorem L; transcription **pending author
-approval**, see [TRUTH_GATE.md](TRUTH_GATE.md)):
+The locked public theorem is `P2qJumps.Semantics.theorem_L` (paper Theorem L; transcription
+approved by the author on 2026-11-21, see [TRUTH_GATE.md](TRUTH_GATE.md)):
 
 | Item | Lean theorem | Status |
 |---|---|---|
@@ -46,11 +46,14 @@ Kernel certificates (`decide +kernel` on checkers with proved soundness; **no `n
 | `Cert.cert_pair_*`: the σ-jump fails (so the pair of jumps fails) | every `n = p^2 q ≤ 10^4` |
 
 Axioms: `#print axioms P2qJumps.Semantics.theorem_L` → `[propext, Classical.choice, Quot.sound]`.
-Logs: [`certificates/`](certificates/).
+Certificate of record: the GitHub Actions artifact `lean-certificate-<commit sha>` from a fresh
+[`certify.yml`](.github/workflows/certify.yml) run on the pushed commit (committed `lake-manifest.json`
++ sha256, toolchain, Mathlib rev, elan/lake versions, full build log, full `#print axioms` output).
+Local logs ([`local-dev-logs/`](local-dev-logs/), historical [`certificates/`](certificates/)) are not certificates.
 
 ## External computations (NOT kernel-checked; not used by any Lean theorem)
 
-- `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy).
+- `scripts/r2/r2_rbound.py 1000000`: no prime `5 ≤ r ≤ 10^6` has a prime `5 ≤ p < r` with `r^2 ∣ L(p)` (SymPy); now kernel-checked as `P2qJumps.hensel_r_le_1e6` (certify artifact `lean-certificate-0b82cdddcfb5ee8edf517b3634ad74d68bf75979` on main).
 - `scripts/omega4/jumps_pq_check.py`: no solution for distinct primes `p, q ≤ 10^4`, and none for
   `5 ≤ p ≤ 997`, `p^2 < q ≤ 10^6` (PARI factorization, no filter on ω(N) or on prime factors).
 - ω(N) ≥ 4 residual (every prime factor of N exceeds p and q ≥ 3p^2, kernel-checked as
@@ -87,7 +90,6 @@ Cite the paper as Frohman, *Further constraints on simultaneous totient and divi
 - **License:** Apache License, Version 2.0 (`Copyright (c) 2026 Benjamin Stanley Frohman`)
 - **Earliest Commit Provenance:** `83def85f7812df25e4f503c8176942b725fa1bf3` (2026-06-21 02:11:16 PM CDT (UTC-5))
 - **SealGuard SHA-256 Merkle Root:** `cafa6a2101b1393a290fd004373460ecdff2c71561ca18d7424aa9d3d0bcb385` (`PROVENANCE_MERKLE_ROOT.json`)
-- **Titan Audit Certificate:** `audit/TITAN_AUDIT_CERTIFICATE.json` (Ed25519 key `b428fb72676f1c52`)
 - **Scope & Scientific Boundary:** Formalizes closed shapes, residual reductions and bounded kernel certificates for simultaneous +12 jumps of φ and σ at n = p^2 q. It does not prove Conjecture 3.
 
 ## Zenodo archive

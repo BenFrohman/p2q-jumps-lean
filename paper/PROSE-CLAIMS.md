@@ -101,7 +101,7 @@ Paths are relative to `P2qJumps/`.
 | 53 | `thm:F` | Lean `theoremF` (ClosedLedger.lean:115) |
 | 54 | `cor:F1` (p = 7, 7 ≤ k ≤ 9; T-values, v₂; 2^{m−1} > m⁴ > T(m) for m ≥ 23) | Lean `corollaryF1` (TheoremsBE.lean:193); `T_explicit` (ClosedLedger.lean:152), `T_values`, `F1_tail` (ProseClaims2.lean:236, :260) |
 | 55 | `prop:implies-corrected` (Conjecture ⇔ H1 ∧ H2 ∧ H3; given H1, Conjecture ⇔ H2 ∧ H3) | Lean `prop_implies_corrected`, `implies_corrected_of_H1` (ImpliesCorrected.lean:47, :114), with R, j, H1–H3 defined at ImpliesCorrected.lean:24–42; the equivalence only (H1–H3 are not proved). The trust statements (H1 by `thm:H1-comp`, H2 for p < 10^6 by Proposition C) are row 56 and row 47 |
-| 56 | `thm:H1-comp` (H1 under computer-assisted trust) | in progress — blocker: the p = 7 enumeration (item 62) is not kernel-checked |
+| 56 | `thm:H1-comp` (no solution with N squarefree; H1) | Lean `no_squarefree` (H1.lean:140), `H1_holds` (H1.lean:134); with H1, `conjecture_iff_H2_H3` (H1.lean:168) |
 | 57 | Remark "Status of Conjecture" | commentary (excluded) |
 
 ## The curve E and its twists (§`sec:v14-curve`)
@@ -117,8 +117,8 @@ Paths are relative to `P2qJumps/`.
 
 | # | Statement | Status |
 |---|---|---|
-| 62 | p = 7 branch-and-bound enumeration: branch bounds, product enumeration, terminal two-prime elimination, node counts, zero solutions for k = 7, 8, 9 | in progress — blocker: Lean soundness proof of the enumeration (monotone branch bounds, finite product enumeration, terminal elimination) and a kernel certificate of the run; reproduced by `scripts/p7/descent.py` (paper domain 93,159 nodes for k = 7; primes ≥ 11 with the prefix bound: 134 / 748 / 5,773 nodes, 0 solutions) |
-| 68 | p = 7 equations φ(N) = 42q − 30, σ(N) = 57q + 69, 7φ = 6N − 282, 49σ = 57N + 2697, 42σ − 57φ = 4608; N ≡ φ(N) ≡ 5 (mod 7) and the singular-branch argument (7 ∤ φ(N)); "every prime factor ≥ 5" (strengthened: ≥ 11 when ω(N) ≥ 4, so 5 ∤ N) | Lean `p7_identities`, `p7_mod`, `p7_omega4_ge11` (P7.lean:24, :38, :47); new prefix bound `p7_prefix_bound`, `p7_prune_threshold` (P7.lean:65, :79) |
+| 62 | p = 7 descent: zero solutions for k = 7, 8, 9 (squarefree N, all prime factors ≥ 11) | Lean `p7_squarefree_empty` (H1.lean:60), ported statement `p7_squarefree_7_8_9` (H1.lean:111); checker `desc` (P7Defs.lean), soundness `desc_sound` (P7Cert.lean:154), kernel certificates `cert7`, `cert8`, `cert9` (P7Kernel/K7.lean:72, K8.lean:69, K9.lean:62; `decide +kernel`, 41 modules). The written branch bounds and the node counts of the Python runs (93,159 / 1,804,946 / 37,791,874; and 134 / 748 / 5,773 with the prefix bound) describe the external reproduction `scripts/p7/descent.py`: cited external (computation) |
+| 68 | p = 7 equations φ(N) = 42q − 30, σ(N) = 57q + 69, 7φ = 6N − 282, 49σ = 57N + 2697, 42σ − 57φ = 4608; N ≡ φ(N) ≡ 5 (mod 7) and the singular-branch argument (7 ∤ φ(N)); "every prime factor ≥ 5" (strengthened: ≥ 11 when ω(N) ≥ 4, so 5 ∤ N) | Lean `p7_identities`, `p7_mod`, `p7_omega4_ge11` (P7.lean:24, :38, :47); new prefix bound `p7_prefix_bound`, `p7_prune_threshold` (P7.lean:65, :79); the concluding "no prefix … can be completed by three or more further distinct primes ≥ 11" is `p7_prefix_no_completion` (P7.lean:110) |
 | 63 | Soundness note: N/gcd(N, φ(N)) ∣ rad N; rad(12) = 6 ≠ 3 | Lean `div_gcd_totient_dvd_rad`, `rad_ne_div_gcd_totient` (ProseClaims.lean:202, :228) |
 | 64 | "rad(N) = N/gcd(N, φ(N))" | **removed** (false; counterexample N = 12: rad 12 = 6, 12/gcd(12, 4) = 3; kernel-checked as `rad_ne_div_gcd_totient`) |
 
@@ -135,11 +135,10 @@ Paths are relative to `P2qJumps/`.
 
 69 ledger rows (some rows group several clauses of one statement):
 
-- **Lean: 54** (of which 20 rows are proved vacuously, from the impossibility of the shape they
+- **Lean: 55** (of which 20 rows are proved vacuously, from the impossibility of the shape they
   concern: rst, r³s, r²st, squarefree rstu).
 - **cited external: 8** (rows 2, 3, 39, 40, 41, 59, 61, 66).
 - **removed: 1** (row 64, rad(N) = N/gcd(N, φ(N)); counterexample N = 12, kernel-checked).
-- **in progress: 4** (rows 4 Conjecture — the open problem itself; 56 Theorem `thm:H1-comp`; 62 the p = 7 enumeration;
-  67 the shape r²s²t).
-- **mixed: 1** (row 47, Proposition C: structural clauses Lean, enumeration cited external).
+- **in progress: 2** (rows 4 Conjecture — the open problem itself, not asserted; 67 the shape r²s²t, stated as open, not asserted).
+- **mixed: 2** (row 47, Proposition C: structural clauses Lean, enumeration cited external; row 62, p = 7 descent: the exclusion Lean, the node counts of the Python runs cited external).
 - **excluded as commentary: 1** (row 57).

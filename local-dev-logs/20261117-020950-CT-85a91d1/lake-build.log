@@ -1,0 +1,71 @@
+⚠ [3060/3225] Replayed P2qJumps.Statement
+warning: P2qJumps/Statement.lean:15:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3061/3225] Replayed P2qJumps.ClosedShapes
+warning: P2qJumps/ClosedShapes.lean:9:7: 'Mathlib.NumberTheory.ArithmeticFunction' has been deprecated: please replace this import by
+
+import Mathlib.NumberTheory.ArithmeticFunction.Defs
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
+import Mathlib.NumberTheory.ArithmeticFunction.VonMangoldt
+import Mathlib.NumberTheory.ArithmeticFunction.Zeta
+
+
+Note: This linter can be disabled with `set_option linter.deprecated.module false`
+⚠ [3071/3225] Replayed P2qJumps.Cert.Core
+warning: P2qJumps/Cert/Core.lean:307:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+warning: P2qJumps/Cert/Core.lean:549:12: `Nat.Ico_succ_right_eq_insert_Ico` has been deprecated: Use `Finset.insert_Ico_right_eq_Ico_succ` instead
+
+Note: The updated constant has a different type:
+  ∀ {α : Type u_1} [inst : LinearOrder α] [inst_1 : LocallyFiniteOrder α] [inst_2 : SuccOrder α] {a b : α}
+    [NoMaxOrder α], a ≤ b → insert b (Finset.Ico a b) = Finset.Ico a (Order.succ b)
+instead of
+  ∀ {a b : ℕ}, a ≤ b → Finset.Ico a (b + 1) = insert b (Finset.Ico a b)
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.Ico_succ_right_eq_insert_Ico` to `Finset.insert_Ico_right_eq_Ico_succ x`).
+⚠ [7808/7844] Replayed P2qJumps.Ext.Structural.Basic
+warning: P2qJumps/Ext/Structural/Basic.lean:118:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [7827/7844] Replayed P2qJumps.Ext.Exclusions.Pairs
+warning: P2qJumps/Ext/Exclusions/Pairs.lean:115:2: 'push_cast' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [7829/7844] Replayed P2qJumps.Ext.Exclusions.TheoremE
+warning: P2qJumps/Ext/Exclusions/TheoremE.lean:91:53: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: P2qJumps/Ext/Exclusions/TheoremE.lean:113:10: `Nat.Coprime.mul` has been deprecated: Use `Nat.Coprime.mul_left` instead
+⚠ [7833/7844] Replayed P2qJumps.ProseClaims2
+warning: P2qJumps/ProseClaims2.lean:119:64: unused variable `hρ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: P2qJumps/ProseClaims2.lean:140:64: unused variable `hρ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: P2qJumps/ProseClaims2.lean:141:13: unused variable `hd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: P2qJumps/ProseClaims2.lean:148:64: unused variable `hmin`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [7841/7844] Built P2qJumps.H2Reduction (23s)
+✔ [7842/7844] Built P2qJumps.H3TwoAdic (23s)
+✔ [7843/7844] Built P2qJumps (18s)
+Build completed successfully (7844 jobs).

@@ -183,3 +183,55 @@ range, not kernel-checked)*, *disproved (witness)*, *open (precise blocker)*.
 - **Paper changes:** new Part A section `sec:A-three` (Theorem `thm:A-three`, step-by-step proof following Lean, remark on why size alone does not suffice); `thm:main-p2q` item (4) now states the kernel-checked reduction; deviation 1 records that r³st is excluded and that the claim is equivalent to r²s²t empty (open). `paper/PROSE-CLAIMS.md`: row 67 updated (still in progress, exact blocker), new row 69 (Lean).
 - **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
 - **Scope change:** none.
+
+## C19. The p = 7 descent and Theorem thm:H1-comp in Lean (prose ledger rows 56, 62)
+
+- **Claim:** `thm:H1-comp`: under both jumps at `n = p²q`, `N` is not squarefree (H1); the p = 7 descent: for a prime `q ≠ 7` with `N = 49q + 12` squarefree, `ω(N) ∉ {7, 8, 9}`.
+- **Method:** Lean, new files `P2qJumps/P7Defs.lean` (branch-and-bound checker `desc`), `P2qJumps/P7Cert.lean` (`desc_sound`: a `true` answer excludes every increasing list of integers ≥ 11 prime to 210 satisfying `7φ = 6N − 282`, `49σ = 57N + 2697`), `P2qJumps/P7Kernel.lean` and `P2qJumps/P7Kernel/` (kernel certificates `cert7`, `cert8`, `cert9` by `decide +kernel`, no `native_decide`, split over the next prime into 41 modules with proved assembly lemmas `desc_split`, `loopR_step`, `loopR_stop`, `loopR_start`; generator `scripts/p7/gen_kernel.py`, not trusted), `P2qJumps/H1.lean` (`p7_squarefree_empty`, the ported statement `p7_squarefree_7_8_9` of the earlier v4.22 package `P7Descent`, `H1_holds`, `no_squarefree`, `conjecture_iff_H2_H3`). Added to `AxiomAudit.lean`.
+- **Outcome:** proved (kernel-checked), standard axioms only (`cert7`–`cert9` use `propext` only). Conjecture `conj:vanish` is **not** proved: it is now equivalent to H2 ∧ H3 (kernel-checked), and H2, H3 are open.
+- **Paper changes:** new Part A section `sec:A-H1` (Theorems `thm:A-p7-descent`, `thm:A-H1`); `thm:H1-comp`, Appendix `app:p7`, the trust labels, Table `tab:classify`, the residual-analysis and "does not claim" texts now say kernel-checked; stale "Open items" entries corrected (r³s is empty by Theorem L2(iv)). `paper/PROSE-CLAIMS.md` rows 56, 62.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+- **Scope change:** the Lean checker is a separate implementation from `scripts/p7/descent.py`; its node counts differ and are not quoted as Lean facts.
+
+## C20. Copyright and license lines
+
+- **Change:** the paper now carries "Copyright (c) 2026 Benjamin Stanley Frohman" and is licensed under the Apache License, Version 2.0 (title-page footnote, version note, provenance paragraph); the previous "Paper license CC BY 4.0" lines are replaced. The bibliography entry for the published v0.10 record keeps that record's own license (CC BY 4.0), which is a fact about that record. `NOTICE` gains a request to cite the work.
+- **Mathematics:** none changed. **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+
+## C21. H2 reduction and the H3 two-adic condition (Lean)
+
+- **Lean:** `P2qJumps/H2Reduction.lean`: `H2_of_shapes : R2S2TEmpty → R2S2TUEmpty → H2` (every other shape of Theorem E with `j ∈ {1, 2}` is already excluded). `P2qJumps/H3TwoAdic.lean`: `H3_twoAdic` (a solution with `R(N) ≠ ∅` and `j(N) ≥ 3` has `2^(j−1) ∣ T(p)` and `p ≡ 3 (mod 4)`) and `H3_of_mod4` (no such solution when `p ≡ 1 (mod 4)`). Axioms: propext, Classical.choice, Quot.sound.
+- **Open (not claimed):** `R2S2TEmpty`, `R2S2TUEmpty`, and H3 for `p ≡ 3 (mod 4)`. H2 and H3 are therefore not proved; Conjecture 3 stays open.
+- **Certificates:** `scripts/cert-bundle.sh` runs the real `lake build` and `#print axioms` from the committed `lake-manifest.json` and stores manifest, sha256, commit, toolchain, Mathlib rev, elan/lake/lean versions and the verbatim logs. Only a run where `lake build` and `#print axioms` both exit 0 with standard axioms only is a certificate (`certificates/passed/`, `CERTIFICATE` file); every other run is a log under `certificates/attempt-logs/` marked `FAILED-NOT-A-CERTIFICATE.txt` and certifies nothing.
+
+## C22. The three 10^6 ranges labeled as external data (author decision t354u)
+
+- **Change:** the three ranges stay in the paper with their exact statements: H2 empty for `5 ≤ p < 10^6` (Proposition `prop:C`), no solution with `ω(N) ≥ 4` and `q ≤ 10^6`, and the Hensel exclusion of `5 ≤ r ≤ 10^6`. Each occurrence now carries an explicit label (macros `\DATAHTWO`, `\DATAOMEGAFOUR`, `\DATAHENSEL`): external computational data (SymPy, PARI/GP, Python/SymPy respectively), not kernel-checked, Lean kernel proof in progress. Each label will be replaced by the Lean theorem name and certificate once its kernel proof passes.
+- **Mathematics:** no statement or range changed. **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks. PDF rebuilt (tectonic).
+
+## C23. Certificate of record = CI artifact; author-approval job removed
+
+- **CI:** `certify.yml` runs `CERT_OUT=cert-out scripts/cert-bundle.sh` on every push/PR and uploads the full record (committed `lake-manifest.json` + sha256, `lean-toolchain`, lakefile, commit, Mathlib rev, elan/lake/lean versions, full cache/build/scan/`#print axioms` logs) as `lean-certificate-<sha>` on success, `lean-attempt-FAILED-NOT-A-CERTIFICATE-<sha>` otherwise. Only that CI artifact is a certificate.
+- **Local runs** go to `local-dev-logs/` with `NOT-THE-OFFICIAL-CERTIFICATE.txt`; the two locally produced bundles formerly under `certificates/passed/` were moved there.
+- **truth-gate.yml:** the `author-approval` job is removed (author decision); the `truth-gate` job is unchanged.
+- **Mathematics:** none changed.
+
+## C24. Paper aligned with the kernel-checked statements (v1.4.1, 23 Nov 2026)
+
+- **Source of truth:** Lean sources at `0b82cdd` (unchanged in Lean statements through this commit), certificate GitHub Actions run 44893346388 (`lake build` exit 0, 0 sorry/admit/native_decide, `#print axioms` within propext, Classical.choice, Quot.sound).
+- **Status corrections (results proved in Lean but called unproved, "not Lean" or computer-assisted only):** Theorems A (`theoremA`, `N_ne_ras`), B (`theoremB`), E (`theoremE_i`..`theoremE_v`), the classification (`prop_implies_corrected`), H1 (`H1_holds`), the p = 7 descent (`p7_squarefree_empty`), `r3s_empty`, `omega4_constraints`/`omega4_size`, `hensel_r_le_1e6`: abstract, formalization table, extensions snapshot, classification ledger item (2), open items, manifest hooks, scope statement, Section `sec:empty`.
+- **Theorem E (Part B):** clause (ii) stated with "a prime factor t ∉ {r1, r2}" (`theoremE_ii`), clause (iii) without `j ≥ 1` (`theoremE_iii`); both are the Lean statements and are stronger than the v1.3 wording. Written proofs of (ii), (iii) adjusted accordingly.
+- **New Part A section `sec:A-H2H3`:** `r2s2t_rs_dvd_L`, `H2_of_shapes`, `H3_twoAdic`, `H3_of_mod4`, with step-by-step proofs following Lean.
+- **Open, stated plainly:** H2, H3 for p ≡ 3 (mod 4), Conjecture 3. H2 for p < 10^6 and ω(N) ≥ 4 with q ≤ 10^6 remain labeled external data until the official CI of this branch is green.
+- **Locks:** approval of both locks (2026-11-21 03:45 CST) recorded in the paper; footnote and reproducibility commit updated from `4ae3e47` to `0b82cdd`.
+- **Lean docstrings only (no statement changed, line numbers unchanged):** `Semantics.lean`, `Semantics2.lean` (status APPROVED), `Statement.lean` (`Theorem28` is proved as `theorem28_holds`), `ImpliesCorrected.lean` (H1 is proved as `H1_holds`). README lock status.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex`, both lock files. No statement weakened. PDF rebuilt (tectonic).
+
+## C25. Kernel proofs of the two remaining 10^6 ranges (v1.5 branch); Hensel cites the official CI artifact
+
+- **Lean (new):** `P2qJumps/Omega4Q.lean`: `omega4_q_le_1e6` — for distinct primes `p, q` with both jumps at `n = p^2 q` and `q ≤ 10^6`, `ω(p^2 q + 12) < 4`. Checker `Omega4Q.chkP` (`Omega4Q/Defs.lean`, core Lean, no data), soundness `Omega4Q.chkQ_sound` / `Omega4Q.chkP_sound` (`Omega4Q/Sound.lean`), `decide +kernel` certificates in `Omega4Q/Kernel/C000`–`C132`, glue `Omega4Q.chkQ_all`.
+- **Lean (new):** `P2qJumps/H2K.lean`: `h2_p_lt_1e6` — hypothesis H2 (`P2qJumps.H2`) for every prime `p < 10^6`; `propC_p_lt_1e6` — the enumeration clause of Proposition `prop:C` (no solution with `R ≠ ∅` and `j ∈ {1, 2}` for `p < 10^6`; the shape `r^a s` by Theorem A). Checker `H2K.scan` (`H2K/Defs.lean`), soundness `H2K.scan_sound`, `H2K.run_sound`, `H2K.ref_sound_j1`, `H2K.ref_sound_j2` (`H2K/Sound.lean`), 1000 `decide +kernel` certificates in 500 modules `H2K/Kernel/C000`–`C499` (two per module, to bound memory per Lean process), glue `H2K.good_upto`. Certificate data (factorizations of `L(p)` with Lucas–Pratt primality programs) is produced by the untrusted generators `scripts/h2/gen_data.py`, `scripts/h2/gen_kernel.py` and is re-checked item by item by the kernel. No `native_decide`, no outside tool in any proof.
+- **Paper:** `\\DATAHENSEL` now also names `r3s_r_le_1e6` and cites the official certify artifact `lean-certificate-0b82cdddcfb5ee8edf517b3634ad74d68bf75979`, run 44893346388 on main. `\\DATAHTWO` and `\\DATAOMEGAFOUR` stay labeled not kernel-checked until the official certify run for `h2_p_lt_1e6` and `omega4_q_le_1e6` is green; they are then replaced by the theorem names and that CI artifact. No statement or range changed.
+- **CI:** `kernel-certificate.yml` keeps the no-skip, coverage, manifest and checker-fail guards from main, replays every module (none skipped) three at a time, fails if the number of `OK` lines differs from the module count, and its time limit is 360 minutes.
+- **Unchanged:** `paper/theorem-L.tex`, `paper/theorem-L2.tex` and both locks.
+

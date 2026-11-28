@@ -1,5 +1,11 @@
 name: Lean certificate
 
+# The certificate of record: a fresh CI run on the pushed commit, built from the repo's committed
+# lake-manifest.json. On success the artifact `lean-certificate-<sha>` holds the full record
+# (lake-manifest.json + sha256, lean-toolchain, lakefile, commit, Mathlib rev, elan/lake/lean
+# versions, full build log, full sorry scan, full #print axioms output, CERTIFICATE, SHA256SUMS).
+# On failure the same record is uploaded as `lean-attempt-FAILED-NOT-A-CERTIFICATE-<sha>`.
+
 on:
   push:
   pull_request:
@@ -10,20 +16,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install elan (toolchain pinned by lean-toolchain = leanprover/lean4:v4.26.0)
+      - name: Install elan (toolchain pinned by lean-toolchain)
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Get Mathlib cache
-        run: lake exe cache get
-      - name: Build
-        run: lake build
-      - name: Axiom audit
-        run: lake env lean AxiomAudit.lean 2>&1 | tee axioms.txt
-      - name: Check axioms are standard only
+      - name: Get Mathlib cache (from the committed lake-manifest.json)
         run: |
-          test -s axioms.txt
-          if grep -vE "depends on axioms: \[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$|does not depend on any axioms$" axioms.txt | grep -q .; then
-            echo "Non-standard axiom output:"; cat axioms.txt; exit 1; fi
-      - name: No sorry / no axiom declarations
-        run: python3 scripts/check_no_sorry.py
+          mkdir -p cert-out
+          set -o pipefail
+          lake exe cache get 2>&1 | tee cert-out/cache-get.log
+      - name: Build, sorry scan and #print axioms from the committed lake-manifest.json
+        run: CERT_OUT=cert-out scripts/cert-bundle.sh
+      - name: Show record
+        if: always()
+        run: cat cert-out/env.txt cert-out/STATUS 2>/dev/null; ls -la cert-out
+      - name: Upload certificate (passed runs only)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-certificate-${{ github.sha }}
+          path: cert-out/
+          if-no-files-found: error
+      - name: Hand the built oleans to the final 4-sort job (passed runs only)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lake-build-${{ github.sha }}
+          path: .lake/build/lib/
+          retention-days: 3
+          if-no-files-found: error
+      - name: Upload record of a failed attempt (NOT a certificate)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-attempt-FAILED-NOT-A-CERTIFICATE-${{ github.sha }}
+          path: cert-out/
+          if-no-files-found: ignore
+
+  # The final-4sort paper-vs-Lean alignment job (pending human judgments) was removed at the
+  # author's request. .github/workflows/final-4sort.yml remains as an uncalled reusable workflow.

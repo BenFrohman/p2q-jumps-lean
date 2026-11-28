@@ -31,8 +31,19 @@ import P2qJumps.ThmEShapes
 import P2qJumps.PropC
 import P2qJumps.ImpliesCorrected
 import P2qJumps.ThreeRegimes
+import P2qJumps.P7Defs
+import P2qJumps.P7Kernel
+import P2qJumps.P7Cert
+import P2qJumps.H1
+import P2qJumps.H2Reduction
+import P2qJumps.H3TwoAdic
 import P2qJumps.Semantics
 import P2qJumps.Semantics2
+import P2qJumps.Hensel
+import P2qJumps.Omega4Q
+import P2qJumps.H2K
+import P2qJumps.Conjecture3Tail
+import P2qJumps.Curve3936
 
 /-!
 # P2qJumps

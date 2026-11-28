@@ -1,0 +1,4 @@
+CERTIFICATE
+commit: 85a91d177d61ad22ca9b7f6be305b76ddbf2d430
+lake build exit 0; #print axioms exit 0; only propext / Classical.choice / Quot.sound.
+Built from the committed lake-manifest.json (sha256 in lake-manifest.json.sha256).

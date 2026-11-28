@@ -286,6 +286,7 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.hensel_r_le_1e6
 #print axioms P2qJumps.r3s_r_le_1e6
 
+
 -- ω(N) ≥ 4 with q ≤ 10^6 (kernel certificates, P2qJumps/Omega4Q)
 #print axioms P2qJumps.Omega4Q.chkQ_sound
 #print axioms P2qJumps.Omega4Q.chkP_sound
@@ -320,6 +321,54 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.h2_p_lt_1e6
 #print axioms P2qJumps.propC_p_lt_1e6
 
+-- v1.4.1 Part A truth-gate locks (SemanticsPartA)
+#print axioms P2qJumps.SemanticsPartA.theorem_theorem28
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theorem28
+#print axioms P2qJumps.SemanticsPartA.theorem_preamble
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_preamble
+#print axioms P2qJumps.SemanticsPartA.theorem_r2st
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r2st
+#print axioms P2qJumps.SemanticsPartA.theorem_omega4
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_omega4
+#print axioms P2qJumps.SemanticsPartA.theorem_omega4_constraints
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_omega4_constraints
+#print axioms P2qJumps.SemanticsPartA.theorem_r3s
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r3s
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremA
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremA
+#print axioms P2qJumps.SemanticsPartA.theorem_prime_pow
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_prime_pow
+#print axioms P2qJumps.SemanticsPartA.theorem_r3st
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r3st
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremB
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremB
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremE
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremE
+#print axioms P2qJumps.SemanticsPartA.theorem_E_shapes
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_E_shapes
+#print axioms P2qJumps.SemanticsPartA.theorem_theoremD
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_theoremD
+#print axioms P2qJumps.SemanticsPartA.theorem_F1
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_F1
+#print axioms P2qJumps.SemanticsPartA.theorem_p7
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_p7
+#print axioms P2qJumps.SemanticsPartA.theorem_H1
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H1
+#print axioms P2qJumps.SemanticsPartA.theorem_implies
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_implies
+#print axioms P2qJumps.SemanticsPartA.theorem_classification
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_classification
+#print axioms P2qJumps.SemanticsPartA.theorem_r2s2t_dvd
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_r2s2t_dvd
+#print axioms P2qJumps.SemanticsPartA.theorem_H2_shapes
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H2_shapes
+#print axioms P2qJumps.SemanticsPartA.theorem_H3
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_H3
+#print axioms P2qJumps.SemanticsPartA.theorem_hensel
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_hensel
+#print axioms P2qJumps.SemanticsPartA.theorem_propC_K
+#print axioms P2qJumps.SemanticsPartA.intended_correspondence_propC_K
+
 -- 4-sort drift formalization (2026-11-23)
 #print axioms P2qJumps.coprime_of_prime_ge_five
 #print axioms P2qJumps.coprime6_r2st
@@ -340,3 +389,14 @@ Machine-checked Lean 4 module.
 #print axioms P2qJumps.delta_eq_not_jumps_63
 #print axioms P2qJumps.hypR1_data_gives_jumps
 #print axioms P2qJumps.hypR1_holds
+-- Curve 3936.b1, Nagell-Lutz finite step (P2qJumps/Curve3936Finite)
+#print axioms P2qJumps.Curve3936.bezout_identity
+#print axioms P2qJumps.Curve3936.sketch_identity_false
+#print axioms P2qJumps.Curve3936.dvd_1968_of_dvd_deriv
+#print axioms P2qJumps.Curve3936.validYList_eq
+#print axioms P2qJumps.Curve3936.point_4_6_in_validYList
+#print axioms P2qJumps.Curve3936.noIntegralPointsWithDivisorY_false
+#print axioms P2qJumps.Curve3936.no_point_y_zero_or_sq_dvd
+#print axioms P2qJumps.Curve3936.sq_dvd_delta_iff
+#print axioms P2qJumps.Curve3936.no_point_delta_table
+#print axioms P2qJumps.Curve3936.no_point_y_zero_or_sq_dvd_delta

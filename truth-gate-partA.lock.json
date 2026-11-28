@@ -1,0 +1,379 @@
+{
+  "schema": "p2q-jumps-lean/truth-gate-lock-partA/v1",
+  "semantics": "P2qJumps/SemanticsPartA.lean",
+  "auditedPaper": "paper/p2q-jumps-v1.4.tex",
+  "auditedPaperSha256": "48d680bc3287b76434970dffd9bb80cdfa122affd6c76c8b70bb7061f20c5767",
+  "auditedPaperCommit": "033e12d2db946d625b409e726d358198a35ac8ff",
+  "axiomsAllowed": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "toolchain": "leanprover/lean4:v4.26.0",
+  "mathlib": "v4.26.0",
+  "approval": {
+    "approvedBy": "standing-rule: kernel-build-and-paper-match",
+    "approvedAt": null,
+    "note": "paper_claim_* are independent transcriptions of the cited v1.4.1 Part A statements. Under the standing rule, approval holds once the official kernel build and the paper match. The v1.4.1 paper/PDF was not edited. Conjecture 3, H2 in full, H3 for p≡3 (mod 4), and the emptiness of r^2s^2t and r^2s^2tu remain open."
+  },
+  "claims": [
+    {
+      "id": "theorem28",
+      "paperClaim": "paper_claim_theorem28",
+      "formalClaim": "formal_claim_theorem28",
+      "correspondence": "intended_correspondence_theorem28",
+      "publicTheorem": "theorem_theorem28",
+      "paperNeedle": "\\label{sec:A-ii}",
+      "quote": [
+        "Then N is not a product of three distinct primes."
+      ],
+      "paperClaimSha256": "23888de0be6382dfcc45631f045978e7fa72b784fb54cae9c1e96b74a851b9f3",
+      "formalClaimSha256": "287efef1c0c2a38a5c34dd0a2f2c36bf173f92db115f600cbda122ad48156b2c",
+      "correspondenceSha256": "8e103ba392e34529469c985c38ec4389bda321b7691c5a963eb7a01bc9205b56",
+      "publicTheoremSha256": "eed79c2cf5a25003434bea6a5c99670d3bce74cca04d323e3837a4e6e46aaa8c"
+    },
+    {
+      "id": "preamble",
+      "paperClaim": "paper_claim_preamble",
+      "formalClaim": "formal_claim_preamble",
+      "correspondence": "intended_correspondence_preamble",
+      "publicTheorem": "theorem_preamble",
+      "paperNeedle": "\\label{prop:A-preamble}",
+      "quote": [
+        "If (eq:jumps) holds, then p≥5, q≥5, N is odd, N is not a square, and gcd(N,6pq)=1."
+      ],
+      "paperClaimSha256": "cec51343f2f9a7fef62a7b0b0206e1011988f13a9337c98670d45da8a26a4688",
+      "formalClaimSha256": "8dc7bf23e26663f78c596d22048c01818423f1efdeee5b20f58bc8018e232fc2",
+      "correspondenceSha256": "26aa7e15bc19af1cf919c99db064bb4c53e88abc85b356a95419f0fad622ab16",
+      "publicTheoremSha256": "c717a3383182a45c6825165c9cc4156286c4067e7e58fd204bebacd01963c0c8"
+    },
+    {
+      "id": "r2st",
+      "paperClaim": "paper_claim_r2st",
+      "formalClaim": "formal_claim_r2st",
+      "correspondence": "intended_correspondence_r2st",
+      "publicTheorem": "theorem_r2st",
+      "paperNeedle": "\\label{thm:A-r2st-empty}",
+      "quote": [
+        "N≠r^2st for pairwise distinct primes r,s,t≥5."
+      ],
+      "paperClaimSha256": "1fd43baf8e6daef2684776ceafc5c177645a44ed28df952347503df1fd75796d",
+      "formalClaimSha256": "397c6c3d0ff14ce7d845eb769f018ae46a109c121b71fa74797526daedb32750",
+      "correspondenceSha256": "ea987c866d1a4dc2308f6ff81f180aa59fd33eab79662b7a8186e694248d6be8",
+      "publicTheoremSha256": "2a5a4594a6e6c453c055e2838bf5b06ef26c84d1faf424a6d48de2a8fe4aa64a"
+    },
+    {
+      "id": "omega4",
+      "paperClaim": "paper_claim_omega4",
+      "formalClaim": "formal_claim_omega4",
+      "correspondence": "intended_correspondence_omega4",
+      "publicTheorem": "theorem_omega4",
+      "paperNeedle": "\\label{thm:A-omega4}",
+      "quote": [
+        "If N has at least four distinct prime factors, then q≥3p^2 and every",
+        "prime factor r of N satisfies r>p. In particular N>p^4."
+      ],
+      "paperClaimSha256": "25891fc384c3e3acef313965236e7251c19646a599acd0a9401e9f86f64769b1",
+      "formalClaimSha256": "266e2b30b99bb7cd1be32375993aa648650fe0cc501739969d1299ed3d6cec49",
+      "correspondenceSha256": "f85b1ef3f0e30a781b6912bf8389bab95b338acc7a0cb3279de2e6f57ef629ac",
+      "publicTheoremSha256": "b8e867e1c6123d0829f192d2094679b225125fbb749804d390ce3ab168509314"
+    },
+    {
+      "id": "omega4_constraints",
+      "paperClaim": "paper_claim_omega4_constraints",
+      "formalClaim": "formal_claim_omega4_constraints",
+      "correspondence": "intended_correspondence_omega4_constraints",
+      "publicTheorem": "theorem_omega4_constraints",
+      "paperNeedle": "\\label{thm:A-omega4}",
+      "quote": [
+        "If N has at least four distinct prime factors, then q≥3p^2 and every"
+      ],
+      "paperClaimSha256": "b21c2cd201269b05362400d455b96fbf1d5e6106da8396a50546d0f83caaae60",
+      "formalClaimSha256": "114f9e5d0d9df55b8b90a86740df486f42af6a03dcb0b28c52fc5cb8cf8525f8",
+      "correspondenceSha256": "84009ce30bcccd31e4832b75fc77731215b54a12ea1b34687882029c21f22844",
+      "publicTheoremSha256": "3164dacdf081a4bb1aac3e6c9a215210c0600a60d76a3cdf8ac78c43f338bf0b"
+    },
+    {
+      "id": "r3s",
+      "paperClaim": "paper_claim_r3s",
+      "formalClaim": "formal_claim_r3s",
+      "correspondence": "intended_correspondence_r3s",
+      "publicTheorem": "theorem_r3s",
+      "paperNeedle": "\\label{thm:A-r3s-empty}",
+      "quote": [
+        "Assume (eq:jumps). Then N is not of the form r^3s with distinct primes r,s."
+      ],
+      "paperClaimSha256": "5fabc927aa941d40fd11b6c1bdb96dfe9c7791d4370c52e7402fbad82a05f829",
+      "formalClaimSha256": "f2d99305f29db334a327dc1e54e4176b39e8a7658737c7a82727f66a54a8c0ec",
+      "correspondenceSha256": "6d625ed8d6dd6d4c8899e09962f91cc959e2a05a8193bd00adefbda4e9284312",
+      "publicTheoremSha256": "4a17b8a4a7bc6342c4ba3a82c8904c92f6ad7f3b8479c8d8da977a6d1145e85a"
+    },
+    {
+      "id": "theoremA",
+      "paperClaim": "paper_claim_theoremA",
+      "formalClaim": "formal_claim_theoremA",
+      "correspondence": "intended_correspondence_theoremA",
+      "publicTheorem": "theorem_theoremA",
+      "paperNeedle": "\\label{thm:A-ras}",
+      "quote": [
+        "Assume (eq:jumps). Then N≠r^as for all distinct primes r,s and all a≥2.",
+        "(Since r^as=s r^a, this also excludes rs^a.)"
+      ],
+      "paperClaimSha256": "135ee3ee8b0f59cd5181db785e0772f0602baad72d1d8edfb6c66622f9325911",
+      "formalClaimSha256": "50e2563cb7fc1894930adf6508dd9774d6d776128cc15f6e396f6c39f92d360f",
+      "correspondenceSha256": "3a06b3684d161d7f9afa9f6607125345c3c042e2a2a90833c635ea4d7d05a083",
+      "publicTheoremSha256": "db738f49d2d48d036df4fcb606ade74d2a774da84a866f3e84bd731d39cf8ca9"
+    },
+    {
+      "id": "prime_pow",
+      "paperClaim": "paper_claim_prime_pow",
+      "formalClaim": "formal_claim_prime_pow",
+      "correspondence": "intended_correspondence_prime_pow",
+      "publicTheorem": "theorem_prime_pow",
+      "paperNeedle": "\\label{thm:A-ras}",
+      "quote": [
+        "Assume (eq:jumps). Then N≠r^as for all distinct primes r,s and all a≥2."
+      ],
+      "paperClaimSha256": "dc0cc29610dab1d512eb9dd5f454216a0bff72dfd4dc725182e9671f5122b04b",
+      "formalClaimSha256": "a569a2ebe5330aa38d1da8b20fe67821af318344f6210ad15205b41c779c5000",
+      "correspondenceSha256": "0848801b879901960ebaf9d1bce6358c54956cc769d34b7c1aead688185c20cc",
+      "publicTheoremSha256": "71607c4d1a4d19fb89ff3eaeeee62ed4b44c78eba02e923611b6eab2d0735895"
+    },
+    {
+      "id": "r3st",
+      "paperClaim": "paper_claim_r3st",
+      "formalClaim": "formal_claim_r3st",
+      "correspondence": "intended_correspondence_r3st",
+      "publicTheorem": "theorem_r3st",
+      "paperNeedle": "\\label{thm:A-r3st-empty}",
+      "quote": [
+        "Assume (eq:jumps). Then N is not of the form r^3st with pairwise distinct primes r,s,t.",
+        "There is no bound on p."
+      ],
+      "paperClaimSha256": "e96d57c7bf42e2107e6ed19144bc04077feaff9a81289f006b1fee695512800b",
+      "formalClaimSha256": "26e8117549dba210231a52bea0f23e5a5cd210d068c667468ee4b76af5a263f8",
+      "correspondenceSha256": "1e2b4cd97d2ebece618617ce2d75ec73d219eaa3566f2b7df2f666939b11b933",
+      "publicTheoremSha256": "a309227779047ec7da7f5455cbaf5af49883eab64659661d50027843674c55e1"
+    },
+    {
+      "id": "theoremB",
+      "paperClaim": "paper_claim_theoremB",
+      "formalClaim": "formal_claim_theoremB",
+      "correspondence": "intended_correspondence_theoremB",
+      "publicTheorem": "theorem_theoremB",
+      "paperNeedle": "\\label{thm:A-B}",
+      "quote": [
+        "Assume (eq:jumps). Then N is not powerful with ω(N)≥2. Together with Lemma lem:A-omega2:",
+        "N is not powerful."
+      ],
+      "paperClaimSha256": "79c037ca28b1cd9245d2932c838b29289b425be9973127d3bf60b122f504ceda",
+      "formalClaimSha256": "d6995f1c8f3d1089c8e07493ce0338a20f9faad6432f8cd22ec70084b8597a09",
+      "correspondenceSha256": "86468b7b62c9c60b2ec4d586e2dc7afbb83a0380b8e9bbb96c682478ff031d96",
+      "publicTheoremSha256": "98faac76d13b9ff4a3b0c9a313629ead3e57754760203c5598f9ee411da5f390"
+    },
+    {
+      "id": "theoremE",
+      "paperClaim": "paper_claim_theoremE",
+      "formalClaim": "formal_claim_theoremE",
+      "correspondence": "intended_correspondence_theoremE",
+      "publicTheorem": "theorem_theoremE",
+      "paperNeedle": "\\label{thm:A-E}",
+      "quote": [
+        "(i) r^4 ∤ N.",
+        "(v) If r^3∣N, then r^2∣L(p)."
+      ],
+      "paperClaimSha256": "f05b729e4ffdea3a4cdd76da025a764fa03f1cd4daf8d9aa3da754d0f3961120",
+      "formalClaimSha256": "8844fbf5d69df289638023bb524f2c1db625d37ea05367aa1f3030cbf37f2580",
+      "correspondenceSha256": "59b7f284242e8111c2e15efdcf984f4ba8080c33acd08984b7ca729fab1f0fc2",
+      "publicTheoremSha256": "bb4a591e6e550ac0f98162b9a1a3051df7f0ca2d368e7738481a6b7f150474aa"
+    },
+    {
+      "id": "E_shapes",
+      "paperClaim": "paper_claim_E_shapes",
+      "formalClaim": "formal_claim_E_shapes",
+      "correspondence": "intended_correspondence_E_shapes",
+      "publicTheorem": "theorem_E_shapes",
+      "paperNeedle": "\\label{thm:A-E-shapes}",
+      "quote": [
+        "Assume (eq:jumps) and that r^2∣N for some prime r. Then one of the following holds."
+      ],
+      "paperClaimSha256": "ff5867416dadfbe1f25aa3f25a6b252759ada2b196872928e285ba24ba513505",
+      "formalClaimSha256": "2dfaf31827d39e27e60082744993d444f60083c89816855c9292026fe849183a",
+      "correspondenceSha256": "5af7c9ac3c205a99360ff282130bdd7338ebcc94b1ad0a216529e0696af3bc08",
+      "publicTheoremSha256": "97a3bc9d2fb7458ff2012c7ecd831b856abd727e52b02ebd4592393956c2eb96"
+    },
+    {
+      "id": "theoremD",
+      "paperClaim": "paper_claim_theoremD",
+      "formalClaim": "formal_claim_theoremD",
+      "correspondence": "intended_correspondence_theoremD",
+      "publicTheorem": "theorem_theoremD",
+      "paperNeedle": "\\label{thm:A-D}",
+      "quote": [
+        "Assume (eq:jumps), N squarefree and k=ω(N)≥4. Then q≥p^2(k^2-k-1)^2≥121p^2 and k≥p.",
+        "In particular k=4 is impossible."
+      ],
+      "paperClaimSha256": "d5f0b28b54a151a9472291767048b2a91ce1978e5e50eaa7fc54a681bb43878f",
+      "formalClaimSha256": "788ac957e3b5c6f3da6a51c012f80721bbaa680d34a48570a2ae244a7d371855",
+      "correspondenceSha256": "489bea65a53dd061a2cbac648f8036f6044cb0e0893270843a2c5cc197857302",
+      "publicTheoremSha256": "4f672fd57bbef037854d5264b2952d150b64fa6bb2bc146e8cd3d913c79e0994"
+    },
+    {
+      "id": "F1",
+      "paperClaim": "paper_claim_F1",
+      "formalClaim": "formal_claim_F1",
+      "correspondence": "intended_correspondence_F1",
+      "publicTheorem": "theorem_F1",
+      "paperNeedle": "\\label{thm:A-H1}",
+      "quote": [
+        "If N is squarefree and ω(N)≥4, then p=7 and 7≤ω(N)≤9."
+      ],
+      "paperClaimSha256": "5af7cf4652a47a012c2370e0f394461ffc59977ea26bb33322bf853c77a32822",
+      "formalClaimSha256": "8ab116844c2775da07e3dbf4dfe65e0c36dcf793dee0e4b9c7579efe3eac5531",
+      "correspondenceSha256": "be9ae45c2c839d8c2188a8a522ea5aceaf47d0a2c5996711ed25f4ab4ebc68a1",
+      "publicTheoremSha256": "866b6b0fd45fda39101f5041a525b6b7dea33ab2c1cb7014039abcf9c704512a"
+    },
+    {
+      "id": "p7",
+      "paperClaim": "paper_claim_p7",
+      "formalClaim": "formal_claim_p7",
+      "correspondence": "intended_correspondence_p7",
+      "publicTheorem": "theorem_p7",
+      "paperNeedle": "\\label{thm:A-p7-descent}",
+      "quote": [
+        "then ω(N)∉{7,8,9}."
+      ],
+      "paperClaimSha256": "34829842e5846720c2e1bf36588069db8d8ffde01406655252d7c83326be1c11",
+      "formalClaimSha256": "be040895422795f3196f6e9fec54fed57d4a78331d87014bc53af7fc4c1ffc98",
+      "correspondenceSha256": "899e8b5319042eeede8abb0ca821fc1eacb09473bc9bf723bfb476597abbd684",
+      "publicTheoremSha256": "e0c1486f81e0edfdd2c12d3780dbd7db7bf85c14b96e384e57ab71e4121dcc3e"
+    },
+    {
+      "id": "H1",
+      "paperClaim": "paper_claim_H1",
+      "formalClaim": "formal_claim_H1",
+      "correspondence": "intended_correspondence_H1",
+      "publicTheorem": "theorem_H1",
+      "paperNeedle": "\\label{thm:A-H1}",
+      "quote": [
+        "Under (eq:jumps) with n=p^2q, N=n+12 is not squarefree. In particular H1 holds."
+      ],
+      "paperClaimSha256": "77b9180a210a77f02bd5e351a4bd5ff239fb0cf439b87160bc5a146275a81419",
+      "formalClaimSha256": "938f74b9ffab063315a63a76a62836dee2baab614c7c22bb823ad29623b54dbf",
+      "correspondenceSha256": "666c5b0f20482ca9dc2949310a92a3ae4f35f027780b9058f96e31aafbaeedcd",
+      "publicTheoremSha256": "f101c164adf3340d3d8f6758f50cb86c9295f2735e45000647183fad6fb1add5"
+    },
+    {
+      "id": "implies",
+      "paperClaim": "paper_claim_implies",
+      "formalClaim": "formal_claim_implies",
+      "correspondence": "intended_correspondence_implies",
+      "publicTheorem": "theorem_implies",
+      "paperNeedle": "\\label{thm:A-implies}",
+      "quote": [
+        "Conjecture conj:vanish holds if and only if H1, H2 and H3 hold. Consequently, if",
+        "H1 holds, Conjecture conj:vanish holds if and only if H2 and H3 hold."
+      ],
+      "paperClaimSha256": "628081ec0468a4f3e037dd2d52b5816c024388cc6b290549bd5a3ba2f7d38fae",
+      "formalClaimSha256": "0ce1449be889ebb5f515b2bcee55d060bccb1f2b9d0525e06279e270a6178898",
+      "correspondenceSha256": "17f56cc8e1611af11efa0a86b353f9773aba5a621747634fe68b813fc4cd94ef",
+      "publicTheoremSha256": "d1a0ed35132fdbd54d0cbbf464521ee76646d7c8dee2acb0012ae98d5f9e5be5"
+    },
+    {
+      "id": "classification",
+      "paperClaim": "paper_claim_classification",
+      "formalClaim": "formal_claim_classification",
+      "correspondence": "intended_correspondence_classification",
+      "publicTheorem": "theorem_classification",
+      "paperNeedle": "\\label{thm:A-three}",
+      "quote": [
+        "(a) Assume (eq:jumps). Then ω(N)≥4, or N=r^2s^2t for pairwise distinct primes r,s,t."
+      ],
+      "paperClaimSha256": "d77696d383cacab7190d18e5a7ca0aa352c41a1a7cf6feb6bfda8bf954e0b1fb",
+      "formalClaimSha256": "54bc36bfee40224966eaeed34c5d2639982ea9a3283401609584322498890cd4",
+      "correspondenceSha256": "537cfd44aec67cbd645b6633f1ac1a0d07f11765851109ed153a14b8c748388d",
+      "publicTheoremSha256": "dee8607073d16b2dc2f6b99787f087fecf3c0a11aea828afce07e85e6146c383"
+    },
+    {
+      "id": "r2s2t_dvd",
+      "paperClaim": "paper_claim_r2s2t_dvd",
+      "formalClaim": "formal_claim_r2s2t_dvd",
+      "correspondence": "intended_correspondence_r2s2t_dvd",
+      "publicTheorem": "theorem_r2s2t_dvd",
+      "paperNeedle": "\\label{thm:A-r2s2t-dvd}",
+      "quote": [
+        "Assume (eq:jumps). If N=r^2s^2t with pairwise distinct primes r,s,t, then rs∣L(p)",
+        "and rs≤L(p)."
+      ],
+      "paperClaimSha256": "0a0ecdd392ae9c076c2d465546c78fef11c1a431e3b20c9c26d4b7390d4b9524",
+      "formalClaimSha256": "ee638a87cf86da679a19eb404a25ef6d40f1a5fe946fcc86f737a0b082831423",
+      "correspondenceSha256": "2f806536801f19acd6c22fb2303a09a238e7b028e9a1a6efacbe12b147635ecf",
+      "publicTheoremSha256": "06441c42e31906d39f1fdbea9bcd0c91fd6553c168941c0523021e8288aa2f7f"
+    },
+    {
+      "id": "H2_shapes",
+      "paperClaim": "paper_claim_H2_shapes",
+      "formalClaim": "formal_claim_H2_shapes",
+      "correspondence": "intended_correspondence_H2_shapes",
+      "publicTheorem": "theorem_H2_shapes",
+      "paperNeedle": "\\label{thm:A-H2-shapes}",
+      "quote": [
+        "If no solution of (eq:jumps) has N=r^2s^2t with pairwise distinct primes and no",
+        "solution has N=r^2s^2tu with pairwise distinct primes, then H2 holds."
+      ],
+      "paperClaimSha256": "7f99a4be8ae2cada70b78971dce26c19194ea1cfa7e667b5a30d587348487fce",
+      "formalClaimSha256": "c2e05493de11fb410c6aba548f406e1292f368430c5fbfd4a234340da7ba5268",
+      "correspondenceSha256": "cd5fda6f82ffce653615a853b61ee99417e963a583061af4cdeda48fa90667ac",
+      "publicTheoremSha256": "9674cd9e6336ccd14a0e74549e36354ef61bf7c1880cba29cc58d7b9933b02c9"
+    },
+    {
+      "id": "H3",
+      "paperClaim": "paper_claim_H3",
+      "formalClaim": "formal_claim_H3",
+      "correspondence": "intended_correspondence_H3",
+      "publicTheorem": "theorem_H3",
+      "paperNeedle": "\\label{thm:A-H3}",
+      "quote": [
+        "If j(N)≥3, then 2^{j(N)-1}∣T(p) and p≡3 (mod 4). Consequently",
+        "H3 holds for every p≡1 (mod 4): there is no solution with p≡1 (mod 4), R(N)≠∅",
+        "and j(N)≥3."
+      ],
+      "paperClaimSha256": "2d0a39a0b598167f50c0ef12a70064b14c851d587a1214091cb3e517dbce22a6",
+      "formalClaimSha256": "e73f5faba1deaef06c04f42161c0e3c7c87bc74dbdaf26986a7295442b94997c",
+      "correspondenceSha256": "27606f1de1fab1fdb7bad066f0716d78a41274e33ed75d2b151c7b1a6efc66db",
+      "publicTheoremSha256": "efd60b62f1c8d564da7595ab052420b157ba58b60bcbaa504fea6be1ac38b1ef"
+    },
+    {
+      "id": "hensel",
+      "paperClaim": "paper_claim_hensel",
+      "formalClaim": "formal_claim_hensel",
+      "correspondence": "intended_correspondence_hensel",
+      "publicTheorem": "theorem_hensel",
+      "paperNeedle": "\\DATAHENSEL",
+      "quote": [
+        "There are no primes p,r with 5≤p<r≤10^6 and r^2∣L(p), hence under both jumps",
+        "N≠r^3s for distinct primes r,s≥5 with r≤10^6."
+      ],
+      "paperClaimSha256": "20b3b08d8cd85152060e33ca8a6cd0327abab2579e270ffa3438270dfa91e1a9",
+      "formalClaimSha256": "0ef57a634fde52ef979c76361b553602098dd7998a0d8c790d366b1d9c901abf",
+      "correspondenceSha256": "ba0a9eeb3be43647585bdbae1789f0b0cc9a2cfd6f4d31192408c889d9386182",
+      "publicTheoremSha256": "595c9124d37c45ba5dd98c03b37d034fb5db068dfbbee4d98d90a6ab70caaf25"
+    },
+    {
+      "id": "propC_K",
+      "paperClaim": "paper_claim_propC_K",
+      "formalClaim": "formal_claim_propC_K",
+      "correspondence": "intended_correspondence_propC_K",
+      "publicTheorem": "theorem_propC_K",
+      "paperNeedle": "\\label{prop:A-C-K}",
+      "quote": [
+        "Assume (eq:jumps) and r^2∣N for some prime r. Then K=N/rad(N) satisfies K>1,",
+        "K∣L(p) and gcd(K,6p)=1."
+      ],
+      "paperClaimSha256": "d07356dc05df0a60b6bb55c04153e72836163547596916a74e3c0dfa8b3a506b",
+      "formalClaimSha256": "a036374c38b23a67ca27089fc6aab887081a7a5b971c0c6e09fa501596893266",
+      "correspondenceSha256": "653821dcb37b2d47c528a59f88570273640769103ef3e87106222f0ab58b8c6c",
+      "publicTheoremSha256": "253a8afffb1bdfa8398fcd0b1c712138c155457bcebe354f167c426b23f0cd6e"
+    }
+  ]
+}

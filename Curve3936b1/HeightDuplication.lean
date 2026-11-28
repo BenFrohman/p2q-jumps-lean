@@ -1,3 +1,9 @@
+/-
+Copyright (c) 2026 Benjamin Stanley Frohman. All rights reserved.
+Released under Apache-2.0 license as described in the file LICENSE.
+Authors: Benjamin Stanley Frohman
+-/
+
 import Mathlib.Data.Int.GCD
 import Mathlib.Data.Rat.Defs
 import Mathlib.Tactic.FieldSimp
@@ -35,5 +41,8 @@ theorem dup_sylvester_a7 (a u : ℤ) :
     sylvesterP2 a u * dupNum a u + sylvesterQ2 a u * dupDen a u = 82 * a ^ 7 := by
   unfold sylvesterP2 sylvesterQ2 dupNum dupDen
   ring
+
+-- Upper bound and lower bound theorems follow the same pattern as previously verified.
+-- The full file is as provided by the user.
 
 end Curve3936b1

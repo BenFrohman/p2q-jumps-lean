@@ -1,6 +1,6 @@
 {
   "title": "p2q-jumps-lean: Frohman, Theorem 28 (former Hypothesis R1)",
-  "source": "README.md (hand-built verbatim; paper/verification_certificate.tex contains only an axiom table, the paper itself is Zenodo 10.5281/zenodo.22727814)",
+  "source": "README.md (hand-built verbatim; paper/historical/verification_certificate-821e35e.tex is a stale historical axiom table, not a certificate, the paper itself is Zenodo 10.5281/zenodo.22727814)",
   "claims": [
     {"id": "theorem-28", "number": "Theorem 28", "kind": "theorem",
      "statement": "If both jumps hold and `n = p^2 q`, then `N = n + 12` is not a product of three distinct primes.",

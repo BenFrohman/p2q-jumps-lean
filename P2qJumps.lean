@@ -39,6 +39,11 @@ import P2qJumps.H2Reduction
 import P2qJumps.H3TwoAdic
 import P2qJumps.Semantics
 import P2qJumps.Semantics2
+import P2qJumps.Hensel
+import P2qJumps.Omega4Q
+import P2qJumps.H2K
+import P2qJumps.Conjecture3Tail
+import P2qJumps.Curve3936
 
 /-!
 # P2qJumps

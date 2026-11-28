@@ -10,12 +10,12 @@
       "includedIn": "paper/p2q-jumps-v1.4.tex",
       "section": "Lean-certified reductions (v1.4), Theorem L (thm:L)",
       "quote": [
-        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose φ(N)=φ(n)+12 and",
-        "σ(N)=σ(n)+12. Then:",
+        "Let p and q be distinct primes, n=p^2q and N=n+12, and suppose \u03c6(N)=\u03c6(n)+12 and",
+        "\u03c3(N)=\u03c3(n)+12. Then:",
         "(i) N is not prime, and N is not a product of two distinct primes;",
         "(ii) N is not a product of three distinct primes;",
-        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t ≥ 5;",
-        "(iv) if N=r^3s with distinct primes r,s ≥ 5, then p<r, r^2 divides p^3-p^2-12, and p>10^4;",
+        "(iii) N is not of the form r^2st with pairwise distinct primes r,s,t \u2265 5;",
+        "(iv) if N=r^3s with distinct primes r,s \u2265 5, then p<r, r^2 divides p^3-p^2-12, and p>10^4;",
         "(v) n>10^4."
       ]
     }
@@ -42,8 +42,8 @@
   "mathlib": "v4.26.0",
   "leanSourcesCommit": "4ae3e47f8e13edf2262528f0a8cc73657ccfc3cc",
   "approval": {
-    "approvedBy": "PENDING",
-    "approvedAt": null,
-    "note": "PENDING AUTHOR APPROVAL: Benjamin Stanley Frohman must confirm paper_claim transcribes Theorem L as meant."
+    "approvedBy": "Benjamin Stanley Frohman",
+    "approvedAt": "2026-11-21T09:45:20Z",
+    "note": "Approved by Benjamin Stanley Frohman on 2026-11-21. paper_claim transcribes Theorem L as the necessary conditions in paper/theorem-L.tex. Conjecture 3 remains open."
   }
 }

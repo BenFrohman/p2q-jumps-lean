@@ -398,4 +398,35 @@ theorem classification_ledger (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
     fun hω => omega4_size hp hq hpq hJ hω,
     fun hn => Cert.no_jumps_p2q_le_10000 hp hq hpq hn hJ⟩
 
+/-- Paper `lem:A-L1Q`(a), nonnegativity for every `x` (including `x = 1`, where the sum is
+empty): each term `(1 + μ(a)) b`, `ab = x`, `a ≠ 1`, is `≥ 0`. -/
+theorem lemmaL1_terms_nonneg (x : ℕ) :
+    ∀ e ∈ x.divisorsAntidiagonal.erase (1, x), 0 ≤ (1 + (μ e.1 : ℤ)) * (e.2 : ℤ) := by
+  intro e _
+  have h1 : -1 ≤ (μ e.1 : ℤ) := (abs_le.1 (abs_moebius_le_one (n := e.1))).1
+  exact mul_nonneg (by linarith) (by positivity)
+
+/-- `2^o ∣ 2t ↔ o ≤ 1 + v₂(t)` for `t ≠ 0`. -/
+lemma two_pow_dvd_two_mul_iff (o t : ℕ) (ht : t ≠ 0) :
+    2 ^ o ∣ 2 * t ↔ o ≤ 1 + padicValNat 2 t := by
+  rw [padicValNat_dvd_iff_le (by omega), padicValNat.mul (by norm_num) ht, padicValNat_self]
+
+/-- Paper `thm:F`, the clause "equivalently `o ≤ 1 + v₂(T(p))`": under the jumps,
+`o ≤ 1 + v₂(T(p))`, and `2^o ∣ 2T(p)` is equivalent to it (`T(p) > 0`). -/
+theorem theoremF_v2 {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q)
+    (hJ : Jumps (p ^ 2 * q)) :
+    P2qStructural.oddExpCount (p ^ 2 * q + 12) ≤ 1 + padicValNat 2 (P2qStructural.T p).toNat ∧
+      ((2 : ℤ) ^ P2qStructural.oddExpCount (p ^ 2 * q + 12) ∣ 2 * P2qStructural.T p ↔
+        P2qStructural.oddExpCount (p ^ 2 * q + 12) ≤
+          1 + padicValNat 2 (P2qStructural.T p).toNat) := by
+  have hT : 0 < P2qStructural.T p := (lemmaG hp hq hpq hJ).2.2
+  have ht : ((P2qStructural.T p).toNat : ℤ) = P2qStructural.T p := Int.toNat_of_nonneg hT.le
+  have ht0 : (P2qStructural.T p).toNat ≠ 0 := by omega
+  have e : (2 : ℤ) ^ P2qStructural.oddExpCount (p ^ 2 * q + 12) ∣ 2 * P2qStructural.T p ↔
+      2 ^ P2qStructural.oddExpCount (p ^ 2 * q + 12) ∣ 2 * (P2qStructural.T p).toNat := by
+    rw [← Int.natCast_dvd_natCast, Nat.cast_mul, Nat.cast_pow, Nat.cast_ofNat, ht]
+  have key := e.trans (two_pow_dvd_two_mul_iff _ _ ht0)
+  obtain ⟨hF, -, -⟩ := theoremF hp hq hpq hJ
+  exact ⟨key.1 hF, key⟩
+
 end P2qJumps
